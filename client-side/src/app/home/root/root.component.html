@@ -1,8 +1,48 @@
-<div id="page-cotainer">
-  <div id="header">
-    <acpc-header></acpc-header>
+<div id="page-container">
+  <div id="upper-content-container">
+    <div id="background-container">
+      <div id="background"></div>
+      <div id="gradient"></div>
+    </div>
+    <div id="foreground-container">
+      <acpc-header></acpc-header>
+      <div id="content">
+        <div id="banner-box">
+          <div id="event-name">
+            <span>Amirkabir</span>
+            <span>University of Technology</span>
+            <span> Collegiate Programming Contest</span>
+          </div>
+          <div id="countdown">
+            <span id="countdown-text">Event starts in</span>
+            <div id="countdown-clock" *ngIf="(timeLeft$ | async) as t;">
+              <span class="time-units" id="days">
+                <span class="number">{{t.daysToDday}}</span>
+                <span class="unit">days</span>
+              </span>
+              <span class="double-dot">:</span>
+              <span class="time-units" id="hours">
+                <span class="number">{{t.hoursToDday}}</span>
+                <span class="unit">hours</span>
+              </span>
+              <span class="double-dot">:</span>
+              <span class="time-units" id="minutes">
+                <span class="number">{{t.minutesToDday}}</span>
+                <span class="unit">minutes</span>
+              </span>
+              <span class="double-dot">:</span>
+              <span class="time-units" id="seconds">
+                <span class="number">{{t.secondsToDday}}</span>
+                <span class="unit">seconds</span>
+              </span>
+            </div>
+          </div>
+          <div></div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div id="body-router">
-    <router-outlet></router-outlet>
+  <div id="lower-content-container">
+    <button id="register-button" mat-raised-button color="warn" type="button">register now</button>
   </div>
 </div>

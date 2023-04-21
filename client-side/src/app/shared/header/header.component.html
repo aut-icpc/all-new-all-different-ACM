@@ -1,18 +1,25 @@
 <div id="header-container">
-  <div id="logo">
+  <div id="logo" (click)="navigateToHome()">
     <img src="./assets/images/acpc-logo.png" alt="home-page">
   </div>
-  <div id="routes-container">
-    <span>Registration</span>
-    <span>About</span>
-    <span>Past Results</span>
-  </div>
-  <div id="contact-us-container">
-    <div id="text-box">
-      <span>Contact us</span>
+  <div id="menu-button-container">
+    <div id="menu-hamburger" class="logo-box" (click)="isMenuOpen = !isMenuOpen">
+      <img class="logo-3" src="./assets/icons/hamburger-menu.png" alt="menu">
     </div>
-    <div id="logo-box">
-      <img src="./assets/icons/email.png" alt="contact-us">
+  </div>
+</div>
+<div id="option-menu" class="{{isMenuOpen ? 'opened-option-menu' : 'closed-option-menu'}}">
+  <div id="menu-header-container">
+    <div class="logo-box" (click)="isMenuOpen = !isMenuOpen">
+      <img class="logo-3" src="./assets/icons/close.png" alt="close">
+    </div>
+  </div>
+  <div id="options-container">
+    <div *ngFor="let option of menuOptions" id="{{formatIdName(option)}}"
+         class="options" [@fadeIn]="isMenuOpen ? 'increaseOpacity' : 'decreaseOpacity'">
+      <img class="logo-4" src="{{'./assets/icons/' + option.toLowerCase() + '.png'}}"
+           alt="{{option}}">
+      <span>{{option}}</span>
     </div>
   </div>
 </div>

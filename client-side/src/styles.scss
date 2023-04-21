@@ -1,4 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Ubuntu, "Helvetica Neue", sans-serif; }
+
+.logo-1 {
+  height: 16px;
+  width: 16px;
+}
+
+.logo-2 {
+  height: 18px;
+  width: 18px;
+}
+
+.logo-3 {
+  height: 20px;
+  width: 20px;
+}
+
+.logo-4 {
+  height: 30px;
+  width: 30px;
+}
+
+.round-border-1 {
+  border-radius: 15px;
+}
+
+.round-border-2 {
+  border-radius: 20px;
+}
