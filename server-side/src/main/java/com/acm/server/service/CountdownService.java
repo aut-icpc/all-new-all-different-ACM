@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author Farid Masjedi
  * description: This interface is the service for the countdown
- * @see com.acm.server.service.impl.CountdownServiceImpl
+ * @see com.acm.server.service.CountdownServiceImpl
  */
 
 @Service
