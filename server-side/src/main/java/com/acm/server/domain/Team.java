@@ -1,5 +1,6 @@
 package com.acm.server.domain;
 
+import com.acm.server.model.TeamStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +18,12 @@ public class Team {
     @Column(unique = true)
     private String teamName;
 
+    @Column
     private String institution;
+
+    @Column
+    @Enumerated(value = EnumType.STRING)
+    private TeamStatus status;
 
     @OneToMany
     private List<Contestant> contestants;
