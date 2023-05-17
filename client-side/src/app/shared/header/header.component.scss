@@ -58,31 +58,41 @@
   cursor: pointer;
 }
 
-#menu-hamburger {
-  border-color: #ffffff;
-  img {
-    filter: brightness(0) saturate(100%) invert(100%)
-    sepia(0%) saturate(7492%) hue-rotate(229deg)
-    brightness(100%) contrast(99%);
-  }
-}
-
 .dark-text {
   color: black;
+}
+
+.dark-image {
+  border-color: #000000;
+  img {
+    filter: brightness(0) saturate(100%)
+    invert(0%) sepia(89%) saturate(7500%)
+    hue-rotate(202deg) brightness(104%) contrast(112%);
+  }
 }
 
 .light-text {
   color: white;
 }
 
+.light-image {
+  border-color: #ffffff;
+  img {
+    filter: brightness(0) saturate(100%)
+    invert(100%) sepia(100%) saturate(1%)
+    hue-rotate(176deg) brightness(104%) contrast(102%);
+  }
+}
+
 #option-menu {
   position: absolute;
   width: 100%;
   top: 0;
+  left: 0;
   transition: height .5s ease-in-out;
   background-color: white;
   overflow: hidden;
-  z-index: 10;
+  z-index: 20;
   display: flex;
   flex-direction: column;
 }
@@ -107,7 +117,8 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  row-gap: 45px;
 }
 
 .options {
@@ -135,6 +146,12 @@
 
 .options:hover:after {
   width: 100%;
+}
+
+.desktop-options {
+  font-size: 15px;
+  font-weight: normal;
+  cursor: pointer;
 }
 
 .active {

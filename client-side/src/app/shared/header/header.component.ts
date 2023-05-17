@@ -2,7 +2,7 @@ import {AfterViewInit, Component, HostListener, Input, OnInit} from '@angular/co
 import {HeaderOptionClass} from "../enums/header-option-class";
 import {Router} from "@angular/router";
 import {fadeInAnimation} from "../animations/fade-animations";
-import {Platform} from "@angular/cdk/platform";
+import {PlatformService} from "../services/platform.service";
 
 @Component({
   selector: 'acpc-header',
@@ -15,14 +15,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   isDesktop !: boolean;
   isMenuOpen = false;
   menuOptions = ['Home', 'About', 'Register',
-    'Timeline', 'Contact Us', 'Contests Archive',
-    'Reg. Status']
+    'Timeline', 'Contact Us', 'Reg. Status', 'Contests Archive',]
   @Input() menuOptionColor !: HeaderOptionClass;
 
-  constructor(private router: Router, private platform: Platform) {
-    this.isDesktop = (!this.platform.ANDROID && !this.platform.IOS);
-    if (this.isDesktop)
+  constructor(private router: Router, private platform: PlatformService) {
+    this.isDesktop = platform.IsOnDesktopDevice();
+    if (this.isDesktop) {
       this.menuOptions.splice(this.menuOptions.indexOf("Register"), 1);
+      this.menuOptions.splice(this.menuOptions.indexOf("Home"), 1);
+    }
   }
 
   ngOnInit(): void {
@@ -30,6 +31,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   navigateToHome() {
     this.router.navigateByUrl('/home');
+  }
+
+  navigateToRegister() {
+    this.router.navigateByUrl('/registration/team');
   }
 
   highlightCurrentRouteOption(){
