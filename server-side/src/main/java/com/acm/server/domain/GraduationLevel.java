@@ -7,20 +7,14 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
-/**
- * @author Farid Masjedi
- * description: This class is the entity for the countdown
- */
-
 @Entity
 @Getter
 @Setter
-public class Countdown {
+public class GraduationLevel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private Date date;
+
+    private String value;
+
 }

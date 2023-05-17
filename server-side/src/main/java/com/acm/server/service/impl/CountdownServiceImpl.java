@@ -1,8 +1,9 @@
-package com.acm.server.service;
+package com.acm.server.service.impl;
 
 import com.acm.server.mapper.CountdownMapper;
 import com.acm.server.model.dto.CountdownDto;
 import com.acm.server.repository.CountdownRepository;
+import com.acm.server.service.CountdownService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
