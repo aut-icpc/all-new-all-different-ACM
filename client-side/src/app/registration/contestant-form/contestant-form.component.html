@@ -1,0 +1,63 @@
+<form id="form-container" [formGroup]="myForm"
+     class="{{isDesktop ? 'desktop-form' : 'mobile-form'}}">
+  <span id="form-header-title">
+    <img src="./assets/icons/contestant.png" alt="contestant">
+    <span>Contestant #{{contestantCounter}}</span>
+  </span>
+  <div id="personal-info-container" class="form-section">
+    <span>Personal Information</span>
+    <mat-form-field appearance="outline">
+      <input matInput type="text" formControlName="firstname" required>
+      <mat-label>Firstname</mat-label>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input matInput type="text" formControlName="lastname" required>
+      <mat-label>Lastname</mat-label>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Gender</mat-label>
+      <mat-select required formControlName="gender">
+        <mat-option *ngFor="let gender of genders" [value]="gender.toString()">
+          {{gender}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div id="contact-info-container" class="form-section">
+    <span>Contact Information</span>
+    <mat-form-field appearance="outline">
+      <input matInput type="text" formControlName="phoneNumber" required>
+      <mat-label>Phone Number</mat-label>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input matInput type="email" formControlName="email" required>
+      <mat-label>Email</mat-label>
+    </mat-form-field>
+  </div>
+  <div id="academic-info-container" class="form-section">
+    <span>Academic Information</span>
+    <mat-form-field appearance="outline">
+      <mat-label>Educationn Level</mat-label>
+      <mat-select formControlName="education" required>
+        <mat-option *ngFor="let eduLevel of eduLevels" [value]="eduLevel.toString()">
+          {{eduLevel}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input matInput type="text" formControlName="studentId" required>
+      <mat-label>Student Number</mat-label>
+    </mat-form-field>
+  </div>
+  <div id="tshirt-info-container" class="form-section">
+    <span>T-shirt Information</span>
+    <mat-form-field appearance="outline">
+      <mat-label>T-shirt size</mat-label>
+      <mat-select formControlName="shirtSize" required>
+        <mat-option *ngFor="let shirtSize of tShirts" [value]="shirtSize.toString()">
+          {{shirtSize}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</form>

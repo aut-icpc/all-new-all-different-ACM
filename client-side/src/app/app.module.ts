@@ -4,21 +4,34 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HomeModule} from "./home/home.module";
-import { HomeRoutingModule } from './home/home-routing.module';
+import {SharedModule} from "./shared/shared.module";
+import {HomePageComponent} from "./home-page/home-page.component";
+import {MatButtonModule} from "@angular/material/button";
+import {RegistrationModule} from "./registration/registration.module";
+import {RECAPTCHA_SETTINGS, RecaptchaSettings} from "ng-recaptcha";
+import {environment} from "../environments/environment";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomePageComponent,
   ],
   imports: [
-    HomeModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HomeRoutingModule
+    SharedModule,
+    MatButtonModule,
+    RegistrationModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: environment.recaptcha.siteKey,
+      } as RecaptchaSettings,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

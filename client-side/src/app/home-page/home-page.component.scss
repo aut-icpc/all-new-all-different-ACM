@@ -1,4 +1,4 @@
-@import "src/styles";
+@import "../../styles";
 
 :host {
   --lower-content-height: 150px;
@@ -26,7 +26,7 @@
 }
 
 #background {
-  background-image: url("../../../assets/images/home-page-background.jpg");
+  background-image: url("../../assets/images/home-page-background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

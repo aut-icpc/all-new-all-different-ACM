@@ -1,27 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import {HeaderOptionClass} from "../../shared/enums/header-option-class";
-import {TimeComponents} from "../../shared/interfaces/time-components";
+import {HeaderOptionClass} from "../shared/enums/header-option-class";
+import {TimeComponents} from "../shared/interfaces/time-components";
 import {interval, Observable} from "rxjs";
 import {map, shareReplay} from "rxjs/operators";
+import {HttpService} from "../shared/services/http.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './root.component.html',
-  styleUrls: ['./root.component.scss']
+  selector: 'acpc-home-page',
+  templateUrl: './home-page.component.html',
+  styleUrls: ['./home-page.component.scss']
 })
-export class RootComponent implements OnInit {
+export class HomePageComponent implements OnInit {
 
   headerTextColor = HeaderOptionClass;
+  private contestDate !: Date;
   timeLeft$ !: Observable<TimeComponents>;
 
-  constructor() {
+  constructor(private http: HttpService) {
+
+  }
+
+  ngOnInit(): void {
     this.timeLeft$ = interval(1000).pipe(
       map(x => this.calculateDateDiff()),
       shareReplay(1)
     );
-  }
-
-  ngOnInit(): void {
   }
 
   calculateDateDiff(endDay: Date = new Date(2023, 4, 1)): TimeComponents {
@@ -34,32 +37,38 @@ export class RootComponent implements OnInit {
 
     const timeDifference = dDay - Date.now();
 
-    const daysToDday = this.formatNumber(Math.floor(
+    const daysToDday = this.formatNumberToValidString(Math.floor(
       timeDifference /
       (milliSecondsInASecond * minutesInAnHour * secondsInAMinute * hoursInADay)
     ));
 
-    const hoursToDday = this.formatNumber(Math.floor(
+    const hoursToDday = this.formatNumberToValidString(Math.floor(
       (timeDifference /
         (milliSecondsInASecond * minutesInAnHour * secondsInAMinute)) %
       hoursInADay
     ));
 
-    const minutesToDday = this.formatNumber(Math.floor(
+    const minutesToDday = this.formatNumberToValidString(Math.floor(
       (timeDifference / (milliSecondsInASecond * minutesInAnHour)) %
       secondsInAMinute
     ));
 
     const secondsToDday =
-      this.formatNumber(Math.floor(timeDifference / milliSecondsInASecond) % secondsInAMinute);
+      this.formatNumberToValidString(Math.floor(timeDifference / milliSecondsInASecond) % secondsInAMinute);
 
     return { secondsToDday, minutesToDday, hoursToDday, daysToDday };
   }
 
-  private formatNumber(number: number): string {
+  private formatNumberToValidString(number: number): string {
     if (number >= 10)
       return String(number);
-    return '0' + number;
+    return '0' + this.formatNegativeNumber(number);
+  }
+
+  private formatNegativeNumber(num: number): number {
+    if (num < 0)
+      return 0;
+    return num;
   }
 
 }

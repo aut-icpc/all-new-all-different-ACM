@@ -1,0 +1,125 @@
+@import "src/styles";
+
+::ng-deep .mat-form-field {
+  font-size: 12px;
+}
+
+a {
+  text-decoration: underline;
+  color: #FCC61C;
+  font-style: italic;
+}
+
+#page-container {
+  height: 100vh;
+  display: flex;
+  padding: 10px;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+#content-container {
+  flex: 1;
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  justify-content: center;
+  flex-direction: row;
+  gap: 20px;
+  position: relative;
+}
+
+#form-header-title {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  position: absolute;
+  left: 10px;
+  top: -20px;
+  background-color: white;
+  padding: 5px;
+  box-sizing: border-box;
+  img {
+    @extend .logo-3;
+  }
+  span {
+    font-weight: bold;
+    color: #5A5959;
+    font-size: 20px;
+  }
+}
+
+#all-forms {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#team-form-container {
+  @extend .round-border-1;
+  position: relative;
+  border: 2px #5A5959 solid;
+  margin-bottom: 25px;
+  padding: 10px;
+  box-sizing: border-box;
+  max-width: 430px;
+}
+
+#team-form-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+.contents {
+  width: 50%;
+}
+
+#banner-container {
+  padding: 0 25px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#banner {
+  @extend .round-border-1;
+  background-color: #5A5959;
+  padding: 15px;
+  box-sizing: border-box;
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 430px;
+}
+
+#contestants-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+  align-items: center;
+}
+
+.sticky {
+  position: sticky;
+  top: 10px;
+}
+
+.column-direction-container {
+  flex-direction: column-reverse !important;
+  #banner-container {
+    padding: 0;
+    width: 100%;
+  }
+
+  #all-forms, #all-forms-container,
+  #contestants-container, acpc-contestant-form {
+    width: 100%;
+  }
+
+}
