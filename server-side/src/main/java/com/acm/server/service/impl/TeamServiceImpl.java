@@ -1,8 +1,9 @@
-package com.acm.server.service;
+package com.acm.server.service.impl;
 
 import com.acm.server.mapper.TeamMapper;
 import com.acm.server.model.dto.TeamDto;
 import com.acm.server.repository.TeamRepository;
+import com.acm.server.service.TeamService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

@@ -1,5 +1,7 @@
 package com.acm.server.domain;
 
+import com.acm.server.domain.picture.NationalIdPicture;
+import com.acm.server.domain.picture.StudentCardPicture;
 import com.acm.server.model.Gender;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -39,4 +41,12 @@ public class Contestant {
 
     @Column
     private String studentId;
+
+    @OneToOne
+    @JoinColumn
+    private NationalIdPicture nationalIdPicture;
+
+    @OneToOne
+    @JoinColumn
+    private StudentCardPicture studentCardPicture;
 }
