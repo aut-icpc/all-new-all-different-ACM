@@ -1,54 +1,63 @@
 <div id="page-container">
   <acpc-header [menuOptionColor]="headerTextColor.darkText"></acpc-header>
-  <div id="content-container" [ngClass]="{'column-direction-container' : !isDesktop}">
-    <div id="all-forms-container" class="contents">
-      <div id="all-forms">
-        <div id="team-form-container">
-          <span id="form-header-title">
-            <img src="./assets/icons/team.png" alt="team">
-            <span>Team Information</span>
-          </span>
-          <div id="team-form-section">
-            <mat-form-field appearance="outline">
-              <input matInput type="text" required>
-              <mat-label>Team name</mat-label>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <input matInput type="text" required>
-              <mat-label>Institution</mat-label>
-            </mat-form-field>
-          </div>
-        </div>
-        <div id="contestants-container">
-          <acpc-contestant-form
-            [contestantCounter]="1"></acpc-contestant-form>
-          <acpc-contestant-form
-            [contestantCounter]="2"></acpc-contestant-form>
-          <acpc-contestant-form
-            [contestantCounter]="3"></acpc-contestant-form>
-        </div>
-      </div>
-    </div>
-    <div id="banner-container" class="contents">
-      <div id="banner" [ngClass]="{'sticky' : isDesktop}">
-        <h2>Contest Registration</h2>
-        <h3>Registration fees are as follows:</h3>
-        <p>
-          120,000 Tomans for teams from Amirkabir University of Technology (40,000 Tomans for each contestant).
-        </p>
-        <p>
-          180,000 Tomans for teams from other universities (60,000 Tomans for each contestant).
-        </p>
-        <p>
-          If your team name was not in the registered teams list 24 hours after registration, please inform us by:
-        </p>
-        <span class="contacts">
+      <div id="content-container" [ngClass]="{'column-direction-container' : !isDesktop}">
+        <mat-stepper linear #stepper [orientation]="isDesktop ? 'horizontal' : 'vertical'">
+          <mat-step [editable]="false">
+            <ng-template matStepLabel>Fill out your team information</ng-template>
+            <div id="all-forms-container">
+              <div id="all-forms">
+                <div id="team-form-container">
+              <span id="form-header-title">
+                <img src="./assets/icons/team.png" alt="team">
+                <span>Team Information</span>
+              </span>
+                  <div id="team-form-section">
+                    <mat-form-field appearance="outline">
+                      <input matInput type="text" required>
+                      <mat-label>Team name</mat-label>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <input matInput type="text" required>
+                      <mat-label>Institution</mat-label>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div id="contestants-container">
+                  <acpc-contestant-form
+                    [contestantCounter]="1"></acpc-contestant-form>
+                  <acpc-contestant-form
+                    [contestantCounter]="2"></acpc-contestant-form>
+                  <acpc-contestant-form
+                    [contestantCounter]="3"></acpc-contestant-form>
+                </div>
+    <!--            <re-captcha id="recaptcha" name="recaptcha" required [siteKey]="siteKey"-->
+    <!--                        #recaptcha="ngModel" [(ngModel)]="captchaToken"-->
+    <!--                        [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>-->
+              </div>
+            </div>
+            <button mat-button matStepperNext>Next</button>
+          </mat-step>
+        </mat-stepper>
+        <div id="banner-container" [ngClass]="{'sticky' : isDesktop}">
+          <div id="banner">
+            <h2>Contest Registration</h2>
+            <h3>Registration fees are as follows:</h3>
+            <p>
+              120,000 Tomans for teams from Amirkabir University of Technology (40,000 Tomans for each contestant).
+            </p>
+            <p>
+              180,000 Tomans for teams from other universities (60,000 Tomans for each contestant).
+            </p>
+            <p>
+              If your team name was not in the registered teams list 24 hours after registration, please inform us by:
+            </p>
+            <span class="contacts">
           Email: <a href="mailto:ceaut.acpc@gmail.com">ceaut.acpc@gmail.com</a>
         </span>
-        <span class="contacts">
+            <span class="contacts">
           Telegram: <a href="https://t.me/acpc_admin">@acpc_admin</a>
         </span>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 </div>

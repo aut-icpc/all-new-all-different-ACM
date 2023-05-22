@@ -8,7 +8,7 @@ import {SharedModule} from "./shared/shared.module";
 import {HomePageComponent} from "./home-page/home-page.component";
 import {MatButtonModule} from "@angular/material/button";
 import {RegistrationModule} from "./registration/registration.module";
-import {RECAPTCHA_SETTINGS, RecaptchaSettings} from "ng-recaptcha";
+import {RECAPTCHA_SETTINGS, RecaptchaModule, RecaptchaSettings} from "ng-recaptcha";
 import {environment} from "../environments/environment";
 
 @NgModule({
@@ -23,6 +23,7 @@ import {environment} from "../environments/environment";
     SharedModule,
     MatButtonModule,
     RegistrationModule,
+    RecaptchaModule
   ],
   providers: [
     {

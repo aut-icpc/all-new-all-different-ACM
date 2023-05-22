@@ -9,6 +9,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import { ContestantFormComponent } from './contestant-form/contestant-form.component';
 import {RecaptchaFormsModule, RecaptchaModule} from "ng-recaptcha";
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -28,6 +30,8 @@ import {RecaptchaFormsModule, RecaptchaModule} from "ng-recaptcha";
     FormsModule,
     RecaptchaModule,
     RecaptchaFormsModule,
+    MatStepperModule,
+    MatButtonModule
   ]
 })
 export class RegistrationModule { }

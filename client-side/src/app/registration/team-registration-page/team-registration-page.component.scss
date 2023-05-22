@@ -1,7 +1,17 @@
 @import "src/styles";
 
-::ng-deep .mat-form-field {
-  font-size: 12px;
+::ng-deep {
+  .mat-form-field {
+    font-size: 12px;
+  }
+
+  .mat-horizontal-content-container {
+    padding: 0 !important;
+  }
+
+  .mat-stepper-horizontal {
+    width: 50%;
+  }
 }
 
 a {
@@ -54,6 +64,7 @@ a {
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding: 10px 0;
 }
 
 #team-form-container {
@@ -74,16 +85,13 @@ a {
   column-gap: 10px;
 }
 
-.contents {
-  width: 50%;
-}
-
 #banner-container {
   padding: 0 25px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: 50%;
 }
 
 #banner {
@@ -106,7 +114,9 @@ a {
 }
 
 .sticky {
+  justify-content: center;
   position: sticky;
+  height: 86vh;
   top: 10px;
 }
 
@@ -122,4 +132,9 @@ a {
     width: 100%;
   }
 
+}
+
+#re-captcha.is-invalid > div {
+  border: 1px solid #dc3545 !important;
+  border-radius: 0.2rem;
 }
