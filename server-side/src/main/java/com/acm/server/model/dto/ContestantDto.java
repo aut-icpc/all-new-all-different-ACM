@@ -2,10 +2,7 @@ package com.acm.server.model.dto;
 
 import com.acm.server.domain.GraduationLevel;
 import com.acm.server.domain.ShirtSize;
-import com.acm.server.domain.picture.NationalIdPicture;
-import com.acm.server.domain.picture.StudentCardPicture;
 import com.acm.server.model.Gender;
-import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
