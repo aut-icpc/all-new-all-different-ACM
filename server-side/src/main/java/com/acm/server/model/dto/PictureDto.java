@@ -6,5 +6,5 @@ import lombok.Data;
 public class PictureDto {
     private Long id;
 
-    private byte[] data;
+    private String link;
 }
