@@ -1,41 +1,49 @@
 <div id="page-container">
   <acpc-header [menuOptionColor]="headerTextColor.darkText"></acpc-header>
       <div id="content-container" [ngClass]="{'column-direction-container' : !isDesktop}">
-        <mat-stepper linear #stepper [orientation]="isDesktop ? 'horizontal' : 'vertical'">
-          <mat-step [editable]="false">
+        <mat-stepper #stepper [orientation]="isDesktop ? 'horizontal' : 'vertical'">
+          <mat-step [editable]="true" [stepControl]="teamInfoFormGroup">
             <ng-template matStepLabel>Fill out your team information</ng-template>
             <div id="all-forms-container">
-              <div id="all-forms">
+              <form [formGroup]="teamInfoFormGroup" id="all-forms">
                 <div id="team-form-container">
-              <span id="form-header-title">
-                <img src="./assets/icons/team.png" alt="team">
-                <span>Team Information</span>
-              </span>
+                <span id="form-header-title">
+                  <img src="./assets/icons/team.png" alt="team">
+                  <span>Team Information</span>
+                </span>
                   <div id="team-form-section">
                     <mat-form-field appearance="outline">
-                      <input matInput type="text" required>
+                      <input matInput type="text" formControlName="teamName" required>
                       <mat-label>Team name</mat-label>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
-                      <input matInput type="text" required>
+                      <input matInput type="text" formControlName="institution" required>
                       <mat-label>Institution</mat-label>
                     </mat-form-field>
                   </div>
                 </div>
                 <div id="contestants-container">
                   <acpc-contestant-form
-                    [contestantCounter]="1"></acpc-contestant-form>
+                    [contestantCounter]="1" formControlName="contestantOne"></acpc-contestant-form>
                   <acpc-contestant-form
-                    [contestantCounter]="2"></acpc-contestant-form>
+                    [contestantCounter]="2" formControlName="contestantTwo"></acpc-contestant-form>
                   <acpc-contestant-form
-                    [contestantCounter]="3"></acpc-contestant-form>
+                    [contestantCounter]="3" formControlName="contestantThree"></acpc-contestant-form>
                 </div>
     <!--            <re-captcha id="recaptcha" name="recaptcha" required [siteKey]="siteKey"-->
     <!--                        #recaptcha="ngModel" [(ngModel)]="captchaToken"-->
     <!--                        [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>-->
-              </div>
+              </form>
             </div>
-            <button mat-button matStepperNext>Next</button>
+            <div class="step-buttons-container">
+              <button mat-raised-button matStepperNext color="primary">Next</button>
+            </div>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Upload your teammates' ID card</ng-template>
+            <div>
+              
+            </div>
           </mat-step>
         </mat-stepper>
         <div id="banner-container" [ngClass]="{'sticky' : isDesktop}">

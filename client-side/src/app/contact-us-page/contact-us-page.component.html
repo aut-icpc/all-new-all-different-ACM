@@ -1,0 +1,33 @@
+<div id="page-container">
+  <acpc-header [menuOptionColor]="headerTextColor.darkText"></acpc-header>
+  <div id="page-content">
+    <div id="contact-info-container">
+      <div id="contact-text">
+        <h1>Contact us</h1>
+        <p>Our team would love to hear from you</p>
+      </div>
+      <div id="contacts-container">
+        <div class="contacts">
+          <img src="./assets/icons/telegram.png" alt="telegram">
+          <a href="https://t.me/acpc_admin">@acpc_admin</a>
+        </div>
+        <div class="contacts">
+          <img src="./assets/icons/viber.png" alt="phone">
+          <span>+989011521493</span>
+        </div>
+        <div class="contacts">
+          <img src="./assets/icons/gmail-logo.png" alt="email">
+          <a href="mailto:ceaut.acpc@gmail.com">ceaut.acpc@gmail.com</a>
+        </div>
+        <div class="contacts">
+          <img src="./assets/icons/discord.png" alt="discord">
+          <a href="https://discord.gg/PywEMaXE">ACPC</a>
+        </div>
+      </div>
+    </div>
+    <div class="map"
+         leaflet
+         [leafletOptions]="options">
+    </div>
+  </div>
+</div>

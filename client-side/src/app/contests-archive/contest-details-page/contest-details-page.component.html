@@ -1,0 +1,21 @@
+<div id="page-container">
+  <acpc-header [menuOptionColor]="'dark-text'"></acpc-header>
+  <div id="page-content">
+    <h1 id="page-title">{{selectedYear}} Contest</h1>
+    <mat-tab-group>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <img src="./assets/icons/photo.png" alt="photos">
+          <span>photos</span>
+        </ng-template>
+        <acpc-contests-photos-tab></acpc-contests-photos-tab>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <img src="./assets/icons/attachment.png" alt="attachments">
+          <span>attachments</span>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

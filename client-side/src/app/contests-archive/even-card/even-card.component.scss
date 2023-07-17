@@ -1,0 +1,43 @@
+@import "src/styles";
+
+.card-container {
+  height: 200px;
+  width: 150px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @extend .round-border-1;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.poster-image {
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-image: url("../../../assets/images/reg-status-banner.jpg");
+}
+
+.poster-year {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  background: linear-gradient(0deg, #212121, transparent) no-repeat;
+  transition: all .3s ease-in-out;
+}
+.card-container:hover .poster-year {
+  height: 100%;
+  font-size: 25px;
+  font-weight: bolder;
+}

@@ -10,11 +10,17 @@ import {MatButtonModule} from "@angular/material/button";
 import {RegistrationModule} from "./registration/registration.module";
 import {RECAPTCHA_SETTINGS, RecaptchaModule, RecaptchaSettings} from "ng-recaptcha";
 import {environment} from "../environments/environment";
+import {AboutModule} from "./about/about.module";
+import { ContactUsPageComponent } from './contact-us-page/contact-us-page.component';
+import {LeafletModule} from "@asymmetrik/ngx-leaflet";
+import {TimelineModule} from "./timeline/timeline.module";
+import {ContestsArchiveModule} from "./contests-archive/contests-archive.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
+    ContactUsPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +29,11 @@ import {environment} from "../environments/environment";
     SharedModule,
     MatButtonModule,
     RegistrationModule,
-    RecaptchaModule
+    RecaptchaModule,
+    AboutModule,
+    LeafletModule,
+    TimelineModule,
+    ContestsArchiveModule
   ],
   providers: [
     {

@@ -3,13 +3,14 @@
     <img src="./assets/images/acpc-logo.png" alt="home-page">
   </div>
   <div id="header-options-container" *ngIf="isDesktop">
-    <span *ngFor="let option of menuOptions" class="desktop-options {{menuOptionColor.toString() == 'dark-text' ? 'dark-text' : 'light-text'}}">
+    <span *ngFor="let option of menuOptions" (click)="navigateToPage(option.toString())"
+          class="desktop-options {{menuOptionColor}}">
       {{option}}
     </span>
   </div>
   <div id="menu-button-container" *ngIf="!isDesktop">
     <div id="menu-hamburger" (click)="isMenuOpen = !isMenuOpen"
-         class="logo-box {{menuOptionColor.toString() == 'dark-text' ? 'dark-image' : 'light-image'}}">
+         class="logo-box {{menuOptionColor}}">
       <img class="logo-3" src="./assets/icons/hamburger-menu.png" alt="menu">
     </div>
   </div>
@@ -25,7 +26,7 @@
     </div>
   </div>
   <div id="options-container">
-    <div *ngFor="let option of menuOptions" id="{{formatIdName(option)}}"
+    <div *ngFor="let option of menuOptions" id="{{formatName(option)}}" (click)="navigateToPage(option.toString())"
          class="options" [@fadeIn]="isMenuOpen ? 'increaseOpacity' : 'decreaseOpacity'">
       <img class="logo-4" src="{{'./assets/icons/' + option.toLowerCase() + '.png'}}"
            alt="{{option}}">

@@ -1,0 +1,3 @@
+<div id="image-list">
+  <img *ngFor="let image of images; let i=index;" [src]="image" alt="Image" (click)="viewImage(i)">
+</div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HeaderOptionClass} from "../../shared/enums/header-option-class";
 import {PlatformService} from "../../shared/services/platform.service";
-import { NgForm } from '@angular/forms';
+import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {environment} from "../../../environments/environment";
 
 @Component({
@@ -15,9 +15,17 @@ export class TeamRegistrationPageComponent implements OnInit {
   isDesktop !: boolean;
   captchaToken !: string;
   siteKey = environment.recaptcha.siteKey;
+  teamInfoFormGroup !: FormGroup;
 
   constructor(private platform: PlatformService) {
     this.isDesktop = this.platform.IsOnDesktopDevice();
+    this.teamInfoFormGroup = new FormGroup({
+      teamName: new FormControl('', Validators.required),
+      institution: new FormControl('', Validators.required),
+      contestantOne: new FormControl(null),
+      contestantTwo: new FormControl(null),
+      contestantThree: new FormControl(null),
+    })
   }
 
   ngOnInit(): void {

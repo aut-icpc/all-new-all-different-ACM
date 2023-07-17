@@ -1,9 +1,6 @@
 @import "src/styles";
 
 ::ng-deep {
-  .mat-form-field {
-    font-size: 12px;
-  }
 
   .mat-horizontal-content-container {
     padding: 0 !important;
@@ -137,4 +134,19 @@ a {
 #re-captcha.is-invalid > div {
   border: 1px solid #dc3545 !important;
   border-radius: 0.2rem;
+}
+
+.step-buttons-container {
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.mat-stepper-next, .mat-stepper-back {
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
 }

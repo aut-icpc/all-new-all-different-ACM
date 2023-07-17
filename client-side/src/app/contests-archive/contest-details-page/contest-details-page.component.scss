@@ -1,0 +1,30 @@
+:host ::ng-deep {
+  .mat-tab-labels {
+    justify-content: center;
+  }
+
+  .mat-tab-label {
+    width: 100%;
+    img {
+      width: 20px;
+      margin-right: 5px;
+    }
+  }
+}
+
+#page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#page-title {
+  text-align: center;
+}
+
+@media only screen and (min-width: 510px) {
+  :host ::ng-deep {
+    .mat-tab-labels {
+      padding: 0 40px;
+    }
+  }
+}

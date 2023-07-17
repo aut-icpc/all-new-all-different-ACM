@@ -1,0 +1,127 @@
+#page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#page-content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 70px;
+  position: relative;
+}
+
+.timeline-item-container {
+  width: 100%;
+  height: 113px;
+  display: flex;
+}
+
+.timeline-item {
+  position: relative;
+  border-radius: 50%;
+  border: 5px solid red;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  img {
+    width: 40px;
+  }
+}
+
+#timeline-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 345px;
+}
+
+.circle {
+  position: absolute;
+  display: flex;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  outline: 5px solid red;
+}
+
+table {
+  td {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  tr {
+    height: 100px;
+  }
+}
+
+.icon-column {
+  width: 70px;
+}
+
+.sign-column {
+  width: calc(100% - 140px);
+  div {
+    position: relative;
+    display: inline-flex;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    outline: 3px solid red;
+    border-radius: 50%;
+  }
+}
+
+.sign-column div:before, .sign-column div:after {
+  position: absolute;
+  display: flex;
+  content: "";
+  height: 5px;
+  background-color: red;
+}
+
+.sign-column div::before {
+  top: 52px;
+  left: -39px;
+  width: 87px;
+  transform: rotate(90deg);
+}
+
+.left-sided-sign::after {
+  top: 2px;
+  right: 10px;
+  width: 98px;
+}
+
+.right-sided-sign {
+  left: 1px;
+}
+
+.right-sided-sign::after {
+  top: 2px;
+  left: 10px;
+  width: 98px;
+}
+
+@media only screen and (max-width: 840px) {
+  #page-content {
+    flex-direction: column;
+    justify-content: flex-start;
+    row-gap: 75px;
+    box-sizing: border-box;
+  }
+}

@@ -27,7 +27,7 @@ export class HomePageComponent implements OnInit {
     );
   }
 
-  calculateDateDiff(endDay: Date = new Date(2023, 4, 1)): TimeComponents {
+  calculateDateDiff(endDay: Date = new Date(2023, 6, 1)): TimeComponents {
     const dDay = endDay.valueOf();
 
     const milliSecondsInASecond = 1000;

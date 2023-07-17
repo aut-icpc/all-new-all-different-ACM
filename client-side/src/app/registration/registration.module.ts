@@ -11,13 +11,15 @@ import { ContestantFormComponent } from './contestant-form/contestant-form.compo
 import {RecaptchaFormsModule, RecaptchaModule} from "ng-recaptcha";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatButtonModule} from "@angular/material/button";
+import { RegistrationStatusPageComponent } from './registration-status-page/registration-status-page.component';
 
 
 
 @NgModule({
   declarations: [
     TeamRegistrationPageComponent,
-    ContestantFormComponent
+    ContestantFormComponent,
+    RegistrationStatusPageComponent
   ],
   imports: [
     CommonModule,

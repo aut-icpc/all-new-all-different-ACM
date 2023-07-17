@@ -1,0 +1,26 @@
+<div id="page-container">
+  <acpc-header [menuOptionColor]="'dark-text'"></acpc-header>
+  <div id="page-content">
+    <div id="banner-box">
+      <div id="banner">
+        <span id="command-text">Please enter your team's name to see its current status</span>
+        <div id="banner-image"></div>
+      </div>
+    </div>
+    <div id="form-container">
+      <div id="form-wrapper" [@expandIn]="isWrapperExpanded ? 'increaseHeight' : 'decreaseHeight'">
+        <mat-form-field appearance="outline">
+          <input matInput type="text" required>
+          <mat-label>team name</mat-label>
+          <button mat-raised-button matSuffix color="primary"
+                  type="button" id="search-btn" (click)="toggleAnimationsState()">
+            <img src="./assets/icons/search.png" alt="search">
+          </button>
+        </mat-form-field>
+        <div id="status-box" [@fadeIn]="isStatusBoxShowed ? 'increaseOpacity' : 'decreaseOpacity'">
+          <span>{{statusMessage}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

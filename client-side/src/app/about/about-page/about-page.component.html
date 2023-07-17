@@ -1,0 +1,18 @@
+<div id="page-container">
+  <acpc-header [menuOptionColor]="headerTextColor.darkText"></acpc-header>
+  <div id="page-content">
+    <ng-container *ngFor="let d of descriptions; let i = index;">
+      <acpc-description-box [description]="d"
+                            [direction]="getDirection(i)">
+      </acpc-description-box>
+    </ng-container>
+    <div id="more-info">
+      <p>More info on ICPC official website</p>
+      <button id="register-button"
+              mat-raised-button color="primary"
+              type="button" (click)="naviagateToIcpcWbsite()">
+        go to website
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+#page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#page-content {
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  row-gap: 15px;
+}

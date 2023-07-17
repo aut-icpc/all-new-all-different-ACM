@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   isMenuOpen = false;
   menuOptions = ['Home', 'About', 'Register',
     'Timeline', 'Contact Us', 'Reg. Status', 'Contests Archive',]
-  @Input() menuOptionColor !: HeaderOptionClass;
+  @Input() menuOptionColor !: 'dark-text' | 'light-text';
 
   constructor(private router: Router, private platform: PlatformService) {
     this.isDesktop = platform.IsOnDesktopDevice();
@@ -24,29 +24,40 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.menuOptions.splice(this.menuOptions.indexOf("Register"), 1);
       this.menuOptions.splice(this.menuOptions.indexOf("Home"), 1);
     }
+    if (!this.menuOptionColor)
+      this.menuOptionColor = 'dark-text';
   }
 
   ngOnInit(): void {
   }
 
   navigateToHome() {
-    this.router.navigateByUrl('/home');
+    this.navigateToPage('home')
   }
 
   navigateToRegister() {
-    this.router.navigateByUrl('/registration/team');
+    this.navigateToPage('register')
+  }
+
+  navigateToPage(uri: string) {
+    let formatted = this.formatName(uri);
+    formatted = '/' + formatted;
+    if (formatted.includes('register') || formatted.includes('reg'))
+      formatted = '/registration' + formatted;
+    this.router.navigateByUrl(formatted);
   }
 
   highlightCurrentRouteOption(){
     let options = document.getElementsByClassName('options');
     for (let option in options) {
-      if (this.router.url == '/' + options[option].id)
+      if (this.router.url.includes(options[option].id))
         options[option].className += ' active';
     }
   }
 
-  formatIdName(name: string): string {
-    return name.replace(' ', '-').toLowerCase();
+  formatName(name: string): string {
+    let formatted = name.replace('.', '');
+    return formatted.replace(' ', '-').toLowerCase();
   }
 
   ngAfterViewInit(): void {

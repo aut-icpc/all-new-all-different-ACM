@@ -1,0 +1,8 @@
+<div id="page-container">
+  <acpc-header [menuOptionColor]="'dark-text'"></acpc-header>
+  <div id="page-content">
+    <acpc-even-card *ngFor="let year of availableYear"
+                    [yearOfHolding]="year" (click)="navigateToArchivedContest(year)"></acpc-even-card>
+<!--    <ng-container *ngIf="availableYear.length == 0"></ng-container>-->
+  </div>
+</div>
