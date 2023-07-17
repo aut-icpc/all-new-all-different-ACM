@@ -6,9 +6,7 @@ import com.acm.server.model.dto.BaseResponseDto;
 import com.acm.server.service.AboutUsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +20,13 @@ public class AboutUsController {
     public ResponseEntity<BaseResponseDto<List<AboutUsDto>>> getAboutUs() {
         return ResponseEntity.ok(new BaseResponseDto<>(
                 "about us returned successfully!", aboutUsService.getAboutUs()));
+    }
+
+    @PostMapping
+    public ResponseEntity<BaseResponseDto<AboutUsDto>> saveAboutUs(@RequestBody AboutUsDto dto) {
+        return ResponseEntity.ok(new BaseResponseDto<>(
+                "about us saved successfully!", aboutUsService.saveAboutUs(dto)
+        ));
     }
 
 }

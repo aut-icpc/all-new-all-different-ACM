@@ -21,4 +21,9 @@ public class AboutUsServiceImpl implements AboutUsService {
     public List<AboutUsDto> getAboutUs() {
         return repository.findAll().stream().map(mapper::toAboutUsDto).collect(Collectors.toList());
     }
+
+    @Override
+    public AboutUsDto saveAboutUs(AboutUsDto dto) {
+        return mapper.toAboutUsDto(repository.save(mapper.toAboutUs(dto)));
+    }
 }
