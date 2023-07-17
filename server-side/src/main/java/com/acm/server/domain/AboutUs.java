@@ -1,9 +1,11 @@
 package com.acm.server.domain;
 
+import com.acm.server.domain.picture.AboutUsPicture;
 import com.acm.server.domain.picture.Picture;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 /**
  * @author Farid Masjedi
@@ -18,7 +20,7 @@ public class AboutUs {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
-    private Picture picture;
+    private AboutUsPicture picture;
 }
