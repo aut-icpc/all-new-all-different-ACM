@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class AboutUsDto {
     private String description;
-    private PictureDto picture;
+    private String picture;
 }
