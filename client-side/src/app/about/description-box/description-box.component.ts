@@ -19,8 +19,7 @@ export class DescriptionBoxComponent implements OnInit {
   }
 
   getImageUrl(): any {
-    debugger
-    return this.sanitizer.bypassSecurityTrustUrl(this.description.picture.link);
+    return this.description.picture.link;
   }
 
 
