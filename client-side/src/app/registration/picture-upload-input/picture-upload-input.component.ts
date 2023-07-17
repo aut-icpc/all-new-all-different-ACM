@@ -50,7 +50,7 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
     const files: FileList = event.dataTransfer.files;
     if (files.length > 0) {
       const file: File = files[0];
-      // Process the file here
+      if (file.size / 1024 > 1)
       this.readFile(file);
     }
   }
