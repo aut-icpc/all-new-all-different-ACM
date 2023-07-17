@@ -12,6 +12,8 @@ import {RecaptchaFormsModule, RecaptchaModule} from "ng-recaptcha";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatButtonModule} from "@angular/material/button";
 import { RegistrationStatusPageComponent } from './registration-status-page/registration-status-page.component';
+import { PictureUploadInputComponent } from './picture-upload-input/picture-upload-input.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 
 
@@ -19,7 +21,8 @@ import { RegistrationStatusPageComponent } from './registration-status-page/regi
   declarations: [
     TeamRegistrationPageComponent,
     ContestantFormComponent,
-    RegistrationStatusPageComponent
+    RegistrationStatusPageComponent,
+    PictureUploadInputComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +36,8 @@ import { RegistrationStatusPageComponent } from './registration-status-page/regi
     RecaptchaModule,
     RecaptchaFormsModule,
     MatStepperModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressBarModule
   ]
 })
 export class RegistrationModule { }

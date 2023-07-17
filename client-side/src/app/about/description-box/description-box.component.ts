@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AboutDto} from "../../shared/interfaces/DTO/about.dto";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'acpc-description-box',
@@ -11,17 +12,18 @@ export class DescriptionBoxComponent implements OnInit {
   @Input() direction!: 'rtl' | 'ltr';
   @Input() description!: AboutDto;
 
-  constructor() { }
+  constructor(private _sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
   }
 
-  getImageUrl(): string | null {
-    let imageData = this.description.pictureDto.data;
-    const blob = new Blob([imageData], {type: 'image/jpeg'});
-    return URL.createObjectURL(blob);
-
-    return null;
+  getImageUrl(): any {
+    let imageData = this.description.picture.data;
+    // const blob = new Blob([imageData], {type: 'image/jpeg'});
+    // return URL.createObjectURL(blob);
+    return this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpeg;base64,'
+      + imageData);
+    // return 'data:image/jpg;base64, ' + imageData;
   }
 
 
