@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
  * @see CountdownServiceImpl
  */
 
-@Service
 public interface CountdownService {
     CountdownDto createCountdown(CountdownDto countdownDto);
 

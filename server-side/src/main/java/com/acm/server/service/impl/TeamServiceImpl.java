@@ -5,7 +5,9 @@ import com.acm.server.model.dto.TeamDto;
 import com.acm.server.repository.TeamRepository;
 import com.acm.server.service.TeamService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
 @RequiredArgsConstructor
 public class TeamServiceImpl implements TeamService {
     private final TeamRepository teamRepository;

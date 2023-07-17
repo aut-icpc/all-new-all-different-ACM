@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
  * description: Team Service
  */
 
-@Service
 public interface TeamService {
     TeamDto createTeam(TeamDto teamDto);
 

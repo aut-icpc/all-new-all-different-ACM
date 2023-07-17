@@ -5,7 +5,9 @@ import com.acm.server.model.dto.CountdownDto;
 import com.acm.server.repository.CountdownRepository;
 import com.acm.server.service.CountdownService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
 @RequiredArgsConstructor
 public class CountdownServiceImpl implements CountdownService {
 
