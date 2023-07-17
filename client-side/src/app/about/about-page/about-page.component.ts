@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HeaderOptionClass} from "../../shared/enums/header-option-class";
-import {DescriptionDetails} from "../../shared/interfaces/description-details";
+import {HttpService} from "../../shared/services/http.service";
+import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
+import {AboutDto} from "../../shared/interfaces/DTO/about.dto";
 
 @Component({
   selector: 'acpc-about-page',
@@ -10,11 +12,15 @@ import {DescriptionDetails} from "../../shared/interfaces/description-details";
 export class AboutPageComponent implements OnInit {
 
   headerTextColor = HeaderOptionClass;
-  descriptions!: DescriptionDetails[];
+  descriptions!: AboutDto[];
 
-  constructor() { }
+  constructor(private http: HttpService) { }
 
   ngOnInit(): void {
+    debugger
+    this.http.sendGetRequest<BaseResponseDto<AboutDto[]>>('/api/about').subscribe( response => {
+      this.descriptions = response.result;
+    });
   }
 
   getDirection(itemIndex: number) {
@@ -23,7 +29,7 @@ export class AboutPageComponent implements OnInit {
     return 'ltr';
   }
 
-  naviagateToIcpcWbsite() {
+  navigateToIcpcWebsite() {
     window.open('https://icpc.global/', '_blank');
   }
 

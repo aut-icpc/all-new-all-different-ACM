@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DescriptionDetails} from "../../shared/interfaces/description-details";
+import {AboutDto} from "../../shared/interfaces/DTO/about.dto";
 
 @Component({
   selector: 'acpc-description-box',
@@ -9,7 +9,7 @@ import {DescriptionDetails} from "../../shared/interfaces/description-details";
 export class DescriptionBoxComponent implements OnInit {
 
   @Input() direction!: 'rtl' | 'ltr';
-  @Input() description!: DescriptionDetails;
+  @Input() description!: AboutDto;
 
   constructor() { }
 
@@ -17,13 +17,9 @@ export class DescriptionBoxComponent implements OnInit {
   }
 
   getImageUrl(): string | null {
-    let imageData = this.description.image;
-    if (imageData instanceof Uint8Array) {
-      const blob = new Blob([imageData], { type: 'image/jpeg' });
-      return URL.createObjectURL(blob);
-    }
-    else if (imageData instanceof Blob)
-      return URL.createObjectURL(imageData);
+    let imageData = this.description.pictureDto.data;
+    const blob = new Blob([imageData], {type: 'image/jpeg'});
+    return URL.createObjectURL(blob);
 
     return null;
   }
