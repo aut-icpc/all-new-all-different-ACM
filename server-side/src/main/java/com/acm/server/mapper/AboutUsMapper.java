@@ -9,4 +9,6 @@ public interface AboutUsMapper {
     AboutUsMapper INSTANCE = org.mapstruct.factory.Mappers.getMapper(AboutUsMapper.class);
 
     AboutUsDto toAboutUsDto(AboutUs aboutUs);
+
+    AboutUs toAboutUs(AboutUsDto dto);
 }
