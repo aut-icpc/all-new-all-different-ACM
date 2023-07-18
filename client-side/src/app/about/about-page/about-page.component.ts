@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild} from '@angular/core';
 import {HeaderOptionClass} from "../../shared/enums/header-option-class";
 import {HttpService} from "../../shared/services/http.service";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {AboutDto} from "../../shared/interfaces/DTO/about.dto";
+import {Observable, Subject} from "rxjs";
+import {distinctUntilChanged, map, mergeMap} from "rxjs/operators";
 
 @Component({
   selector: 'acpc-about-page',
@@ -11,13 +13,12 @@ import {AboutDto} from "../../shared/interfaces/DTO/about.dto";
 })
 export class AboutPageComponent implements OnInit {
 
-  headerTextColor = HeaderOptionClass;
+  @ViewChild('box') boxes!: QueryList<ElementRef>;
   descriptions!: AboutDto[];
 
   constructor(private http: HttpService) { }
 
   ngOnInit(): void {
-    debugger
     this.http.sendGetRequest<BaseResponseDto<AboutDto[]>>('/api/about').subscribe( response => {
       this.descriptions = response.result;
     });
@@ -32,5 +33,6 @@ export class AboutPageComponent implements OnInit {
   navigateToIcpcWebsite() {
     window.open('https://icpc.global/', '_blank');
   }
+
 
 }

@@ -1,7 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AboutDto} from "../../shared/interfaces/DTO/about.dto";
-import {environment} from "../../../environments/environment";
-import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'acpc-description-box',
@@ -13,7 +11,7 @@ export class DescriptionBoxComponent implements OnInit {
   @Input() direction!: 'rtl' | 'ltr';
   @Input() description!: AboutDto;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -21,6 +19,5 @@ export class DescriptionBoxComponent implements OnInit {
   getImageUrl(): any {
     return this.description.picture.link;
   }
-
 
 }

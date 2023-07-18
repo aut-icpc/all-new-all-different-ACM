@@ -1,8 +1,11 @@
+@import "src/styles";
+
 .description-container {
   display: flex;
   column-gap: 5px;
   padding-bottom: 10px;
   box-sizing: border-box;
+  max-width: 700px;
 }
 
 .rtl-box {
@@ -14,5 +17,17 @@
 }
 
 .description {
-  direction: ltr;
+  direction: ltr !important;
+}
+
+img {
+  width: 220px;
+  @extend .round-border-1;
+}
+
+p {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-weight: 500;
 }
