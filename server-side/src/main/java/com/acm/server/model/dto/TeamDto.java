@@ -1,6 +1,5 @@
 package com.acm.server.model.dto;
 
-import com.acm.server.domain.Contestant;
 import lombok.Data;
 
 import java.util.List;
@@ -13,5 +12,5 @@ public class TeamDto {
 
     private String institution;
 
-    private List<Contestant> contestants;
+    private List<ContestantDto> contestants;
 }
