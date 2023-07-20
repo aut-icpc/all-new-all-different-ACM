@@ -7,8 +7,6 @@ import {ModalBodyComponent} from "../components/modal-body/modal-body.component"
 })
 export class ModalService {
 
-  private headerComponent = ModalBodyComponent;
-
   constructor(private matDialog: MatDialog) {}
 
   openModal(content: TemplateRef<any> | any, options?: MatDialogConfig): void {
