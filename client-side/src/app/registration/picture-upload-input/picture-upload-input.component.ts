@@ -166,7 +166,7 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
   }
 
   isFileValid(file: File) {
-    if (file.size / 1024 > 1000) {
+    if (file.size / 1024 > 1024) {
       this.errorMessage = this.errorMessagesMap[fileUploadErrorType.SIZE_LIMIT];
       return false;
     } else if (!this.isImage(file)) {
