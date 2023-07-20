@@ -2,6 +2,10 @@ package com.acm.server.model.dto;
 
 import lombok.Data;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 /**
  * About Us DTO
  * description: About Us Data Transfer Object
@@ -12,6 +16,9 @@ import lombok.Data;
  */
 @Data
 public class AboutUsDto {
+    @NotBlank(message = "Description is required!")
+    @Size(max = 5000, message = "Description length must be less than 1000 characters!")
     private String description;
+    @Valid
     private PictureDto picture;
 }
