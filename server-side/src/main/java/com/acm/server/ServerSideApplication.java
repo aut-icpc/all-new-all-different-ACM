@@ -24,6 +24,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author Farid Masjedi
  * @since 2023
+ * @version 0.0.1
  */
 @SpringBootApplication
 public class ServerSideApplication {
