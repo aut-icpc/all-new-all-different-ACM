@@ -23,6 +23,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * maintainable, and secure, ensuring the smooth operation of ACM-related activities.
  *
  * @author Farid Masjedi
+ * @since 2023
  */
 @SpringBootApplication
 public class ServerSideApplication {
