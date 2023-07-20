@@ -7,6 +7,22 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Entity representing a contestant participating in a contest.
+ * A contestant is an individual who is registered to participate in a contest.
+ * This entity stores information about the contestant, such as their personal details,
+ * contact information, graduation level, shirt size, and associated pictures.
+ * <p>
+ * The contestant's personal details include their first name, last name, and gender.
+ * Contact information includes their phone number and email address, both of which are unique.
+ * The contestant's graduation level and shirt size are represented by associated entities.
+ * The contestant may also have a student ID, which is an optional field.
+ * <p>
+ * The contestant's pictures include a national ID picture and a student card picture,
+ * both of which are represented by associated entities.
+ *
+ * @author Farid Masjedi
+ */
 @Entity
 @Getter
 @Setter

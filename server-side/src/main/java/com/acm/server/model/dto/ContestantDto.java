@@ -5,6 +5,12 @@ import com.acm.server.domain.ShirtSize;
 import com.acm.server.model.Gender;
 import lombok.Data;
 
+/**
+ * Data Transfer Object (DTO) representing a contestant.
+ * @see com.acm.server.domain.Contestant
+ * @see com.acm.server.model.dto.PictureDto
+ * @author Farid Masjedi
+ */
 @Data
 public class ContestantDto {
 

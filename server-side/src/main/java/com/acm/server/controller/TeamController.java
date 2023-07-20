@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * Controller class for handling requests related to the team functionality.
+ * This class is responsible for managing team-related operations.
  * @author Farid Masjedi
- * description: This class is the controller for the team
  */
 @RestController
 @RequestMapping(Constants.BASE_API_URL + "/team")
@@ -21,15 +22,27 @@ import org.springframework.web.bind.annotation.RestController;
 public class TeamController {
     private final TeamService teamService;
 
+    /**
+     * Creates a new team.
+     *
+     * @param teamDto The TeamDto object containing the details of the team to be created.
+     * @return ResponseEntity containing the response with the created TeamDto object.
+     */
     @PostMapping
     public ResponseEntity<BaseResponseDto<TeamDto>> createTeam(TeamDto teamDto) {
         return ResponseEntity.ok(new BaseResponseDto<>(
-                "team created successfully!", teamService.createTeam(teamDto)));
+                "Team created successfully!", teamService.createTeam(teamDto)));
     }
 
+    /**
+     * Retrieves the team information.
+     *
+     * @param id The ID of the team.
+     * @return ResponseEntity containing the response with the TeamDto object.
+     */
     @GetMapping
     public ResponseEntity<BaseResponseDto<TeamDto>> getTeam(Long id) {
         return ResponseEntity.ok(new BaseResponseDto<>(
-                "team returned successfully!", teamService.getTeam(id)));
+                "Team returned successfully!", teamService.getTeam(id)));
     }
 }

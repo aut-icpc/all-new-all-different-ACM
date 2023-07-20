@@ -7,6 +7,10 @@ import lombok.Setter;
 
 import java.util.List;
 
+/**
+ * Represents a team in the ACM server.
+ * @author Farid Masjedi
+ */
 @Entity
 @Getter
 @Setter
@@ -15,16 +19,32 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * The name of the team.
+     * This field is unique and serves as the identifier for the team.
+     */
     @Column(unique = true)
     private String teamName;
 
+    /**
+     * The institution associated with the team.
+     * This field represents the educational institution or organization to which the team belongs.
+     */
     @Column
     private String institution;
 
+    /**
+     * The status of the team.
+     * This field indicates the current status of the team, such as "Active", "Inactive", or "Disqualified".
+     */
     @Column
     @Enumerated(value = EnumType.STRING)
     private TeamStatus status;
 
+    /**
+     * The list of contestants in the team.
+     * This field contains the contestants who are members of the team.
+     */
     @OneToMany
     private List<Contestant> contestants;
 }

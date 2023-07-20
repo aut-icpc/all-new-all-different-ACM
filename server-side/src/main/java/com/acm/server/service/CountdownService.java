@@ -1,12 +1,11 @@
 package com.acm.server.service;
 
 import com.acm.server.model.dto.CountdownDto;
-import com.acm.server.service.impl.CountdownServiceImpl;
 
 /**
  * @author Farid Masjedi
  * description: This interface is the service for the countdown
- * @see CountdownServiceImpl
+ * @see com.acm.server.service.impl.CountdownServiceImpl
  */
 
 public interface CountdownService {

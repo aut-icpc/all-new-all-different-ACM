@@ -7,6 +7,15 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * Base Response DTO
+ * message: A message to be sent to the client
+ * result: The result of the request
+ * @param <T> The type of the result
+ *
+ * @author Farid Masjedi
+ *
+ */
 @Data
 @Builder
 @NoArgsConstructor
