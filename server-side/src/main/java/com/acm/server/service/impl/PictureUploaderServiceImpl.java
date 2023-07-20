@@ -12,6 +12,10 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * Service implementation class for uploading pictures.
+ * @author Farid Masjedi
+ */
 @Service
 public class PictureUploaderServiceImpl implements PictureUploaderService {
 
@@ -36,6 +40,13 @@ public class PictureUploaderServiceImpl implements PictureUploaderService {
         return targetPath.toAbsolutePath().toString();
     }
 
+    /**
+     * Generates a unique filename for the uploaded picture based on the original filename and picture type.
+     *
+     * @param originalFilename The original filename of the uploaded picture.
+     * @param type             The type of the picture.
+     * @return The unique filename for the uploaded picture.
+     */
     private String generateUniqueFileName(String originalFilename, PictureType type) {
         String timestamp = LocalDateTime.now().toString().replace(":", "-");
         String randomString = UUID.randomUUID().toString().replace("-", "");
