@@ -1,15 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {PlatformService} from "../../shared/services/platform.service";
 import {
   AbstractControl,
-  ControlValueAccessor, FormControl, FormGroup,
+  ControlValueAccessor,
+  FormControl,
+  FormGroup,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
-  Validator, Validators
+  Validator,
+  Validators
 } from "@angular/forms";
 import {environment} from "../../../environments/environment";
 import {Contestant} from "../../shared/interfaces/contestant";
+import {ModalService} from "../../shared/services/modal.service";
 
 @Component({
   selector: 'acpc-contestant-form',
@@ -29,6 +33,9 @@ import {Contestant} from "../../shared/interfaces/contestant";
   ]
 })
 export class ContestantFormComponent implements OnInit, ControlValueAccessor, Validator {
+
+  @ViewChild('guideTemplate') guideTemplate!: TemplateRef<any>;
+
   isDesktop !: boolean;
 
   @Input() contestantCounter !: number;
@@ -42,7 +49,7 @@ export class ContestantFormComponent implements OnInit, ControlValueAccessor, Va
   onChange = (change: any) => {}
   onTouched = (onTouched: any) => {}
 
-  constructor(private platformService: PlatformService) {
+  constructor(private platformService: PlatformService, private modalService: ModalService) {
     this.isDesktop = platformService.IsOnDesktopDevice();
     this.myForm = new FormGroup({
       firstname: new FormControl('', Validators.required),
@@ -62,6 +69,10 @@ export class ContestantFormComponent implements OnInit, ControlValueAccessor, Va
       if (this.myForm.valid)
         this.onChange(this.convertToContestantObject());
     })
+  }
+
+  openGuide() {
+    this.modalService.openModal(this.guideTemplate);
   }
 
   registerOnChange(fn: any): void {

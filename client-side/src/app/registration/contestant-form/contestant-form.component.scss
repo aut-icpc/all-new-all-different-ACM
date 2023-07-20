@@ -49,7 +49,14 @@
 }
 
 #tshirt-info-container {
+  position: relative;
   justify-content: start;
+  button {
+    position: absolute;
+    bottom: -59px;
+    width: 198px;
+    height: 46px;
+  }
 }
 
 .desktop-form {

@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './components/header/header.component';
 import {MatButtonModule} from "@angular/material/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
+import {MatDialogModule} from "@angular/material/dialog";
+import { ModalBodyComponent } from './components/modal-body/modal-body.component';
+import {MatIconModule} from "@angular/material/icon";
 
 
 
 @NgModule({
     declarations: [
-        HeaderComponent
+        HeaderComponent,
+        ModalBodyComponent
     ],
     exports: [
         HeaderComponent
@@ -19,6 +23,8 @@ import {HttpClientModule} from "@angular/common/http";
         MatButtonModule,
         BrowserAnimationsModule,
         HttpClientModule,
+        MatDialogModule,
+        MatIconModule
     ]
 })
 export class SharedModule { }
