@@ -2,7 +2,6 @@ package com.acm.server.service;
 
 import com.acm.server.model.dto.CountdownDto;
 import com.acm.server.service.impl.CountdownServiceImpl;
-import org.springframework.stereotype.Service;
 
 /**
  * @author Farid Masjedi
