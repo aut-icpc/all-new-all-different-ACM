@@ -1,6 +1,6 @@
 <div id="header-container">
   <div id="logo" (click)="navigateToHome()">
-    <img src="./assets/images/acpc-logo.png" alt="home-page">
+    <img src="../../../../assets/images/acpc-logo.png" alt="home-page">
   </div>
   <div id="header-options-container" *ngIf="isDesktop">
     <span *ngFor="let option of menuOptions" (click)="navigateToPage(option.toString())"
@@ -11,7 +11,7 @@
   <div id="menu-button-container" *ngIf="!isDesktop">
     <div id="menu-hamburger" (click)="isMenuOpen = !isMenuOpen"
          class="logo-box {{menuOptionColor}}">
-      <img class="logo-3" src="./assets/icons/hamburger-menu.png" alt="menu">
+      <img class="logo-3" src="../../../../assets/icons/hamburger-menu.png" alt="menu">
     </div>
   </div>
   <button type="button" mat-button (click)="navigateToRegister()"
@@ -22,7 +22,7 @@
 <div id="option-menu" class="{{isMenuOpen ? 'opened-option-menu' : 'closed-option-menu'}}">
   <div id="menu-header-container">
     <div class="logo-box" (click)="isMenuOpen = !isMenuOpen">
-      <img class="logo-3" src="./assets/icons/close.png" alt="close">
+      <img class="logo-3" src="../../../../assets/icons/close.png" alt="close">
     </div>
   </div>
   <div id="options-container">

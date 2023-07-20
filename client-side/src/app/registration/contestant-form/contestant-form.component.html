@@ -59,5 +59,10 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <button type="button" color="accent" mat-stroked-button (click)="openGuide()">shirt-size guide</button>
   </div>
 </form>
+
+<ng-template #guideTemplate>
+  <img src="./assets/images/shirt-size.jpg" alt="shirt size guide">
+</ng-template>

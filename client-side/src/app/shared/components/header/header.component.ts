@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, HostListener, Input, OnInit} from '@angular/core';
-import {HeaderOptionClass} from "../enums/header-option-class";
+import {HeaderOptionClass} from "../../enums/header-option-class";
 import {Router} from "@angular/router";
-import {fadeInAnimation} from "../animations/fade-animations";
-import {PlatformService} from "../services/platform.service";
+import {fadeInAnimation} from "../../animations/fade-animations";
+import {PlatformService} from "../../services/platform.service";
 
 @Component({
   selector: 'acpc-header',
