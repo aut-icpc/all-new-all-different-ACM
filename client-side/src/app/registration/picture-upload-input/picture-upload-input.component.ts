@@ -1,12 +1,13 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
-  Validator, Validators
+  Validator
 } from "@angular/forms";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'acpc-picture-upload-input',
@@ -23,24 +24,48 @@ import {
       multi: true,
       useExisting: PictureUploadInputComponent
     }
-  ]
+  ],
+  animations: [
+    trigger('fadeInOut', [
+      state('in', style({ top: '0' })),
+      state('out', style({ top: '-30px' })),
+      transition('in <=> out', animate('500ms ease-in-out')),
+    ]),
+  ],
 })
 export class PictureUploadInputComponent implements ControlValueAccessor, Validator, OnInit {
-  currentState!: 'none' | 'uploading' | 'success' | 'fail';
+  currentState!: componentState;
   uploadedFile!: File | null;
   uploadedFileBytes!: Int8Array;
+
+  errorMessage!: string;
+  errorMessagesMap!:  {[p: number]: string};
+
   isDragOver: boolean = false;
+  showErrorBox: boolean = false;
+
   uploadProgress: number = 0;
+
+  @Input() type !: 'id-card' | 'student-card';
+  @Input() required = false;
+
   @ViewChild('fileInput') fileInput!: ElementRef;
+
   onChange = (change: any) => {}
   onTouched = (onTouched: any) => {}
 
   ngOnInit(): void {
-    this.currentState = 'none';
+    this.errorMessagesMap = {
+      [fileUploadErrorType.REQUIRED]: `Please upload your ${this.type} image`,
+      [fileUploadErrorType.SIZE_LIMIT]: 'The image size should not be greater than 1MB',
+      [fileUploadErrorType.WRONG_FORMAT]: 'The uploaded file is not an image'
+    }
+
+    this.currentState = componentState.NONE;
   }
 
   openFileWindow(input: any) {
-    if (this.currentState == 'none')
+    if (this.currentState == componentState.NONE)
       input.click();
   }
 
@@ -50,7 +75,6 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
     const files: FileList = event.dataTransfer.files;
     if (files.length > 0) {
       const file: File = files[0];
-      if (file.size / 1024 > 1)
       this.readFile(file);
     }
   }
@@ -76,9 +100,9 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
   }
 
   readFile(file: File): void {
-    if (!this.isImage(file))
+    if (!this.isFileValid(file))
       return;
-    this.currentState = 'uploading';
+    this.currentState = componentState.UPLOADING;
     this.uploadedFile = file;
     this.triggerUploadProgress();
     const reader: FileReader = new FileReader();
@@ -114,7 +138,7 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
   onFileDelete(event: any) {
     this.uploadProgress = 0;
     this.uploadedFile = null;
-    this.currentState = 'none';
+    this.currentState = componentState.NONE;
   }
 
   formatFileSize(bytes: number) {
@@ -141,6 +165,24 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
     return regex.test(file.type);
   }
 
+  isFileValid(file: File) {
+    if (file.size / 1024 > 1000) {
+      this.errorMessage = this.errorMessagesMap[fileUploadErrorType.SIZE_LIMIT];
+      return false;
+    } else if (!this.isImage(file)) {
+      this.errorMessage = this.errorMessagesMap[fileUploadErrorType.WRONG_FORMAT];
+      return false;
+    }
+    return true;
+  }
+
+  triggerErrorMessage() {
+    this.showErrorBox = true;
+    setTimeout(() => {
+      this.showErrorBox = false;
+    }, 5000);
+  }
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
@@ -154,8 +196,24 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    if (!this.uploadedFile)
-      return Validators.required(control);
+    if (!this.uploadedFile && this.required) {
+      this.errorMessage = this.errorMessagesMap[fileUploadErrorType.REQUIRED];
+      this.triggerErrorMessage();
+      return { required: true };
+    }
     return null;
   }
+}
+
+export enum fileUploadErrorType {
+  REQUIRED,
+  SIZE_LIMIT,
+  WRONG_FORMAT
+}
+
+export enum componentState {
+  NONE = 'none',
+  UPLOADING = 'uploading',
+  SUCCESS = 'success',
+  FAIL = 'fail'
 }

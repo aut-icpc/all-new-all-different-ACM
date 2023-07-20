@@ -1,32 +1,33 @@
 <input #fileInput type="file" (change)="onFileSelected($event)"
        accept="image/*" id="file-input" multiple/>
-<div id="uploader-container">
-  <div #container class="drop-zone {{isDragOver ? 'drag-over' : 'drag-leave'}}"
-       (dragleave)="onDragLeave()"
-       (drop)="onFileDropped($event)"
-       (dragover)="onDragOver($event, container)">
-    <div id="show-box" (click)="openFileWindow(fileInput)" *ngIf="currentState == 'none'">
-      <img src="./assets/icons/image.png" alt="image">
-      <span id="or">Drag your image here or browse</span>
-    </div>
-    <div class="uploaded-image" *ngIf="currentState == 'uploading'">
-      <div class="image-info">
-        <div class="image-data">
-          <img src="./assets/icons/file.png" alt="file">
-          <span>{{ uploadedFile?.name }}</span>
-        </div>
-        <div>
+<div #container class="drop-zone {{isDragOver ? 'drag-over' : 'drag-leave'}}"
+     (dragleave)="onDragLeave()"
+     (drop)="onFileDropped($event)"
+     (dragover)="onDragOver($event, container)">
+  <div id="show-box" (click)="openFileWindow(fileInput)" *ngIf="currentState.toString() == 'none'">
+    <img src="./assets/icons/image.png" alt="image">
+    <span id="or">Drag your image here or browse</span>
+  </div>
+  <div class="uploaded-image" *ngIf="currentState.toString() == 'uploading'">
+    <div class="image-info">
+      <div class="image-data">
+        <img src="./assets/icons/file.png" alt="file">
+        <span>{{ uploadedFile?.name }}</span>
+      </div>
+      <div>
           <span class="file-size">
             {{formatFileSize(uploadedFile?.size || 0)}}
           </span>
-          <button mat-icon-button color="primary" (click)="onFileDelete($event)">
-            <img src="./assets/icons/red-close.png" alt="close">
-          </button>
-        </div>
+        <button mat-icon-button color="primary" (click)="onFileDelete($event)">
+          <img src="./assets/icons/red-close.png" alt="close">
+        </button>
       </div>
-      <mat-progress-bar *ngIf="uploadProgress > 0 && uploadProgress < 100" mode="determinate"
-                        [value]="(uploadProgress || 0)"></mat-progress-bar>
     </div>
+    <mat-progress-bar *ngIf="uploadProgress > 0 && uploadProgress < 100" mode="determinate"
+                      [value]="(uploadProgress || 0)"></mat-progress-bar>
   </div>
+  <span class="error-box" *ngIf="showErrorBox" (click)="showErrorBox = false" [@fadeInOut]="showErrorBox ? 'in' : 'out'">
+    {{errorMessage}}
+  </span>
 </div>
 
