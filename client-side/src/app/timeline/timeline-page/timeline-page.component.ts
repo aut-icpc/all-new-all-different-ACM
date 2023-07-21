@@ -36,7 +36,7 @@ export class TimelinePageComponent implements OnInit {
   headerTextColor = HeaderOptionClass;
 
   constructor(private platform: PlatformService) {
-    this.isDesktop = this.platform.IsOnDesktopDevice();
+    this.isDesktop = this.platform.isOnDesktopDevice();
   }
 
   ngOnInit(): void {

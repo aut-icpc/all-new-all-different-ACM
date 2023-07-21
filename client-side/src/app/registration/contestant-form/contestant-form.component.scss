@@ -51,9 +51,10 @@
 #tshirt-info-container {
   position: relative;
   justify-content: start;
+  min-height: 154px;
   button {
     position: absolute;
-    bottom: -59px;
+    bottom: 0;
     width: 198px;
     height: 46px;
   }

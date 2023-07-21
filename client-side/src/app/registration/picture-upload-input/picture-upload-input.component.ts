@@ -8,6 +8,7 @@ import {
   Validator
 } from "@angular/forms";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {PlatformService} from "../../shared/services/platform.service";
 
 @Component({
   selector: 'acpc-picture-upload-input',
@@ -29,14 +30,14 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
     trigger('fadeInOut', [
       state('in', style({ top: '0' })),
       state('out', style({ top: '-30px' })),
-      transition('in <=> out', animate('500ms ease-in-out')),
+      transition('* <=> *', animate('.5s ease-in-out')),
     ]),
   ],
 })
 export class PictureUploadInputComponent implements ControlValueAccessor, Validator, OnInit {
   currentState!: componentState;
+  commandMessage!: string;
   uploadedFile!: File | null;
-  uploadedFileBytes!: Int8Array;
 
   errorMessage!: string;
   errorMessagesMap!:  {[p: number]: string};
@@ -46,18 +47,23 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
 
   uploadProgress: number = 0;
 
-  @Input() type !: 'id-card' | 'student-card';
   @Input() required = false;
+  @Input() type !: 'id-card' | 'student-card';
 
   @ViewChild('fileInput') fileInput!: ElementRef;
 
   onChange = (change: any) => {}
   onTouched = (onTouched: any) => {}
 
+  constructor(private platform: PlatformService) {
+    this.commandMessage = platform.isOnDesktopDevice() ? 'Drag your image here or browse' :
+      'tap to choose an image';
+  }
+
   ngOnInit(): void {
     this.errorMessagesMap = {
       [fileUploadErrorType.REQUIRED]: `Please upload your ${this.type} image`,
-      [fileUploadErrorType.SIZE_LIMIT]: 'The image size should not be greater than 1MB',
+      [fileUploadErrorType.SIZE_LIMIT]: 'The image size must be less than 1MB',
       [fileUploadErrorType.WRONG_FORMAT]: 'The uploaded file is not an image'
     }
 
@@ -79,17 +85,6 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
     }
   }
 
-  setImageFile(file: File): void {
-    const fileList = new DataTransfer();
-    fileList.items.add(file);
-    Object.defineProperty(this.fileInput.nativeElement, 'files', {
-      value: fileList,
-      writable: true,
-      configurable: true,
-      enumerable: true
-    });
-  }
-
   onDragOver(event: any, container: HTMLDivElement): void {
     event.preventDefault();
     this.isDragOver = true;
@@ -100,31 +95,19 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
   }
 
   readFile(file: File): void {
-    if (!this.isFileValid(file))
+    if (!this.isFileValid(file)) {
+      this.triggerErrorMessage();
+      this.clearInput()
       return;
+    }
     this.currentState = componentState.UPLOADING;
     this.uploadedFile = file;
     this.triggerUploadProgress();
-    const reader: FileReader = new FileReader();
-    reader.onload = (e: any) => {
-      const imageSrc: string = e.target.result;
-      this.uploadedFileBytes = this.convertDataURIToBinary(reader.result);
-      this.onChange(this.uploadedFileBytes);
-    };
-    reader.readAsDataURL(file);
+    this.onChange(this.uploadedFile);
   }
 
-  private convertDataURIToBinary(dataURI: any) {
-    let base64Index = dataURI.indexOf(';base64,') + ';base64,'.length;
-    let base64 = dataURI.substring(base64Index);
-    let raw = window.atob(base64);
-    let rawLength = raw.length;
-    let array = new Int8Array(new ArrayBuffer(rawLength));
-
-    for(let i = 0; i < rawLength; i++) {
-      array[i] = raw.charCodeAt(i);
-    }
-    return array;
+  private clearInput() {
+    this.fileInput.nativeElement.value = '';
   }
 
   onFileSelected(event: any): void {
@@ -139,6 +122,7 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
     this.uploadProgress = 0;
     this.uploadedFile = null;
     this.currentState = componentState.NONE;
+    this.clearInput()
   }
 
   formatFileSize(bytes: number) {
@@ -166,11 +150,11 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
   }
 
   isFileValid(file: File) {
-    if (file.size / 1024 > 1024) {
-      this.errorMessage = this.errorMessagesMap[fileUploadErrorType.SIZE_LIMIT];
-      return false;
-    } else if (!this.isImage(file)) {
+    if (!this.isImage(file)) {
       this.errorMessage = this.errorMessagesMap[fileUploadErrorType.WRONG_FORMAT];
+      return false;
+    } else if (file.size / 1024 > 1024) {
+      this.errorMessage = this.errorMessagesMap[fileUploadErrorType.SIZE_LIMIT];
       return false;
     }
     return true;

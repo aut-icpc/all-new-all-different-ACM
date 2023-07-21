@@ -1,4 +1,4 @@
-<form id="form-container" [formGroup]="myForm"
+<form id="form-container" [formGroup]="group"
      class="{{isDesktop ? 'desktop-form' : 'mobile-form'}}">
   <span id="form-header-title">
     <img src="./assets/icons/contestant.png" alt="contestant">
@@ -64,5 +64,5 @@
 </form>
 
 <ng-template #guideTemplate>
-  <img src="./assets/images/shirt-size.jpg" alt="shirt size guide">
+  <img src="./assets/images/shirt-size.jpg" alt="shirt size guide" width="100%">
 </ng-template>

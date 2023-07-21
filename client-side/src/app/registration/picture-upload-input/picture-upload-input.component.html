@@ -1,12 +1,13 @@
 <input #fileInput type="file" (change)="onFileSelected($event)"
        accept="image/*" id="file-input" multiple/>
 <div #container class="drop-zone {{isDragOver ? 'drag-over' : 'drag-leave'}}"
+     [ngClass]="{'error': showErrorBox}"
      (dragleave)="onDragLeave()"
      (drop)="onFileDropped($event)"
      (dragover)="onDragOver($event, container)">
   <div id="show-box" (click)="openFileWindow(fileInput)" *ngIf="currentState.toString() == 'none'">
     <img src="./assets/icons/image.png" alt="image">
-    <span id="or">Drag your image here or browse</span>
+    <span id="or">{{commandMessage}}</span>
   </div>
   <div class="uploaded-image" *ngIf="currentState.toString() == 'uploading'">
     <div class="image-info">
@@ -14,7 +15,7 @@
         <img src="./assets/icons/file.png" alt="file">
         <span>{{ uploadedFile?.name }}</span>
       </div>
-      <div>
+      <div class="image-details">
           <span class="file-size">
             {{formatFileSize(uploadedFile?.size || 0)}}
           </span>

@@ -1,0 +1,18 @@
+<form class="form-container" [formGroup]="group">
+  <span id="form-header-title">
+    <img src="./assets/icons/contestant.png" alt="contestant">
+    <span>{{contestantLastName}}'s docs</span>
+  </span>
+  <div class="input-container">
+    <span class="image-title">ID card photo upload</span>
+    <acpc-picture-upload-input [required]="true" [type]="'id-card'"
+                               formControlName="idCardPhoto">
+    </acpc-picture-upload-input>
+  </div>
+  <div class="input-container">
+    <span class="image-title">Student card photo upload</span>
+    <acpc-picture-upload-input [required]="true" [type]="'student-card'"
+                               formControlName="studentCardPhoto">
+    </acpc-picture-upload-input>
+  </div>
+</form>

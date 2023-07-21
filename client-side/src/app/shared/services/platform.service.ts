@@ -8,7 +8,7 @@ export class PlatformService {
 
   constructor(private platform: Platform) { }
 
-  IsOnDesktopDevice(): boolean {
+  isOnDesktopDevice(): boolean {
     return !(this.platform.IOS || this.platform.ANDROID);
   }
 }

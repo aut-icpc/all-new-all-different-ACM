@@ -2,15 +2,15 @@
   <acpc-header [menuOptionColor]="headerTextColor.darkText"></acpc-header>
       <div id="content-container" [ngClass]="{'column-direction-container' : !isDesktop}">
         <mat-stepper #stepper [orientation]="isDesktop ? 'horizontal' : 'vertical'">
-          <mat-step [editable]="true" [stepControl]="teamInfoFormGroup">
+          <mat-step [editable]="true" [optional]="false" [stepControl]="teamInfoFormGroup">
             <ng-template matStepLabel>Fill out your team information</ng-template>
             <div id="all-forms-container">
-              <form [formGroup]="teamInfoFormGroup" id="all-forms">
+              <form [formGroup]="teamInfoFormGroup" class="all-forms">
                 <div id="team-form-container">
-                <span id="form-header-title">
-                  <img src="./assets/icons/team.png" alt="team">
-                  <span>Team Information</span>
-                </span>
+                  <span id="form-header-title">
+                    <img src="./assets/icons/team.png" alt="team">
+                    <span>Team Information</span>
+                  </span>
                   <div id="team-form-section">
                     <mat-form-field appearance="outline">
                       <input matInput type="text" formControlName="teamName" required>
@@ -22,7 +22,7 @@
                     </mat-form-field>
                   </div>
                 </div>
-                <div id="contestants-container">
+                <div class="contestants-container">
                   <acpc-contestant-form
                     [contestantCounter]="1" formControlName="contestantOne"></acpc-contestant-form>
                   <acpc-contestant-form
@@ -30,20 +30,38 @@
                   <acpc-contestant-form
                     [contestantCounter]="3" formControlName="contestantThree"></acpc-contestant-form>
                 </div>
-    <!--            <re-captcha id="recaptcha" name="recaptcha" required [siteKey]="siteKey"-->
-    <!--                        #recaptcha="ngModel" [(ngModel)]="captchaToken"-->
-    <!--                        [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>-->
               </form>
             </div>
             <div class="step-buttons-container">
-              <button mat-raised-button matStepperNext color="primary">Next</button>
+              <button mat-stroked-button matStepperNext color="primary">Next</button>
             </div>
           </mat-step>
-          <mat-step>
-            <ng-template matStepLabel>Upload your teammates' ID card</ng-template>
-            <div>
-              <acpc-picture-upload-input></acpc-picture-upload-input>
-            </div>
+          <mat-step [editable]="true" [optional]="false" [stepControl]="teamDocumentFormGroup">
+            <ng-template matStepLabel>Upload your teammates' docs</ng-template>
+            <ng-template matStepContent>
+              <div>
+                <form class="all-forms contestants-container" [formGroup]="teamDocumentFormGroup">
+                  <acpc-identification-documents-form formControlName="contestantOne"
+                                                      [contestantLastName]="getContestantName('One')"
+                                                      [contestantStudentId]="getContestantStudentId('One')"></acpc-identification-documents-form>
+                  <acpc-identification-documents-form formControlName="contestantTwo"
+                                                      [contestantLastName]="getContestantName('Two')"
+                                                      [contestantStudentId]="getContestantStudentId('Two')"></acpc-identification-documents-form>
+                  <acpc-identification-documents-form formControlName="contestantThree"
+                                                      [contestantLastName]="getContestantName('Three')"
+                                                      [contestantStudentId]="getContestantStudentId('Three')"></acpc-identification-documents-form>
+                </form>
+                <div class="captcha-container">
+                  <re-captcha id="recaptcha" name="recaptcha" required [siteKey]="siteKey"
+                              #recaptcha="ngModel" [(ngModel)]="captchaToken"
+                              [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
+                </div>
+                <div class="step-buttons-container">
+                  <button mat-stroked-button matStepperPrevious color="primary">Back</button>
+                  <button mat-raised-button color="primary">submit</button>
+                </div>
+              </div>
+            </ng-template>
           </mat-step>
         </mat-stepper>
         <div id="banner-container" [ngClass]="{'sticky' : isDesktop}">

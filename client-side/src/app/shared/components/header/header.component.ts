@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() menuOptionColor !: 'dark-text' | 'light-text';
 
   constructor(private router: Router, private platform: PlatformService) {
-    this.isDesktop = platform.IsOnDesktopDevice();
+    this.isDesktop = platform.isOnDesktopDevice();
     if (this.isDesktop) {
       this.menuOptions.splice(this.menuOptions.indexOf("Register"), 1);
       this.menuOptions.splice(this.menuOptions.indexOf("Home"), 1);

@@ -14,6 +14,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {RegistrationStatusPageComponent} from './registration-status-page/registration-status-page.component';
 import {PictureUploadInputComponent} from './picture-upload-input/picture-upload-input.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { IdentificationDocumentsFormComponent } from './identification-documents-form/identification-documents-form.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     TeamRegistrationPageComponent,
     ContestantFormComponent,
     RegistrationStatusPageComponent,
-    PictureUploadInputComponent],
+    PictureUploadInputComponent,
+    IdentificationDocumentsFormComponent],
   imports: [
     CommonModule,
     RegistrationRoutingModule,

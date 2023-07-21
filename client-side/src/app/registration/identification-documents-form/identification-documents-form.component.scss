@@ -1,0 +1,47 @@
+@import "src/styles";
+
+.form-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: start;
+  gap: 10px;
+  @extend .round-border-1;
+  border: 2px #5A5959 solid;
+  padding: 20px 0;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+#form-header-title {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  position: absolute;
+  left: 10px;
+  top: -20px;
+  background-color: white;
+  padding: 5px;
+  box-sizing: border-box;
+  img {
+    @extend .logo-3;
+  }
+  span {
+    font-weight: bold;
+    color: #5A5959;
+    font-size: 20px;
+  }
+}
+
+.input-container {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.image-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #5A5959;
+}
