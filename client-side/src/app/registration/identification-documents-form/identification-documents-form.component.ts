@@ -63,8 +63,17 @@ export class IdentificationDocumentsFormComponent implements OnInit, ControlValu
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    if (!this.group.controls['idCardPhoto'].value || !this.group.controls['studentCardPhoto'].value)
+    if (!this.group.controls['idCardPhoto'].value) {
+      this.group.controls['idCardPhoto'].markAsTouched();
+    }
+
+    if (!this.group.controls['studentCardPhoto'].value) {
+      this.group.controls['studentCardPhoto'].markAsTouched();
+    }
+
+    if (!this.group.controls['idCardPhoto'].value || !this.group.controls['studentCardPhoto'].value) {
       return { required: true };
+    }
     return null;
   }
 

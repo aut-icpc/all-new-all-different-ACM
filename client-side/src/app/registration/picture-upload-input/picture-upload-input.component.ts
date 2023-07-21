@@ -180,7 +180,7 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    if (!this.uploadedFile && this.required) {
+    if (!this.uploadedFile && this.required && control.touched) {
       this.errorMessage = this.errorMessagesMap[fileUploadErrorType.REQUIRED];
       this.triggerErrorMessage();
       return { required: true };

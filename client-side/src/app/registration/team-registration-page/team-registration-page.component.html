@@ -1,7 +1,7 @@
 <div id="page-container">
   <acpc-header [menuOptionColor]="headerTextColor.darkText"></acpc-header>
       <div id="content-container" [ngClass]="{'column-direction-container' : !isDesktop}">
-        <mat-stepper #stepper [orientation]="isDesktop ? 'horizontal' : 'vertical'">
+        <mat-stepper linear #stepper [orientation]="isDesktop ? 'horizontal' : 'vertical'">
           <mat-step [editable]="true" [optional]="false" [stepControl]="teamInfoFormGroup">
             <ng-template matStepLabel>Fill out your team information</ng-template>
             <div id="all-forms-container">

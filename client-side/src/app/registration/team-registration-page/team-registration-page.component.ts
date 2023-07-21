@@ -28,9 +28,9 @@ export class TeamRegistrationPageComponent {
     this.teamInfoFormGroup = new FormGroup({
       teamName: new FormControl('', Validators.required),
       institution: new FormControl('', Validators.required),
-      contestantOne: new FormControl(null),
-      contestantTwo: new FormControl(null),
-      contestantThree: new FormControl(null),
+      contestantOne: new FormControl(null, Validators.required),
+      contestantTwo: new FormControl(null, Validators.required),
+      contestantThree: new FormControl(null, Validators.required),
     })
   }
 
@@ -50,15 +50,8 @@ export class TeamRegistrationPageComponent {
     return this.teamInfoFormGroup.controls[`contestant${number}`].value.studentId;
   }
 
-  public send(form: NgForm): void {
-    if (form.invalid) {
-      for (const control of Object.keys(form.controls)) {
-        form.controls[control].markAsTouched();
-      }
-      return;
-    }
+  submitForm() {
 
-    console.debug(`Token [${this.captchaToken}] generated`);
   }
 
 }
