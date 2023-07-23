@@ -1,14 +1,18 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
+  FormControl,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
+  NgControl,
   ValidationErrors,
-  Validator
+  Validator,
+  Validators
 } from "@angular/forms";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {PlatformService} from "../../shared/services/platform.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'acpc-picture-upload-input',
@@ -18,12 +22,12 @@ import {PlatformService} from "../../shared/services/platform.service";
     {
       provide: NG_VALUE_ACCESSOR,
       multi:true,
-      useExisting: PictureUploadInputComponent
+      useExisting: forwardRef(() => PictureUploadInputComponent)
     },
     {
       provide: NG_VALIDATORS,
       multi: true,
-      useExisting: PictureUploadInputComponent
+      useExisting: forwardRef(() => PictureUploadInputComponent)
     }
   ],
   animations: [
@@ -47,6 +51,8 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
 
   uploadProgress: number = 0;
 
+  formControl = new FormControl(null, Validators.required);
+
   @Input() required = false;
   @Input() type !: 'id-card' | 'student-card';
 
@@ -65,7 +71,11 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
       [fileUploadErrorType.REQUIRED]: `Please upload your ${this.type} image`,
       [fileUploadErrorType.SIZE_LIMIT]: 'The image size must be less than 1MB',
       [fileUploadErrorType.WRONG_FORMAT]: 'The uploaded file is not an image'
-    }
+    };
+
+    this.formControl.statusChanges.subscribe(e => {
+      console.log(e)
+    })
 
     this.currentState = componentState.NONE;
   }
@@ -102,6 +112,7 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
     }
     this.currentState = componentState.UPLOADING;
     this.uploadedFile = file;
+    this.formControl.setValue(this.uploadedFile);
     this.triggerUploadProgress();
     this.onChange(this.uploadedFile);
   }
@@ -121,6 +132,7 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
   onFileDelete(event: any) {
     this.uploadProgress = 0;
     this.uploadedFile = null;
+    this.formControl.setValue(this.uploadedFile);
     this.currentState = componentState.NONE;
     this.clearInput()
   }
@@ -162,9 +174,6 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
 
   triggerErrorMessage() {
     this.showErrorBox = true;
-    setTimeout(() => {
-      this.showErrorBox = false;
-    }, 5000);
   }
 
   registerOnChange(fn: any): void {
@@ -180,7 +189,8 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    if (!this.uploadedFile && this.required && control.touched) {
+    debugger
+    if (!this.formControl.value && this.required) {
       this.errorMessage = this.errorMessagesMap[fileUploadErrorType.REQUIRED];
       this.triggerErrorMessage();
       return { required: true };

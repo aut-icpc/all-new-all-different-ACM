@@ -1,5 +1,5 @@
 <input #fileInput type="file" (change)="onFileSelected($event)"
-       accept="image/*" id="file-input" multiple/>
+       accept="image/*" id="file-input"/>
 <div #container class="drop-zone {{isDragOver ? 'drag-over' : 'drag-leave'}}"
      [ngClass]="{'error': showErrorBox}"
      (dragleave)="onDragLeave()"
@@ -27,7 +27,7 @@
     <mat-progress-bar *ngIf="uploadProgress > 0 && uploadProgress < 100" mode="determinate"
                       [value]="(uploadProgress || 0)"></mat-progress-bar>
   </div>
-  <span class="error-box" *ngIf="showErrorBox" (click)="showErrorBox = false" [@fadeInOut]="showErrorBox ? 'in' : 'out'">
+  <span class="error-box" *ngIf="showErrorBox && formControl?.errors?.required" (click)="showErrorBox = false" [@fadeInOut]="showErrorBox ? 'in' : 'out'">
     {{errorMessage}}
   </span>
 </div>

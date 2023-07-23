@@ -90,7 +90,7 @@ export class ContestantFormComponent implements OnInit, ControlValueAccessor, Va
   validate(control: AbstractControl): ValidationErrors | null {
     debugger
     const value = control.value as Contestant;
-    if (this.hasEmptyOrNullFields(value))
+    if (!value || this.hasEmptyOrNullFields(value))
       return { required: true };
     return null;
   }

@@ -3,7 +3,7 @@ import {
   AbstractControl,
   ControlValueAccessor,
   FormControl,
-  FormGroup,
+  FormGroup, NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
   Validator,
@@ -16,16 +16,22 @@ import {ContestantDocs} from "../../shared/interfaces/contestant-docs";
   templateUrl: './identification-documents-form.component.html',
   styleUrls: ['./identification-documents-form.component.scss'],
   providers: [
-    {provide: NG_VALUE_ACCESSOR,
-    multi: true,
-    useExisting: IdentificationDocumentsFormComponent
-    }
-  ]
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: IdentificationDocumentsFormComponent,
+    },
+    {
+      provide: NG_VALIDATORS,
+      multi: true,
+      useExisting: IdentificationDocumentsFormComponent,
+    },
+  ],
 })
 export class IdentificationDocumentsFormComponent implements OnInit, ControlValueAccessor, Validator {
 
   group!: FormGroup;
-  @Input() contestantLastName!: string;
+  // @Input() contestantLastName!: string;
   @Input() contestantStudentId!: string;
 
   onChange = (change: any) => {}
@@ -35,8 +41,8 @@ export class IdentificationDocumentsFormComponent implements OnInit, ControlValu
 
   ngOnInit(): void {
     this.group = new FormGroup({
-      idCardPhoto: new FormControl('', Validators.required),
-      studentCardPhoto: new FormControl('', Validators.required)
+      idCardPhoto: new FormControl(null, Validators.required),
+      studentCardPhoto: new FormControl(null, Validators.required)
     });
     this.group.valueChanges.subscribe(e => {
       this.onChange(this.convertToContestantDocsObject());
@@ -63,17 +69,15 @@ export class IdentificationDocumentsFormComponent implements OnInit, ControlValu
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    if (!this.group.controls['idCardPhoto'].value) {
+    debugger
+    if (!this.group.controls['idCardPhoto'].value)
       this.group.controls['idCardPhoto'].markAsTouched();
-    }
 
-    if (!this.group.controls['studentCardPhoto'].value) {
+    if (!this.group.controls['studentCardPhoto'].value)
       this.group.controls['studentCardPhoto'].markAsTouched();
-    }
 
-    if (!this.group.controls['idCardPhoto'].value || !this.group.controls['studentCardPhoto'].value) {
+    if (!this.group.controls['idCardPhoto'].value || !this.group.controls['studentCardPhoto'].value)
       return { required: true };
-    }
     return null;
   }
 

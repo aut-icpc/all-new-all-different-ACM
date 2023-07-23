@@ -2,7 +2,7 @@
   <acpc-header [menuOptionColor]="headerTextColor.darkText"></acpc-header>
       <div id="content-container" [ngClass]="{'column-direction-container' : !isDesktop}">
         <mat-stepper linear #stepper [orientation]="isDesktop ? 'horizontal' : 'vertical'">
-          <mat-step [editable]="true" [optional]="false" [stepControl]="teamInfoFormGroup">
+          <mat-step [editable]="true" [optional]="true" [stepControl]="teamInfoFormGroup">
             <ng-template matStepLabel>Fill out your team information</ng-template>
             <div id="all-forms-container">
               <form [formGroup]="teamInfoFormGroup" class="all-forms">
@@ -42,24 +42,30 @@
               <div>
                 <form class="all-forms contestants-container" [formGroup]="teamDocumentFormGroup">
                   <acpc-identification-documents-form formControlName="contestantOne"
-                                                      [contestantLastName]="getContestantName('One')"
-                                                      [contestantStudentId]="getContestantStudentId('One')"></acpc-identification-documents-form>
+                                                      [contestantStudentId]="'9931024'"></acpc-identification-documents-form>
                   <acpc-identification-documents-form formControlName="contestantTwo"
-                                                      [contestantLastName]="getContestantName('Two')"
-                                                      [contestantStudentId]="getContestantStudentId('Two')"></acpc-identification-documents-form>
+                                                      [contestantStudentId]="'9931050'"></acpc-identification-documents-form>
                   <acpc-identification-documents-form formControlName="contestantThree"
-                                                      [contestantLastName]="getContestantName('Three')"
-                                                      [contestantStudentId]="getContestantStudentId('Three')"></acpc-identification-documents-form>
+                                                      [contestantStudentId]="'9931042'"></acpc-identification-documents-form>
                 </form>
-                <div class="captcha-container">
-                  <re-captcha id="recaptcha" name="recaptcha" required [siteKey]="siteKey"
-                              #recaptcha="ngModel" [(ngModel)]="captchaToken"
-                              [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
-                </div>
                 <div class="step-buttons-container">
                   <button mat-stroked-button matStepperPrevious color="primary">Back</button>
-                  <button mat-raised-button color="primary">submit</button>
+                  <button mat-stroked-button matStepperNext color="primary">Next</button>
                 </div>
+              </div>
+            </ng-template>
+          </mat-step>
+          <mat-step [editable]="true" [optional]="false">
+            <ng-template matStepLabel>Submit data</ng-template>
+            <ng-template matStepContent>
+              <div class="captcha-container">
+                <re-captcha id="recaptcha" name="recaptcha" required [siteKey]="siteKey"
+                            #recaptcha="ngModel" [(ngModel)]="captchaToken" [ngClass]="{'error-captcha': showErrorOnCaptcha}"
+                            [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
+                <span [hidden]="recaptcha.valid || recaptcha.pristine" style="color: #dc3545;">Captcha must be solved</span>
+              </div>
+              <div class="step-buttons-container">
+                <button mat-raised-button color="primary" (click)="submitForm()">submit</button>
               </div>
             </ng-template>
           </mat-step>

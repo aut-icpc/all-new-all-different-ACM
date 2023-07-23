@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {HeaderOptionClass} from "../../shared/enums/header-option-class";
 import {PlatformService} from "../../shared/services/platform.service";
-import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {environment} from "../../../environments/environment";
 
 @Component({
@@ -17,6 +17,8 @@ export class TeamRegistrationPageComponent {
   siteKey = environment.recaptcha.siteKey;
   teamInfoFormGroup !: FormGroup;
   teamDocumentFormGroup !: FormGroup;
+
+  showErrorOnCaptcha: boolean = false;
 
   constructor(private platform: PlatformService) {
     this.isDesktop = this.platform.isOnDesktopDevice();
@@ -51,6 +53,16 @@ export class TeamRegistrationPageComponent {
   }
 
   submitForm() {
+    debugger
+    if (!this.captchaToken) {
+      this.showErrorOnCaptcha = true;
+      return;
+    }
+
+    this.showErrorOnCaptcha = false;
+
+    if (this.teamInfoFormGroup.invalid || this.teamDocumentFormGroup.invalid)
+      return;
 
   }
 
