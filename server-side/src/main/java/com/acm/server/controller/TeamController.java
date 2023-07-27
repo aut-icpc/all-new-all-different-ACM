@@ -45,7 +45,7 @@ public class TeamController {
                 "Team returned successfully!", teamService.getTeam(id)));
     }
 
-    @PutMapping
+    @PutMapping("/status")
     public ResponseEntity<BaseResponseDto<TeamDto>> updateStatus(UpdateStatusRequest request) {
         return ResponseEntity.ok(new BaseResponseDto<>(
                 "Team status updated successfully!", teamService.updateStatus(request))
