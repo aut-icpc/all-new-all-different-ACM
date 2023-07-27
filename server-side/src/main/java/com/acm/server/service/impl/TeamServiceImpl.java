@@ -1,6 +1,7 @@
 package com.acm.server.service.impl;
 
 import com.acm.server.mapper.TeamMapper;
+import com.acm.server.model.TeamStatus;
 import com.acm.server.model.dto.TeamDto;
 import com.acm.server.repository.TeamRepository;
 import com.acm.server.service.TeamService;
@@ -26,6 +27,7 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public TeamDto createTeam(TeamDto teamDto) {
         // Save the team to the repository and convert it to a DTO using the mapper
+        teamDto.setStatus(TeamStatus.REGISTERED);
         return mapper.toTeamDto(teamRepository.save(mapper.toTeam(teamDto)));
     }
 
