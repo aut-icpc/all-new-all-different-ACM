@@ -1,7 +1,11 @@
 package com.acm.server.repository;
 
 import com.acm.server.domain.Team;
+import com.acm.server.request.UpdateStatusRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Repository for the Team entity.
@@ -10,4 +14,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Farid Masjedi
  */
 public interface TeamRepository extends JpaRepository<Team, Long> {
+    @Modifying
+    @Transactional
+    @Query("update Team t set t.status = :#{#request.status}")
+    Team updateStatus(UpdateStatusRequest request);
 }

@@ -1,8 +1,10 @@
 package com.acm.server.controller;
 
 import com.acm.server.config.Constants;
+import com.acm.server.model.TeamStatus;
 import com.acm.server.model.dto.BaseResponseDto;
 import com.acm.server.model.dto.TeamDto;
+import com.acm.server.request.UpdateStatusRequest;
 import com.acm.server.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -41,5 +43,12 @@ public class TeamController {
     public ResponseEntity<BaseResponseDto<TeamDto>> getTeam(Long id) {
         return ResponseEntity.ok(new BaseResponseDto<>(
                 "Team returned successfully!", teamService.getTeam(id)));
+    }
+
+    @PutMapping
+    public ResponseEntity<BaseResponseDto<TeamDto>> updateStatus(UpdateStatusRequest request) {
+        return ResponseEntity.ok(new BaseResponseDto<>(
+                "Team status updated successfully!", teamService.updateStatus(request))
+        );
     }
 }
