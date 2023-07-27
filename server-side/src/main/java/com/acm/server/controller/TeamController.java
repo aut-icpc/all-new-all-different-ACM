@@ -1,7 +1,6 @@
 package com.acm.server.controller;
 
 import com.acm.server.config.Constants;
-import com.acm.server.model.TeamStatus;
 import com.acm.server.model.dto.BaseResponseDto;
 import com.acm.server.model.dto.TeamDto;
 import com.acm.server.request.UpdateStatusRequest;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Controller class for handling requests related to the team functionality.
  * This class is responsible for managing team-related operations.
+ *
  * @author Farid Masjedi
  */
 @RestController
