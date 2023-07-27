@@ -1,3 +1,7 @@
+import {GraduationLevelDto} from "./DTO/graduationLevel.dto";
+import {ShirtSizeDto} from "./DTO/shirtSize.dto";
+import {PictureDto} from "./DTO/picture.dto";
+
 export class Contestant {
   id !: number;
   firstname !: string;
@@ -5,7 +9,9 @@ export class Contestant {
   gender !: string;
   phoneNumber !: string;
   email !: string;
-  graduationLevel !: string;
-  shirtSize !: string;
+  graduationLevel !: GraduationLevelDto;
+  shirtSize !: ShirtSizeDto;
   studentId !: number;
+  nationalIdPicture!: PictureDto;
+  studentCardPicture!: PictureDto;
 }

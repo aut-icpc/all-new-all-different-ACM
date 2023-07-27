@@ -1,0 +1,43 @@
+@import "src/styles";
+
+::ng-deep .mat-snack-bar-container {
+  padding: 0;
+  @extend .round-border-1;
+}
+
+
+.snack-bar-container {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  box-sizing: border-box;
+  font-weight: bold;
+  min-height: inherit;
+  align-items: center;
+  border-style: solid;
+  @extend .round-border-1;
+}
+
+button {
+  color: #fff;
+}
+
+.custom-mat-icon {
+  color: #ffffff;
+}
+
+.snack-bar-container.ERROR {
+  border-color: #d32f2f;
+  background-color: #f44336;
+}
+
+.snack-bar-container.SUCCESS {
+  border-color: #388e3c;
+  background-color: #4caf50;
+}
+
+.snack-bar-container.WARNING {
+  border-color: #ff5722;
+  background-color: #ff9800;
+}

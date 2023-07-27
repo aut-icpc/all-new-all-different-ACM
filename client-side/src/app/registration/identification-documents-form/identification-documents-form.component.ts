@@ -3,7 +3,8 @@ import {
   AbstractControl,
   ControlValueAccessor,
   FormControl,
-  FormGroup, NG_VALIDATORS,
+  FormGroup,
+  NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
   Validator,
@@ -31,21 +32,21 @@ import {ContestantDocs} from "../../shared/interfaces/contestant-docs";
 export class IdentificationDocumentsFormComponent implements OnInit, ControlValueAccessor, Validator {
 
   group!: FormGroup;
-  // @Input() contestantLastName!: string;
   @Input() contestantStudentId!: string;
 
   onChange = (change: any) => {}
-  onTouched = (onTouched: any) => {}
+  onTouched = () => {}
 
   constructor() { }
 
   ngOnInit(): void {
     this.group = new FormGroup({
-      idCardPhoto: new FormControl(null, Validators.required),
-      studentCardPhoto: new FormControl(null, Validators.required)
+      idCardPhoto: new FormControl('', Validators.required),
+      studentCardPhoto: new FormControl('', Validators.required)
     });
     this.group.valueChanges.subscribe(e => {
-      this.onChange(this.convertToContestantDocsObject());
+      if (this.group.valid)
+        this.onChange(this.convertToContestantDocsObject());
     })
   }
 
@@ -53,6 +54,7 @@ export class IdentificationDocumentsFormComponent implements OnInit, ControlValu
     let temp = new ContestantDocs();
     temp.idCardPhoto = this.group.controls['idCardPhoto'].value;
     temp.studentCardPhoto = this.group.controls['studentCardPhoto'].value;
+    temp.contestantStudentNumber = this.contestantStudentId;
     return temp;
   }
 
@@ -69,13 +71,6 @@ export class IdentificationDocumentsFormComponent implements OnInit, ControlValu
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    debugger
-    if (!this.group.controls['idCardPhoto'].value)
-      this.group.controls['idCardPhoto'].markAsTouched();
-
-    if (!this.group.controls['studentCardPhoto'].value)
-      this.group.controls['studentCardPhoto'].markAsTouched();
-
     if (!this.group.controls['idCardPhoto'].value || !this.group.controls['studentCardPhoto'].value)
       return { required: true };
     return null;

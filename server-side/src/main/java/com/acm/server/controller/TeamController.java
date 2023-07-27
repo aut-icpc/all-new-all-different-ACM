@@ -6,10 +6,7 @@ import com.acm.server.model.dto.TeamDto;
 import com.acm.server.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Controller class for handling requests related to the team functionality.
@@ -29,7 +26,7 @@ public class TeamController {
      * @return ResponseEntity containing the response with the created TeamDto object.
      */
     @PostMapping
-    public ResponseEntity<BaseResponseDto<TeamDto>> createTeam(TeamDto teamDto) {
+    public ResponseEntity<BaseResponseDto<TeamDto>> createTeam(@RequestBody TeamDto teamDto) {
         return ResponseEntity.ok(new BaseResponseDto<>(
                 "Team created successfully!", teamService.createTeam(teamDto)));
     }

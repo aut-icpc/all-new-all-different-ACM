@@ -2,17 +2,13 @@ import {Component, ElementRef, forwardRef, Input, OnInit, ViewChild} from '@angu
 import {
   AbstractControl,
   ControlValueAccessor,
-  FormControl,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
-  NgControl,
   ValidationErrors,
-  Validator,
-  Validators
+  Validator
 } from "@angular/forms";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {PlatformService} from "../../shared/services/platform.service";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'acpc-picture-upload-input',
@@ -51,15 +47,13 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
 
   uploadProgress: number = 0;
 
-  formControl = new FormControl(null, Validators.required);
-
   @Input() required = false;
   @Input() type !: 'id-card' | 'student-card';
 
   @ViewChild('fileInput') fileInput!: ElementRef;
 
   onChange = (change: any) => {}
-  onTouched = (onTouched: any) => {}
+  onTouched = () => {}
 
   constructor(private platform: PlatformService) {
     this.commandMessage = platform.isOnDesktopDevice() ? 'Drag your image here or browse' :
@@ -73,10 +67,6 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
       [fileUploadErrorType.WRONG_FORMAT]: 'The uploaded file is not an image'
     };
 
-    this.formControl.statusChanges.subscribe(e => {
-      console.log(e)
-    })
-
     this.currentState = componentState.NONE;
   }
 
@@ -88,6 +78,7 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
   onFileDropped(event: any): void {
     event.preventDefault();
     this.isDragOver = false;
+    this.onTouched();
     const files: FileList = event.dataTransfer.files;
     if (files.length > 0) {
       const file: File = files[0];
@@ -110,9 +101,12 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
       this.clearInput()
       return;
     }
+    this.showErrorBox = false;
     this.currentState = componentState.UPLOADING;
     this.uploadedFile = file;
-    this.formControl.setValue(this.uploadedFile);
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(file);
+    this.fileInput.nativeElement.files = dataTransfer.files;
     this.triggerUploadProgress();
     this.onChange(this.uploadedFile);
   }
@@ -122,6 +116,7 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
   }
 
   onFileSelected(event: any): void {
+    this.onTouched();
     const files: FileList = (this.fileInput.nativeElement as HTMLInputElement).files || new FileList();
     if (files.length > 0) {
       for (let i = 0; i < files.length; i++)
@@ -132,9 +127,9 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
   onFileDelete(event: any) {
     this.uploadProgress = 0;
     this.uploadedFile = null;
-    this.formControl.setValue(this.uploadedFile);
     this.currentState = componentState.NONE;
-    this.clearInput()
+    this.clearInput();
+    this.onChange(this.uploadedFile);
   }
 
   formatFileSize(bytes: number) {
@@ -186,11 +181,11 @@ export class PictureUploadInputComponent implements ControlValueAccessor, Valida
 
   writeValue(obj: any): void {
     this.onChange(obj);
+    this.uploadedFile = obj;
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    debugger
-    if (!this.formControl.value && this.required) {
+    if (!this.uploadedFile && this.required && control.touched) {
       this.errorMessage = this.errorMessagesMap[fileUploadErrorType.REQUIRED];
       this.triggerErrorMessage();
       return { required: true };

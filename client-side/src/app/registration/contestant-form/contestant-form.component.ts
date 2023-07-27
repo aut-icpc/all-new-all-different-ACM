@@ -14,6 +14,8 @@ import {
 import {environment} from "../../../environments/environment";
 import {Contestant} from "../../shared/interfaces/contestant";
 import {ModalService} from "../../shared/services/modal.service";
+import {GraduationLevelDto} from "../../shared/interfaces/DTO/graduationLevel.dto";
+import {ShirtSizeDto} from "../../shared/interfaces/DTO/shirtSize.dto";
 
 @Component({
   selector: 'acpc-contestant-form',
@@ -88,7 +90,6 @@ export class ContestantFormComponent implements OnInit, ControlValueAccessor, Va
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    debugger
     const value = control.value as Contestant;
     if (!value || this.hasEmptyOrNullFields(value))
       return { required: true };
@@ -111,12 +112,16 @@ export class ContestantFormComponent implements OnInit, ControlValueAccessor, Va
     let temp = new Contestant();
     temp.firstname = this.group.controls['firstname'].value;
     temp.lastname = this.group.controls['lastname'].value;
-    temp.gender = this.group.controls['gender'].value;
+    temp.gender = this.group.controls['gender'].value.toUpperCase();
     temp.phoneNumber = this.group.controls['phoneNumber'].value;
     temp.email = this.group.controls['email'].value;
-    temp.graduationLevel = this.group.controls['education'].value;
+    let graduationLevel = new GraduationLevelDto();
+    graduationLevel.value = this.group.controls['education'].value;
+    temp.graduationLevel = graduationLevel;
     temp.studentId = this.group.controls['studentId'].value;
-    temp.shirtSize = this.group.controls['shirtSize'].value;
+    let shirtSize = new ShirtSizeDto();
+    shirtSize.size = this.group.controls['shirtSize'].value;
+    temp.shirtSize = shirtSize;
     return temp;
   }
 }
