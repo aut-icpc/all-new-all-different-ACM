@@ -27,12 +27,14 @@ public class PictureController {
      *
      * @param file The picture file to be uploaded.
      * @param type The type of the picture.
-     * @return ResponseEntity with a BaseResponseDto containing a success message and the uploaded picture's information if the upload is successful,
+     * @return ResponseEntity with a BaseResponseDto containing a success message and
+     * the uploaded picture's information if the upload is successful,
      *         or a BaseResponseDto containing an error message if it fails.
      * @throws IOException If an I/O error occurs during the upload process.
      */
     @PostMapping
-    public ResponseEntity<BaseResponseDto<String>> uploadPicture(@RequestBody MultipartFile file, @RequestParam PictureType type) throws IOException {
+    public ResponseEntity<BaseResponseDto<String>> uploadPicture(@RequestBody MultipartFile file,
+                                                                 @RequestParam PictureType type) throws IOException {
         try {
             String uploadedPictureInfo = pictureUploader.uploadPicture(file, type);
             BaseResponseDto<String> responseDto = new BaseResponseDto<>("Picture uploaded successfully", uploadedPictureInfo);
