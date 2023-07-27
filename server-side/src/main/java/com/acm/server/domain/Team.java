@@ -45,6 +45,6 @@ public class Team {
      * The list of contestants in the team.
      * This field contains the contestants who are members of the team.
      */
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Contestant> contestants;
 }

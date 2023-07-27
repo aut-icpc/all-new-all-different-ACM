@@ -47,22 +47,22 @@ public class Contestant {
     @Column(unique = true)
     private String email;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private GraduationLevel graduationLevel;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private ShirtSize shirtSize;
 
     @Column
     private String studentId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private NationalIdPicture nationalIdPicture;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private StudentCardPicture studentCardPicture;
 }
