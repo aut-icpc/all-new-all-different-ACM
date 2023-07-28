@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {HeaderOptionClass} from "../../shared/enums/header-option-class";
 import {PlatformService} from "../../shared/services/platform.service";
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {environment} from "../../../environments/environment";
 import {ToastService} from "../../shared/services/toast.service";
 import {TeamDto} from "../../shared/interfaces/DTO/team.dto";
@@ -10,8 +10,8 @@ import {HttpService} from "../../shared/services/http.service";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {Contestant} from "../../shared/interfaces/contestant";
 import {PictureDto} from "../../shared/interfaces/DTO/picture.dto";
-import {forkJoin, of} from "rxjs";
-import {switchMap} from "rxjs/operators";
+import {forkJoin, Observable, of} from "rxjs";
+import {map, switchMap} from "rxjs/operators";
 import {ApiUrls} from "../../shared/api-urls";
 import {Router} from "@angular/router";
 
@@ -42,7 +42,7 @@ export class TeamRegistrationPageComponent {
 
   initializeTeamInfoFormGroup() {
     this.teamInfoFormGroup = new FormGroup({
-      teamName: new FormControl('', Validators.required),
+      teamName: new FormControl('', Validators.required, uniqueTeamNameValidator(this.http)),
       institution: new FormControl('', [Validators.required, Validators.minLength(10)]),
       contestantOne: new FormControl('', Validators.required),
       contestantTwo: new FormControl('', Validators.required),
@@ -72,6 +72,8 @@ export class TeamRegistrationPageComponent {
       return 'Enter institution\'s full name';
     else if (errors?.required)
       return 'Fill the input';
+    else if (errors?.uniqueTeamName)
+      return 'name is already taken';
     return '';
   }
 
@@ -149,4 +151,20 @@ export class TeamRegistrationPageComponent {
     return this.http.sendPostRequest<BaseResponseDto<string>>(ApiUrls.PICTURE_UPLOAD, formData)
   }
 
+}
+
+export function uniqueTeamNameValidator(httpService: HttpService): (control: AbstractControl) => Observable<ValidationErrors | null> {
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    const teamName = control.value;
+
+    const params = {teamName: teamName}
+    return httpService.sendGetRequest<BaseResponseDto<boolean>>(ApiUrls.TEAM_NAME_CHECKING, {params: params}).pipe(
+      map(response => {
+        if (!response)
+          return { uniqueTeamName: true };
+
+        return null;
+      })
+    );
+  };
 }
