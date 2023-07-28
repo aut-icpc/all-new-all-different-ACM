@@ -15,10 +15,16 @@
                     <mat-form-field appearance="outline">
                       <input matInput type="text" formControlName="teamName" required>
                       <mat-label>Team name</mat-label>
+                      <mat-error *ngIf="isFormControlValid('teamName')">
+                        {{getErrorMessage('teamName')}}
+                      </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                       <input matInput type="text" formControlName="institution" required>
                       <mat-label>Institution</mat-label>
+                      <mat-error *ngIf="isFormControlValid('institution')">
+                        {{getErrorMessage('institution')}}
+                      </mat-error>
                     </mat-form-field>
                   </div>
                 </div>

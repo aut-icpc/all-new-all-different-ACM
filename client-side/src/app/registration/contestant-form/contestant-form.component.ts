@@ -57,9 +57,9 @@ export class ContestantFormComponent implements OnInit, ControlValueAccessor, Va
       firstname: new FormControl('', Validators.required),
       lastname: new FormControl('', Validators.required),
       gender: new FormControl('', Validators.required),
-      phoneNumber: new FormControl('', [Validators.maxLength(11),
-        Validators.pattern('\\+?\\d{10,15}')]),
-      email: new FormControl('', Validators.required),
+      phoneNumber: new FormControl('', [Validators.required,
+        Validators.minLength(11), Validators.pattern('\\+?\\d{10,15}')]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       education: new FormControl('', Validators.required),
       studentId: new FormControl('', Validators.required),
       shirtSize: new FormControl('', Validators.required)
@@ -68,8 +68,7 @@ export class ContestantFormComponent implements OnInit, ControlValueAccessor, Va
 
   ngOnInit(): void {
     this.group.valueChanges.subscribe(changedForm => {
-      if (this.group.valid)
-        this.onChange(this.convertToContestantObject());
+      this.onChange(this.convertToContestantObject());
     })
   }
 
@@ -94,6 +93,23 @@ export class ContestantFormComponent implements OnInit, ControlValueAccessor, Va
     if (!value || this.hasEmptyOrNullFields(value))
       return { required: true };
     return null;
+  }
+
+  getErrorMessage(formControlName: string) {
+    const errors = this.group.controls[formControlName].errors;
+    if (errors?.email)
+      return 'Email format isn\'t valid';
+    else if (errors?.minlength)
+      return 'Phone number must be at least 11 digits';
+    else if (errors?.pattern)
+      return 'Phone number format isn\'t valid';
+    else if (errors?.required)
+      return 'Fill the input';
+    return '';
+  }
+
+  isFormControlValid(formControlName: string) {
+    return this.group.controls[formControlName].invalid;
   }
 
   private hasEmptyOrNullFields(obj: Contestant): boolean {

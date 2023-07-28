@@ -9,10 +9,16 @@
     <mat-form-field appearance="outline">
       <input matInput type="text" formControlName="firstname" required>
       <mat-label>Firstname</mat-label>
+      <mat-error *ngIf="isFormControlValid('firstname')">
+        {{getErrorMessage('firstname')}}
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <input matInput type="text" formControlName="lastname" required>
       <mat-label>Lastname</mat-label>
+      <mat-error *ngIf="isFormControlValid('lastname')">
+        {{getErrorMessage('lastname')}}
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Gender</mat-label>
@@ -21,6 +27,9 @@
           {{gender}}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="isFormControlValid('gender')">
+        {{getErrorMessage('gender')}}
+      </mat-error>
     </mat-form-field>
   </div>
   <div id="contact-info-container" class="form-section">
@@ -28,10 +37,16 @@
     <mat-form-field appearance="outline">
       <input matInput type="text" formControlName="phoneNumber" required>
       <mat-label>Phone Number</mat-label>
+      <mat-error *ngIf="isFormControlValid('phoneNumber')">
+        {{getErrorMessage('phoneNumber')}}
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <input matInput type="email" formControlName="email" required>
       <mat-label>Email</mat-label>
+      <mat-error *ngIf="isFormControlValid('email')">
+        {{getErrorMessage('email')}}
+      </mat-error>
     </mat-form-field>
   </div>
   <div id="academic-info-container" class="form-section">
@@ -43,10 +58,16 @@
           {{eduLevel}}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="isFormControlValid('education')">
+        {{getErrorMessage('education')}}
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <input matInput type="text" formControlName="studentId" required>
       <mat-label>Student Number</mat-label>
+      <mat-error *ngIf="isFormControlValid('studentId')">
+        {{getErrorMessage('studentId')}}
+      </mat-error>
     </mat-form-field>
   </div>
   <div id="tshirt-info-container" class="form-section">
@@ -58,6 +79,9 @@
           {{shirtSize}}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="isFormControlValid('shirtSize')">
+        {{getErrorMessage('shirtSize')}}
+      </mat-error>
     </mat-form-field>
     <button type="button" color="accent" mat-stroked-button (click)="openGuide()">shirt-size guide</button>
   </div>

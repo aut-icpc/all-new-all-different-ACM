@@ -13,6 +13,7 @@ import {PictureDto} from "../../shared/interfaces/DTO/picture.dto";
 import {forkJoin, of} from "rxjs";
 import {switchMap} from "rxjs/operators";
 import {HttpHeaders} from "@angular/common/http";
+import {ApiUrls} from "../../shared/api-urls";
 
 @Component({
   selector: 'acpc-team-registration-page',
@@ -39,23 +40,36 @@ export class TeamRegistrationPageComponent {
   initializeTeamInfoFormGroup() {
     this.teamInfoFormGroup = new FormGroup({
       teamName: new FormControl('', Validators.required),
-      institution: new FormControl('', Validators.required),
-      contestantOne: new FormControl(null, Validators.required),
-      contestantTwo: new FormControl(null, Validators.required),
-      contestantThree: new FormControl(null, Validators.required),
+      institution: new FormControl('', [Validators.required, Validators.minLength(10)]),
+      contestantOne: new FormControl('', Validators.required),
+      contestantTwo: new FormControl('', Validators.required),
+      contestantThree: new FormControl('', Validators.required),
     })
   }
 
   initializeTeamDocumentFormGroup() {
     this.teamDocumentFormGroup = new FormGroup({
-      contestantOne: new FormControl(null, Validators.required),
-      contestantTwo: new FormControl(null, Validators.required),
-      contestantThree: new FormControl(null, Validators.required),
+      contestantOne: new FormControl('', Validators.required),
+      contestantTwo: new FormControl('', Validators.required),
+      contestantThree: new FormControl('', Validators.required),
     })
+  }
+
+  isFormControlValid(formControlName: string) {
+    return this.teamInfoFormGroup.controls[formControlName].invalid;
   }
 
   getContestantStudentId(number: 'One' | 'Two' | 'Three') {
     return this.teamInfoFormGroup.controls[`contestant${number}`].value.studentId;
+  }
+
+  getErrorMessage(formControlName: string) {
+    const errors = this.teamInfoFormGroup.controls[formControlName].errors;
+    if (errors?.minlength)
+      return 'Enter institution\'s full name';
+    else if (errors?.required)
+      return 'Fill the input';
+    return '';
   }
 
   showErrorIfInvalid(currentForm: FormGroup) {
@@ -81,15 +95,12 @@ export class TeamRegistrationPageComponent {
     let secondCall = this.sendImagesOfContestant('Two');
     let thirdCall = this.sendImagesOfContestant('Three');
     forkJoin([firstCall, secondCall, thirdCall]).subscribe(responses => {
-      debugger
       for (const response of responses) {
         contestants.push(response);
       }
       teamDto.contestants = contestants;
-      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      // Convert the teamDto object to a JSON string
-      this.http.sendPostRequest<BaseResponseDto<TeamDto>>('/api/team', teamDto).subscribe(response => {
+      this.http.sendPostRequest<BaseResponseDto<TeamDto>>(ApiUrls.TEAM_REGISTER, teamDto).subscribe(response => {
         console.log(response);
       });
     });
@@ -113,7 +124,6 @@ export class TeamRegistrationPageComponent {
         studentCardDto.link = studentCardResponse.result;
         formObj.studentCardPicture = studentCardDto;
 
-        // Return the updated formObj as an Observable
         return of(formObj);
       })
     );
@@ -124,7 +134,7 @@ export class TeamRegistrationPageComponent {
     formData.append('file', imageFile);
     formData.append('type', type);
     const pictureDto = new PictureDto();
-    return this.http.sendPostRequest<BaseResponseDto<string>>('/api/picture', formData)
+    return this.http.sendPostRequest<BaseResponseDto<string>>(ApiUrls.PICTURE_UPLOAD, formData)
   }
 
 }

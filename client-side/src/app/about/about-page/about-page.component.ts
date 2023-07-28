@@ -5,6 +5,7 @@ import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {AboutDto} from "../../shared/interfaces/DTO/about.dto";
 import {Observable, Subject} from "rxjs";
 import {distinctUntilChanged, map, mergeMap} from "rxjs/operators";
+import {ApiUrls} from "../../shared/api-urls";
 
 @Component({
   selector: 'acpc-about-page',
@@ -19,7 +20,7 @@ export class AboutPageComponent implements OnInit {
   constructor(private http: HttpService) { }
 
   ngOnInit(): void {
-    this.http.sendGetRequest<BaseResponseDto<AboutDto[]>>('/api/about').subscribe( response => {
+    this.http.sendGetRequest<BaseResponseDto<AboutDto[]>>(ApiUrls.ABOUT).subscribe( response => {
       this.descriptions = response.result;
     });
   }
