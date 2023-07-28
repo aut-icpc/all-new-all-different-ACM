@@ -56,4 +56,9 @@ public class TeamServiceImpl implements TeamService {
     public TeamDto updateStatus(UpdateStatusRequest request) {
         return mapper.toTeamDto(teamRepository.updateStatus(request));
     }
+
+    @Override
+    public boolean isNameUnique(String teamName) {
+        return !teamRepository.isNameExist(teamName);
+    }
 }

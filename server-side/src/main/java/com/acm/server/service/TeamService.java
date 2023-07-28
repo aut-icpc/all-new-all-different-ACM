@@ -20,4 +20,6 @@ public interface TeamService {
 
     @StatusChangedEvent
     TeamDto updateStatus(UpdateStatusRequest request);
+
+    boolean isNameUnique(String teamName);
 }

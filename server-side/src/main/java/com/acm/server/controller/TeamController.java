@@ -57,4 +57,9 @@ public class TeamController {
                 "Team status updated successfully!", teamService.updateStatus(request))
         );
     }
+
+    @GetMapping("/name/unique")
+    public ResponseEntity<Boolean> isNameUnique(String teamName) {
+        return ResponseEntity.ok(teamService.isNameUnique(teamName));
+    }
 }

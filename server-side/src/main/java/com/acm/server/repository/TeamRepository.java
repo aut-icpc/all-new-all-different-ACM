@@ -5,6 +5,7 @@ import com.acm.server.request.UpdateStatusRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -21,5 +22,8 @@ public interface TeamRepository extends JpaRepository<Team, Long> {
     Team updateStatus(UpdateStatusRequest request);
 
     Team getTeamByTeamName(String teamName);
+
+    @Query(value = "select true from Team t where t.teamName = :name")
+    boolean isNameExist(@Param("name") String name);
 
 }
