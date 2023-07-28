@@ -12,6 +12,7 @@ export const environment = {
     shirtSizes: ['Small', 'Medium', 'Large', 'XL', 'XXL', 'XXXL'],
     genders: ['male', 'female']
   },
+  telegramSupport: 'https://t.me/acpc_admin',
 };
 
 /*

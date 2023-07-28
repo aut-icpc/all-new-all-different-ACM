@@ -1,0 +1,27 @@
+<div id="page-container">
+  <acpc-header menuOptionColor="dark-text"></acpc-header>
+  <div id="page-content">
+    <div id="summary-card">
+      <div id="card-header">
+        <img src="./assets/images/green-tick.png" alt="green tick">
+        <div id="header-text">
+          <span id="header-title">registration success!</span>
+          <span>check your email for more information</span>
+        </div>
+      </div>
+      <div id="card-content">
+        <div class="data-container">
+          <span class="title">team name</span>
+          <span>{{teamData.teamName}}</span>
+        </div>
+        <div class="data-container">
+          <span class="title">status</span>
+          <span>{{teamData.status.toString()}}</span>
+        </div>
+        <div id="support-box">
+          <a [href]="telegramSupport">got any questions?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

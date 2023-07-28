@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {HeaderOptionClass} from "../../shared/enums/header-option-class";
 import {PlatformService} from "../../shared/services/platform.service";
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {environment} from "../../../environments/environment";
 import {ToastService} from "../../shared/services/toast.service";
 import {TeamDto} from "../../shared/interfaces/DTO/team.dto";
@@ -10,10 +10,10 @@ import {HttpService} from "../../shared/services/http.service";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {Contestant} from "../../shared/interfaces/contestant";
 import {PictureDto} from "../../shared/interfaces/DTO/picture.dto";
-import {forkJoin, of} from "rxjs";
-import {switchMap} from "rxjs/operators";
-import {HttpHeaders} from "@angular/common/http";
+import {forkJoin, Observable, of} from "rxjs";
+import {map, switchMap} from "rxjs/operators";
 import {ApiUrls} from "../../shared/api-urls";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'acpc-team-registration-page',
@@ -31,7 +31,10 @@ export class TeamRegistrationPageComponent {
 
   showErrorOnCaptcha: boolean = false;
 
-  constructor(private platform: PlatformService, private toast: ToastService, private http: HttpService) {
+  constructor(private platform: PlatformService,
+              private toast: ToastService,
+              private http: HttpService,
+              private router: Router) {
     this.isDesktop = this.platform.isOnDesktopDevice();
     this.initializeTeamInfoFormGroup();
     this.initializeTeamDocumentFormGroup()
@@ -39,7 +42,7 @@ export class TeamRegistrationPageComponent {
 
   initializeTeamInfoFormGroup() {
     this.teamInfoFormGroup = new FormGroup({
-      teamName: new FormControl('', Validators.required),
+      teamName: new FormControl('', Validators.required, uniqueTeamNameValidator(this.http)),
       institution: new FormControl('', [Validators.required, Validators.minLength(10)]),
       contestantOne: new FormControl('', Validators.required),
       contestantTwo: new FormControl('', Validators.required),
@@ -69,6 +72,8 @@ export class TeamRegistrationPageComponent {
       return 'Enter institution\'s full name';
     else if (errors?.required)
       return 'Fill the input';
+    else if (errors?.uniqueTeamName)
+      return 'name is already taken';
     return '';
   }
 
@@ -91,19 +96,29 @@ export class TeamRegistrationPageComponent {
     teamDto.teamName = this.teamInfoFormGroup.controls['teamName'].value;
     teamDto.institution = this.teamInfoFormGroup.controls['institution'].value;
     let contestants: Contestant[] = [];
-    let firstCall = this.sendImagesOfContestant('One');
-    let secondCall = this.sendImagesOfContestant('Two');
-    let thirdCall = this.sendImagesOfContestant('Three');
-    forkJoin([firstCall, secondCall, thirdCall]).subscribe(responses => {
-      for (const response of responses) {
-        contestants.push(response);
-      }
-      teamDto.contestants = contestants;
+    const firstCall = this.sendImagesOfContestant('One');
+    const secondCall = this.sendImagesOfContestant('Two');
+    const thirdCall = this.sendImagesOfContestant('Three');
+    forkJoin([firstCall, secondCall, thirdCall]).subscribe(
+      responses => {
+        for (const response of responses) {
+          contestants.push(response);
+        }
+        teamDto.contestants = contestants;
 
-      this.http.sendPostRequest<BaseResponseDto<TeamDto>>(ApiUrls.TEAM_REGISTER, teamDto).subscribe(response => {
-        console.log(response);
+        this.http.sendPostRequest<BaseResponseDto<TeamDto>>(ApiUrls.TEAM_REGISTER, teamDto).subscribe(
+          response => {
+            sessionStorage.setItem('teamId', `${response?.result?.id}`);
+            this.router.navigateByUrl('/registration/success');
+          },
+          () => {
+            this.toast.showError('Something went wrong. Try again later.');
+          }
+        );
+      },
+      () => {
+        this.toast.showError('Something went wrong. Try again later.');
       });
-    });
   }
 
   private sendImagesOfContestant(contestantNumber: 'One' | 'Two' | 'Three') {
@@ -133,8 +148,23 @@ export class TeamRegistrationPageComponent {
     const formData = new FormData();
     formData.append('file', imageFile);
     formData.append('type', type);
-    const pictureDto = new PictureDto();
     return this.http.sendPostRequest<BaseResponseDto<string>>(ApiUrls.PICTURE_UPLOAD, formData)
   }
 
+}
+
+export function uniqueTeamNameValidator(httpService: HttpService): (control: AbstractControl) => Observable<ValidationErrors | null> {
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    const teamName = control.value;
+
+    const params = {teamName: teamName}
+    return httpService.sendGetRequest<BaseResponseDto<boolean>>(ApiUrls.TEAM_NAME_CHECKING, {params: params}).pipe(
+      map(response => {
+        if (!response)
+          return { uniqueTeamName: true };
+
+        return null;
+      })
+    );
+  };
 }
