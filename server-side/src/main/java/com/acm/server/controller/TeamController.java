@@ -45,10 +45,10 @@ public class TeamController {
                 "Team returned successfully!", teamService.getTeam(id)));
     }
 
-    @GetMapping
-    public ResponseEntity<BaseResponseDto<TeamDto>> getTeam(String teamName) {
+    @GetMapping("/{name}")
+    public ResponseEntity<BaseResponseDto<TeamDto>> getTeam(@PathVariable String name) {
         return ResponseEntity.ok(new BaseResponseDto<>(
-                "Team returned successfully!", teamService.getTeam(teamName)));
+                "Team returned successfully!", teamService.getTeam(name)));
     }
 
     @PutMapping("/status")
