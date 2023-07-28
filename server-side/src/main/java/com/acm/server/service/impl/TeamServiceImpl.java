@@ -1,5 +1,6 @@
 package com.acm.server.service.impl;
 
+import com.acm.server.annotation.StatusChangedEvent;
 import com.acm.server.mapper.TeamMapper;
 import com.acm.server.model.TeamStatus;
 import com.acm.server.model.dto.TeamDto;
@@ -44,6 +45,7 @@ public class TeamServiceImpl implements TeamService {
         // Find the team in the repository by its ID and convert it to a DTO using the mapper
         return mapper.toTeamDto(teamRepository.findById(id).orElseThrow());
     }
+
 
     @Override
     public TeamDto updateStatus(UpdateStatusRequest request) {

@@ -1,5 +1,6 @@
 package com.acm.server.service;
 
+import com.acm.server.annotation.StatusChangedEvent;
 import com.acm.server.model.dto.TeamDto;
 import com.acm.server.request.UpdateStatusRequest;
 
@@ -10,9 +11,11 @@ import com.acm.server.request.UpdateStatusRequest;
  */
 
 public interface TeamService {
+    @StatusChangedEvent
     TeamDto createTeam(TeamDto teamDto);
 
     TeamDto getTeam(Long id);
 
+    @StatusChangedEvent
     TeamDto updateStatus(UpdateStatusRequest request);
 }

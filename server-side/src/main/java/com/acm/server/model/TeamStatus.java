@@ -11,5 +11,5 @@ package com.acm.server.model;
  * @author Farid Masjedi
  */
 public enum TeamStatus {
-    REGISTERED, WAITING_FOR_PAYMENT, RESERVED, REJECTED, FINALIZED
+    REGISTERED, WAITING_FOR_PAYMENT, RESERVED, REJECTED, FINALIZED, UNKNOWN
 }
