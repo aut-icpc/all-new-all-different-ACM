@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HeaderOptionClass} from "../shared/enums/header-option-class";
 import {TimeComponents} from "../shared/interfaces/time-components";
 import {interval, Observable} from "rxjs";
 import {map, shareReplay} from "rxjs/operators";
 import {HttpService} from "../shared/services/http.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'acpc-home-page',
@@ -16,15 +17,17 @@ export class HomePageComponent implements OnInit {
   private contestDate !: Date;
   timeLeft$ !: Observable<TimeComponents>;
 
-  constructor(private http: HttpService) {
-
-  }
+  constructor(private http: HttpService, private router: Router) {}
 
   ngOnInit(): void {
     this.timeLeft$ = interval(1000).pipe(
       map(x => this.calculateDateDiff()),
       shareReplay(1)
     );
+  }
+
+  goToRegistrationPage() {
+    this.router.navigateByUrl('/registration/register');
   }
 
   calculateDateDiff(endDay: Date = new Date(2023, 6, 1)): TimeComponents {
