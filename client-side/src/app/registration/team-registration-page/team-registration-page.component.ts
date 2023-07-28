@@ -39,23 +39,36 @@ export class TeamRegistrationPageComponent {
   initializeTeamInfoFormGroup() {
     this.teamInfoFormGroup = new FormGroup({
       teamName: new FormControl('', Validators.required),
-      institution: new FormControl('', Validators.required),
-      contestantOne: new FormControl(null, Validators.required),
-      contestantTwo: new FormControl(null, Validators.required),
-      contestantThree: new FormControl(null, Validators.required),
+      institution: new FormControl('', [Validators.required, Validators.minLength(10)]),
+      contestantOne: new FormControl('', Validators.required),
+      contestantTwo: new FormControl('', Validators.required),
+      contestantThree: new FormControl('', Validators.required),
     })
   }
 
   initializeTeamDocumentFormGroup() {
     this.teamDocumentFormGroup = new FormGroup({
-      contestantOne: new FormControl(null, Validators.required),
-      contestantTwo: new FormControl(null, Validators.required),
-      contestantThree: new FormControl(null, Validators.required),
+      contestantOne: new FormControl('', Validators.required),
+      contestantTwo: new FormControl('', Validators.required),
+      contestantThree: new FormControl('', Validators.required),
     })
+  }
+
+  isFormControlValid(formControlName: string) {
+    return this.teamInfoFormGroup.controls[formControlName].invalid;
   }
 
   getContestantStudentId(number: 'One' | 'Two' | 'Three') {
     return this.teamInfoFormGroup.controls[`contestant${number}`].value.studentId;
+  }
+
+  getErrorMessage(formControlName: string) {
+    const errors = this.teamInfoFormGroup.controls[formControlName].errors;
+    if (errors?.minlength)
+      return 'Enter institution\'s full name';
+    else if (errors?.required)
+      return 'Fill the input';
+    return '';
   }
 
   showErrorIfInvalid(currentForm: FormGroup) {
@@ -81,7 +94,6 @@ export class TeamRegistrationPageComponent {
     let secondCall = this.sendImagesOfContestant('Two');
     let thirdCall = this.sendImagesOfContestant('Three');
     forkJoin([firstCall, secondCall, thirdCall]).subscribe(responses => {
-      debugger
       for (const response of responses) {
         contestants.push(response);
       }
