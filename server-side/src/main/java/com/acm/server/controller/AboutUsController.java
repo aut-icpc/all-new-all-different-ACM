@@ -12,6 +12,9 @@ import java.util.List;
 
 /**
  * Controller class for handling requests related to the About Us functionality.
+ * This class is responsible for managing the About Us feature on the website.
+ * The base URL for this controller is "{@value Constants#BASE_API_URL}/about".
+ *
  * @author Farid Masjedi
  */
 @RestController
@@ -27,8 +30,11 @@ public class AboutUsController {
      */
     @GetMapping
     public ResponseEntity<BaseResponseDto<List<AboutUsDto>>> getAboutUs() {
-        return ResponseEntity.ok(new BaseResponseDto<>(
-                "About Us returned successfully!", aboutUsService.getAboutUs()));
+        // Retrieve all AboutUsDto objects from the service layer
+        List<AboutUsDto> aboutUsList = aboutUsService.getAboutUs();
+
+        // Return the response entity with the list of AboutUsDto objects wrapped in BaseResponseDto
+        return ResponseEntity.ok(new BaseResponseDto<>("About Us returned successfully!", aboutUsList));
     }
 
     /**
@@ -39,8 +45,10 @@ public class AboutUsController {
      */
     @PostMapping
     public ResponseEntity<BaseResponseDto<AboutUsDto>> saveAboutUs(@RequestBody AboutUsDto dto) {
-        return ResponseEntity.ok(new BaseResponseDto<>(
-                "About Us saved successfully!", aboutUsService.saveAboutUs(dto)
-        ));
+        // Save the AboutUsDto object using the provided dto
+        AboutUsDto savedAboutUsDto = aboutUsService.saveAboutUs(dto);
+
+        // Return the response entity with the saved AboutUsDto object wrapped in BaseResponseDto
+        return ResponseEntity.ok(new BaseResponseDto<>("About Us saved successfully!", savedAboutUsDto));
     }
 }

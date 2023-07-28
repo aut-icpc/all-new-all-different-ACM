@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Controller class for handling requests related to the countdown functionality.
  * This class is responsible for managing the countdown feature on the home page.
+ * The base URL for this controller is "{@value Constants#BASE_API_URL}/countdown".
+ * Requires a CountdownService instance for processing countdown-related requests.
  * @author Farid Masjedi
  */
 @RestController
@@ -22,14 +24,17 @@ public class CountdownController {
     private final CountdownService countdownService;
 
     /**
-     * Retrieves the countdown information.
+     * Retrieves the countdown information based on the provided countdown ID.
      *
-     * @param id The ID of the countdown.
+     * @param id The ID of the countdown to retrieve.
      * @return ResponseEntity containing the response with the CountdownDto object.
      */
     @GetMapping
     public ResponseEntity<BaseResponseDto<CountdownDto>> getCountdown(Long id) {
-        return ResponseEntity.ok(new BaseResponseDto<>(
-                "Countdown returned successfully!", countdownService.getCountdown(id)));
+        // Retrieve the countdown from the service layer based on the provided ID
+        CountdownDto countdownDto = countdownService.getCountdown(id);
+
+        // Return the response entity with the countdown data wrapped in BaseResponseDto
+        return ResponseEntity.ok(new BaseResponseDto<>("Countdown returned successfully!", countdownDto));
     }
 }

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Controller class for handling requests related to the team functionality.
  * This class is responsible for managing team-related operations.
+ * The base URL for this controller is "{@value Constants#BASE_API_URL}/team".
+ * Requires a TeamService instance for processing team-related requests.
  *
  * @author Farid Masjedi
  */
@@ -29,37 +31,70 @@ public class TeamController {
      */
     @PostMapping
     public ResponseEntity<BaseResponseDto<TeamDto>> createTeam(@RequestBody TeamDto teamDto) {
-        return ResponseEntity.ok(new BaseResponseDto<>(
-                "Team created successfully!", teamService.createTeam(teamDto)));
+        // Create the team using the provided TeamDto and get the created team details
+        TeamDto createdTeamDto = teamService.createTeam(teamDto);
+
+        // Return the response entity with the created team data wrapped in BaseResponseDto
+        return ResponseEntity.ok(new BaseResponseDto<>("Team created successfully!", createdTeamDto));
     }
 
     /**
-     * Retrieves the team information.
+     * Retrieves the team information based on the provided team ID.
      *
-     * @param id The ID of the team.
+     * @param id The ID of the team to retrieve.
      * @return ResponseEntity containing the response with the TeamDto object.
      */
     @GetMapping
     public ResponseEntity<BaseResponseDto<TeamDto>> getTeam(Long id) {
-        return ResponseEntity.ok(new BaseResponseDto<>(
-                "Team returned successfully!", teamService.getTeam(id)));
+        // Retrieve the team from the service layer based on the provided ID
+        TeamDto teamDto = teamService.getTeam(id);
+
+        // Return the response entity with the team data wrapped in BaseResponseDto
+        return ResponseEntity.ok(new BaseResponseDto<>("Team returned successfully!", teamDto));
     }
 
+    /**
+     * Retrieves the team information based on the provided team name.
+     *
+     * @param name The name of the team to retrieve.
+     * @return ResponseEntity containing the response with the TeamDto object.
+     */
     @GetMapping("/{name}")
     public ResponseEntity<BaseResponseDto<TeamDto>> getTeam(@PathVariable String name) {
-        return ResponseEntity.ok(new BaseResponseDto<>(
-                "Team returned successfully!", teamService.getTeam(name)));
+        // Retrieve the team from the service layer based on the provided name
+        TeamDto teamDto = teamService.getTeam(name);
+
+        // Return the response entity with the team data wrapped in BaseResponseDto
+        return ResponseEntity.ok(new BaseResponseDto<>("Team returned successfully!", teamDto));
     }
 
+    /**
+     * Updates the status of a team based on the provided UpdateStatusRequest object.
+     *
+     * @param request The UpdateStatusRequest object containing the team name and the new status.
+     * @return ResponseEntity containing the response with BaseResponseDto holding the TeamDto with updated status.
+     */
     @PutMapping("/status")
     public ResponseEntity<BaseResponseDto<TeamDto>> updateStatus(UpdateStatusRequest request) {
-        return ResponseEntity.ok(new BaseResponseDto<>(
-                "Team status updated successfully!", teamService.updateStatus(request))
-        );
+        // Update the status of the team based on the provided request
+        TeamDto updatedTeamDto = teamService.updateStatus(request);
+
+        // Return the response entity with the updated team data wrapped in BaseResponseDto
+        return ResponseEntity.ok(new BaseResponseDto<>("Team status updated successfully!", updatedTeamDto));
     }
 
+    /**
+     * Checks if the provided team name is unique.
+     *
+     * @param teamName The name of the team to check for uniqueness.
+     * @return ResponseEntity containing the response with a Boolean indicating the uniqueness of the team name.
+     */
     @GetMapping("/name/unique")
     public ResponseEntity<Boolean> isNameUnique(String teamName) {
-        return ResponseEntity.ok(teamService.isNameUnique(teamName));
+        // Check if the provided team name is unique using the service layer method
+        boolean isUnique = teamService.isNameUnique(teamName);
+
+        // Return the response entity with the Boolean result indicating the uniqueness of the team name
+        return ResponseEntity.ok(isUnique);
     }
 }
