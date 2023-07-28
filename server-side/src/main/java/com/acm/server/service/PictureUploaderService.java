@@ -1,6 +1,6 @@
 package com.acm.server.service;
 
-import com.acm.server.domain.picture.PictureType;
+import com.acm.server.domain.file.picture.PictureType;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;

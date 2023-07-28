@@ -1,7 +1,7 @@
 package com.acm.server.domain;
 
-import com.acm.server.domain.picture.NationalIdPicture;
-import com.acm.server.domain.picture.StudentCardPicture;
+import com.acm.server.domain.file.picture.NationalIdPicture;
+import com.acm.server.domain.file.picture.StudentCardPicture;
 import com.acm.server.model.Gender;
 import jakarta.persistence.*;
 import lombok.Getter;

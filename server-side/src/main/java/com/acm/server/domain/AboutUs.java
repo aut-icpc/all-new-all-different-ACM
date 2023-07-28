@@ -1,6 +1,6 @@
 package com.acm.server.domain;
 
-import com.acm.server.domain.picture.AboutUsPicture;
+import com.acm.server.domain.file.picture.AboutUsPicture;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

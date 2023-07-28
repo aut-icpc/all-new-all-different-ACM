@@ -1,7 +1,7 @@
 package com.acm.server.controller;
 
 import com.acm.server.config.Constants;
-import com.acm.server.domain.picture.PictureType;
+import com.acm.server.domain.file.picture.PictureType;
 import com.acm.server.model.dto.BaseResponseDto;
 import com.acm.server.service.PictureUploaderService;
 import lombok.RequiredArgsConstructor;

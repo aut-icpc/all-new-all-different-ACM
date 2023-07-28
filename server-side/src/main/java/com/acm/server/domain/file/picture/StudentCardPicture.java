@@ -1,11 +1,11 @@
-package com.acm.server.domain.picture;
+package com.acm.server.domain.file.picture;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 /**
  * Student Card Picture
- * @see com.acm.server.domain.picture.Picture
+ * @see Picture
  * @author Farid Masjedi
  */
 @Entity

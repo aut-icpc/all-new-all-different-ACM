@@ -1,5 +1,6 @@
 package com.acm.server.model.dto;
 
+import com.acm.server.domain.file.picture.Picture;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -8,7 +9,7 @@ import javax.validation.constraints.Size;
 /**
  * Picture DTO
  * link: Picture link on the server
- * @see com.acm.server.domain.picture.Picture
+ * @see Picture
  * @author Farid Masjedi
  */
 @Data
