@@ -9,6 +9,12 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
+/**
+ * Aspect class for handling the status changed event.
+ * This class is responsible for sending emails to contestants when the team status changes.
+ *
+ * @author Farid Masjedi
+ */
 @Aspect
 @Component
 @EnableAsync
@@ -16,13 +22,20 @@ import org.springframework.stereotype.Component;
 public class StatusChangedAspect {
     private final MailUtil mailUtil;
 
+    /**
+     * Handles the status changed event after a method annotated with @StatusChangedEvent completes successfully.
+     *
+     * @param teamDto The TeamDto object containing the updated team information.
+     */
     @Async
     @AfterReturning(value = "@annotation(com.acm.server.annotation.StatusChangedEvent)", returning = "teamDto")
     public void statusChangedHandler(TeamDto teamDto) {
+        // Get the new status of the team
         String status = teamDto.getStatus().name();
+
+        // Email each contestant in the team
         teamDto.getContestants().forEach(c -> {
-                mailUtil.sendMailAfterStatusChanged(c.getEmail(), status);
-            }
-        );
+            mailUtil.sendMailAfterStatusChanged(c.getEmail(), status);
+        });
     }
 }
