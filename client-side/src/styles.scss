@@ -34,3 +34,12 @@ body { margin: 0; font-family: Ubuntu, "Helvetica Neue", sans-serif; }
 .mat-form-field {
   font-size: 12px;
 }
+
+.mat-stepper-horizontal {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-horizontal-content-container, .mat-horizontal-stepper-content {
+  height: 100%;
+}
