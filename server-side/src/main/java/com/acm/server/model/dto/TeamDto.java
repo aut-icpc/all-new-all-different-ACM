@@ -1,5 +1,6 @@
 package com.acm.server.model.dto;
 
+import com.acm.server.model.TeamStatus;
 import lombok.Data;
 
 import javax.validation.Valid;
@@ -25,6 +26,7 @@ public class TeamDto {
     @NotBlank(message = "Institution is required!")
     @Size(max = 100, message = "Institution length must be less than 100 characters!")
     private String institution;
+    private TeamStatus status;
     @NotNull(message = "Contestants is required!")
     @Valid
     private List<ContestantDto> contestants;

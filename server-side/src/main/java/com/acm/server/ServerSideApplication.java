@@ -28,14 +28,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class ServerSideApplication {
-
-	/**
-	 * The main method that starts the ACM server-side application.
-	 *
-	 * @param args The command-line arguments passed to the application.
-	 */
-	public static void main(String[] args) {
-		SpringApplication.run(ServerSideApplication.class, args);
-	}
-
+    /**
+     * The main method that starts the ACM server-side application.
+     *
+     * @param args The command-line arguments passed to the application.
+     */
+    public static void main(String[] args) {
+        SpringApplication.run(ServerSideApplication.class, args);
+    }
 }

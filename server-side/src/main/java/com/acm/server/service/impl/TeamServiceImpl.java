@@ -1,8 +1,10 @@
 package com.acm.server.service.impl;
 
 import com.acm.server.mapper.TeamMapper;
+import com.acm.server.model.TeamStatus;
 import com.acm.server.model.dto.TeamDto;
 import com.acm.server.repository.TeamRepository;
+import com.acm.server.request.UpdateStatusRequest;
 import com.acm.server.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,7 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public TeamDto createTeam(TeamDto teamDto) {
         // Save the team to the repository and convert it to a DTO using the mapper
+        teamDto.setStatus(TeamStatus.REGISTERED);
         return mapper.toTeamDto(teamRepository.save(mapper.toTeam(teamDto)));
     }
 
@@ -40,5 +43,10 @@ public class TeamServiceImpl implements TeamService {
     public TeamDto getTeam(Long id) {
         // Find the team in the repository by its ID and convert it to a DTO using the mapper
         return mapper.toTeamDto(teamRepository.findById(id).orElseThrow());
+    }
+
+    @Override
+    public TeamDto updateStatus(UpdateStatusRequest request) {
+        return mapper.toTeamDto(teamRepository.updateStatus(request));
     }
 }

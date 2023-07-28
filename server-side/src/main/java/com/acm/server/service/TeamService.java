@@ -1,6 +1,7 @@
 package com.acm.server.service;
 
 import com.acm.server.model.dto.TeamDto;
+import com.acm.server.request.UpdateStatusRequest;
 
 /**
  * @author Farid Masjedi
@@ -12,4 +13,6 @@ public interface TeamService {
     TeamDto createTeam(TeamDto teamDto);
 
     TeamDto getTeam(Long id);
+
+    TeamDto updateStatus(UpdateStatusRequest request);
 }

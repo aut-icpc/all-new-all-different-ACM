@@ -10,5 +10,5 @@ import jakarta.persistence.Entity;
  */
 @Entity
 @DiscriminatorValue("about_us")
-public class AboutUsPicture extends Picture{
+public class AboutUsPicture extends Picture {
 }
