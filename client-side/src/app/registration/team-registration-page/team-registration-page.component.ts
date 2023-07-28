@@ -12,8 +12,8 @@ import {Contestant} from "../../shared/interfaces/contestant";
 import {PictureDto} from "../../shared/interfaces/DTO/picture.dto";
 import {forkJoin, of} from "rxjs";
 import {switchMap} from "rxjs/operators";
-import {HttpHeaders} from "@angular/common/http";
 import {ApiUrls} from "../../shared/api-urls";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'acpc-team-registration-page',
@@ -31,7 +31,10 @@ export class TeamRegistrationPageComponent {
 
   showErrorOnCaptcha: boolean = false;
 
-  constructor(private platform: PlatformService, private toast: ToastService, private http: HttpService) {
+  constructor(private platform: PlatformService,
+              private toast: ToastService,
+              private http: HttpService,
+              private router: Router) {
     this.isDesktop = this.platform.isOnDesktopDevice();
     this.initializeTeamInfoFormGroup();
     this.initializeTeamDocumentFormGroup()
@@ -91,19 +94,29 @@ export class TeamRegistrationPageComponent {
     teamDto.teamName = this.teamInfoFormGroup.controls['teamName'].value;
     teamDto.institution = this.teamInfoFormGroup.controls['institution'].value;
     let contestants: Contestant[] = [];
-    let firstCall = this.sendImagesOfContestant('One');
-    let secondCall = this.sendImagesOfContestant('Two');
-    let thirdCall = this.sendImagesOfContestant('Three');
-    forkJoin([firstCall, secondCall, thirdCall]).subscribe(responses => {
-      for (const response of responses) {
-        contestants.push(response);
-      }
-      teamDto.contestants = contestants;
+    const firstCall = this.sendImagesOfContestant('One');
+    const secondCall = this.sendImagesOfContestant('Two');
+    const thirdCall = this.sendImagesOfContestant('Three');
+    forkJoin([firstCall, secondCall, thirdCall]).subscribe(
+      responses => {
+        for (const response of responses) {
+          contestants.push(response);
+        }
+        teamDto.contestants = contestants;
 
-      this.http.sendPostRequest<BaseResponseDto<TeamDto>>(ApiUrls.TEAM_REGISTER, teamDto).subscribe(response => {
-        console.log(response);
+        this.http.sendPostRequest<BaseResponseDto<TeamDto>>(ApiUrls.TEAM_REGISTER, teamDto).subscribe(
+          response => {
+            sessionStorage.setItem('teamId', `${response?.result?.id}`);
+            this.router.navigateByUrl('/registration/success');
+          },
+          () => {
+            this.toast.showError('Something went wrong. Try again later.');
+          }
+        );
+      },
+      () => {
+        this.toast.showError('Something went wrong. Try again later.');
       });
-    });
   }
 
   private sendImagesOfContestant(contestantNumber: 'One' | 'Two' | 'Three') {
@@ -133,7 +146,6 @@ export class TeamRegistrationPageComponent {
     const formData = new FormData();
     formData.append('file', imageFile);
     formData.append('type', type);
-    const pictureDto = new PictureDto();
     return this.http.sendPostRequest<BaseResponseDto<string>>(ApiUrls.PICTURE_UPLOAD, formData)
   }
 

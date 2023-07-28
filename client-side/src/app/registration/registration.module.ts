@@ -16,6 +16,7 @@ import {PictureUploadInputComponent} from './picture-upload-input/picture-upload
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { IdentificationDocumentsFormComponent } from './identification-documents-form/identification-documents-form.component';
 import { MatVerticalStepperScrollerDirective } from './mat-vertical-stepper-scroller.directive';
+import { RegistrationSuccessPageComponent } from './registration-success-page/registration-success-page.component';
 
 
 @NgModule({
@@ -25,7 +26,9 @@ import { MatVerticalStepperScrollerDirective } from './mat-vertical-stepper-scro
     RegistrationStatusPageComponent,
     PictureUploadInputComponent,
     IdentificationDocumentsFormComponent,
-    MatVerticalStepperScrollerDirective],
+    MatVerticalStepperScrollerDirective,
+    RegistrationSuccessPageComponent
+  ],
   imports: [
     CommonModule,
     RegistrationRoutingModule,
