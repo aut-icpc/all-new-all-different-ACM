@@ -5,5 +5,5 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("archive")
-public class ArchivePicture extends Picture{
+public class ArchivePicture extends Picture {
 }

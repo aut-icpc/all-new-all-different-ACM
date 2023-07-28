@@ -1,6 +1,5 @@
 package com.acm.server.service.impl;
 
-import com.acm.server.annotation.StatusChangedEvent;
 import com.acm.server.mapper.TeamMapper;
 import com.acm.server.model.TeamStatus;
 import com.acm.server.model.dto.TeamDto;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * Implementation of the TeamService interface.
+ *
  * @author Farid Masjedi
  */
 @Service
