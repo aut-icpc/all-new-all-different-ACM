@@ -10,12 +10,16 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Repository for the Team entity.
  * This interface provides CRUD operations, sorting and pagination functionality out of the box.
- * @see com.acm.server.domain.Team
+ *
  * @author Farid Masjedi
+ * @see com.acm.server.domain.Team
  */
 public interface TeamRepository extends JpaRepository<Team, Long> {
     @Modifying
     @Transactional
     @Query("update Team t set t.status = :#{#request.status}")
     Team updateStatus(UpdateStatusRequest request);
+
+    Team getTeamByTeamName(String teamName);
+
 }

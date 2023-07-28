@@ -16,6 +16,8 @@ public interface TeamService {
 
     TeamDto getTeam(Long id);
 
+    TeamDto getTeam(String name);
+
     @StatusChangedEvent
     TeamDto updateStatus(UpdateStatusRequest request);
 }

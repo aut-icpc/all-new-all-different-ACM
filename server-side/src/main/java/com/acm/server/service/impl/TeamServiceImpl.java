@@ -46,6 +46,11 @@ public class TeamServiceImpl implements TeamService {
         return mapper.toTeamDto(teamRepository.findById(id).orElseThrow());
     }
 
+    @Override
+    public TeamDto getTeam(String name) {
+        return mapper.toTeamDto(teamRepository.getTeamByTeamName(name));
+    }
+
 
     @Override
     public TeamDto updateStatus(UpdateStatusRequest request) {
