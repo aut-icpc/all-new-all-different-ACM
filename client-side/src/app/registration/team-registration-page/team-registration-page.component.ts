@@ -13,6 +13,7 @@ import {PictureDto} from "../../shared/interfaces/DTO/picture.dto";
 import {forkJoin, of} from "rxjs";
 import {switchMap} from "rxjs/operators";
 import {HttpHeaders} from "@angular/common/http";
+import {ApiUrls} from "../../shared/api-urls";
 
 @Component({
   selector: 'acpc-team-registration-page',
@@ -98,10 +99,8 @@ export class TeamRegistrationPageComponent {
         contestants.push(response);
       }
       teamDto.contestants = contestants;
-      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      // Convert the teamDto object to a JSON string
-      this.http.sendPostRequest<BaseResponseDto<TeamDto>>('/api/team', teamDto).subscribe(response => {
+      this.http.sendPostRequest<BaseResponseDto<TeamDto>>(ApiUrls.TEAM_REGISTER, teamDto).subscribe(response => {
         console.log(response);
       });
     });
@@ -125,7 +124,6 @@ export class TeamRegistrationPageComponent {
         studentCardDto.link = studentCardResponse.result;
         formObj.studentCardPicture = studentCardDto;
 
-        // Return the updated formObj as an Observable
         return of(formObj);
       })
     );
@@ -136,7 +134,7 @@ export class TeamRegistrationPageComponent {
     formData.append('file', imageFile);
     formData.append('type', type);
     const pictureDto = new PictureDto();
-    return this.http.sendPostRequest<BaseResponseDto<string>>('/api/picture', formData)
+    return this.http.sendPostRequest<BaseResponseDto<string>>(ApiUrls.PICTURE_UPLOAD, formData)
   }
 
 }
