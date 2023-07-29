@@ -7,6 +7,8 @@ import {TeamStatus} from "../enums/team-status";
 export class UpperSnakeCaseToNormalPipe implements PipeTransform {
 
   transform(value: TeamStatus): string {
+    if (!value)
+      return '';
     const strValue = value.toString();
     return strValue.toLowerCase().replace('_', '');
   }
