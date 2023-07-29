@@ -6,7 +6,7 @@
         <img src="./assets/images/green-tick.png" alt="green tick">
         <div id="header-text">
           <span id="header-title">registration success!</span>
-          <span>check your email for more information</span>
+          <span id="prompt-text">check your email for more information</span>
         </div>
       </div>
       <div id="card-content">
@@ -16,7 +16,7 @@
         </div>
         <div class="data-container">
           <span class="title">status</span>
-          <span>{{teamData.status.toString()}}</span>
+          <span>{{teamData.status | upperSnakeCaseToNormal}}</span>
         </div>
         <div id="support-box">
           <a [href]="telegramSupport">got any questions?</a>

@@ -1,11 +1,6 @@
 @import "src/styles";
 
 img {
-  top: -30px;
-  position: absolute;
-  background-color: white;
-  border: 5px solid white;
-  border-radius: 50%;
   @extend .logo-5;
 }
 
@@ -15,18 +10,31 @@ img {
 }
 
 #header-title {
-  text-align: center;
   font-size: 20px;
-  padding: 10px;
+  padding: 5px;
   box-sizing: border-box;
 }
 
+#prompt-text {
+  padding: 5px;
+}
+
 #card-content {
-  padding: 0 5px;
+  display: flex;
+  padding: 5px;
+  background-color: #b1f1e4;
 }
 
 #page-container {
   height: 100%;
+}
+
+#card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid gray;
+  padding: 5px;
 }
 
 #page-content {
@@ -38,18 +46,9 @@ img {
 
 #summary-card {
   position: relative;
-  padding: 5px;
   box-shadow: 0 2px 4px -1px #0003, 0 4px 5px #00000024, 0 1px 10px #0000001f;
+  overflow: hidden;
   @extend .round-border-1;
-}
-
-#card-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid gray;
-  margin-top: 25px;
-  padding-bottom: 5px;
 }
 
 .data-container {
@@ -60,11 +59,16 @@ img {
   box-sizing: border-box;
   width: 100%;
   .title {
+    color: #5D5E5F;
     font-weight: bold;
   }
 }
 
 #support-box {
+  a:link, a:visited, a:hover, a:active {
+    color: #013779;
+    font-size: 18px;
+  }
   display: flex;
   justify-content: center;
   padding: 20px;

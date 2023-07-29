@@ -19,7 +19,7 @@ export class RegistrationSuccessPageComponent implements OnInit {
 
   ngOnInit(): void {
     const id = sessionStorage.getItem('teamId') || '';
-    const params = {id: '16'};
+    const params = {id: id};
     this.http.sendGetRequest<BaseResponseDto<TeamDto>>(ApiUrls.TEAM_REGISTER, {params: params})
       .subscribe(response => {
         this.teamData = response.result;

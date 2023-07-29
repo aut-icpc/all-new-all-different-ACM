@@ -9,16 +9,19 @@ import {ModalBodyComponent} from './components/modal-body/modal-body.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { StatusToastComponent } from './components/status-toast/status-toast.component';
+import { UpperSnakeCaseToNormalPipe } from './pipes/upper-snake-case-to-normal.pipe';
 
 
 @NgModule({
     declarations: [
         HeaderComponent,
         ModalBodyComponent,
-        StatusToastComponent
+        StatusToastComponent,
+        UpperSnakeCaseToNormalPipe
     ],
     exports: [
         HeaderComponent,
+        UpperSnakeCaseToNormalPipe
     ],
     imports: [
         CommonModule,
