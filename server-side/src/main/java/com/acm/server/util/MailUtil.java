@@ -20,9 +20,12 @@ public class MailUtil {
     private String from;
 
 
-    public void sendMailAfterStatusChanged(String to, String status) {
+    public void sendMailAfterStatusChanged(String to, String status, String name) {
+        Context context = new Context();
+        context.setVariable("name", name);
+        context.setVariable("status", status);
         sendThymeleafEmail(to,
-                "acm-change-status".concat(status), new Context());
+                "acm-change-status".concat(status), context);
     }
 
     private void sendThymeleafEmail(String recipientEmail, String templateName,
@@ -32,7 +35,7 @@ public class MailUtil {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setFrom(from);
             helper.setTo(recipientEmail);
-            helper.setSubject("ACM Change Status");
+            helper.setSubject("ACPC Changed Status");
             String htmlContent = templateEngine.process(templateName, context);
             helper.setText(htmlContent, true);
             emailSender.send(message);
