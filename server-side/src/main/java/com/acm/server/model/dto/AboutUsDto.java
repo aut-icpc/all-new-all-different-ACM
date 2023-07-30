@@ -16,6 +16,7 @@ import javax.validation.constraints.Size;
  */
 @Data
 public class AboutUsDto {
+    private Long id;
     @NotBlank(message = "Description is required!")
     @Size(max = 5000, message = "Description length must be less than 1000 characters!")
     private String description;
