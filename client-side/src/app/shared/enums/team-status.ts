@@ -4,5 +4,5 @@ export enum TeamStatus {
   RESERVED = 'reserved',
   REJECTED = 'rejected',
   FINALIZED = 'finalized',
-  UNKNOW = 'unknown'
+  UNKNOWN = 'unknown'
 }

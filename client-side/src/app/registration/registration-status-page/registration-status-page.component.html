@@ -10,15 +10,26 @@
     <div id="form-container">
       <div id="form-wrapper" [@expandIn]="isWrapperExpanded ? 'increaseHeight' : 'decreaseHeight'">
         <mat-form-field appearance="outline">
-          <input matInput type="text" required>
+          <input matInput type="text" [formControl]="formControl" required (keypress)="inquiryTeamStatus($event)">
           <mat-label>team name</mat-label>
           <button mat-raised-button matSuffix color="primary"
-                  type="button" id="search-btn" (click)="toggleAnimationsState()">
+                  id="search-btn" (click)="inquiryTeamStatus($event)">
             <img src="./assets/icons/search.png" alt="search">
           </button>
+          <mat-error *ngIf="formControl.hasError('required')">
+            Enter your intended team name first
+          </mat-error>
         </mat-form-field>
-        <div id="status-box" [@fadeIn]="isStatusBoxShowed ? 'increaseOpacity' : 'decreaseOpacity'">
-          <span>{{statusMessage}}</span>
+        <div *ngIf="teamDto" id="status-box" [ngClass]="teamDto.status == 'finalized' ? 'finalized' : (teamDto.status == 'rejected' ? 'rejected' : '')"
+             [@fadeIn]="isStatusBoxShowed ? 'increaseOpacity' : 'decreaseOpacity'">
+          <div class="data-container">
+            <span class="title">team name</span>
+            <span>{{teamDto.teamName}}</span>
+          </div>
+          <div class="data-container">
+            <span class="title">status</span>
+            <span>{{teamDto.status | upperSnakeCaseToNormal}}</span>
+          </div>
         </div>
       </div>
     </div>

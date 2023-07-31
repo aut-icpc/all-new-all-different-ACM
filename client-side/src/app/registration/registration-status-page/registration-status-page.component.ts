@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {expandInAnimation} from "../../shared/animations/expand-animations";
 import {fadeInAnimation} from "../../shared/animations/fade-animations";
+import {FormControl, Validators} from "@angular/forms";
+import {HttpService} from "../../shared/services/http.service";
+import {ApiUrls} from "../../shared/api-urls";
+import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
+import {TeamDto} from "../../shared/interfaces/DTO/team.dto";
 
 @Component({
   selector: 'acpc-registration-status-page',
@@ -10,21 +15,31 @@ import {fadeInAnimation} from "../../shared/animations/fade-animations";
 })
 export class RegistrationStatusPageComponent implements OnInit {
 
-  statusMessage!: string;
+  formControl = new FormControl('', Validators.required);
+
+  teamDto!: TeamDto;
 
   isWrapperExpanded = false;
   isStatusBoxShowed = false;
 
-  constructor() { }
+  constructor(private http: HttpService) { }
 
   ngOnInit(): void {
   }
 
-  toggleAnimationsState() {
-    this.isWrapperExpanded = !this.isWrapperExpanded;
-    setTimeout(() => {
-      this.isStatusBoxShowed = !this.isStatusBoxShowed;
-    }, 0);
+  inquiryTeamStatus(event: any) {
+    if (this.formControl.invalid || event?.keyCode != 13)
+      return;
+
+    const teamName = this.formControl.value;
+    this.http.sendGetRequest<BaseResponseDto<TeamDto>>(ApiUrls.TEAM_REGISTER + `/${teamName}`).subscribe(response => {
+      this.isWrapperExpanded = !this.isWrapperExpanded;
+      this.teamDto = response.result;
+      setTimeout(() => {
+        this.isStatusBoxShowed = !this.isStatusBoxShowed;
+      }, 0);
+    })
+
   }
 
 }
