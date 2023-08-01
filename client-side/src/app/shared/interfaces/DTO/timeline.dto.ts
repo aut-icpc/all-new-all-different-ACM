@@ -1,6 +1,6 @@
 export class TimelineDto {
-    image!: any;
+    id!: number;
     title!: string;
-    date!: string;
+    date!: Date;
     description!: string;
 }

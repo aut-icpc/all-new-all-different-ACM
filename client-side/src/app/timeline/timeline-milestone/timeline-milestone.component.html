@@ -2,11 +2,11 @@
   <div class="card-header">
     <div class="logo-container">
       <div class="logo-circle">
-        <img src="{{timelineData.image}}">
+        <img src="{{'assets/icons/' + (timelineData.title | normalStringToSnakeCase)}}">
       </div>
     </div>
     <div class="date-container">
-      <span>{{timelineData.date}}</span>
+      <span>{{timelineData.date | dateToHumanReadableString}}</span>
     </div>
   </div>
   <div class="description-container">

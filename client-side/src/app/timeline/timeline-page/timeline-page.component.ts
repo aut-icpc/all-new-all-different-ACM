@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HeaderOptionClass} from "../../shared/enums/header-option-class";
 import {TimelineDto} from "../../shared/interfaces/DTO/timeline.dto";
 import {PlatformService} from "../../shared/services/platform.service";
+import {HttpService} from "../../shared/services/http.service";
+import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
+import {ApiUrls} from "../../shared/api-urls";
 
 @Component({
   selector: 'acpc-timeline-page',
@@ -12,34 +15,21 @@ export class TimelinePageComponent implements OnInit {
 
   isDesktop!: boolean;
 
-  items: TimelineDto[] = [
-    {
-      image: './assets/icons/edit.png',
-      title: 'Registeration Dates',
-      date: 'March 28th, 2023',
-      description: 'Registration period is from 28th of March to 2nd of April 2023'
-    },
-    {
-      image: './assets/icons/opening-ceremony.png',
-      title: 'Orientation Day',
-      date: 'April 7th, 2023',
-      description: 'All team members are required to be present on orientation day. It will be held in AUT\'s Mawlana conference hall at 5:00 P.M.'
-    },
-    {
-      image: './assets/icons/cup logo.png',
-      title: 'In-site Contest',
-      date: 'April 8th, 2023',
-      description: 'Contest starts at 9:00 AM in Tehran, Iran (local time), in-person only.'
-    }
-  ];
+  milestones!: TimelineDto[];
 
   headerTextColor = HeaderOptionClass;
 
-  constructor(private platform: PlatformService) {
+  constructor(private platform: PlatformService, private http: HttpService) {
     this.isDesktop = this.platform.isOnDesktopDevice();
   }
 
   ngOnInit(): void {
+    this.http.sendGetRequest<BaseResponseDto<TimelineDto[]>>(ApiUrls.TIMELINE).subscribe(response => {
+      this.milestones = response.result;
+      this.milestones = this.milestones.sort(
+        (a, b) => a.date.getTime() - b.date.getTime()
+      );
+    })
   }
 
   getCardClassByIndex(i: number) {

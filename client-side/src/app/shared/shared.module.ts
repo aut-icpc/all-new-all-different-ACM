@@ -10,6 +10,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { StatusToastComponent } from './components/status-toast/status-toast.component';
 import { UpperSnakeCaseToNormalPipe } from './pipes/upper-snake-case-to-normal.pipe';
+import { NormalStringToSnakeCasePipe } from './pipes/normal-string-to-snake-case.pipe';
+import { DateToHumanReadableStringPipe } from './pipes/date-to-human-readable-string.pipe';
 
 
 @NgModule({
@@ -17,12 +19,16 @@ import { UpperSnakeCaseToNormalPipe } from './pipes/upper-snake-case-to-normal.p
         HeaderComponent,
         ModalBodyComponent,
         StatusToastComponent,
-        UpperSnakeCaseToNormalPipe
+        UpperSnakeCaseToNormalPipe,
+        NormalStringToSnakeCasePipe,
+        DateToHumanReadableStringPipe
     ],
-    exports: [
-        HeaderComponent,
-        UpperSnakeCaseToNormalPipe
-    ],
+  exports: [
+    HeaderComponent,
+    UpperSnakeCaseToNormalPipe,
+    NormalStringToSnakeCasePipe,
+    DateToHumanReadableStringPipe
+  ],
     imports: [
         CommonModule,
         MatButtonModule,
