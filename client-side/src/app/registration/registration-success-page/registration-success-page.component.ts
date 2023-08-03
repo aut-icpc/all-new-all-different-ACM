@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TeamDto} from "../../shared/interfaces/DTO/team.dto";
 import {HttpService} from "../../shared/services/http.service";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
-import {ApiUrls} from "../../shared/api-urls";
+import {API_URLS} from "../../shared/api-urls";
 import {environment} from "../../../environments/environment";
 
 @Component({
@@ -20,7 +20,7 @@ export class RegistrationSuccessPageComponent implements OnInit {
   ngOnInit(): void {
     const id = sessionStorage.getItem('teamId') || '';
     const params = {id: id};
-    this.http.sendGetRequest<BaseResponseDto<TeamDto>>(ApiUrls.TEAM_REGISTER, {params: params})
+    this.http.sendGetRequest<BaseResponseDto<TeamDto>>(API_URLS.REGISTRATION.TEAM_REGISTER, {params: params})
       .subscribe(response => {
         this.teamData = response.result;
       });

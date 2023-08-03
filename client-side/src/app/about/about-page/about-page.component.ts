@@ -1,11 +1,8 @@
-import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild} from '@angular/core';
-import {HeaderOptionClass} from "../../shared/enums/header-option-class";
+import {Component, ElementRef, OnInit, QueryList, ViewChild} from '@angular/core';
 import {HttpService} from "../../shared/services/http.service";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {AboutDto} from "../../shared/interfaces/DTO/about.dto";
-import {Observable, Subject} from "rxjs";
-import {distinctUntilChanged, map, mergeMap} from "rxjs/operators";
-import {ApiUrls} from "../../shared/api-urls";
+import {API_URLS} from "../../shared/api-urls";
 
 @Component({
   selector: 'acpc-about-page',
@@ -20,7 +17,7 @@ export class AboutPageComponent implements OnInit {
   constructor(private http: HttpService) { }
 
   ngOnInit(): void {
-    this.http.sendGetRequest<BaseResponseDto<AboutDto[]>>(ApiUrls.ABOUT).subscribe( response => {
+    this.http.sendGetRequest<BaseResponseDto<AboutDto[]>>(API_URLS.ABOUT).subscribe( response => {
       this.descriptions = response.result;
     });
   }

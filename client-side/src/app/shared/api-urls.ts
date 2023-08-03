@@ -1,8 +1,13 @@
-export class ApiUrls {
-  static readonly BASE_URL = '/api';
-  static readonly ABOUT = ApiUrls.BASE_URL + '/about';
-  static readonly TIMELINE = ApiUrls.BASE_URL + '/timeline';
-  static readonly PICTURE_UPLOAD = ApiUrls.BASE_URL + '/picture';
-  static readonly TEAM_REGISTER = ApiUrls.BASE_URL + '/team';
-  static readonly TEAM_NAME_CHECKING = ApiUrls.TEAM_REGISTER + '/name/unique';
-}
+const BASE_URL = '/api';
+const TEAM_REGISTER_URL = BASE_URL + '/team';
+
+export const API_URLS = {
+  BASE_URL: BASE_URL,
+  ABOUT: BASE_URL + '/about',
+  TIMELINE: BASE_URL + '/timeline',
+  PICTURE_UPLOAD: BASE_URL + '/picture',
+  REGISTRATION: {
+    TEAM_REGISTER: TEAM_REGISTER_URL,
+    UNIQUE_NAME_CHECK: TEAM_REGISTER_URL + '/name/unique'
+  }
+};

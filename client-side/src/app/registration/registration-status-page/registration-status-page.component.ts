@@ -3,7 +3,7 @@ import {expandInAnimation} from "../../shared/animations/expand-animations";
 import {fadeInAnimation} from "../../shared/animations/fade-animations";
 import {FormControl, Validators} from "@angular/forms";
 import {HttpService} from "../../shared/services/http.service";
-import {ApiUrls} from "../../shared/api-urls";
+import {API_URLS} from "../../shared/api-urls";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {TeamDto} from "../../shared/interfaces/DTO/team.dto";
 
@@ -32,7 +32,7 @@ export class RegistrationStatusPageComponent implements OnInit {
       return;
 
     const teamName = this.formControl.value;
-    this.http.sendGetRequest<BaseResponseDto<TeamDto>>(ApiUrls.TEAM_REGISTER + `/${teamName}`).subscribe(response => {
+    this.http.sendGetRequest<BaseResponseDto<TeamDto>>(API_URLS.REGISTRATION.TEAM_REGISTER + `/${teamName}`).subscribe(response => {
       this.isWrapperExpanded = !this.isWrapperExpanded;
       this.teamDto = response.result;
       setTimeout(() => {

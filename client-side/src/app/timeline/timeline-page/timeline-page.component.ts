@@ -4,7 +4,7 @@ import {TimelineDto} from "../../shared/interfaces/DTO/timeline.dto";
 import {PlatformService} from "../../shared/services/platform.service";
 import {HttpService} from "../../shared/services/http.service";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
-import {ApiUrls} from "../../shared/api-urls";
+import {API_URLS} from "../../shared/api-urls";
 
 @Component({
   selector: 'acpc-timeline-page',
@@ -24,7 +24,7 @@ export class TimelinePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.sendGetRequest<BaseResponseDto<TimelineDto[]>>(ApiUrls.TIMELINE).subscribe(response => {
+    this.http.sendGetRequest<BaseResponseDto<TimelineDto[]>>(API_URLS.TIMELINE).subscribe(response => {
       this.milestones = response.result;
       this.milestones = this.milestones.sort(
         (a, b) => a.date.getTime() - b.date.getTime()

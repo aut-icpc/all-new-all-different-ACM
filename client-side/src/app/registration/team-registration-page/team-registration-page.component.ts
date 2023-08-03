@@ -12,7 +12,7 @@ import {Contestant} from "../../shared/interfaces/contestant";
 import {PictureDto} from "../../shared/interfaces/DTO/picture.dto";
 import {forkJoin, Observable, of} from "rxjs";
 import {map, switchMap} from "rxjs/operators";
-import {ApiUrls} from "../../shared/api-urls";
+import {API_URLS} from "../../shared/api-urls";
 import {Router} from "@angular/router";
 
 @Component({
@@ -106,7 +106,7 @@ export class TeamRegistrationPageComponent {
         }
         teamDto.contestants = contestants;
 
-        this.http.sendPostRequest<BaseResponseDto<TeamDto>>(ApiUrls.TEAM_REGISTER, teamDto).subscribe(
+        this.http.sendPostRequest<BaseResponseDto<TeamDto>>(API_URLS.REGISTRATION.TEAM_REGISTER, teamDto).subscribe(
           response => {
             sessionStorage.setItem('teamId', `${response?.result?.id}`);
             this.router.navigateByUrl('/registration/success');
@@ -148,7 +148,7 @@ export class TeamRegistrationPageComponent {
     const formData = new FormData();
     formData.append('file', imageFile);
     formData.append('type', type);
-    return this.http.sendPostRequest<BaseResponseDto<string>>(ApiUrls.PICTURE_UPLOAD, formData)
+    return this.http.sendPostRequest<BaseResponseDto<string>>(API_URLS.PICTURE_UPLOAD, formData)
   }
 
 }
@@ -158,7 +158,7 @@ export function uniqueTeamNameValidator(httpService: HttpService): (control: Abs
     const teamName = control.value;
 
     const params = {teamName: teamName}
-    return httpService.sendGetRequest<BaseResponseDto<boolean>>(ApiUrls.TEAM_NAME_CHECKING, {params: params}).pipe(
+    return httpService.sendGetRequest<BaseResponseDto<boolean>>(API_URLS.REGISTRATION.UNIQUE_NAME_CHECK, {params: params}).pipe(
       map(response => {
         if (!response)
           return { uniqueTeamName: true };
