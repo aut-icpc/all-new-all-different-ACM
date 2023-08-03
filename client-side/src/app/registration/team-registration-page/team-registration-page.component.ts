@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {HeaderOptionClass} from "../../shared/enums/header-option-class";
 import {PlatformService} from "../../shared/services/platform.service";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {environment} from "../../../environments/environment";
@@ -22,7 +21,6 @@ import {Router} from "@angular/router";
 })
 export class TeamRegistrationPageComponent {
 
-  headerTextColor = HeaderOptionClass;
   isDesktop !: boolean;
   captchaToken !: string;
   siteKey = environment.recaptcha.siteKey;

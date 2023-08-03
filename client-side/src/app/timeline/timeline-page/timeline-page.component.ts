@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {HeaderOptionClass} from "../../shared/enums/header-option-class";
 import {TimelineDto} from "../../shared/interfaces/DTO/timeline.dto";
 import {PlatformService} from "../../shared/services/platform.service";
 import {HttpService} from "../../shared/services/http.service";
@@ -16,8 +15,6 @@ export class TimelinePageComponent implements OnInit {
   isDesktop!: boolean;
 
   milestones!: TimelineDto[];
-
-  headerTextColor = HeaderOptionClass;
 
   constructor(private platform: PlatformService, private http: HttpService) {
     this.isDesktop = this.platform.isOnDesktopDevice();

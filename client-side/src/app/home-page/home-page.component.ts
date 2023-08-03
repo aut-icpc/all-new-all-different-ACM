@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {HeaderOptionClass} from "../shared/enums/header-option-class";
 import {TimeComponents} from "../shared/interfaces/time-components";
 import {interval, Observable} from "rxjs";
 import {map, shareReplay} from "rxjs/operators";
@@ -13,7 +12,6 @@ import {Router} from "@angular/router";
 })
 export class HomePageComponent implements OnInit {
 
-  headerTextColor = HeaderOptionClass;
   private contestDate !: Date;
   timeLeft$ !: Observable<TimeComponents>;
 

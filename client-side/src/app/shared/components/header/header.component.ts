@@ -1,5 +1,4 @@
-import {AfterViewInit, Component, HostListener, Input, OnInit} from '@angular/core';
-import {HeaderOptionClass} from "../../enums/header-option-class";
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {fadeInAnimation} from "../../animations/fade-animations";
 import {PlatformService} from "../../services/platform.service";

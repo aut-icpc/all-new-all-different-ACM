@@ -1,13 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component} from '@angular/core';
 import * as Leaflet from 'leaflet';
-import { HeaderOptionClass } from "../shared/enums/header-option-class";
 
 @Component({
   selector: 'acpc-contact-us-page',
   templateUrl: './contact-us-page.component.html',
   styleUrls: ['./contact-us-page.component.scss']
 })
-export class ContactUsPageComponent implements OnInit {
+export class ContactUsPageComponent {
 
   leafletMap!: Leaflet.Map;
 
@@ -16,15 +15,6 @@ export class ContactUsPageComponent implements OnInit {
     zoom: 17,
     center: new Leaflet.LatLng(35.70385,51.40833)
   };
-
-  headerTextColor = HeaderOptionClass;
-
-
-  constructor() { }
-
-  ngOnInit(): void {
-
-  }
 
 }
 
