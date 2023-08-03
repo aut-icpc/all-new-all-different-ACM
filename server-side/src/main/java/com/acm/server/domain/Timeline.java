@@ -16,6 +16,7 @@ public class Timeline {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String title;
     private Date date;
     private String description;
 }
