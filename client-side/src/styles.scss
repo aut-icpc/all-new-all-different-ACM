@@ -50,6 +50,10 @@ body { margin: 0; font-family: Ubuntu, "Helvetica Neue", sans-serif; }
 }
 
 .mat-bottom-sheet-container {
-  border-radius: 15px 15px 0 0;
+  border-radius: 20px 20px 0 0;
   overflow: hidden;
+}
+
+.cdk-overlay-dark-backdrop {
+  backdrop-filter: blur(3px);
 }
