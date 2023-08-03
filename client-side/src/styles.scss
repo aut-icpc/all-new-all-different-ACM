@@ -48,3 +48,8 @@ body { margin: 0; font-family: Ubuntu, "Helvetica Neue", sans-serif; }
 .mat-horizontal-content-container, .mat-horizontal-stepper-content {
   height: 100%;
 }
+
+.mat-bottom-sheet-container {
+  border-radius: 15px 15px 0 0;
+  overflow: hidden;
+}

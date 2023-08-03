@@ -8,10 +8,14 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {ModalBodyComponent} from './components/modal-body/modal-body.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import { StatusToastComponent } from './components/status-toast/status-toast.component';
-import { UpperSnakeCaseToNormalPipe } from './pipes/upper-snake-case-to-normal.pipe';
-import { NormalStringToSnakeCasePipe } from './pipes/normal-string-to-snake-case.pipe';
-import { DateToHumanReadableStringPipe } from './pipes/date-to-human-readable-string.pipe';
+import {StatusToastComponent} from './components/status-toast/status-toast.component';
+import {UpperSnakeCaseToNormalPipe} from './pipes/upper-snake-case-to-normal.pipe';
+import {NormalStringToSnakeCasePipe} from './pipes/normal-string-to-snake-case.pipe';
+import {DateToHumanReadableStringPipe} from './pipes/date-to-human-readable-string.pipe';
+import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
+import {MatListModule} from "@angular/material/list";
+import { NameToRouterLinkPipe } from './pipes/name-to-router-link.pipe';
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -21,7 +25,8 @@ import { DateToHumanReadableStringPipe } from './pipes/date-to-human-readable-st
         StatusToastComponent,
         UpperSnakeCaseToNormalPipe,
         NormalStringToSnakeCasePipe,
-        DateToHumanReadableStringPipe
+        DateToHumanReadableStringPipe,
+        NameToRouterLinkPipe
     ],
   exports: [
     HeaderComponent,
@@ -36,7 +41,10 @@ import { DateToHumanReadableStringPipe } from './pipes/date-to-human-readable-st
         HttpClientModule,
         MatDialogModule,
         MatIconModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatBottomSheetModule,
+        MatListModule,
+        RouterModule
     ]
 })
 export class SharedModule { }

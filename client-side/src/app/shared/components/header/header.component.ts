@@ -1,15 +1,14 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {Component, Input, TemplateRef, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
-import {fadeInAnimation} from "../../animations/fade-animations";
 import {PlatformService} from "../../services/platform.service";
+import {MatBottomSheet, MatBottomSheetRef} from "@angular/material/bottom-sheet";
 
 @Component({
   selector: 'acpc-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  animations: [fadeInAnimation]
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent {
 
   isDesktop !: boolean;
   isMenuOpen = false;
@@ -17,7 +16,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     'Timeline', 'Contact Us', 'Reg. Status', 'Contests Archive',]
   @Input() menuOptionColor !: 'dark-text' | 'light-text';
 
-  constructor(private router: Router, private platform: PlatformService) {
+  bottomSheetRef!: MatBottomSheetRef<any>;
+  @ViewChild('bottomSheet') bottomSheetTemplate!: TemplateRef<any>;
+
+  constructor(private router: Router, private bottomSheet: MatBottomSheet, private platform: PlatformService) {
     this.isDesktop = platform.isOnDesktopDevice();
     if (this.isDesktop) {
       this.menuOptions.splice(this.menuOptions.indexOf("Register"), 1);
@@ -27,7 +29,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.menuOptionColor = 'dark-text';
   }
 
-  ngOnInit(): void {
+  openMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+
+    this.bottomSheetRef = this.bottomSheet.open(this.bottomSheetTemplate);
+    this.bottomSheetRef.backdropClick().subscribe(e => {
+      this.isMenuOpen = !this.isMenuOpen;
+    });
+    this.highlightCurrentRouteOption();
   }
 
   navigateToHome() {
@@ -57,10 +66,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   formatName(name: string): string {
     let formatted = name.replace('.', '');
     return formatted.replace(' ', '-').toLowerCase();
-  }
-
-  ngAfterViewInit(): void {
-    this.highlightCurrentRouteOption();
   }
 
   //TODO: recheck colors of options
