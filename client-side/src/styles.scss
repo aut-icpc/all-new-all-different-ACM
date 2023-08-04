@@ -57,3 +57,7 @@ body { margin: 0; font-family: Ubuntu, "Helvetica Neue", sans-serif; }
 .cdk-overlay-dark-backdrop {
   backdrop-filter: blur(3px);
 }
+
+.mat-dialog-container {
+  padding: 15px !important;
+}
