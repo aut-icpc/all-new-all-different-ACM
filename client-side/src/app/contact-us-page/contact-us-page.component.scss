@@ -38,6 +38,7 @@
   padding: 10px;
   box-sizing: border-box;
   border-bottom: 1px solid gray;
+  color: $dark-primary-text;
   h1, p {
     opacity: 0;
     animation: headerFadeIn .8s .1s forwards;
@@ -67,7 +68,7 @@
   }
   a, span {
     text-decoration: none;
-    color: #3C72B4;
+    color: map_get($mat-primary, "main");
     font-weight: bold;
     font-size: 18px;
   }

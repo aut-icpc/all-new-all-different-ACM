@@ -68,6 +68,10 @@ export class HeaderComponent {
     return formatted.replace(' ', '-').toLowerCase();
   }
 
+  isHomePage() {
+    return this.router.url.includes('/home');
+  }
+
   //TODO: recheck colors of options
   //TODO: add image to option menu for desktop
   //TODO: change background color of option menu

@@ -9,7 +9,7 @@
     </span>
   </div>
   <div id="menu-button-container" *ngIf="!isDesktop">
-    <div id="menu-hamburger" (click)="openMenu()"
+    <div id="menu-hamburger" (click)="openMenu()" [ngClass]="{'light-hamburger-filter': isHomePage()}"
          class="logo-box {{menuOptionColor}}">
       <img class="logo-3" src="../../../../assets/icons/hamburger-menu.png" alt="menu">
     </div>

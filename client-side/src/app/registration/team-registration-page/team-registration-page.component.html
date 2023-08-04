@@ -1,106 +1,106 @@
 <div id="page-container">
   <acpc-header menuOptionColor="dark-text"></acpc-header>
-      <div id="content-container" [ngClass]="{'column-direction-container' : !isDesktop}">
-        <mat-stepper linear #stepper [orientation]="isDesktop ? 'horizontal' : 'vertical'" acpcMatVerticalStepperScrollerDirective>
-          <mat-step [editable]="true" [optional]="false" [stepControl]="teamInfoFormGroup">
-            <ng-template matStepLabel>Fill out your team information</ng-template>
-            <div id="all-forms-container">
-              <form [formGroup]="teamInfoFormGroup" class="all-forms">
-                <div id="team-form-container">
-                  <span id="form-header-title">
-                    <img src="./assets/icons/team.png" alt="team">
-                    <span>Team Information</span>
-                  </span>
-                  <div id="team-form-section">
-                    <mat-form-field appearance="outline">
-                      <input matInput type="text" formControlName="teamName" required>
-                      <mat-label>Team name</mat-label>
-                      <mat-error *ngIf="isFormControlValid('teamName')">
-                        {{getErrorMessage('teamName')}}
-                      </mat-error>
-                    </mat-form-field>
-                    <mat-form-field appearance="outline">
-                      <input matInput type="text" formControlName="institution" required>
-                      <mat-label>Institution</mat-label>
-                      <mat-error *ngIf="isFormControlValid('institution')">
-                        {{getErrorMessage('institution')}}
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="contestants-container">
-                  <acpc-contestant-form
-                    [contestantCounter]="1" formControlName="contestantOne"></acpc-contestant-form>
-                  <acpc-contestant-form
-                    [contestantCounter]="2" formControlName="contestantTwo"></acpc-contestant-form>
-                  <acpc-contestant-form
-                    [contestantCounter]="3" formControlName="contestantThree"></acpc-contestant-form>
-                </div>
-              </form>
+  <div id="content-container" [ngClass]="{'column-direction-container' : !isDesktop}">
+    <mat-stepper linear #stepper [orientation]="isDesktop ? 'horizontal' : 'vertical'" acpcMatVerticalStepperScrollerDirective>
+      <mat-step [editable]="true" [optional]="false" [stepControl]="teamInfoFormGroup">
+        <ng-template matStepLabel>Fill out your team information</ng-template>
+        <div id="all-forms-container">
+          <form [formGroup]="teamInfoFormGroup" class="all-forms">
+            <div id="team-form-container">
+              <span id="form-header-title">
+                <img src="./assets/icons/team.png" alt="team">
+                <span>Team Information</span>
+              </span>
+              <div id="team-form-section">
+                <mat-form-field appearance="outline">
+                  <input matInput type="text" formControlName="teamName" required>
+                  <mat-label>Team name</mat-label>
+                  <mat-error *ngIf="isFormControlValid('teamName')">
+                    {{getErrorMessage('teamName')}}
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <input matInput type="text" formControlName="institution" required>
+                  <mat-label>Institution</mat-label>
+                  <mat-error *ngIf="isFormControlValid('institution')">
+                    {{getErrorMessage('institution')}}
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="contestants-container">
+              <acpc-contestant-form
+                [contestantCounter]="1" formControlName="contestantOne"></acpc-contestant-form>
+              <acpc-contestant-form
+                [contestantCounter]="2" formControlName="contestantTwo"></acpc-contestant-form>
+              <acpc-contestant-form
+                [contestantCounter]="3" formControlName="contestantThree"></acpc-contestant-form>
+            </div>
+          </form>
+        </div>
+        <div class="step-buttons-container">
+          <button mat-stroked-button matStepperNext color="primary" (click)="showErrorIfInvalid(teamInfoFormGroup)">Next</button>
+        </div>
+      </mat-step>
+      <mat-step [editable]="true" [optional]="false" [stepControl]="teamDocumentFormGroup">
+        <ng-template matStepLabel>Upload your teammates' docs</ng-template>
+        <ng-template matStepContent>
+          <div>
+            <form class="all-forms contestants-container" [formGroup]="teamDocumentFormGroup">
+              <acpc-identification-documents-form formControlName="contestantOne"
+                                                  [contestantStudentId]="getContestantStudentId('One')"></acpc-identification-documents-form>
+              <acpc-identification-documents-form formControlName="contestantTwo"
+                                                  [contestantStudentId]="getContestantStudentId('Two')"></acpc-identification-documents-form>
+              <acpc-identification-documents-form formControlName="contestantThree"
+                                                  [contestantStudentId]="getContestantStudentId('Three')"></acpc-identification-documents-form>
+            </form>
+            <div class="step-buttons-container">
+              <button mat-stroked-button matStepperPrevious color="primary">Back</button>
+              <button mat-stroked-button matStepperNext color="primary" (click)="showErrorIfInvalid(teamDocumentFormGroup)">Next</button>
+            </div>
+          </div>
+        </ng-template>
+      </mat-step>
+      <mat-step [editable]="true" [optional]="false">
+        <ng-template matStepLabel>Submit data</ng-template>
+        <ng-template matStepContent>
+          <div id="submit-container">
+            <div class="captcha-container">
+              <re-captcha id="recaptcha" name="recaptcha" required [siteKey]="siteKey"
+                          #recaptcha="ngModel" [(ngModel)]="captchaToken"
+                          [ngClass]="{'error-captcha': showErrorOnCaptcha}"
+                          [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
+              <span [hidden]="recaptcha.valid || recaptcha.pristine"
+                    style="color: #dc3545;">Captcha must be solved</span>
             </div>
             <div class="step-buttons-container">
-              <button mat-stroked-button matStepperNext color="primary" (click)="showErrorIfInvalid(teamInfoFormGroup)">Next</button>
+              <button mat-stroked-button matStepperPrevious color="primary">Back</button>
+              <button mat-raised-button color="primary" (click)="submitForm()">submit</button>
             </div>
-          </mat-step>
-          <mat-step [editable]="true" [optional]="false" [stepControl]="teamDocumentFormGroup">
-            <ng-template matStepLabel>Upload your teammates' docs</ng-template>
-            <ng-template matStepContent>
-              <div>
-                <form class="all-forms contestants-container" [formGroup]="teamDocumentFormGroup">
-                  <acpc-identification-documents-form formControlName="contestantOne"
-                                                      [contestantStudentId]="getContestantStudentId('One')"></acpc-identification-documents-form>
-                  <acpc-identification-documents-form formControlName="contestantTwo"
-                                                      [contestantStudentId]="getContestantStudentId('Two')"></acpc-identification-documents-form>
-                  <acpc-identification-documents-form formControlName="contestantThree"
-                                                      [contestantStudentId]="getContestantStudentId('Three')"></acpc-identification-documents-form>
-                </form>
-                <div class="step-buttons-container">
-                  <button mat-stroked-button matStepperPrevious color="primary">Back</button>
-                  <button mat-stroked-button matStepperNext color="primary" (click)="showErrorIfInvalid(teamDocumentFormGroup)">Next</button>
-                </div>
-              </div>
-            </ng-template>
-          </mat-step>
-          <mat-step [editable]="true" [optional]="false">
-            <ng-template matStepLabel>Submit data</ng-template>
-            <ng-template matStepContent>
-              <div id="submit-container">
-                <div class="captcha-container">
-                  <re-captcha id="recaptcha" name="recaptcha" required [siteKey]="siteKey"
-                              #recaptcha="ngModel" [(ngModel)]="captchaToken"
-                              [ngClass]="{'error-captcha': showErrorOnCaptcha}"
-                              [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
-                  <span [hidden]="recaptcha.valid || recaptcha.pristine"
-                        style="color: #dc3545;">Captcha must be solved</span>
-                </div>
-                <div class="step-buttons-container">
-                  <button mat-stroked-button matStepperPrevious color="primary">Back</button>
-                  <button mat-raised-button color="primary" (click)="submitForm()">submit</button>
-                </div>
-              </div>
-            </ng-template>
-          </mat-step>
-        </mat-stepper>
-        <div id="banner-container" [ngClass]="{'sticky' : isDesktop}">
-          <div id="banner">
-            <h2>Contest Registration</h2>
-            <h3>Registration fees are as follows:</h3>
-            <p>
-              120,000 Tomans for teams from Amirkabir University of Technology (40,000 Tomans for each contestant).
-            </p>
-            <p>
-              180,000 Tomans for teams from other universities (60,000 Tomans for each contestant).
-            </p>
-            <p>
-              If your team name was not in the registered teams list 24 hours after registration, please inform us by:
-            </p>
-            <span class="contacts">
-          Email: <a href="mailto:ceaut.acpc@gmail.com">ceaut.acpc@gmail.com</a>
-        </span>
-            <span class="contacts">
-          Telegram: <a href="https://t.me/acpc_admin">@acpc_admin</a>
-        </span>
           </div>
-        </div>
+        </ng-template>
+      </mat-step>
+    </mat-stepper>
+    <div id="banner-container" [ngClass]="{'sticky' : isDesktop}">
+      <div id="banner">
+        <h2>Contest Registration</h2>
+        <h3>Registration fees are as follows:</h3>
+        <p>
+          120,000 Tomans for teams from Amirkabir University of Technology (40,000 Tomans for each contestant).
+        </p>
+        <p>
+          180,000 Tomans for teams from other universities (60,000 Tomans for each contestant).
+        </p>
+        <p>
+          If your team name was not in the registered teams list 24 hours after registration, please inform us by:
+        </p>
+        <span class="contacts">
+      Email: <a href="mailto:ceaut.acpc@gmail.com">ceaut.acpc@gmail.com</a>
+    </span>
+        <span class="contacts">
+      Telegram: <a href="https://t.me/acpc_admin">@acpc_admin</a>
+    </span>
       </div>
+    </div>
+  </div>
 </div>

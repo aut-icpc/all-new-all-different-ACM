@@ -20,7 +20,6 @@ a {
 #page-container {
   height: 100vh;
   display: flex;
-  padding: 10px;
   box-sizing: border-box;
   flex-direction: column;
 }
@@ -34,6 +33,7 @@ a {
   flex-direction: row;
   gap: 20px;
   position: relative;
+  padding: 10px;
 }
 
 #form-header-title {

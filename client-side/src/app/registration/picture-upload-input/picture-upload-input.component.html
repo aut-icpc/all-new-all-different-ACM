@@ -7,7 +7,7 @@
      (dragover)="onDragOver($event, container)">
   <div id="show-box" (click)="openFileWindow(fileInput)" *ngIf="currentState.toString() == 'none'">
     <img src="./assets/icons/image.png" alt="image">
-    <span id="or">{{commandMessage}}</span>
+    <span id="command-message">{{commandMessage}}</span>
   </div>
   <div class="uploaded-image" *ngIf="currentState.toString() == 'uploading'">
     <div class="image-info">

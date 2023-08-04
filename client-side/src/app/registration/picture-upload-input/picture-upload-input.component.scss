@@ -1,3 +1,5 @@
+@import "src/styles";
+
 .drop-zone {
   position: relative;
   padding: 5px;
@@ -24,15 +26,15 @@
   font-size: 15px;
 }
 
-#or {
+#command-message {
   font-size: 15px;
   font-weight: bolder;
-  color: #0c59cd;
+  color: map_get($mat-primary, "main");
 }
 
 .drag-over {
-  border: 2px dashed #156fb6;
-  background-color: rgba(204, 221, 239, 0.64);
+  border: 2px dashed map_get($mat-primary, "darker");
+  background-color: map-get($mat-primary, "lighter");
 }
 
 .drag-leave {
@@ -126,14 +128,14 @@
   width: 100%;
   padding: 5px;
   color: white;
-  background-color: #B42E1C;
+  background-color: map_get($mat-warn, "main");
   font-weight: lighter;
   font-size: 13px;
 }
 
 .drop-zone.error {
-  border-color: #B42E1C;
-  background-color: rgb(238, 190, 183);
+  border-color: map_get($mat-warn, "darker");
+  background-color: map_get($mat-warn, "lighter");
 }
 
 .image-details {

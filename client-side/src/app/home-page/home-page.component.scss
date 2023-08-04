@@ -1,4 +1,4 @@
-@import "../../styles";
+@import "src/styles";
 
 :host {
   --lower-content-height: 150px;
@@ -68,7 +68,7 @@
 }
 
 #event-name {
-  color: #ffffff;
+  color: white;
   height: 50%;
   display: flex;
   flex-direction: column;
@@ -101,7 +101,7 @@
 }
 
 #countdown-clock {
-  color: #FCC61C;
+  color: map_get($mat-accent, "main");
   display: flex;
   flex-direction: row;
 }
@@ -126,7 +126,6 @@
 }
 
 .unit {
-  //font-weight: normal;
   text-align: center;
 }
 

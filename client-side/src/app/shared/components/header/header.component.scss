@@ -1,4 +1,4 @@
-@import "../../../../styles";
+@import "src/styles";
 
 #header-container {
   display: flex;
@@ -13,6 +13,11 @@
   img {
     width: 60px;
   }
+}
+
+.light-hamburger-filter {
+  filter: brightness(0) saturate(100%) invert(99%) sepia(92%)
+  saturate(0%) hue-rotate(196deg) brightness(106%) contrast(100%);
 }
 
 #routes-container {
@@ -37,8 +42,8 @@
 }
 
 #register-button {
-  color: #4C82C4;
-  border: 2px solid #4C82C4;
+  color: map_get($mat-primary, "main");
+  border: 2px solid map_get($mat-primary, "main");
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,7 +162,7 @@
 
 .active {
   span {
-    color: #B42E1C;
+    color: map_get($mat-warn, "main");
     font-weight: 600;
   }
   img {
@@ -168,6 +173,6 @@
 }
 
 .active:after {
-  background-color: #B42E1C;
+  background-color: map_get($mat-warn, "main");
 }
 
