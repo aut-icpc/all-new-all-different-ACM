@@ -10,14 +10,14 @@
       <input matInput type="text" formControlName="firstname" required>
       <mat-label>Firstname</mat-label>
       <mat-error *ngIf="isFormControlValid('firstname')">
-        {{getErrorMessage('firstname')}}
+        {{group.controls['firstname'].errors | generateErrorMessage}}
       </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <input matInput type="text" formControlName="lastname" required>
       <mat-label>Lastname</mat-label>
       <mat-error *ngIf="isFormControlValid('lastname')">
-        {{getErrorMessage('lastname')}}
+        {{group.controls['lastname'].errors | generateErrorMessage}}
       </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
@@ -28,7 +28,7 @@
         </mat-option>
       </mat-select>
       <mat-error *ngIf="isFormControlValid('gender')">
-        {{getErrorMessage('gender')}}
+        {{group.controls['gender'].errors | generateErrorMessage}}
       </mat-error>
     </mat-form-field>
   </div>
@@ -38,14 +38,14 @@
       <input matInput type="text" formControlName="phoneNumber" required>
       <mat-label>Phone Number</mat-label>
       <mat-error *ngIf="isFormControlValid('phoneNumber')">
-        {{getErrorMessage('phoneNumber')}}
+        {{group.controls['phoneNumber'].errors | generateErrorMessage: 'PHONE'}}
       </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <input matInput type="email" formControlName="email" required>
       <mat-label>Email</mat-label>
       <mat-error *ngIf="isFormControlValid('email')">
-        {{getErrorMessage('email')}}
+        {{group.controls['email'].errors | generateErrorMessage}}
       </mat-error>
     </mat-form-field>
   </div>
@@ -59,14 +59,14 @@
         </mat-option>
       </mat-select>
       <mat-error *ngIf="isFormControlValid('education')">
-        {{getErrorMessage('education')}}
+        {{group.controls['education'].errors | generateErrorMessage}}
       </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <input matInput type="text" formControlName="studentId" required>
       <mat-label>Student Number</mat-label>
       <mat-error *ngIf="isFormControlValid('studentId')">
-        {{getErrorMessage('studentId')}}
+        {{group.controls['studentId'].errors | generateErrorMessage}}
       </mat-error>
     </mat-form-field>
   </div>
@@ -80,7 +80,7 @@
         </mat-option>
       </mat-select>
       <mat-error *ngIf="isFormControlValid('shirtSize')">
-        {{getErrorMessage('shirtSize')}}
+        {{group.controls['shirtSize'].errors | generateErrorMessage}}
       </mat-error>
     </mat-form-field>
     <button type="button" color="accent" mat-flat-button (click)="openGuide()">shirt-size guide</button>

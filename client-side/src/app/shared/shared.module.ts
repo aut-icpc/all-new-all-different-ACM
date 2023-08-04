@@ -16,6 +16,7 @@ import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 import {MatListModule} from "@angular/material/list";
 import { NameToRouterLinkPipe } from './pipes/name-to-router-link.pipe';
 import {RouterModule} from "@angular/router";
+import { GenerateErrorMessagePipe } from './pipes/generate-error-message.pipe';
 
 
 @NgModule({
@@ -26,14 +27,16 @@ import {RouterModule} from "@angular/router";
         UpperSnakeCaseToNormalPipe,
         NormalStringToSnakeCasePipe,
         DateToHumanReadableStringPipe,
-        NameToRouterLinkPipe
+        NameToRouterLinkPipe,
+        GenerateErrorMessagePipe
     ],
-  exports: [
-    HeaderComponent,
-    UpperSnakeCaseToNormalPipe,
-    NormalStringToSnakeCasePipe,
-    DateToHumanReadableStringPipe
-  ],
+    exports: [
+        HeaderComponent,
+        UpperSnakeCaseToNormalPipe,
+        NormalStringToSnakeCasePipe,
+        DateToHumanReadableStringPipe,
+        GenerateErrorMessagePipe
+    ],
     imports: [
         CommonModule,
         MatButtonModule,

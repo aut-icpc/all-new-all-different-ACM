@@ -16,14 +16,14 @@
                   <input matInput type="text" formControlName="teamName" required>
                   <mat-label>Team name</mat-label>
                   <mat-error *ngIf="isFormControlValid('teamName')">
-                    {{getErrorMessage('teamName')}}
+                    {{teamInfoFormGroup.controls['teamName'].errors | generateErrorMessage}}
                   </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                   <input matInput type="text" formControlName="institution" required>
                   <mat-label>Institution</mat-label>
                   <mat-error *ngIf="isFormControlValid('institution')">
-                    {{getErrorMessage('institution')}}
+                    {{teamInfoFormGroup.controls['institution'].errors | generateErrorMessage: 'INSTITUTION'}}
                   </mat-error>
                 </mat-form-field>
               </div>

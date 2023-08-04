@@ -95,19 +95,6 @@ export class ContestantFormComponent implements OnInit, ControlValueAccessor, Va
     return null;
   }
 
-  getErrorMessage(formControlName: string) {
-    const errors = this.group.controls[formControlName].errors;
-    if (errors?.email)
-      return 'Email format isn\'t valid';
-    else if (errors?.minlength)
-      return 'Phone number must be at least 11 digits';
-    else if (errors?.pattern)
-      return 'Phone number format isn\'t valid';
-    else if (errors?.required)
-      return 'Fill the input';
-    return '';
-  }
-
   isFormControlValid(formControlName: string) {
     return this.group.controls[formControlName].invalid;
   }

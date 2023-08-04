@@ -64,17 +64,6 @@ export class TeamRegistrationPageComponent {
     return this.teamInfoFormGroup.controls[`contestant${number}`].value.studentId;
   }
 
-  getErrorMessage(formControlName: string) {
-    const errors = this.teamInfoFormGroup.controls[formControlName].errors;
-    if (errors?.minlength)
-      return 'Enter institution\'s full name';
-    else if (errors?.required)
-      return 'Fill the input';
-    else if (errors?.uniqueTeamName)
-      return 'name is already taken';
-    return '';
-  }
-
   showErrorIfInvalid(currentForm: FormGroup) {
     currentForm.markAllAsTouched();
     if (currentForm.invalid)
