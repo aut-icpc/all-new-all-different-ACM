@@ -1,6 +1,7 @@
 package com.acm.server.service.impl;
 
 import com.acm.server.mapper.ContactUsMapper;
+import com.acm.server.mapper.RegistrationTermsMapper;
 import com.acm.server.model.dto.ContactUsDto;
 import com.acm.server.repository.ContactUsRepository;
 import com.acm.server.service.ContactUsService;
