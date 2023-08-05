@@ -6,8 +6,9 @@ export const API_URLS = {
   ABOUT: BASE_URL + '/about',
   TIMELINE: BASE_URL + '/timeline',
   PICTURE_UPLOAD: BASE_URL + '/picture',
+  COUNTDOWN: BASE_URL + '/countdown',
   REGISTRATION: {
     TEAM_REGISTER: TEAM_REGISTER_URL,
     UNIQUE_NAME_CHECK: TEAM_REGISTER_URL + '/name/unique'
-  }
+  },
 };

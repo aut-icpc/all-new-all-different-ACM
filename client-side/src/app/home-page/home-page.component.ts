@@ -4,6 +4,9 @@ import {interval, Observable} from "rxjs";
 import {map, shareReplay} from "rxjs/operators";
 import {HttpService} from "../shared/services/http.service";
 import {Router} from "@angular/router";
+import {BaseResponseDto} from "../shared/interfaces/DTO/baseResponse.dto";
+import {CountDownDto} from "../shared/interfaces/DTO/countDown.dto";
+import {API_URLS} from "../shared/api-urls";
 
 @Component({
   selector: 'acpc-home-page',
@@ -12,16 +15,20 @@ import {Router} from "@angular/router";
 })
 export class HomePageComponent implements OnInit {
 
-  private contestDate !: Date;
   timeLeft$ !: Observable<TimeComponents>;
 
   constructor(private http: HttpService, private router: Router) {}
 
   ngOnInit(): void {
-    this.timeLeft$ = interval(1000).pipe(
-      map(x => this.calculateDateDiff()),
-      shareReplay(1)
-    );
+    const params = {type: 'MAIN'}
+    this.http.sendGetRequest<BaseResponseDto<CountDownDto>>(API_URLS.COUNTDOWN, {params: params})
+      .subscribe(response => {
+        const date = new Date(response.result.date);
+        this.timeLeft$ = interval(1000).pipe(
+          map(x => this.calculateDateDiff(date)),
+          shareReplay(1)
+        );
+      });
   }
 
   goToRegistrationPage() {
