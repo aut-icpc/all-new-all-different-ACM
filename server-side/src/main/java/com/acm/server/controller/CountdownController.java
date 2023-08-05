@@ -1,6 +1,7 @@
 package com.acm.server.controller;
 
 import com.acm.server.config.Constants;
+import com.acm.server.domain.CountdownType;
 import com.acm.server.model.dto.BaseResponseDto;
 import com.acm.server.model.dto.CountdownDto;
 import com.acm.server.service.CountdownService;
@@ -30,9 +31,9 @@ public class CountdownController {
      * @return ResponseEntity containing the response with the CountdownDto object.
      */
     @GetMapping
-    public ResponseEntity<BaseResponseDto<CountdownDto>> getCountdown(Long id) {
+    public ResponseEntity<BaseResponseDto<CountdownDto>> getCountdown(CountdownType type) {
         // Retrieve the countdown from the service layer based on the provided ID
-        CountdownDto countdownDto = countdownService.getCountdown(id);
+        CountdownDto countdownDto = countdownService.getCountdown(type);
 
         // Return the response entity with the countdown data wrapped in BaseResponseDto
         return ResponseEntity.ok(new BaseResponseDto<>("Countdown returned successfully!", countdownDto));

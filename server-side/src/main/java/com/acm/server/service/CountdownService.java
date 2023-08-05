@@ -1,5 +1,6 @@
 package com.acm.server.service;
 
+import com.acm.server.domain.CountdownType;
 import com.acm.server.model.dto.CountdownDto;
 
 /**
@@ -15,5 +16,5 @@ public interface CountdownService {
 
     void deleteCountdown(Long id);
 
-    CountdownDto getCountdown(Long id);
+    CountdownDto getCountdown(CountdownType type);
 }

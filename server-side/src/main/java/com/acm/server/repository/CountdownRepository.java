@@ -1,6 +1,7 @@
 package com.acm.server.repository;
 
 import com.acm.server.domain.Countdown;
+import com.acm.server.domain.CountdownType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +13,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CountdownRepository extends JpaRepository<Countdown, Long> {
+    Countdown getByType(CountdownType type);
 }

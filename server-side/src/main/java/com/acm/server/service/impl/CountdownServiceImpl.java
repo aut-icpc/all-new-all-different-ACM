@@ -1,5 +1,6 @@
 package com.acm.server.service.impl;
 
+import com.acm.server.domain.CountdownType;
 import com.acm.server.mapper.CountdownMapper;
 import com.acm.server.model.dto.CountdownDto;
 import com.acm.server.repository.CountdownRepository;
@@ -60,8 +61,8 @@ public class CountdownServiceImpl implements CountdownService {
      * @return The countdown DTO object, or null if the countdown is not found.
      */
     @Override
-    public CountdownDto getCountdown(Long id) {
+    public CountdownDto getCountdown(CountdownType type) {
         // Find the countdown in the repository by its ID and convert it to a DTO using the mapper
-        return mapper.toCountdownDto(repository.findById(id).orElse(null));
+        return mapper.toCountdownDto(repository.getByType(type));
     }
 }
