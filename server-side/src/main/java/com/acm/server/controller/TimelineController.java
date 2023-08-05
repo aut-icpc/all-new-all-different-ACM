@@ -1,7 +1,6 @@
 package com.acm.server.controller;
 
 import com.acm.server.config.Constants;
-import com.acm.server.model.dto.AboutUsDto;
 import com.acm.server.model.dto.BaseResponseDto;
 import com.acm.server.model.dto.TimelineDto;
 import com.acm.server.service.TimelineService;
