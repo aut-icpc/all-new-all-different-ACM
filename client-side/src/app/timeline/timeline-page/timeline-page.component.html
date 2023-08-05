@@ -1,5 +1,4 @@
 <div id="page-container">
-  <acpc-header menuOptionColor="dark-text"></acpc-header>
   <div id="page-content">
     <ng-container *ngFor="let item of milestones; let i=index;">
       <acpc-timeline-milestone [isDesktop]="isDesktop" [timelineData]="item" class="{{getCardClassByIndex(i)}}"></acpc-timeline-milestone>

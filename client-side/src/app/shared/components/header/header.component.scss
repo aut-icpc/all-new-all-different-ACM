@@ -140,20 +140,6 @@
   }
 }
 
-.options:after {
-  content: "";
-  height: 3px;
-  position: absolute;
-  bottom: -5px;
-  width: 0;
-  background-color: black;
-  transition: all .3s ease-in-out;
-}
-
-.options:hover:after {
-  width: 100%;
-}
-
 .desktop-options {
   font-size: 15px;
   font-weight: normal;

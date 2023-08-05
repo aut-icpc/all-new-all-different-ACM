@@ -1,12 +1,11 @@
 <div id="page-container">
-  <acpc-header menuOptionColor="dark-text"></acpc-header>
   <div id="page-content">
     <ng-container *ngFor="let d of descriptions; let i = index;">
       <acpc-description-box [description]="d" class="fade-in-element" acpcFadeIn
                             [direction]="getDirection(i)" #box>
       </acpc-description-box>
     </ng-container>
-    <div id="more-info" class="fade-in-element" acpcFadeIn>
+    <div *ngIf="descriptions" id="more-info" class="fade-in-element" acpcFadeIn>
       <p>More info on ICPC official website</p>
       <button id="register-button"
               mat-raised-button color="primary"

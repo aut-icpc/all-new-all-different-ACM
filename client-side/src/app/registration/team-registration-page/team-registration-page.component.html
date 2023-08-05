@@ -1,5 +1,4 @@
 <div id="page-container">
-  <acpc-header menuOptionColor="dark-text"></acpc-header>
   <div id="content-container" [ngClass]="{'column-direction-container' : !isDesktop}">
     <mat-stepper linear #stepper [orientation]="isDesktop ? 'horizontal' : 'vertical'" acpcMatVerticalStepperScrollerDirective>
       <mat-step [editable]="true" [optional]="false" [stepControl]="teamInfoFormGroup">
