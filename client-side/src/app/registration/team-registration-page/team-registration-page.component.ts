@@ -145,7 +145,7 @@ export function uniqueTeamNameValidator(httpService: HttpService): (control: Abs
     const teamName = control.value;
 
     const params = {teamName: teamName}
-    return httpService.sendGetRequest<BaseResponseDto<boolean>>(API_URLS.REGISTRATION.UNIQUE_NAME_CHECK, {params: params}).pipe(
+    return httpService.sendGetRequest<boolean>(API_URLS.REGISTRATION.UNIQUE_NAME_CHECK, {params: params}).pipe(
       map(response => {
         if (!response)
           return { uniqueTeamName: true };
