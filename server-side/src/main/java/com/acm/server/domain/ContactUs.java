@@ -3,6 +3,7 @@ package com.acm.server.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.geo.Point;
 
 @Entity
 @Getter
@@ -19,4 +20,6 @@ public class ContactUs {
     private String email;
     @Column
     private String phoneNumber;
+    @Column
+    private Point universityCoordinate;
 }
