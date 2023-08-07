@@ -9,5 +9,6 @@ public class ContactUsDto {
     private String telegram;
     private String email;
     private String phoneNumber;
+    private PointDto universityCoordinate;
 
 }
