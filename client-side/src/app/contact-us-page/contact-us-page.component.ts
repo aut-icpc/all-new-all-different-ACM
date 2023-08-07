@@ -1,20 +1,33 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as Leaflet from 'leaflet';
+import {ContactUsDto} from "../shared/interfaces/DTO/contactUs.dto";
+import {HttpService} from "../shared/services/http.service";
+import {BaseResponseDto} from "../shared/interfaces/DTO/baseResponse.dto";
+import {API_URLS} from "../shared/api-urls";
 
 @Component({
   selector: 'acpc-contact-us-page',
   templateUrl: './contact-us-page.component.html',
   styleUrls: ['./contact-us-page.component.scss']
 })
-export class ContactUsPageComponent {
+export class ContactUsPageComponent implements OnInit{
 
-  leafletMap!: Leaflet.Map;
+contactData!: ContactUsDto;
 
   options: Leaflet.MapOptions = {
     layers: getLayers(),
     zoom: 17,
     center: new Leaflet.LatLng(35.70385,51.40833)
   };
+
+  constructor(private http: HttpService) { }
+
+  ngOnInit(): void {
+    this.http.sendGetRequest<BaseResponseDto<ContactUsDto>>(API_URLS.CONTACT_US)
+      .subscribe(response => {
+        this.contactData = response.result;
+      });
+  }
 
 }
 

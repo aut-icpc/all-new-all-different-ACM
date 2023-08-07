@@ -8,19 +8,19 @@
       <div id="contacts-container">
         <div class="contacts">
           <img src="./assets/icons/telegram.png" alt="telegram">
-          <a href="https://t.me/acpc_admin">@acpc_admin</a>
+          <a [href]="contactData.telegram">acpc admin</a>
         </div>
         <div class="contacts">
           <img src="./assets/icons/viber.png" alt="phone">
-          <span>+989011521493</span>
+          <span>{{contactData.phoneNumber}}</span>
         </div>
         <div class="contacts">
           <img src="./assets/icons/gmail-logo.png" alt="email">
-          <a href="mailto:ceaut.acpc@gmail.com">ceaut.acpc@gmail.com</a>
+          <a [href]="'mailto:' + contactData.email">{{contactData.email}}</a>
         </div>
         <div class="contacts">
-          <img src="./assets/icons/discord.png" alt="discord">
-          <a href="https://discord.gg/PywEMaXE">ACPC</a>
+          <img src="./assets/icons/instagram.png" alt="discord">
+          <a [href]="contactData.instagram">ACPC</a>
         </div>
       </div>
     </div>
