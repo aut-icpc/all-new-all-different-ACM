@@ -1,30 +1,45 @@
-:host ::ng-deep {
-  .mat-tab-labels {
-    justify-content: center;
-  }
-
-  .mat-tab-label {
-    width: 100%;
-    img {
-      width: 20px;
-      margin-right: 5px;
-    }
-  }
-}
+@import "~swiper/swiper-bundle.min.css";
+@import "src/styles";
 
 #page-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 #page-title {
   text-align: center;
 }
 
-@media only screen and (min-width: 510px) {
-  :host ::ng-deep {
-    .mat-tab-labels {
-      padding: 0 40px;
+#file-container {
+  display: flex;
+  width: 100%;
+  column-gap: 5px;
+  height: 50px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.attached-file {
+  height: fit-content;
+  width: 85px;
+  text-decoration: none;
+  color: black;
+  border: 1px #5A5959 solid;
+  padding: 5px;
+  box-sizing: border-box;
+  @extend .round-border-1;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: medium;
+
+    img {
+      @extend .logo-5;
     }
   }
 }

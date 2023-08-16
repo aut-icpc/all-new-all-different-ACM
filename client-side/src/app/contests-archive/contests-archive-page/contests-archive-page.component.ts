@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {ArchiveDto} from "../../shared/interfaces/DTO/archive.dto";
+import {HttpService} from "../../shared/services/http.service";
+import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
+import {API_URLS} from "../../shared/api-urls";
 
 @Component({
   selector: 'acpc-contests-archive-page',
@@ -8,15 +11,17 @@ import {Router} from "@angular/router";
 })
 export class ContestsArchivePageComponent implements OnInit {
 
-  availableYear: number[] = [2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023];
+  archives!: ArchiveDto[];
 
-  constructor(private router: Router) { }
+  constructor(private http: HttpService) { }
 
   ngOnInit(): void {
-  }
-
-  navigateToArchivedContest(year: number) {
-    this.router.navigate(['/archive'], {queryParams: {year: year}});
+    this.http.sendGetRequest<BaseResponseDto<ArchiveDto[]>>(API_URLS.ARCHIVE)
+      .subscribe(response => {
+        this.archives = response.result.map((archiveDto: ArchiveDto) => {
+          return { ...archiveDto, date: new Date(archiveDto.date) };
+        });
+      })
   }
 
 }

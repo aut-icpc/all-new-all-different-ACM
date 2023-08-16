@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import Swiper from 'swiper';
+import {HttpService} from "../../shared/services/http.service";
+import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
+import {ArchiveDto} from "../../shared/interfaces/DTO/archive.dto";
+import {API_URLS} from "../../shared/api-urls";
+import {PictureDto} from "../../shared/interfaces/DTO/picture.dto";
 
 @Component({
   selector: 'acpc-contest-details-page',
@@ -8,15 +14,34 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ContestDetailsPageComponent implements OnInit {
 
-  selectedYear!: number;
+  archiveId!: number;
+  archive!: ArchiveDto;
+  images!: string[];
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private http: HttpService) {
     this.route.queryParams.subscribe(params => {
-        this.selectedYear = params.year;
+        this.archiveId = params.id;
       }
     );
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    new Swiper('.swiper-container', {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+
+    this.http.sendGetRequest<BaseResponseDto<ArchiveDto>>(API_URLS.ARCHIVE + `/${this.archiveId}`)
+      .subscribe(response => {
+        this.archive = response.result;
+        this.archive.date = new Date(this.archive.date);
+        this.images =
+          this.archive.eventDayPictures.map((pictureDto: PictureDto) => pictureDto.link);
+      });
+  }
 
 }

@@ -8,6 +8,7 @@ export const API_URLS = {
   PICTURE_UPLOAD: BASE_URL + '/picture',
   COUNTDOWN: BASE_URL + '/countdown',
   CONTACT_US: BASE_URL + '/contact-us',
+  ARCHIVE: BASE_URL + '/archive',
   REGISTRATION: {
     TEAM_REGISTER: TEAM_REGISTER_URL,
     UNIQUE_NAME_CHECK: TEAM_REGISTER_URL + '/name/unique'

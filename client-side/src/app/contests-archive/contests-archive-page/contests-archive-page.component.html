@@ -1,7 +1,7 @@
 <div id="page-container">
   <div id="page-content">
-    <acpc-even-card *ngFor="let year of availableYear"
-                    [yearOfHolding]="year" (click)="navigateToArchivedContest(year)"></acpc-even-card>
+    <acpc-event-card *ngFor="let archive of archives" [archive]="archive">
+    </acpc-event-card>
 <!--    <ng-container *ngIf="availableYear.length == 0"></ng-container>-->
   </div>
 </div>

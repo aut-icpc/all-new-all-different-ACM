@@ -1,20 +1,27 @@
 <div id="page-container">
-  <div id="page-content">
-    <h1 id="page-title">{{selectedYear}} Contest</h1>
-    <mat-tab-group>
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <img src="./assets/icons/photo.png" alt="photos">
-          <span>photos</span>
-        </ng-template>
-        <acpc-contests-photos-tab></acpc-contests-photos-tab>
-      </mat-tab>
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <img src="./assets/icons/attachment.png" alt="attachments">
-          <span>attachments</span>
-        </ng-template>
-      </mat-tab>
-    </mat-tab-group>
+  <h1 id="page-title">{{archive?.date?.getFullYear()}} Contest</h1>
+  <div id="file-container">
+    <a [href]="archive?.questions?.link" class="attached-file">
+      <div>
+        <img src="./assets/icons/questions.png" alt="questions">
+        <span>questions</span>
+      </div>
+    </a>
+
+    <a [href]="archive?.rankings?.link" class="attached-file">
+      <div>
+        <img src="./assets/icons/ranking.png" alt="rankings">
+        <span>rankings</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let image of images">
+        <img [src]="image" alt="Image">
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
   </div>
 </div>

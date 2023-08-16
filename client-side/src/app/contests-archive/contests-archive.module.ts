@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {EvenCardComponent} from './even-card/even-card.component';
+import {EventCardComponent} from './event-card/event-card.component';
 import {ContestsArchivePageComponent} from './contests-archive-page/contests-archive-page.component';
 import {ContestsArchiveRoutingModule} from "./contests-archive-routing.module";
 import {ContestDetailsPageComponent} from './contest-details-page/contest-details-page.component';
@@ -11,7 +11,7 @@ import { ContestsPhotosTabComponent } from './contests-photos-tab/contests-photo
 
 @NgModule({
   declarations: [
-    EvenCardComponent,
+    EventCardComponent,
     ContestsArchivePageComponent,
     ContestDetailsPageComponent,
     ContestsPhotosTabComponent
