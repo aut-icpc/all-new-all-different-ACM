@@ -14,11 +14,7 @@ export class ContactUsPageComponent implements OnInit{
 
 contactData!: ContactUsDto;
 
-  options: Leaflet.MapOptions = {
-    layers: getLayers(),
-    zoom: 17,
-    center: new Leaflet.LatLng(35.70385,51.40833)
-  };
+  options!: Leaflet.MapOptions;
 
   constructor(private http: HttpService) { }
 
@@ -26,14 +22,19 @@ contactData!: ContactUsDto;
     this.http.sendGetRequest<BaseResponseDto<ContactUsDto>>(API_URLS.CONTACT_US)
       .subscribe(response => {
         this.contactData = response.result;
+        this.options = {
+          layers: getLayers(this.contactData.universityCoordinate.x, this.contactData.universityCoordinate.y),
+          zoom: 17,
+          center: new Leaflet.LatLng(this.contactData.universityCoordinate.x, this.contactData.universityCoordinate.y)
+        };
       });
   }
 
 }
 
-export const getMarkers = (): Leaflet.Marker[] => {
+export const getMarkers = (latitude: number, longitude: number): Leaflet.Marker[] => {
   return [
-    new Leaflet.Marker(new Leaflet.LatLng(35.70385,51.40833), {
+    new Leaflet.Marker(new Leaflet.LatLng(latitude,longitude), {
       icon: new Leaflet.Icon({
         iconSize: [60, 51],
         iconAnchor: [23, 51],
@@ -41,7 +42,7 @@ export const getMarkers = (): Leaflet.Marker[] => {
       }),
       title: 'Workspace'
     } as Leaflet.MarkerOptions),
-    new Leaflet.Marker(new Leaflet.LatLng(35.70385,51.40833), {
+    new Leaflet.Marker(new Leaflet.LatLng(latitude,longitude), {
       icon: new Leaflet.Icon({
         iconSize: [60, 51],
         iconAnchor: [23, 51],
@@ -52,36 +53,36 @@ export const getMarkers = (): Leaflet.Marker[] => {
   ] as Leaflet.Marker[];
 };
 
-export const getRoutes = (): Leaflet.Polyline[] => {
+export const getRoutes = (latitude: number, longitude: number): Leaflet.Polyline[] => {
   return [
     new Leaflet.Polyline([
-      new Leaflet.LatLng(35.70385,51.40833),
-      new Leaflet.LatLng(35.70385,51.40833),
+      new Leaflet.LatLng(latitude,longitude),
+      new Leaflet.LatLng(latitude,longitude),
     ] as Leaflet.LatLng[], {
       color: '#0d9148'
     } as Leaflet.PolylineOptions)
   ] as Leaflet.Polyline[];
 };
 
-export const getLayers = (): Leaflet.Layer[] => {
+export const getLayers = (latitude: number, longitude: number): Leaflet.Layer[] => {
   return [
     // Basic style
     new Leaflet.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     } as Leaflet.TileLayerOptions),
-    ...getMarkers(),
-    ...getRoutes(),
-    ...getPolygons()
+    ...getMarkers(latitude, longitude),
+    ...getRoutes(latitude, longitude),
+    ...getPolygons(latitude, longitude)
   ] as Leaflet.Layer[];
 };
 
-export const getPolygons = (): Leaflet.Polygon[] => {
+export const getPolygons = (latitude: number, longitude: number): Leaflet.Polygon[] => {
   return [
     new Leaflet.Polygon([
-        new Leaflet.LatLng(35.70385,51.40833),
-        new Leaflet.LatLng(35.70385,51.40833),
-        new Leaflet.LatLng(35.70385,51.40833),
-        new Leaflet.LatLng(35.70385,51.40833)
+        new Leaflet.LatLng(latitude,longitude),
+        new Leaflet.LatLng(latitude,longitude),
+        new Leaflet.LatLng(latitude,longitude),
+        new Leaflet.LatLng(latitude,longitude)
       ] as Leaflet.LatLng[],
       {
         fillColor: '#eb530d',
