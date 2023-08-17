@@ -33,7 +33,7 @@ export class HeaderComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        const currentUrl = event.url; // Get the current URL
+        const currentUrl = event.urlAfterRedirects; // Get the current URL
         if (currentUrl == '/home')
           this.menuColor = 'light-text';
         else

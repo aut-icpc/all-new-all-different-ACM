@@ -13,6 +13,8 @@ import {forkJoin, Observable, of} from "rxjs";
 import {map, switchMap} from "rxjs/operators";
 import {API_URLS} from "../../shared/api-urls";
 import {Router} from "@angular/router";
+import {RegistrationTermsDto} from "../../shared/interfaces/DTO/registrationTerms.dto";
+import {ContactUsDto} from "../../shared/interfaces/DTO/contactUs.dto";
 
 @Component({
   selector: 'acpc-team-registration-page',
@@ -23,9 +25,14 @@ export class TeamRegistrationPageComponent {
 
   isDesktop !: boolean;
   captchaToken !: string;
+
   siteKey = environment.recaptcha.siteKey;
+
   teamInfoFormGroup !: FormGroup;
   teamDocumentFormGroup !: FormGroup;
+
+  registrationTerms!: RegistrationTermsDto;
+  contactData!: ContactUsDto;
 
   showErrorOnCaptcha: boolean = false;
 
@@ -34,8 +41,19 @@ export class TeamRegistrationPageComponent {
               private http: HttpService,
               private router: Router) {
     this.isDesktop = this.platform.isOnDesktopDevice();
+
     this.initializeTeamInfoFormGroup();
-    this.initializeTeamDocumentFormGroup()
+    this.initializeTeamDocumentFormGroup();
+
+    http.sendGetRequest<BaseResponseDto<RegistrationTermsDto>>(API_URLS.TERMS)
+      .subscribe(response => {
+        this.registrationTerms = response.result;
+      });
+
+    http.sendGetRequest<BaseResponseDto<ContactUsDto>>(API_URLS.CONTACT_US)
+      .subscribe(response => {
+        this.contactData = response.result;
+    })
   }
 
   initializeTeamInfoFormGroup() {

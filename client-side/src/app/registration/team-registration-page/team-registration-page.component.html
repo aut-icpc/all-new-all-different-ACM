@@ -85,20 +85,20 @@
         <h2>Contest Registration</h2>
         <h3>Registration fees are as follows:</h3>
         <p>
-          120,000 Tomans for teams from Amirkabir University of Technology (40,000 Tomans for each contestant).
+          {{registrationTerms?.localTerms}}
         </p>
         <p>
-          180,000 Tomans for teams from other universities (60,000 Tomans for each contestant).
+          {{registrationTerms?.foreignTerms}}
         </p>
         <p>
-          If your team name was not in the registered teams list 24 hours after registration, please inform us by:
+          {{registrationTerms?.moreDescriptions}}
         </p>
         <span class="contacts">
-      Email: <a href="mailto:ceaut.acpc@gmail.com">ceaut.acpc@gmail.com</a>
-    </span>
+          <a [href]="contactData?.email">support email</a>
+        </span>
         <span class="contacts">
-      Telegram: <a href="https://t.me/acpc_admin">@acpc_admin</a>
-    </span>
+          <a [href]="contactData?.telegram">telegram admin</a>
+        </span>
       </div>
     </div>
   </div>
