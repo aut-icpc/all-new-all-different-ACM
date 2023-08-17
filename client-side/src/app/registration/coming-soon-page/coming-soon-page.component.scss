@@ -1,0 +1,99 @@
+:host ::ng-deep {
+  .mat-form-field-suffix {
+    top: -.29em !important;
+    left: 5px;
+  }
+
+  .mat-form-field {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .mat-raised-button {
+    margin: 0 !important;
+  }
+}
+
+#page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+#page-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#notify-box {
+  width: 300px;
+  display: flex;
+  flex-direction: inherit;
+  align-items: center;
+}
+
+#command-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 5px;
+}
+
+#text {
+  white-space: nowrap;
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+#line {
+  display: inline-block;
+  width: 100%;
+  height: 2px;
+  background-color: black;
+}
+
+#send-btn {
+  img {
+    width: 18px;
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(348deg) brightness(106%) contrast(102%);
+  }
+
+  padding: 0 5px;
+  min-width: 42px;
+  min-height: 42px;
+  box-shadow: none;
+}
+
+#coming-soon {
+  --bg-size: 400%;
+  --color-one: #4c82c4;
+  --color-two: #fcc61c;
+  --color-three: #b42e1c;
+  background: linear-gradient(
+      90deg,
+      var(--color-one),
+      var(--color-three),
+      var(--color-two),
+      var(--color-one)
+  )
+  0 0 / var(--bg-size) 100%;
+  color: transparent;
+  font-size: 400%;
+  text-align: center;
+  background-clip: text;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #coming-soon {
+    animation: move-bg 8s linear infinite;
+  }
+  @keyframes move-bg {
+    to {
+      background-position: var(--bg-size) 0;
+    }
+  }
+}
