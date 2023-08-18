@@ -11,13 +11,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(Constants.BASE_API_URL + "/mail")
 public class MailController {
     private final MailService mailService;
     @PostMapping
-    public ResponseEntity<BaseResponseDto<MailDto>> postMail(@RequestBody MailDto mailDto) {
+    public ResponseEntity<BaseResponseDto<MailDto>> postMail(@RequestBody @Valid MailDto mailDto) {
         return ResponseEntity.ok(new BaseResponseDto<>(
                 "Mail has been saved successfully!", mailService.saveMail(mailDto)
         ));

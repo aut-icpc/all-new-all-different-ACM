@@ -25,17 +25,21 @@ public class MailUtil {
         context.setVariable("name", name);
         context.setVariable("status", status);
         sendThymeleafEmail(to,
-                "acm-change-status".concat(status), context);
+                "acm-change-status".concat(status), "ACPC Change Status", context);
     }
 
-    private void sendThymeleafEmail(String recipientEmail, String templateName,
+    public void sendStartingAlertForTheContest(String to) {
+        sendThymeleafEmail(to, "acm-alert-start", "ACPC Alert Start", new Context());
+    }
+
+    private void sendThymeleafEmail(String recipientEmail, String templateName, String subject,
                                     IContext context) {
         try {
             MimeMessage message = emailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setFrom(from);
             helper.setTo(recipientEmail);
-            helper.setSubject("ACPC Changed Status");
+            helper.setSubject(subject);
             String htmlContent = templateEngine.process(templateName, context);
             helper.setText(htmlContent, true);
             emailSender.send(message);
