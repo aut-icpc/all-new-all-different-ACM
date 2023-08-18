@@ -3,7 +3,7 @@ import {TeamDto} from "../../shared/interfaces/DTO/team.dto";
 import {HttpService} from "../../shared/services/http.service";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {API_URLS} from "../../shared/api-urls";
-import {environment} from "../../../environments/environment";
+import {ContactUsDto} from "../../shared/interfaces/DTO/contactUs.dto";
 
 @Component({
   selector: 'acpc-registration-success-page',
@@ -13,7 +13,7 @@ import {environment} from "../../../environments/environment";
 export class RegistrationSuccessPageComponent implements OnInit {
 
   teamData!: TeamDto;
-  telegramSupport = environment.telegramSupport;
+  contactData!: ContactUsDto;
 
   constructor(private http: HttpService) { }
 
@@ -24,6 +24,11 @@ export class RegistrationSuccessPageComponent implements OnInit {
       .subscribe(response => {
         this.teamData = response.result;
       });
+
+    this.http.sendGetRequest<BaseResponseDto<ContactUsDto>>(API_URLS.CONTACT_US)
+      .subscribe(response => {
+        this.contactData = response.result;
+      })
   }
 
 }
