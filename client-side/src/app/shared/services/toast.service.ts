@@ -35,7 +35,7 @@ export class ToastService {
     this.showSnackbar(message, 'ERROR', config);
   }
 
-  private showSnackbar(message: string, type: 'ERROR' | 'SUCCESS', config?: MatSnackBarConfig) {
+  private showSnackbar(message: string, type: 'ERROR' | 'SUCCESS' | 'WARNING', config?: MatSnackBarConfig) {
     const snackbarConfig: MatSnackBarConfig = {
       ...config,
       verticalPosition: this.platform.isOnDesktopDevice() ? 'bottom' : 'top',

@@ -22,27 +22,28 @@ export class StatusToastComponent {
     this.message = data.message;
     this.type = data.type;
 
-    this.addSvgIconsToRegistry();
   }
 
   close(): void {
     this.snackbarRef.dismiss();
   }
 
-  addSvgIconsToRegistry() {
-    this.iconRegistry.addSvgIcon(
-      'ERROR',
-      this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/error.svg')
-    );
+  getIcon() {
+    let icon = '';
 
-    this.iconRegistry.addSvgIcon(
-      'SUCCESS',
-      this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/success.svg')
-    );
-    this.iconRegistry.addSvgIcon(
-      'WARNING',
-      this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/warning.svg')
-    );
+    switch (this.type) {
+      case "ERROR":
+        icon = 'error';
+        break;
+      case "SUCCESS":
+        icon = 'tick';
+        break;
+      case "WARNING":
+        icon = 'warn';
+        break;
+    }
+
+    return icon;
   }
 
 }

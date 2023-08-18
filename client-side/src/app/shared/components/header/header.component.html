@@ -11,7 +11,7 @@
   <div id="menu-button-container" *ngIf="!isDesktop">
     <div id="menu-hamburger" (click)="openMenu()" [ngClass]="{'light-hamburger-filter': isHomePage()}"
          class="logo-box {{menuColor}}">
-      <img class="logo-3" src="../../../../assets/icons/hamburger-menu.png" alt="menu">
+      <acpc-icon icon="hamburger" [color]="menuColor == 'dark-text' ? 'foreground' : 'background'" ></acpc-icon>
     </div>
   </div>
   <button type="button" mat-button (click)="navigateToRegister()"
@@ -26,8 +26,7 @@
     <mat-list-item (click)="bottomSheetRef.dismiss()" *ngFor="let option of menuOptions"
                    id="{{formatName(option)}}" [routerLink]="[option | nameToRouterLink]"
                    class="options">
-      <img class="logo-4" src="{{'./assets/icons/' + option.toLowerCase() + '.png'}}"
-           alt="{{option}}">
+      <acpc-icon color="foreground" [icon]="menuOptionIconMap[option]"></acpc-icon>
       <span>{{option}}</span>
     </mat-list-item>
   </mat-nav-list>

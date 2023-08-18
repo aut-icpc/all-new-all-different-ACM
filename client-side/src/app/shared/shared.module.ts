@@ -14,9 +14,10 @@ import {NormalStringToSnakeCasePipe} from './pipes/normal-string-to-snake-case.p
 import {DateToHumanReadableStringPipe} from './pipes/date-to-human-readable-string.pipe';
 import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 import {MatListModule} from "@angular/material/list";
-import { NameToRouterLinkPipe } from './pipes/name-to-router-link.pipe';
+import {NameToRouterLinkPipe} from './pipes/name-to-router-link.pipe';
 import {RouterModule} from "@angular/router";
-import { GenerateErrorMessagePipe } from './pipes/generate-error-message.pipe';
+import {GenerateErrorMessagePipe} from './pipes/generate-error-message.pipe';
+import {IconsModule} from "./icons/icons.module";
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { GenerateErrorMessagePipe } from './pipes/generate-error-message.pipe';
         UpperSnakeCaseToNormalPipe,
         NormalStringToSnakeCasePipe,
         DateToHumanReadableStringPipe,
-        GenerateErrorMessagePipe
+        GenerateErrorMessagePipe,
+        IconsModule
     ],
     imports: [
         CommonModule,
@@ -47,7 +49,8 @@ import { GenerateErrorMessagePipe } from './pipes/generate-error-message.pipe';
         MatSnackBarModule,
         MatBottomSheetModule,
         MatListModule,
-        RouterModule
+        RouterModule,
+        IconsModule
     ]
 })
 export class SharedModule { }

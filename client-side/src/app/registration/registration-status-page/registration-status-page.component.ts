@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {expandInAnimation} from "../../shared/animations/expand-animations";
 import {fadeInAnimation} from "../../shared/animations/fade-animations";
 import {FormControl, Validators} from "@angular/forms";
@@ -13,7 +13,7 @@ import {TeamDto} from "../../shared/interfaces/DTO/team.dto";
   styleUrls: ['./registration-status-page.component.scss'],
   animations: [expandInAnimation, fadeInAnimation]
 })
-export class RegistrationStatusPageComponent implements OnInit {
+export class RegistrationStatusPageComponent {
 
   formControl = new FormControl('', Validators.required);
 
@@ -24,11 +24,8 @@ export class RegistrationStatusPageComponent implements OnInit {
 
   constructor(private http: HttpService) { }
 
-  ngOnInit(): void {
-  }
-
   inquiryTeamStatus(event: any) {
-    if (this.formControl.invalid || event?.keyCode != 13)
+    if (this.formControl.invalid || ( event.type == 'keypress' && event?.keyCode != 13))
       return;
 
     const teamName = this.formControl.value;

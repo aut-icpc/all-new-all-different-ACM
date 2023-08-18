@@ -7,19 +7,19 @@
       </div>
       <div id="contacts-container">
         <div class="contacts">
-          <img src="./assets/icons/telegram.png" alt="telegram">
+          <acpc-icon icon="telegram"></acpc-icon>
           <a [href]="contactData.telegram">acpc admin</a>
         </div>
         <div class="contacts">
-          <img src="./assets/icons/viber.png" alt="phone">
+          <acpc-icon icon="call"></acpc-icon>
           <span>{{contactData.phoneNumber}}</span>
         </div>
         <div class="contacts">
-          <img src="./assets/icons/gmail-logo.png" alt="email">
+          <acpc-icon icon="gmail"></acpc-icon>
           <a [href]="'mailto:' + contactData.email">{{contactData.email}}</a>
         </div>
         <div class="contacts">
-          <img src="./assets/icons/instagram.png" alt="discord">
+          <acpc-icon icon="instagram"></acpc-icon>
           <a [href]="contactData.instagram">ACPC</a>
         </div>
       </div>

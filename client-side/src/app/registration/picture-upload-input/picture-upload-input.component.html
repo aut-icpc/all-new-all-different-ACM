@@ -12,7 +12,7 @@
   <div class="uploaded-image" *ngIf="currentState.toString() == 'uploading'">
     <div class="image-info">
       <div class="image-data">
-        <img src="./assets/icons/file.png" alt="file">
+        <acpc-icon icon="image" color="foreground"></acpc-icon>
         <span>{{ uploadedFile?.name }}</span>
       </div>
       <div class="image-details">
@@ -20,7 +20,7 @@
             {{formatFileSize(uploadedFile?.size || 0)}}
           </span>
         <button mat-icon-button color="primary" (click)="onFileDelete($event)">
-          <img src="./assets/icons/red-close.png" alt="close">
+          <acpc-icon color="warn" icon="close_square"></acpc-icon>
         </button>
       </div>
     </div>

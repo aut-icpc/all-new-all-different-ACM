@@ -2,7 +2,6 @@
 
 :host ::ng-deep {
   .mat-form-field-suffix {
-    top: -.29em !important;
     left: 5px;
   }
 
@@ -29,11 +28,6 @@
 }
 
 #search-btn {
-  img {
-    width: 18px;
-    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(348deg) brightness(106%) contrast(102%);
-  }
-
   padding: 0 5px;
   min-width: 42px;
   min-height: 42px;

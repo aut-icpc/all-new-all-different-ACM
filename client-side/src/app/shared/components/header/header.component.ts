@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, TemplateRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Renderer2, TemplateRef, ViewChild} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
 import {PlatformService} from "../../services/platform.service";
 import {MatBottomSheet, MatBottomSheetRef} from "@angular/material/bottom-sheet";
@@ -14,7 +14,10 @@ export class HeaderComponent implements AfterViewInit {
   isDesktop !: boolean;
   isMenuOpen = false;
   menuOptions = ['Home', 'About', 'Register',
-    'Timeline', 'Contact Us', 'Reg. Status', 'Contests Archive',]
+    'Timeline', 'Contact Us', 'Reg. Status', 'Contests Archive'];
+
+  menuOptionIconMap!: Readonly<Record<string, string>>
+
   menuColor !: 'dark-text' | 'light-text';
 
   bottomSheetRef!: MatBottomSheetRef<any>;
@@ -22,12 +25,15 @@ export class HeaderComponent implements AfterViewInit {
 
   constructor(private router: Router, private bottomSheet: MatBottomSheet,
               private platform: PlatformService,
-              private overlayContainer: OverlayContainer) {
+              private overlayContainer: OverlayContainer,
+              private renderer: Renderer2) {
     this.isDesktop = platform.isOnDesktopDevice();
     if (this.isDesktop) {
       this.menuOptions.splice(this.menuOptions.indexOf("Register"), 1);
       this.menuOptions.splice(this.menuOptions.indexOf("Home"), 1);
     }
+
+    this.initializeIconMap();
   }
 
   ngAfterViewInit(): void {
@@ -87,8 +93,12 @@ export class HeaderComponent implements AfterViewInit {
   highlightCurrentRouteOption(){
     let options = document.getElementsByClassName('options');
     for (let option in options) {
-      if (this.router.url.includes(options[option].id))
-        options[option].className += ' active';
+      if (!this.router.url.includes(options[option].id))
+        continue;
+      options[option].className += ' active';
+      let icon = options[option].querySelector('mat-icon');
+      this.renderer.setStyle(icon, 'color', '#b42e1c');
+      break;
     }
   }
 
@@ -99,6 +109,18 @@ export class HeaderComponent implements AfterViewInit {
 
   isHomePage() {
     return this.router.url.includes('/home');
+  }
+
+  initializeIconMap() {
+    this.menuOptionIconMap = {
+      'Home': 'home',
+      'Contests Archive': 'archive',
+      'About': 'info_filled',
+      'Register': 'edit',
+      'Timeline': 'calender',
+      'Contact Us': 'bubble',
+      'Reg. Status': 'checkbox'
+    }
   }
 
   //TODO: recheck colors of options

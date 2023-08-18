@@ -1,7 +1,7 @@
 <div class="snack-bar-container" [ngClass]="type">
-  <mat-icon class="custom-mat-icon" [svgIcon]="type"></mat-icon>
+  <acpc-icon color="foreground" [icon]="getIcon()"></acpc-icon>
   <span class="message">{{ message }}</span>
   <button mat-icon-button (click)="close()">
-    <mat-icon>close</mat-icon>
+    <acpc-icon color="foreground" icon="close"></acpc-icon>
   </button>
 </div>
