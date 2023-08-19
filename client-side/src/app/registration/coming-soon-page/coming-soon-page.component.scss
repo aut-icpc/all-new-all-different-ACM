@@ -83,7 +83,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   #coming-soon {
-    animation: move-bg 8s linear infinite;
+    animation: move-bg 15s linear infinite;
   }
   @keyframes move-bg {
     to {
