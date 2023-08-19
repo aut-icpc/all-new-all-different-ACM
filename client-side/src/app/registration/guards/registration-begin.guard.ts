@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import {interval, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 import {HttpService} from "../../shared/services/http.service";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {CountDownDto} from "../../shared/interfaces/DTO/countDown.dto";
 import {API_URLS} from "../../shared/api-urls";
-import {map, shareReplay} from "rxjs/operators";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
