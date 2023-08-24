@@ -58,21 +58,21 @@
   height: 100%;
 }
 
-:host.blue-card .card-container {
+.registration {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), #4C82C4;
   &::after {
     border-left: 60px solid #4C82C4;
   }
 }
 
-:host.yellow-card .card-container {
+.orientation {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), #FCC61C;
   &::after {
     border-left: 60px solid #FCC61C;
   }
 }
 
-:host.red-card .card-container {
+.contest {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), #C43E1C;
   &::after {
     border-left: 60px solid #C43E1C;
@@ -116,15 +116,15 @@
     border-bottom: 124px solid transparent;
   }
 
-  :host.blue-card .card-container::after {
+  .registration::after {
     border-left: 60px solid #284466;
   }
 
-  :host.yellow-card .card-container::after {
+  .orientation::after {
     border-left: 60px solid #84680f;
   }
 
-  :host.red-card .card-container::after {
+  .contest::after {
     border-left: 60px solid #64200e;
   }
 }

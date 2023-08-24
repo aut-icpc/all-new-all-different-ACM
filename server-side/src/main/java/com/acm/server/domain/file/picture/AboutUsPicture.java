@@ -2,8 +2,6 @@ package com.acm.server.domain.file.picture;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import lombok.Data;
-import lombok.experimental.Accessors;
 
 /**
  * About Us Picture

@@ -3,4 +3,5 @@ export class TimelineDto {
     title!: string;
     date!: Date;
     description!: string;
+    type!: 'REGISTRATION' | 'ORIENTATION' | 'CONTEST';
 }

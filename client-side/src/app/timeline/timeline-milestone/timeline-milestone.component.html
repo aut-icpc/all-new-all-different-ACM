@@ -1,8 +1,8 @@
-<div class="card-container">
+<div class="card-container" [ngClass]="timelineData.type.toLowerCase()">
   <div class="card-header">
     <div class="logo-container">
       <div class="logo-circle">
-        <img src="{{'assets/icons/' + (timelineData.title | normalStringToSnakeCase) + '.png'}}">
+        <img src="{{'assets/icons/' + timelineData.type.toLowerCase() + '.png'}}">
       </div>
     </div>
     <div class="date-container">
