@@ -10,6 +10,23 @@
   @extend .round-border-1;
 }
 
+#map-loader {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: map_get($mat-primary, "lighter");
+  z-index: 401;
+  position: absolute;
+
+  acpc-icon {
+    position: absolute;
+    margin: auto;
+  }
+}
+
 #page-container {
   display: flex;
   flex-direction: column;

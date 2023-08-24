@@ -3,30 +3,35 @@
     <div id="contact-info-container">
       <div id="contact-text">
         <h1>Contact us</h1>
-        <p>Our team would love to hear from you</p>
+        <p>Our team would love to hear from you.</p>
       </div>
       <div id="contacts-container">
         <div class="contacts">
           <acpc-icon icon="telegram" size="3x"></acpc-icon>
-          <a [href]="contactData.telegram">acpc admin</a>
+          <a [href]="contactData?.telegram">acpc admin</a>
         </div>
         <div class="contacts">
           <acpc-icon icon="call" size="3x"></acpc-icon>
-          <span>{{contactData.phoneNumber}}</span>
+          <span>{{contactData?.phoneNumber}}</span>
         </div>
         <div class="contacts">
           <acpc-icon icon="gmail" size="3x"></acpc-icon>
-          <a [href]="'mailto:' + contactData.email">{{contactData.email}}</a>
+          <a [href]="'mailto:' + contactData?.email">{{contactData?.email}}</a>
         </div>
         <div class="contacts">
           <acpc-icon icon="instagram" size="3x"></acpc-icon>
-          <a [href]="contactData.instagram">ACPC</a>
+          <a [href]="contactData?.instagram">ACPC</a>
         </div>
       </div>
     </div>
     <div class="map"
          leaflet
-         [leafletOptions]="options">
+         [leafletOptions]="options"
+         (leafletMapReady)="onMapReady()" *ngIf="contactData">
+      <div id="map-loader" [@fadeIn]="isMapLoaded ? 'decreaseOpacity' : 'increaseOpacity'">
+        <mat-spinner diameter="70" strokeWidth="5"></mat-spinner>
+        <acpc-icon color="primary" icon="map"></acpc-icon>
+      </div>
     </div>
   </div>
 </div>

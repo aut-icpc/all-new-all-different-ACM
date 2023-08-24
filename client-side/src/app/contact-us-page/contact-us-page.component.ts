@@ -4,11 +4,13 @@ import {ContactUsDto} from "../shared/interfaces/DTO/contactUs.dto";
 import {HttpService} from "../shared/services/http.service";
 import {BaseResponseDto} from "../shared/interfaces/DTO/baseResponse.dto";
 import {API_URLS} from "../shared/api-urls";
+import {fadeInAnimation} from "../shared/animations/fade-animations";
 
 @Component({
   selector: 'acpc-contact-us-page',
   templateUrl: './contact-us-page.component.html',
-  styleUrls: ['./contact-us-page.component.scss']
+  styleUrls: ['./contact-us-page.component.scss'],
+  animations: [fadeInAnimation]
 })
 export class ContactUsPageComponent implements OnInit{
 
@@ -16,27 +18,36 @@ contactData!: ContactUsDto;
 
   options!: Leaflet.MapOptions;
 
+  isMapLoaded = false;
+
   constructor(private http: HttpService) { }
 
   ngOnInit(): void {
     this.http.sendGetRequest<BaseResponseDto<ContactUsDto>>(API_URLS.CONTACT_US)
       .subscribe(response => {
         this.contactData = response.result;
+        const latitude = this.contactData.universityCoordinate.x;
+        const longitude = this.contactData.universityCoordinate.y;
         this.options = {
-          layers: getLayers(this.contactData.universityCoordinate.x, this.contactData.universityCoordinate.y),
           zoom: 17,
-          center: new Leaflet.LatLng(this.contactData.universityCoordinate.x, this.contactData.universityCoordinate.y)
+          layers: getLayers(latitude, longitude),
+          center: new Leaflet.LatLng(latitude, longitude)
         };
       });
   }
 
+  onMapReady() {
+    setTimeout(() => {
+      this.isMapLoaded = true;
+    }, 2500);
+  }
 }
 
 export const getMarkers = (latitude: number, longitude: number): Leaflet.Marker[] => {
   return [
     new Leaflet.Marker(new Leaflet.LatLng(latitude,longitude), {
       icon: new Leaflet.Icon({
-        iconSize: [60, 51],
+        iconSize: [50, 41],
         iconAnchor: [23, 51],
         iconUrl: 'assets/blue-marker.svg',
       }),
@@ -44,7 +55,7 @@ export const getMarkers = (latitude: number, longitude: number): Leaflet.Marker[
     } as Leaflet.MarkerOptions),
     new Leaflet.Marker(new Leaflet.LatLng(latitude,longitude), {
       icon: new Leaflet.Icon({
-        iconSize: [60, 51],
+        iconSize: [50, 41],
         iconAnchor: [23, 51],
         iconUrl: 'assets/red-marker.svg',
       }),
@@ -68,7 +79,7 @@ export const getLayers = (latitude: number, longitude: number): Leaflet.Layer[] 
   return [
     // Basic style
     new Leaflet.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
+      attribution: 'Amirkabir University of Technology'
     } as Leaflet.TileLayerOptions),
     ...getMarkers(latitude, longitude),
     ...getRoutes(latitude, longitude),
