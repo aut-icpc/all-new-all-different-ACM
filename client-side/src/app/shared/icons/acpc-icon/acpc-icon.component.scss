@@ -3,7 +3,18 @@
   height: auto;
   justify-content: center;
 
-  mat-icon {
-    width: auto !important;
+  mat-icon[size="1x"] {
+    width: 24px;
+    height: 24px;
+  }
+
+  mat-icon[size="2x"] {
+    width: 30px;
+    height: 30px;
+  }
+
+  mat-icon[size="3x"] {
+    width: 40px;
+    height: 40px;
   }
 }

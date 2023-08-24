@@ -9,6 +9,7 @@ export class AcpcIconComponent {
 
   @Input() icon!: string;
   @Input() color: 'primary' | 'accent' | 'warn' | 'background' | 'foreground' = 'foreground';
+  @Input() size: '1x' | '2x' | '3x' = '1x';
 
   constructor() { }
 
