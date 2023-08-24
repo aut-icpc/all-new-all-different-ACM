@@ -11,7 +11,7 @@
   <div id="menu-button-container" *ngIf="!isDesktop">
     <div id="menu-hamburger" (click)="openMenu()" [ngClass]="{'light-hamburger-filter': isHomePage()}"
          class="logo-box {{menuColor}}">
-      <acpc-icon icon="hamburger" [color]="menuColor == 'dark-text' ? 'foreground' : 'background'" ></acpc-icon>
+      <acpc-icon icon="hamburger" size="2x" [color]="menuColor == 'dark-text' ? 'foreground' : 'background'" ></acpc-icon>
     </div>
   </div>
   <button type="button" mat-button (click)="navigateToRegister()"

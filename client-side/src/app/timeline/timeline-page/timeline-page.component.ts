@@ -4,7 +4,6 @@ import {PlatformService} from "../../shared/services/platform.service";
 import {HttpService} from "../../shared/services/http.service";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {API_URLS} from "../../shared/api-urls";
-import {ArchiveDto} from "../../shared/interfaces/DTO/archive.dto";
 
 @Component({
   selector: 'acpc-timeline-page',
