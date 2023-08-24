@@ -1,9 +1,7 @@
 package com.acm.server.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.acm.server.model.TimelineType;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +14,14 @@ public class Timeline {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private String title;
+    @Column
     private Date date;
+    @Column
     private String description;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private TimelineType type;
+
 }
