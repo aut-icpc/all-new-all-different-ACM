@@ -3,6 +3,7 @@ package com.acm.server.domain.file.picture;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * Abstract base class representing a picture.
@@ -17,6 +18,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Accessors(chain = true)
 public abstract class Picture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
