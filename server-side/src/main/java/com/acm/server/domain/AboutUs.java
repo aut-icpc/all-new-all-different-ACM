@@ -17,6 +17,7 @@ public class AboutUs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 2000)
     private String description;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
