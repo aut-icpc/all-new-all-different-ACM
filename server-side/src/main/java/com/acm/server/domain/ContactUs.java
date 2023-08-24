@@ -21,7 +21,7 @@ public class ContactUs {
     private String email;
     @Column
     private String phoneNumber;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Point universityCoordinate;
 }
