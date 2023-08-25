@@ -39,7 +39,7 @@ contactData!: ContactUsDto;
   onMapReady() {
     setTimeout(() => {
       this.isMapLoaded = true;
-    }, 2500);
+    }, 1500);
   }
 }
 
