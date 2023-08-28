@@ -19,7 +19,7 @@ public interface TeamRepository extends JpaRepository<Team, Long> {
     @Modifying
     @Transactional
     @Query("update Team t set t.status = :#{#request.status}")
-    Team updateStatus(UpdateStatusRequest request);
+    Integer updateStatus(UpdateStatusRequest request);
 
     Team getTeamByTeamName(String teamName);
 
