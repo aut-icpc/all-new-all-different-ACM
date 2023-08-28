@@ -10,4 +10,5 @@ import org.springframework.stereotype.Component;
 public class HostConfiguration {
     private String name;
     private String port;
+    private String uploadBaseDir;
 }
