@@ -59,7 +59,8 @@ export class TeamRegistrationPageComponent {
   initializeTeamInfoFormGroup() {
     this.teamInfoFormGroup = new FormGroup({
       teamName: new FormControl('', Validators.required, uniqueTeamNameValidator(this.http)),
-      institution: new FormControl('', [Validators.required, Validators.minLength(10)]),
+      institution: new FormControl('', [Validators.required,
+        Validators.minLength(environment.inputValidators.institutionNameMinLength)]),
       contestantOne: new FormControl('', Validators.required),
       contestantTwo: new FormControl('', Validators.required),
       contestantThree: new FormControl('', Validators.required),

@@ -12,6 +12,11 @@ export const environment = {
     shirtSizes: ['Small', 'Medium', 'Large', 'XL', 'XXL', 'XXXL'],
     genders: ['male', 'female']
   },
+  inputValidators: {
+    phoneMinLength: 10,
+    phonePattern: '\\+?\\d{10,15}',
+    institutionNameMinLength: 10,
+  }
 };
 
 /*
