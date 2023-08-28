@@ -1,16 +1,22 @@
 @import "src/styles";
 
-.map {
+#map-container {
   height: 100%;
   width: 50%;
+  overflow: hidden;
+  @extend .round-border-1;
+  position: relative;
+}
+
+.map {
+  height: 100%;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
   z-index: 1;
-  @extend .round-border-1;
 }
 
 #map-loader {
+  top: 0;
   display: flex;
   height: 100%;
   width: 100%;
@@ -18,8 +24,9 @@
   align-items: center;
   justify-content: center;
   background-color: map_get($mat-primary, "lighter");
-  z-index: 401;
+  z-index: 2;
   position: absolute;
+  transition: z-index .6s ease-out;
 
   acpc-icon {
     position: absolute;
@@ -93,6 +100,10 @@
   animation: contactFadeIn .8s .3s forwards ease-in-out;
 }
 
+.loader-behind-map {
+  z-index: 0 !important;
+}
+
 @keyframes contactFadeIn {
   from {
     opacity: 0;
@@ -118,7 +129,7 @@
 @media only screen and (max-width: 850px) {
   #page-content {
     flex-direction: column;
-    #contact-info-container, .map {
+    #contact-info-container, #map-container {
       width: 100%;
     }
   }
