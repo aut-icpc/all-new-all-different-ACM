@@ -1,8 +1,10 @@
 package com.acm.server.service.impl;
 
 import com.acm.server.config.Constants;
+import com.acm.server.config.HostConfiguration;
 import com.acm.server.domain.file.picture.PictureType;
 import com.acm.server.service.PictureUploaderService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
@@ -17,7 +19,10 @@ import java.util.UUID;
  * @author Farid Masjedi
  */
 @Service
+@RequiredArgsConstructor
 public class PictureUploaderServiceImpl implements PictureUploaderService {
+
+    private final HostConfiguration hostConfiguration;
 
     @Override
     public String uploadPicture(MultipartFile file, PictureType type) throws IOException {
@@ -25,7 +30,7 @@ public class PictureUploaderServiceImpl implements PictureUploaderService {
         String fileName = generateUniqueFileName(file.getOriginalFilename(), type);
 
         // Create the target directory if it doesn't exist
-        Path uploadPath = Path.of(Constants.UPLOAD_DIR);
+        Path uploadPath = Path.of(hostConfiguration.getUploadBaseDir());
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
