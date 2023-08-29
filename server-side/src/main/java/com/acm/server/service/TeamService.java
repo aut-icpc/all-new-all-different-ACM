@@ -11,14 +11,12 @@ import com.acm.server.request.UpdateStatusRequest;
  */
 
 public interface TeamService {
-    @StatusChangedEvent
     TeamDto createTeam(TeamDto teamDto);
 
     TeamDto getTeam(Long id);
 
     TeamDto getTeam(String name);
 
-    @StatusChangedEvent
     TeamDto updateStatus(UpdateStatusRequest request);
 
     boolean isNameUnique(String teamName);

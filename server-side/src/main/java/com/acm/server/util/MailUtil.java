@@ -25,7 +25,7 @@ public class MailUtil {
         context.setVariable("name", name);
         context.setVariable("status", status);
         sendThymeleafEmail(to,
-                "acm-change-status".concat(status), "ACPC Change Status", context);
+                "acm-change-status", "ACPC Change Status", context);
     }
 
     public void sendStartingAlertForTheContest(String to) {
