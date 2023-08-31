@@ -1,6 +1,5 @@
 package com.acm.server.service.impl;
 
-import com.acm.server.config.Constants;
 import com.acm.server.config.HostConfiguration;
 import com.acm.server.domain.file.picture.PictureType;
 import com.acm.server.service.PictureUploaderService;

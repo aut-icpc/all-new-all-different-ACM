@@ -1,1 +1,61 @@
+<div id="page-container">
+  <div id="team-info-container">
+    <div class="team-details"><span class="detail-title">name: </span>
+      <span>{{teamData?.teamName}}</span>
+    </div>
+    <div class="team-details"><span class="detail-title">institution: </span>
+      <span>{{teamData?.institution}}</span>
+    </div>
+    <div class="team-details"><span class="detail-title">status: </span>
+      <span id="status-box">{{teamData?.status | upperSnakeCaseToNormal}}</span>
+    </div>
+    <div class="team-details"><span class="detail-title">change status to: </span>
+      <mat-form-field appearance="outline">
+        <mat-label>status</mat-label>
+        <mat-select formControlName="shirtSize" required>
+          <mat-option *ngFor="let status of teamStatusList" [value]="status.toString()">
+            {{status}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div id="contestants-info-container">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let contestant of teamData?.contestants">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{contestant.firstname + ' ' + contestant.lastname}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="team-details"><span class="detail-title">gender: </span>
+          <span>{{contestant.gender | upperSnakeCaseToNormal}}</span>
+        </div>
+        <div class="team-details"><span class="detail-title">phone number: </span>
+          <span>{{contestant.phoneNumber}}</span>
+        </div>
+        <div class="team-details"><span class="detail-title">email: </span>
+          <span>{{contestant.email}}</span>
+        </div>
+        <div class="team-details"><span class="detail-title">graduation level: </span>
+          <span>{{contestant.graduationLevel}}</span>
+        </div>
+        <div class="team-details"><span class="detail-title">shirt size: </span>
+          <span>{{contestant.shirtSize}}</span>
+        </div>
+        <div class="team-details"><span class="detail-title">photos: </span>
+          <span (click)="selectPhoto(contestant.nationalIdPicture.link)">
+            national id card
+          </span>
+          <span (click)="selectPhoto(contestant.studentCardPicture.link)">
+            student card
+          </span>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
 
+<ng-template #cardPhoto>
+  <img [src]="selectedCardPhotoAddress" alt="card" width="100%">
+</ng-template>
