@@ -15,6 +15,7 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import {TimelineModule} from "./timeline/timeline.module";
 import {ContestsArchiveModule} from "./contests-archive/contests-archive.module";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {AdminModule} from "./admin/admin.module";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     LeafletModule,
     TimelineModule,
     ContestsArchiveModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    AdminModule
   ],
   providers: [
     {

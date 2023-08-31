@@ -1,0 +1,28 @@
+@import "src/styles";
+
+:host #password-btn {
+  min-width: 30px;
+  padding: 0;
+}
+
+#login-btn {
+  font-size: 18px;
+}
+
+#page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#form-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  @extend .round-border-1;
+  border: #898989 1px solid;
+}

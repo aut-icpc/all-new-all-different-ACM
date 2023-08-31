@@ -79,5 +79,9 @@ export class IconsModule {
       this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Gmail.svg'));
     this.iconRegistry.addSvgIcon('map',
       this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Map.svg'));
+    this.iconRegistry.addSvgIcon('show',
+      this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Show.svg'));
+    this.iconRegistry.addSvgIcon('hide',
+      this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Hide.svg'));
   }
 }

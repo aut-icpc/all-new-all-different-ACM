@@ -1,1 +1,16 @@
-<p>admin-login-page works!</p>
+<div id="page-container">
+  <form id="form-container" [formGroup]="group">
+    <mat-form-field appearance="outline">
+      <input type="text" matInput required formControlName="username">
+      <mat-label>username</mat-label>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input #passwordInput [type]="isPasswordHidden ? 'password' : 'text'" matInput required formControlName="password">
+      <mat-label>password</mat-label>
+      <button type="button" matSuffix mat-button id="password-btn" (click)="isPasswordHidden = !isPasswordHidden">
+        <acpc-icon [icon]="isPasswordHidden ? 'hide' : 'show'"></acpc-icon>
+      </button>
+    </mat-form-field>
+    <button mat-raised-button color="primary" id="login-btn">login</button>
+  </form>
+</div>
