@@ -21,7 +21,6 @@
   position: absolute;
   left: 10px;
   top: -20px;
-  background-color: white;
   padding: 5px;
   box-sizing: border-box;
   img {
@@ -29,7 +28,6 @@
   }
   span {
     font-weight: bold;
-    color: #5A5959;
     font-size: 20px;
   }
 }
@@ -43,5 +41,10 @@
 .image-title {
   font-size: 14px;
   font-weight: bold;
-  color: #5A5959;
+}
+
+@media only screen and (min-width: 960px) {
+  :host {
+    padding: 0 8px;
+  }
 }

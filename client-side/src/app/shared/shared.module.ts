@@ -18,6 +18,9 @@ import {NameToRouterLinkPipe} from './pipes/name-to-router-link.pipe';
 import {RouterModule} from "@angular/router";
 import {GenerateErrorMessagePipe} from './pipes/generate-error-message.pipe';
 import {IconsModule} from "./icons/icons.module";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ThemeSlideToggleComponent } from './components/theme-slide-toggle/theme-slide-toggle.component';
 
 
 @NgModule({
@@ -29,7 +32,8 @@ import {IconsModule} from "./icons/icons.module";
         NormalStringToSnakeCasePipe,
         DateToHumanReadableStringPipe,
         NameToRouterLinkPipe,
-        GenerateErrorMessagePipe
+        GenerateErrorMessagePipe,
+        ThemeSlideToggleComponent
     ],
     exports: [
         HeaderComponent,
@@ -50,7 +54,10 @@ import {IconsModule} from "./icons/icons.module";
         MatBottomSheetModule,
         MatListModule,
         RouterModule,
-        IconsModule
+        IconsModule,
+        MatSlideToggleModule,
+        ReactiveFormsModule,
+        FormsModule
     ]
 })
 export class SharedModule { }

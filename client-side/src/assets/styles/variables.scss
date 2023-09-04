@@ -1,0 +1,28 @@
+@import "theme";
+
+:root {
+  --text-color: #{$dark-text};
+  --disabled-text-color: #{$dark-disabled-text};
+  --accent-text-color: #{$dark-accent-text};
+
+  --background-color: #{$light-background};
+  --background-light-5: #{$light-background};
+}
+
+body[theme=light] {
+  --text-color: #{$dark-text};
+  --disabled-text-color: #{$dark-disabled-text};
+  --accent-text-color: #{$dark-accent-text};
+
+  --background-color: #{$light-background};
+  --background-light-5: #{$light-background};
+}
+
+body[theme=dark] {
+  --text-color: #{$light-text};
+  --disabled-text-color: #{$light-disabled-text};
+  --accent-text-color: #{$light-accent-text};
+
+  --background-color: #{$dark-background};
+  --background-light-5: #{$dark-bg-lighter-5};
+}

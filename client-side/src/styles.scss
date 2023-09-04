@@ -1,4 +1,4 @@
-@import "assets/styles/theme";
+@import "assets/styles/variables";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Ubuntu, "Helvetica Neue", sans-serif; }
@@ -74,6 +74,10 @@ body { margin: 0; font-family: Ubuntu, "Helvetica Neue", sans-serif; }
   padding: 15px !important;
 }
 
+mat-stepper {
+  @extend .round-border-1;
+}
+
 acpc-header {
   z-index: 2;
 }
@@ -84,6 +88,30 @@ acpc-registration-status-page, acpc-registration-success-page, acpc-team-registr
 acpc-coming-soon-page, acpc-admin-login-page, acpc-admin-page, acpc-team-details-page {
   flex-grow: 1;
   width: 100%;
+}
+
+body {
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+acpc-registration-status-page .data-container .title {
+  color: var(--disabled-text-color) !important;
+}
+
+acpc-team-registration-page #team-form-container,
+acpc-contestant-form #form-container {
+  border-color: var(--accent-text-color) !important;
+}
+
+acpc-team-registration-page #form-header-title {
+  background-color: var(--background-light-5);
+  color: var(--accent-text-color);
+}
+
+acpc-contestant-form .section-title,
+acpc-identification-documents-form .image-title {
+  color: var(--accent-text-color);
 }
 
 acpc-home-page {

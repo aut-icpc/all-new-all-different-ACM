@@ -1,0 +1,32 @@
+@import "src/styles";
+
+#toggle-container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  width: 65px;
+  height: 35px;
+  border-radius: 10px;
+  padding: 0 6px;
+  background-color: map_get($mat-primary, "main");
+}
+
+button {
+  height: 29px;
+  width: 29px;
+  z-index: 1;
+  position: absolute !important;
+  border-radius: 8px;
+  background: white !important;
+}
+
+acpc-icon {
+  cursor: pointer;
+  z-index: 2;
+  position: relative;
+}
+
+.disable-click {
+  pointer-events: none;
+}

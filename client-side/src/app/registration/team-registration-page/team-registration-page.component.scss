@@ -34,6 +34,7 @@ a {
   gap: 20px;
   position: relative;
   padding: 10px;
+  background-color: var(--background-color);
 }
 
 #form-header-title {
@@ -43,7 +44,6 @@ a {
   position: absolute;
   left: 10px;
   top: -20px;
-  background-color: white;
   padding: 5px;
   box-sizing: border-box;
   img {
@@ -51,7 +51,6 @@ a {
   }
   span {
     font-weight: bold;
-    color: #5A5959;
     font-size: 20px;
   }
 }
@@ -92,10 +91,10 @@ a {
 
 #banner {
   @extend .round-border-1;
-  background-color: #5A5959;
+  background-color: #393939;
   padding: 15px;
   box-sizing: border-box;
-  color: white;
+  color: $light-accent-text;
   display: flex;
   align-items: center;
   flex-direction: column;

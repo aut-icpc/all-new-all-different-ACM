@@ -7,7 +7,7 @@
   align-items: start;
   gap: 10px;
   @extend .round-border-1;
-  border: 2px #5A5959 solid;
+  border: 2px solid;
   padding: 20px 0;
   box-sizing: border-box;
   flex-wrap: wrap;
@@ -21,7 +21,6 @@
   position: absolute;
   left: 10px;
   top: -20px;
-  background-color: white;
   padding: 5px;
   box-sizing: border-box;
   img {
@@ -29,7 +28,6 @@
   }
   span {
     font-weight: bold;
-    color: #5A5959;
     font-size: 20px;
   }
 }
@@ -42,7 +40,6 @@
   row-gap: 10px;
   span {
     font-weight: bold;
-    color: #5A5959;
     width: 100%;
     text-align: left;
   }

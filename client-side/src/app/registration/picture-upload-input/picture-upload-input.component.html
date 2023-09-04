@@ -6,7 +6,7 @@
      (drop)="onFileDropped($event)"
      (dragover)="onDragOver($event, container)">
   <div id="show-box" (click)="openFileWindow(fileInput)" *ngIf="currentState.toString() == 'none'">
-    <img src="./assets/icons/image.png" alt="image">
+    <acpc-icon icon="image" color="foreground" size="4x"></acpc-icon>
     <span id="command-message">{{commandMessage}}</span>
   </div>
   <div class="uploaded-image" *ngIf="currentState.toString() == 'uploading'">

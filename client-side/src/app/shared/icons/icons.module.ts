@@ -75,13 +75,17 @@ export class IconsModule {
       this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Telegram.svg'));
     this.iconRegistry.addSvgIcon('call',
       this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Call.svg'));
-    this.iconRegistry.addSvgIcon('gmail',
-      this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Gmail.svg'));
+    this.iconRegistry.addSvgIcon('email',
+      this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Email.svg'));
     this.iconRegistry.addSvgIcon('map',
       this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Map.svg'));
     this.iconRegistry.addSvgIcon('show',
       this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Show.svg'));
     this.iconRegistry.addSvgIcon('hide',
       this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Hide.svg'));
+    this.iconRegistry.addSvgIcon('moon',
+      this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Moon.svg'));
+    this.iconRegistry.addSvgIcon('sun',
+      this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Sun.svg'));
   }
 }

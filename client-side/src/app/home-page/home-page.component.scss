@@ -2,6 +2,10 @@
 
 :host {
   --lower-content-height: 150px;
+
+  acpc-header .light-text {
+    color: white !important;
+  }
 }
 
 #page-container {

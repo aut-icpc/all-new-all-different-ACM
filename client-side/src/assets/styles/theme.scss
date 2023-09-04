@@ -232,9 +232,11 @@ $altTheme: (
 );
 
 // Theme Init
-@include mat.all-component-themes($theme);
+body[theme=light] {
+  @include mat.all-component-themes($theme);
+}
 
-.theme-alternate {
+body[theme=dark] {
   @include mat.all-component-themes($altTheme);
 }
 
