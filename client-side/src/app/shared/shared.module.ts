@@ -21,6 +21,7 @@ import {IconsModule} from "./icons/icons.module";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ThemeSlideToggleComponent } from './components/theme-slide-toggle/theme-slide-toggle.component';
+import { SocialMediaUrlToUsernamePipe } from './pipes/socla-media-url-to-username.pipe';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ThemeSlideToggleComponent } from './components/theme-slide-toggle/theme
         DateToHumanReadableStringPipe,
         NameToRouterLinkPipe,
         GenerateErrorMessagePipe,
-        ThemeSlideToggleComponent
+        ThemeSlideToggleComponent,
+        SocialMediaUrlToUsernamePipe
     ],
     exports: [
         HeaderComponent,
@@ -41,7 +43,8 @@ import { ThemeSlideToggleComponent } from './components/theme-slide-toggle/theme
         NormalStringToSnakeCasePipe,
         DateToHumanReadableStringPipe,
         GenerateErrorMessagePipe,
-        IconsModule
+        IconsModule,
+        SocialMediaUrlToUsernamePipe
     ],
     imports: [
         CommonModule,

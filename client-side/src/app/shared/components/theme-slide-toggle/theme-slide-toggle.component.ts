@@ -14,7 +14,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
         left: '4px'
       })),
       transition('* <=> *', [
-        animate('.5s ease-in-out')
+        animate('.3s ease-in-out')
       ])
     ]),
   ]

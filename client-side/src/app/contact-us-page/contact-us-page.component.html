@@ -8,7 +8,7 @@
       <div id="contacts-container">
         <div class="contacts">
           <acpc-icon icon="telegram" size="3x"></acpc-icon>
-          <a [href]="contactData?.telegram">acpc admin</a>
+          <a [href]="contactData?.telegram">{{contactData.telegram | socialMediaUrlToUsername: 'telegram'}}</a>
         </div>
         <div class="contacts">
           <acpc-icon icon="call" size="3x"></acpc-icon>
@@ -20,7 +20,7 @@
         </div>
         <div class="contacts">
           <acpc-icon icon="instagram" size="3x"></acpc-icon>
-          <a [href]="contactData?.instagram">ACPC</a>
+          <a [href]="contactData?.instagram">{{contactData.instagram | socialMediaUrlToUsername: 'instagram'}}</a>
         </div>
       </div>
     </div>

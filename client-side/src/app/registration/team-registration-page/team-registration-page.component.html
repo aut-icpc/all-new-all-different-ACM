@@ -94,11 +94,10 @@
           {{registrationTerms?.moreDescriptions}}
         </p>
         <span class="contacts">
-          <a [href]="'mailto:' + contactData?.email">support email</a>
+          <a [href]="'mailto:' + contactData?.email">{{contactData?.email}}</a>
         </span>
         <span class="contacts">
-          <!--TODO: write a pipe that contains a regex which extracts telegram username from telegram url-->
-          <a [href]="contactData?.telegram">telegram admin</a>
+          <a [href]="contactData?.telegram">{{contactData.telegram | socialMediaUrlToUsername: 'telegram'}}</a>
         </span>
       </div>
     </div>
