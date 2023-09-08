@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
-@EnableAsync
 @RequiredArgsConstructor
 public class StatusChangedAspect {
     private final MailUtil mailUtil;
