@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(Constants.BASE_API_URL + "/contact-us")
+@RequestMapping(Constants.BASE_CONTEST_API_URL + "/contact-us")
 @RequiredArgsConstructor
 public class ContactUsController {
     private final ContactUsService contactUsService;

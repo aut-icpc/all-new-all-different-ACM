@@ -6,7 +6,6 @@ import com.acm.server.model.dto.TeamDto;
 import com.acm.server.request.UpdateStatusRequest;
 import com.acm.server.service.TeamService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +15,13 @@ import java.util.List;
 /**
  * Controller class for handling requests related to the team functionality.
  * This class is responsible for managing team-related operations.
- * The base URL for this controller is "{@value Constants#BASE_API_URL}/team".
+ * The base URL for this controller is "{@value Constants#BASE_CONTEST_API_URL}/team".
  * Requires a TeamService instance for processing team-related requests.
  *
  * @author Farid Masjedi
  */
 @RestController
-@RequestMapping(Constants.BASE_API_URL + "/team")
+@RequestMapping(Constants.BASE_CONTEST_API_URL + "/team")
 @RequiredArgsConstructor
 public class TeamController {
     private final TeamService teamService;

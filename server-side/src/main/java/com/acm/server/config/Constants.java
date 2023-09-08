@@ -6,5 +6,5 @@ package com.acm.server.config;
  * @author Farid Masjedi
  */
 public class Constants {
-    public static final String BASE_API_URL = "/api";
+    public static final String BASE_CONTEST_API_URL = "/api";
 }

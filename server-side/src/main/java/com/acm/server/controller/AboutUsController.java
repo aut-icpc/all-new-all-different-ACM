@@ -13,12 +13,12 @@ import java.util.List;
 /**
  * Controller class for handling requests related to the About Us functionality.
  * This class is responsible for managing the About Us feature on the website.
- * The base URL for this controller is "{@value Constants#BASE_API_URL}/about".
+ * The base URL for this controller is "{@value Constants#BASE_CONTEST_API_URL}/about".
  *
  * @author Farid Masjedi
  */
 @RestController
-@RequestMapping(Constants.BASE_API_URL + "/about")
+@RequestMapping(Constants.BASE_CONTEST_API_URL + "/about")
 @RequiredArgsConstructor
 public class AboutUsController {
     private final AboutUsService aboutUsService;

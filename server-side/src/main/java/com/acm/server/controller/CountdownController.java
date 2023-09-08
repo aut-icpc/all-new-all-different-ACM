@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Controller class for handling requests related to the countdown functionality.
  * This class is responsible for managing the countdown feature on the home page.
- * The base URL for this controller is "{@value Constants#BASE_API_URL}/countdown".
+ * The base URL for this controller is "{@value Constants#BASE_CONTEST_API_URL}/countdown".
  * Requires a CountdownService instance for processing countdown-related requests.
  * @author Farid Masjedi
  */
 @RestController
-@RequestMapping(Constants.BASE_API_URL + "/countdown")
+@RequestMapping(Constants.BASE_CONTEST_API_URL + "/countdown")
 @RequiredArgsConstructor
 public class CountdownController {
     private final CountdownService countdownService;

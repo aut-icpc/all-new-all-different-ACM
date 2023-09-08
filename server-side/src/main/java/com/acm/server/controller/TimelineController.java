@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(Constants.BASE_API_URL + "/timeline")
+@RequestMapping(Constants.BASE_CONTEST_API_URL + "/timeline")
 public class TimelineController {
     private final TimelineService timelineService;
 

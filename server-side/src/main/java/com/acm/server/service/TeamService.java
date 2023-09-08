@@ -1,6 +1,5 @@
 package com.acm.server.service;
 
-import com.acm.server.annotation.StatusChangedEvent;
 import com.acm.server.model.dto.TeamDto;
 import com.acm.server.request.UpdateStatusRequest;
 import org.springframework.data.domain.Pageable;

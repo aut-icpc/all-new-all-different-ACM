@@ -16,11 +16,11 @@ import java.util.List;
 /**
  * Controller class for handling requests related to the archive functionality.
  * This class is responsible for managing the archive-related operations.
- * The base URL for this controller is "{@value Constants#BASE_API_URL}/archive".
+ * The base URL for this controller is "{@value Constants#BASE_CONTEST_API_URL}/archive".
  * @author Farid Masjedi
  */
 @RestController
-@RequestMapping(Constants.BASE_API_URL + "/archive")
+@RequestMapping(Constants.BASE_CONTEST_API_URL + "/archive")
 @RequiredArgsConstructor
 public class ArchiveController {
     private final ArchiveService archiveService;

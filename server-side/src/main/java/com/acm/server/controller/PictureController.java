@@ -15,11 +15,11 @@ import java.io.IOException;
 /**
  * Controller class for handling picture upload requests.
  * This class is responsible for handling picture upload related operations.
- * The base URL for this controller is "{@value Constants#BASE_API_URL}/picture"
+ * The base URL for this controller is "{@value Constants#BASE_CONTEST_API_URL}/picture"
  * @author Farid Masjedi
  */
 @RestController
-@RequestMapping(Constants.BASE_API_URL + "/picture")
+@RequestMapping(Constants.BASE_CONTEST_API_URL + "/picture")
 @RequiredArgsConstructor
 public class PictureController {
 

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
- * The main class for the ACM server-side application.
+ * The main class for the ACPC server-side application.
  * This class serves as the entry point for the application.
  * It initializes and starts the Spring Boot application.
  *
