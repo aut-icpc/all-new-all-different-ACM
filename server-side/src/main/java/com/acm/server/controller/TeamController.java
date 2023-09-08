@@ -102,7 +102,7 @@ public class TeamController {
     }
 
     @GetMapping
-    public ResponseEntity<BaseResponseDto<List<TeamDto>>> getTeam(Pageable page) {
+    public ResponseEntity<BaseResponseDto<List<TeamDto>>> getTeams(Pageable page) {
         // Return the response entity with the team data wrapped in BaseResponseDto
         return ResponseEntity.ok(new BaseResponseDto<>("Team returned successfully!",
                 teamService.getTeams(page)));
