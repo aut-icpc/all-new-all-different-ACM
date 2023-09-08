@@ -2,6 +2,7 @@ package com.acm.server.mapper;
 
 import com.acm.server.domain.Team;
 import com.acm.server.model.dto.TeamDto;
+import com.acm.server.response.TeamBasicInformationResponse;
 import org.mapstruct.Mapper;
 
 /**
@@ -17,4 +18,6 @@ public interface TeamMapper {
     TeamDto toTeamDto(Team team);
 
     Team toTeam(TeamDto teamDto);
+
+    TeamBasicInformationResponse toBasicInformationResponse(Team team);
 }

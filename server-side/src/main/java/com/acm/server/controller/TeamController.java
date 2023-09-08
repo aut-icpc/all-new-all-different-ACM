@@ -4,10 +4,12 @@ import com.acm.server.config.Constants;
 import com.acm.server.model.dto.BaseResponseDto;
 import com.acm.server.model.dto.TeamDto;
 import com.acm.server.request.UpdateStatusRequest;
+import com.acm.server.response.TeamBasicInformationResponse;
 import com.acm.server.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,6 +50,7 @@ public class TeamController {
      * @return ResponseEntity containing the response with the TeamDto object.
      */
     @GetMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<BaseResponseDto<TeamDto>> getTeam(@PathVariable Long id) {
         // Retrieve the team from the service layer based on the provided ID
         TeamDto teamDto = teamService.getTeam(id);
@@ -63,6 +66,7 @@ public class TeamController {
      * @return ResponseEntity containing the response with the TeamDto object.
      */
     @GetMapping("/{name}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<BaseResponseDto<TeamDto>> getTeam(@PathVariable String name) {
         // Retrieve the team from the service layer based on the provided name
         TeamDto teamDto = teamService.getTeam(name);
@@ -78,6 +82,7 @@ public class TeamController {
      * @return ResponseEntity containing the response with BaseResponseDto holding the TeamDto with updated status.
      */
     @PutMapping("/status")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<BaseResponseDto<TeamDto>> updateStatus(UpdateStatusRequest request) {
         // Update the status of the team based on the provided request
         TeamDto updatedTeamDto = teamService.updateStatus(request);
@@ -102,9 +107,28 @@ public class TeamController {
     }
 
     @GetMapping
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<BaseResponseDto<List<TeamDto>>> getTeams(Pageable page) {
         // Return the response entity with the team data wrapped in BaseResponseDto
         return ResponseEntity.ok(new BaseResponseDto<>("Team returned successfully!",
                 teamService.getTeams(page)));
+    }
+
+    @GetMapping("/basic/{name}")
+    public ResponseEntity<BaseResponseDto<TeamBasicInformationResponse>> getTeamBasicInformation(@PathVariable String name) {
+        // Retrieve the team from the service layer based on the provided name
+        TeamBasicInformationResponse response = teamService.getTeamBasicInformation(name);
+
+        // Return the response entity with the team data wrapped in BaseResponseDto
+        return ResponseEntity.ok(new BaseResponseDto<>("Team returned successfully!", response));
+    }
+
+    @GetMapping("/basic/{id}")
+    public ResponseEntity<BaseResponseDto<TeamBasicInformationResponse>> getTeamBasicInformation(@PathVariable Long id) {
+        // Retrieve the team from the service layer based on the provided id
+        TeamBasicInformationResponse response = teamService.getTeamBasicInformation(id);
+
+        // Return the response entity with the team data wrapped in BaseResponseDto
+        return ResponseEntity.ok(new BaseResponseDto<>("Team returned successfully!", response));
     }
 }

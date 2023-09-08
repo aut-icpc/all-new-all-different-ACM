@@ -2,6 +2,7 @@ package com.acm.server.service;
 
 import com.acm.server.model.dto.TeamDto;
 import com.acm.server.request.UpdateStatusRequest;
+import com.acm.server.response.TeamBasicInformationResponse;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -18,6 +19,10 @@ public interface TeamService {
     TeamDto getTeam(Long id);
 
     TeamDto getTeam(String name);
+
+    TeamBasicInformationResponse getTeamBasicInformation(String name);
+    TeamBasicInformationResponse getTeamBasicInformation(Long id);
+
 
     TeamDto updateStatus(UpdateStatusRequest request);
 

@@ -6,6 +6,7 @@ import com.acm.server.model.TeamStatus;
 import com.acm.server.model.dto.TeamDto;
 import com.acm.server.repository.TeamRepository;
 import com.acm.server.request.UpdateStatusRequest;
+import com.acm.server.response.TeamBasicInformationResponse;
 import com.acm.server.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -54,6 +55,16 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public TeamDto getTeam(String name) {
         return mapper.toTeamDto(teamRepository.getTeamByTeamName(name));
+    }
+
+    @Override
+    public TeamBasicInformationResponse getTeamBasicInformation(String name) {
+        return mapper.toBasicInformationResponse(teamRepository.getTeamByTeamName(name));
+    }
+
+    @Override
+    public TeamBasicInformationResponse getTeamBasicInformation(Long id) {
+        return mapper.toBasicInformationResponse(teamRepository.findById(id).orElseThrow());
     }
 
 
