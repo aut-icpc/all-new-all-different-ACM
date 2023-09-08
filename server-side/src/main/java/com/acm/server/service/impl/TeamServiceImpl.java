@@ -8,7 +8,10 @@ import com.acm.server.repository.TeamRepository;
 import com.acm.server.request.UpdateStatusRequest;
 import com.acm.server.service.TeamService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Implementation of the TeamService interface.
@@ -59,6 +62,11 @@ public class TeamServiceImpl implements TeamService {
     public TeamDto updateStatus(UpdateStatusRequest request) {
         teamRepository.updateStatus(request);
         return mapper.toTeamDto(teamRepository.findById(request.getTeamId()).orElse(null));
+    }
+
+    @Override
+    public List<TeamDto> getTeams(Pageable pageable) {
+        return teamRepository.findAll(pageable).map(mapper::toTeamDto).toList();
     }
 
     @Override

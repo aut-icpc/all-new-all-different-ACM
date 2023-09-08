@@ -3,6 +3,9 @@ package com.acm.server.service;
 import com.acm.server.annotation.StatusChangedEvent;
 import com.acm.server.model.dto.TeamDto;
 import com.acm.server.request.UpdateStatusRequest;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 /**
  * @author Farid Masjedi
@@ -18,6 +21,8 @@ public interface TeamService {
     TeamDto getTeam(String name);
 
     TeamDto updateStatus(UpdateStatusRequest request);
+
+    List<TeamDto> getTeams(Pageable pageable);
 
     boolean isNameUnique(String teamName);
 }

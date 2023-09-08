@@ -6,8 +6,12 @@ import com.acm.server.model.dto.TeamDto;
 import com.acm.server.request.UpdateStatusRequest;
 import com.acm.server.service.TeamService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Controller class for handling requests related to the team functionality.
@@ -44,8 +48,8 @@ public class TeamController {
      * @param id The ID of the team to retrieve.
      * @return ResponseEntity containing the response with the TeamDto object.
      */
-    @GetMapping
-    public ResponseEntity<BaseResponseDto<TeamDto>> getTeam(Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<BaseResponseDto<TeamDto>> getTeam(@PathVariable Long id) {
         // Retrieve the team from the service layer based on the provided ID
         TeamDto teamDto = teamService.getTeam(id);
 
@@ -96,5 +100,12 @@ public class TeamController {
 
         // Return the response entity with the Boolean result indicating the uniqueness of the team name
         return ResponseEntity.ok(isUnique);
+    }
+
+    @GetMapping
+    public ResponseEntity<BaseResponseDto<List<TeamDto>>> getTeam(Pageable page) {
+        // Return the response entity with the team data wrapped in BaseResponseDto
+        return ResponseEntity.ok(new BaseResponseDto<>("Team returned successfully!",
+                teamService.getTeams(page)));
     }
 }
