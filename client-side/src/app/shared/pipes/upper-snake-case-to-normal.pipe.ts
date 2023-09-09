@@ -6,7 +6,7 @@ import {TeamStatus} from "../enums/team-status";
 })
 export class UpperSnakeCaseToNormalPipe implements PipeTransform {
 
-  transform(value: TeamStatus): string {
+  transform(value: string | undefined): string {
     if (!value)
       return '';
     const strValue = value.toString();

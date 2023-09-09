@@ -7,12 +7,12 @@
       <span>{{teamData?.institution}}</span>
     </div>
     <div class="team-details"><span class="detail-title">status: </span>
-      <span id="status-box">{{teamData.status | upperSnakeCaseToNormal}}</span>
+      <span id="status-box">{{teamData?.status | upperSnakeCaseToNormal}}</span>
     </div>
     <div class="team-details"><span class="detail-title">change status to: </span>
       <mat-form-field appearance="outline">
         <mat-label>status</mat-label>
-        <mat-select formControlName="shirtSize" required>
+        <mat-select [formControl]="formControl" required>
           <mat-option *ngFor="let status of teamStatusList" [value]="status.toString()">
             {{status}}
           </mat-option>

@@ -6,6 +6,7 @@ import {TeamDto} from "../../shared/interfaces/DTO/team.dto";
 import {API_URLS} from "../../shared/api-urls";
 import {TeamStatus} from "../../shared/enums/team-status";
 import {ModalService} from "../../shared/services/modal.service";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'acpc-team-details-page',
@@ -19,25 +20,26 @@ export class TeamDetailsPageComponent implements OnInit {
 
   teamStatusList!: string[];
 
+  formControl = new FormControl();
+
   selectedCardPhotoAddress!: string;
   @ViewChild('cardPhoto') cardTemplate!: TemplateRef<any>;
 
   constructor(private route: ActivatedRoute,
               private http: HttpService,
               private modal: ModalService) {
-    this.route.queryParams.subscribe(params => {
+    this.route.params.subscribe(params => {
         this.teamId = params.id;
       }
     );
-    this.teamStatusList = Object.keys(TeamStatus);
+    this.teamStatusList = Object.values(TeamStatus);
   }
 
   ngOnInit(): void {
-    const params = {id: `${this.teamId}`};
-    this.http.sendGetRequest<BaseResponseDto<TeamDto>>(API_URLS.REGISTRATION.TEAM_REGISTER, {params: params})
+    this.http.sendGetRequest<BaseResponseDto<TeamDto>>(API_URLS.REGISTRATION.TEAM_REGISTER + `/${this.teamId}`)
       .subscribe(response => {
         this.teamData = response.result;
-      })
+      });
   }
 
   selectPhoto(photoAddress: string) {

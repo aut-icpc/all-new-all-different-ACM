@@ -1,32 +1,46 @@
-<table mat-table [dataSource]="dataSource">
-  <!-- Row Column -->
-  <ng-container matColumnDef="Row">
-    <th mat-header-cell *matHeaderCellDef>Row</th>
-    <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
-  </ng-container>
+<div id="page-container">
+  <table mat-table [dataSource]="dataSource">
+    <!-- Row Column -->
+    <ng-container matColumnDef="Row">
+      <th mat-header-cell *matHeaderCellDef>Row</th>
+      <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+    </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="Team name">
-    <th mat-header-cell *matHeaderCellDef>Team name</th>
-    <td mat-cell *matCellDef="let element">{{element.teamName}}</td>
-  </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="Team name">
+      <th mat-header-cell *matHeaderCellDef>Team name</th>
+      <td mat-cell *matCellDef="let element">{{element.teamName}}</td>
+    </ng-container>
 
-  <!-- Institution Column -->
-  <ng-container matColumnDef="Institution">
-    <th mat-header-cell *matHeaderCellDef>Institution</th>
-    <td mat-cell *matCellDef="let element">{{element.institution}}</td>
-  </ng-container>
+    <!-- Institution Column -->
+    <ng-container matColumnDef="Institution">
+      <th mat-header-cell *matHeaderCellDef>Institution</th>
+      <td mat-cell *matCellDef="let element">{{element.institution}}</td>
+    </ng-container>
 
-  <!-- Status Column -->
-  <ng-container matColumnDef="Status">
-    <th mat-header-cell *matHeaderCellDef>Status</th>
-    <td mat-cell *matCellDef="let element">{{element.status}}</td>
-  </ng-container>
+    <!-- Status Column -->
+    <ng-container matColumnDef="Status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let element">{{element.status}}</td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr
-    mat-row
-    (click)="showTeamDetails(row)"
-    *matRowDef="let row; columns: displayedColumns;"
-  ></tr>
-</table>
+    <!--Actions Column-->
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button type="button"
+                matTooltip="Show team details"
+                matTooltipPosition="above"
+                matTooltipTouchGestures="on" (click)="showTeamDetails(element)">
+          <acpc-icon icon="more"></acpc-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns;"
+    ></tr>
+  </table>
+</div>

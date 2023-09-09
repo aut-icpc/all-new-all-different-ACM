@@ -11,7 +11,7 @@ const routes: Routes = [
       {path: '', redirectTo: 'login', pathMatch: 'full'},
       {path: 'home', component: AdminPageComponent},
       {path: 'login', component: AdminLoginPageComponent},
-      {path: 'team-details', component: TeamDetailsPageComponent}
+      {path: 'team-details/:id', component: TeamDetailsPageComponent}
     ]
   }
 ];

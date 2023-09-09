@@ -5,7 +5,7 @@ import {FormControl, Validators} from "@angular/forms";
 import {HttpService} from "../../shared/services/http.service";
 import {API_URLS} from "../../shared/api-urls";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
-import {TeamDto} from "../../shared/interfaces/DTO/team.dto";
+import {TeamBasicInformationDto} from "../../shared/interfaces/DTO/teamBasicInformation.dto";
 
 @Component({
   selector: 'acpc-registration-status-page',
@@ -17,7 +17,7 @@ export class RegistrationStatusPageComponent {
 
   formControl = new FormControl('', Validators.required);
 
-  teamDto!: TeamDto;
+  teamDto!: TeamBasicInformationDto;
 
   isWrapperExpanded = false;
   isStatusBoxShowed = false;
@@ -29,7 +29,7 @@ export class RegistrationStatusPageComponent {
       return;
 
     const teamName = this.formControl.value;
-    this.http.sendGetRequest<BaseResponseDto<TeamDto>>(API_URLS.REGISTRATION.TEAM_REGISTER + `/${teamName}`).subscribe(response => {
+    this.http.sendGetRequest<BaseResponseDto<TeamBasicInformationDto>>(API_URLS.REGISTRATION.BASIC_OPERATIONS + `/${teamName}`).subscribe(response => {
       this.isWrapperExpanded = !this.isWrapperExpanded;
       this.teamDto = response.result;
       setTimeout(() => {

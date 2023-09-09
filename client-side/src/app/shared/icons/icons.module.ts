@@ -87,5 +87,7 @@ export class IconsModule {
       this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Moon.svg'));
     this.iconRegistry.addSvgIcon('sun',
       this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Sun.svg'));
+    this.iconRegistry.addSvgIcon('more',
+      this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'More.svg'));
   }
 }

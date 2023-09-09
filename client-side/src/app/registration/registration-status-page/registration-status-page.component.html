@@ -16,7 +16,7 @@
             <acpc-icon icon="search" color="background"></acpc-icon>
           </button>
           <mat-error *ngIf="formControl.hasError('required')">
-            Enter your intended team name first
+            Enter your intended team name
           </mat-error>
         </mat-form-field>
         <div *ngIf="teamDto" id="status-box" [ngClass]="teamDto.status.toLowerCase() == 'finalized' ? 'finalized' : (teamDto.status.toLowerCase() == 'rejected' ? 'rejected' : '')"
