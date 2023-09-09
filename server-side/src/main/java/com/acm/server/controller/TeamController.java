@@ -49,7 +49,7 @@ public class TeamController {
      * @param id The ID of the team to retrieve.
      * @return ResponseEntity containing the response with the TeamDto object.
      */
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     @Secured("ROLE_ADMIN")
     public ResponseEntity<BaseResponseDto<TeamDto>> getTeam(@PathVariable Long id) {
         // Retrieve the team from the service layer based on the provided ID
@@ -65,7 +65,7 @@ public class TeamController {
      * @param name The name of the team to retrieve.
      * @return ResponseEntity containing the response with the TeamDto object.
      */
-    @GetMapping("/{name}")
+    @GetMapping("/name/{name}")
     @Secured("ROLE_ADMIN")
     public ResponseEntity<BaseResponseDto<TeamDto>> getTeam(@PathVariable String name) {
         // Retrieve the team from the service layer based on the provided name
@@ -114,7 +114,7 @@ public class TeamController {
                 teamService.getTeams(page)));
     }
 
-    @GetMapping("/basic/{name}")
+    @GetMapping("/basic/name/{name}")
     public ResponseEntity<BaseResponseDto<TeamBasicInformationResponse>> getTeamBasicInformation(@PathVariable String name) {
         // Retrieve the team from the service layer based on the provided name
         TeamBasicInformationResponse response = teamService.getTeamBasicInformation(name);
@@ -123,7 +123,7 @@ public class TeamController {
         return ResponseEntity.ok(new BaseResponseDto<>("Team returned successfully!", response));
     }
 
-    @GetMapping("/basic/{id}")
+    @GetMapping("/basic/id/{id}")
     public ResponseEntity<BaseResponseDto<TeamBasicInformationResponse>> getTeamBasicInformation(@PathVariable Long id) {
         // Retrieve the team from the service layer based on the provided id
         TeamBasicInformationResponse response = teamService.getTeamBasicInformation(id);
