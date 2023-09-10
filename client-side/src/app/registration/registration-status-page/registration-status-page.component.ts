@@ -29,7 +29,7 @@ export class RegistrationStatusPageComponent {
       return;
 
     const teamName = this.formControl.value;
-    this.http.sendGetRequest<BaseResponseDto<TeamBasicInformationDto>>(API_URLS.REGISTRATION.BASIC_OPERATIONS + `/name/${teamName}`).subscribe(response => {
+    this.http.sendGetRequest<BaseResponseDto<TeamBasicInformationDto>>(API_URLS.REGISTRATION.BASIC_OPERATIONS.BY_NAME + `/${teamName}`).subscribe(response => {
       this.isWrapperExpanded = !this.isWrapperExpanded;
       this.teamDto = response.result;
       setTimeout(() => {

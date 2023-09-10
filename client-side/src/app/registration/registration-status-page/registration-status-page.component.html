@@ -22,11 +22,11 @@
         <div *ngIf="teamDto" id="status-box" [ngClass]="teamDto.status.toLowerCase() == 'finalized' ? 'finalized' : (teamDto.status.toLowerCase() == 'rejected' ? 'rejected' : '')"
              [@fadeIn]="isStatusBoxShowed ? 'increaseOpacity' : 'decreaseOpacity'">
           <div class="data-container">
-            <span class="title">team name</span>
+            <span class="data-title">team name</span>
             <span>{{teamDto.teamName}}</span>
           </div>
           <div class="data-container">
-            <span class="title">status</span>
+            <span class="data-title">status</span>
             <span>{{teamDto.status | upperSnakeCaseToNormal}}</span>
           </div>
         </div>

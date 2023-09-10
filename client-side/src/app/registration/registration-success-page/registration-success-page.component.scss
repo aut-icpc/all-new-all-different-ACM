@@ -58,9 +58,13 @@ img {
   padding: 5px;
   box-sizing: border-box;
   width: 100%;
-  .title {
+  .data-title {
     color: #5D5E5F;
     font-weight: bold;
+  }
+
+  .data-value {
+    color: #5A5959;
   }
 }
 
