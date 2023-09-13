@@ -7,6 +7,7 @@ import {API_URLS} from "../../shared/api-urls";
 import {TeamStatus} from "../../shared/enums/team-status";
 import {ModalService} from "../../shared/services/modal.service";
 import {FormControl} from "@angular/forms";
+import {UpdateStatusRequestDto} from "../../shared/interfaces/DTO/updateStatusRequest.dto";
 
 @Component({
   selector: 'acpc-team-details-page',
@@ -36,7 +37,7 @@ export class TeamDetailsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.sendGetRequest<BaseResponseDto<TeamDto>>(API_URLS.REGISTRATION.TEAM_REGISTER + `/${this.teamId}`)
+    this.http.sendGetRequest<BaseResponseDto<TeamDto>>(API_URLS.REGISTRATION.TEAM_REGISTER + `/id/${this.teamId}`)
       .subscribe(response => {
         this.teamData = response.result;
       });
@@ -47,4 +48,13 @@ export class TeamDetailsPageComponent implements OnInit {
     this.modal.openModal(this.cardTemplate);
   }
 
+  updateTeamStatus() {
+    const request = new UpdateStatusRequestDto();
+    request.teamId = this.teamId;
+    request.status = this.formControl.value;
+    this.http.sendPutRequest(API_URLS.REGISTRATION.TEAM_STATUS_UPDATE, request)
+      .subscribe(response => {
+        console.log(response);
+    })
+  }
 }

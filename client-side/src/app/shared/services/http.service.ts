@@ -18,4 +18,9 @@ export class HttpService {
   public sendGetRequest<T>(url: string, options?: { headers?: HttpHeaders | { [header: string]: string | string[] }; params?: HttpParams | { [param: string]: string | string[] }}): Observable<T> {
     return this.httpClient.get<T>(url, options);
   }
+
+  public sendPutRequest<T>(url: string, data: any,
+                            options?: { headers?: HttpHeaders | { [header: string]: string | string[] }; params?: HttpParams | { [param: string]: string | string[] }}): Observable<T> {
+    return this.httpClient.put<T>(url, data, options);
+  }
 }

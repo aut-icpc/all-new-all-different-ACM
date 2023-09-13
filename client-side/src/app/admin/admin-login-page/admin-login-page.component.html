@@ -1,5 +1,5 @@
 <div id="page-container">
-  <form id="form-container" [formGroup]="group">
+  <form id="form-container" [formGroup]="group" (submit)="login()">
     <mat-form-field appearance="outline">
       <input type="text" matInput required formControlName="username">
       <mat-label>username</mat-label>

@@ -1,6 +1,7 @@
 const BASE_URL = '/api';
 const TEAM_REGISTER_URL = BASE_URL + '/team';
 const BASIC_OPS = TEAM_REGISTER_URL + '/basic';
+const AUTH_URL = BASE_URL + '/auth';
 
 export const API_URLS = {
   BASE_URL: BASE_URL,
@@ -15,9 +16,11 @@ export const API_URLS = {
   REGISTRATION: {
     TEAM_REGISTER: TEAM_REGISTER_URL,
     UNIQUE_NAME_CHECK: TEAM_REGISTER_URL + '/name/unique',
+    TEAM_STATUS_UPDATE: TEAM_REGISTER_URL + '/status',
     BASIC_OPERATIONS: {
       BY_NAME: BASIC_OPS + '/name',
       BY_ID: BASIC_OPS + '/id'
     }
   },
+  LOGIN: AUTH_URL + '/login',
 };

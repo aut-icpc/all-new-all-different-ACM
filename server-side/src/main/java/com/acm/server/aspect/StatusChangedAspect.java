@@ -32,6 +32,6 @@ public class StatusChangedAspect {
         String status = teamDto.getStatus().name();
 
         // Email each contestant in the team
-        teamDto.getContestants().forEach(c -> mailUtil.sendMailAfterStatusChanged(c.getEmail(), status, c.getFirstname()));
+        teamDto.getContestants().forEach(c -> mailUtil.sendMailAfterStatusChanged(c.getEmail(), status, c.getLastname()));
     }
 }

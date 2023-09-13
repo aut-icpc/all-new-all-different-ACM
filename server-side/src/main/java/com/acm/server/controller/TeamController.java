@@ -83,7 +83,7 @@ public class TeamController {
      */
     @PutMapping("/status")
     @Secured("ROLE_ADMIN")
-    public ResponseEntity<BaseResponseDto<TeamDto>> updateStatus(UpdateStatusRequest request) {
+    public ResponseEntity<BaseResponseDto<TeamDto>> updateStatus(@RequestBody UpdateStatusRequest request) {
         // Update the status of the team based on the provided request
         TeamDto updatedTeamDto = teamService.updateStatus(request);
 
