@@ -38,7 +38,8 @@ export class AdminLoginPageComponent implements OnInit {
     request.password = this.group.controls['password'].value;
 
     this.http.sendPostRequest<BaseResponseDto<JwtAuthenticationResponseDto>>(API_URLS.LOGIN, request)
-      .subscribe(() => {
+      .subscribe(response => {
+        localStorage.setItem('token', response.result.token);
         this.route.navigateByUrl('/admin/home');
       });
   }

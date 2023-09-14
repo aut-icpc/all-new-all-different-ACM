@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {HttpService} from "../../shared/services/http.service";
 import {API_URLS} from "../../shared/api-urls";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'acpc-admin-page',
@@ -18,7 +19,11 @@ export class AdminPageComponent implements OnInit {
   constructor(private router: Router, private http: HttpService) { }
 
   ngOnInit(): void {
-    this.http.sendGetRequest<BaseResponseDto<TeamDto[]>>(API_URLS.REGISTRATION.TEAM_REGISTER)
+    const token = localStorage.getItem('token') || '';
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    this.http.sendGetRequest<BaseResponseDto<TeamDto[]>>(API_URLS.REGISTRATION.TEAM_REGISTER, {headers: headers})
       .subscribe(response => {
         this.dataSource = response.result;
       })
