@@ -8,6 +8,7 @@ import {TeamStatus} from "../../shared/enums/team-status";
 import {ModalService} from "../../shared/services/modal.service";
 import {FormControl} from "@angular/forms";
 import {UpdateStatusRequestDto} from "../../shared/interfaces/DTO/updateStatusRequest.dto";
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'acpc-team-details-page',
@@ -33,11 +34,15 @@ export class TeamDetailsPageComponent implements OnInit {
         this.teamId = params.id;
       }
     );
-    this.teamStatusList = Object.values(TeamStatus);
+    this.teamStatusList = Object.keys(TeamStatus);
   }
 
   ngOnInit(): void {
-    this.http.sendGetRequest<BaseResponseDto<TeamDto>>(API_URLS.REGISTRATION.TEAM_REGISTER + `/id/${this.teamId}`)
+    const token = localStorage.getItem('token') || '';
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    this.http.sendGetRequest<BaseResponseDto<TeamDto>>(API_URLS.REGISTRATION.TEAM_REGISTER + `/id/${this.teamId}`, {headers: headers})
       .subscribe(response => {
         this.teamData = response.result;
       });
@@ -52,7 +57,11 @@ export class TeamDetailsPageComponent implements OnInit {
     const request = new UpdateStatusRequestDto();
     request.teamId = this.teamId;
     request.status = this.formControl.value;
-    this.http.sendPutRequest(API_URLS.REGISTRATION.TEAM_STATUS_UPDATE, request)
+    const token = localStorage.getItem('token') || '';
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    this.http.sendPutRequest(API_URLS.REGISTRATION.TEAM_STATUS_UPDATE, request, {headers: headers})
       .subscribe(response => {
         console.log(response);
     })
