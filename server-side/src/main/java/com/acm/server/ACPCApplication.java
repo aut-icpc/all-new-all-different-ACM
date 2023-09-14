@@ -10,14 +10,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * It initializes and starts the Spring Boot application.
  *
  * <p>The ACM server-side application is a backend system that provides various endpoints for managing ACM-related operations.
- * It offers the following endpoints:
- *
- * <ul>
- *   <li><b>/about:</b> This endpoint is used to retrieve and save information about the ACM organization.</li>
- *   <li><b>/countdown:</b> This endpoint is used to retrieve the countdown information for the event.</li>
- *   <li><b>/team:</b> This endpoint is used to create and retrieve information about teams participating in ACM events.</li>
- *   <!-- Add more endpoints and their descriptions here -->
- * </ul>
+ * You can see all endpoints information in this address.
  *
  * <p>The application uses the Spring Boot framework to handle HTTP requests and responses. It leverages various services and DTOs
  * to manage the business logic and data transfer between the client and the server. The application is designed to be scalable,

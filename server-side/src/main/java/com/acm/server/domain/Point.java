@@ -8,6 +8,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+/**
+ * Point entity to store locations
+ *
+ * @author Farid Majsedi
+ */
 @Entity
 @Getter
 @Setter

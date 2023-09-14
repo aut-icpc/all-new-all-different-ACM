@@ -10,16 +10,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Controller class for handling registration terms related operations.
+ *
+ * @author Farid Masjedi
+ */
 @RestController
 @RequestMapping(Constants.BASE_CONTEST_API_URL + "/terms")
 @RequiredArgsConstructor
 public class RegistrationTermsController {
     private final RegistrationTermsService service;
 
+    /**
+     * Retrieves the registration terms.
+     *
+     * @return ResponseEntity containing the response with registration terms.
+     */
     @GetMapping
     public ResponseEntity<BaseResponseDto<RegistrationTermsDto>> getTerms() {
         return ResponseEntity.ok(
-                new BaseResponseDto<>("terms has been returned successfully!",
+                new BaseResponseDto<>("Terms have been returned successfully!",
                         service.getTerms())
         );
     }

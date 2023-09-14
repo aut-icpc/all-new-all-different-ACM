@@ -7,7 +7,7 @@ import lombok.Setter;
 
 /**
  * @author Farid Masjedi
- * description: This class is the entity for the about us
+ * This class is the entity for the about us
  */
 
 @Entity

@@ -8,6 +8,7 @@ import org.mapstruct.Mapper;
  * About Us Mapper
  * @see com.acm.server.domain.AboutUs
  * @see com.acm.server.model.dto.AboutUsDto
+ *
  * @author Farid Masjedi
  */
 @Mapper

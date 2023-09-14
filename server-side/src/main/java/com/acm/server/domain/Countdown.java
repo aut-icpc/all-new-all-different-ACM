@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * @author Farid Masjedi
- * description: This class is the entity for the countdown
+ * This class is the entity for the countdown
  */
 
 @Entity

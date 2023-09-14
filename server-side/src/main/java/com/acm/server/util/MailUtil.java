@@ -10,6 +10,11 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.context.IContext;
 
+/**
+ * Mail util class
+ *
+ * @author Farid Masjedi
+ */
 @Component
 @RequiredArgsConstructor
 public class MailUtil {
@@ -19,15 +24,25 @@ public class MailUtil {
     @Value("${spring.mail.username}")
     private String from;
 
-
+    /**
+     * Sends an email after the status has changed.
+     *
+     * @param to     The recipient email address.
+     * @param status The new status.
+     * @param name   The name of the recipient.
+     */
     public void sendMailAfterStatusChanged(String to, String status, String name) {
         Context context = new Context();
         context.setVariable("name", name);
         context.setVariable("status", status);
-        sendThymeleafEmail(to,
-                "acm-change-status", "ACPC Change Status", context);
+        sendThymeleafEmail(to, "acm-change-status", "ACPC Change Status", context);
     }
 
+    /**
+     * Sends a starting alert for the contest.
+     *
+     * @param to The recipient email address.
+     */
     public void sendStartingAlertForTheContest(String to) {
         sendThymeleafEmail(to, "acm-alert-start", "ACPC Alert Start", new Context());
     }

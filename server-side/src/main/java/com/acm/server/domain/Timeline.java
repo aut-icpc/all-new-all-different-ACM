@@ -7,6 +7,11 @@ import lombok.Setter;
 
 import java.util.Date;
 
+/**
+ * Represents a Timeline in ACPC
+ *
+ * @author Farid Masjedi
+ */
 @Entity
 @Getter
 @Setter
