@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.acm.server.security.Role.ROLE_ADMIN;
-
 /**
  * Controller class for handling requests related to the timeline functionality.
  * This class is responsible for managing timeline-related operations.
