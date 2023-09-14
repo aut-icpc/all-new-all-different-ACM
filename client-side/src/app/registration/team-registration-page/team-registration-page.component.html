@@ -64,6 +64,7 @@
         <ng-template matStepLabel>Submit data</ng-template>
         <ng-template matStepContent>
           <div id="submit-container">
+            <!--TODO: prompt user to fill captcha-->
             <div class="captcha-container">
               <re-captcha id="recaptcha" name="recaptcha" required [siteKey]="siteKey"
                           #recaptcha="ngModel" [(ngModel)]="captchaToken"

@@ -10,7 +10,7 @@ export class UpperSnakeCaseToNormalPipe implements PipeTransform {
     if (!value)
       return '';
     const strValue = value.toString();
-    return strValue.toLowerCase().replace('_', '');
+    return strValue.toLowerCase().replace(/_/g, ' ');
   }
 
 }
