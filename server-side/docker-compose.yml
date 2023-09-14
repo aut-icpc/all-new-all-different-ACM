@@ -1,9 +1,7 @@
 version: '3.8'
 services:
   app:
-    image: blue_anonymous_bot:latest
-    volumes:
-      - /var/log/blue-anonymous-bot:/var/log/blue-anonymous-bot
+    image: acpc_app:latest
     build:
       context: .
       dockerfile: Dockerfile
@@ -22,8 +20,8 @@ services:
       - /var/lib/mysql:/var/lib/mysql
     image: mysql:8.0
     environment:
-      - MYSQL_ROOT_PASSWORD=mkcenter
-      - MYSQL_DATABASE=blue_anonymous_bot
+      - MYSQL_ROOT_PASSWORD=acpc_admin
+      - MYSQL_DATABASE=acpc_2023
     ports:
       - 3306:3306
     deploy:
