@@ -4,6 +4,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Registration Terms entity to store registration rules.
+ *
+ * @author Farid Majsedi
+ */
 @Entity
 @Getter
 @Setter

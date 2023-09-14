@@ -7,7 +7,7 @@ import java.io.IOException;
 
 /**
  * @author Farid Masjedi
- * description: This interface is the service for the picture upload
+ * This interface is the service for the picture upload
  * @see com.acm.server.service.impl.PictureUploaderServiceImpl
  */
 public interface PictureUploaderService {

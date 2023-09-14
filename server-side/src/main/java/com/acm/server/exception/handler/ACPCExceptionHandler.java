@@ -19,7 +19,9 @@ import java.nio.file.AccessDeniedException;
 import java.util.Objects;
 
 /**
- * Custom Exception handler
+ * ACPC Exception handler
+ *
+ * @author Farid Masjedi
  */
 @ControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)

@@ -8,6 +8,7 @@ import org.mapstruct.Mapper;
  * Countdown Mapper
  * @see com.acm.server.domain.Countdown
  * @see com.acm.server.model.dto.CountdownDto
+ *
  * @author Farid Masjedi
  */
 @Mapper

@@ -6,6 +6,7 @@ import com.acm.server.model.dto.BaseResponseDto;
 import com.acm.server.service.AboutUsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,6 +45,7 @@ public class AboutUsController {
      * @return ResponseEntity containing the response with the saved AboutUsDto object.
      */
     @PostMapping
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<BaseResponseDto<AboutUsDto>> saveAboutUs(@RequestBody AboutUsDto dto) {
         // Save the AboutUsDto object using the provided dto
         AboutUsDto savedAboutUsDto = aboutUsService.saveAboutUs(dto);

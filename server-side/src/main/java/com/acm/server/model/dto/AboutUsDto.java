@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 
 /**
  * About Us DTO
- * description: About Us Data Transfer Object
+ * About Us Data Transfer Object
  * @see com.acm.server.domain.AboutUs
  * @see com.acm.server.model.dto.PictureDto
  *

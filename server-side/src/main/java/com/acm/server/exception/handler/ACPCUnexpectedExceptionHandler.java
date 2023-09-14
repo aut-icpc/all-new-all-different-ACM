@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
- * custom unexpected exception handler
+ * ACPC unexpected exception handler
+ *
+ * @author Farid Masjedi
  */
 @Slf4j
 @ControllerAdvice

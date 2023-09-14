@@ -5,6 +5,12 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Mail Entity to store emails
+ *
+ * @author Farid Masjedi
+ */
+
 @Entity
 @Getter
 @Setter

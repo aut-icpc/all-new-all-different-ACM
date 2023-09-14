@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * Represents a team in the ACM server.
+ * Represents a team in the ACPC
  * @author Farid Masjedi
  */
 @Entity

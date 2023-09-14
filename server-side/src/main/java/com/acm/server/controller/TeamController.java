@@ -106,6 +106,12 @@ public class TeamController {
         return ResponseEntity.ok(isUnique);
     }
 
+    /**
+     * Retrieves a list of teams with pagination support.
+     *
+     * @param page The pagination information.
+     * @return ResponseEntity containing the response with the list of TeamDto objects.
+     */
     @GetMapping
     @Secured("ROLE_ADMIN")
     public ResponseEntity<BaseResponseDto<List<TeamDto>>> getTeams(Pageable page) {
@@ -114,18 +120,30 @@ public class TeamController {
                 teamService.getTeams(page)));
     }
 
+    /**
+     * Retrieves basic information about a team based on the provided team name.
+     *
+     * @param name The name of the team.
+     * @return ResponseEntity containing the response with TeamBasicInformationResponse object.
+     */
     @GetMapping("/basic/name/{name}")
     public ResponseEntity<BaseResponseDto<TeamBasicInformationResponse>> getTeamBasicInformation(@PathVariable String name) {
-        // Retrieve the team from the service layer based on the provided name
+        // Retrieve the team basic information from the service layer based on the provided name
         TeamBasicInformationResponse response = teamService.getTeamBasicInformation(name);
 
         // Return the response entity with the team data wrapped in BaseResponseDto
         return ResponseEntity.ok(new BaseResponseDto<>("Team returned successfully!", response));
     }
 
+    /**
+     * Retrieves basic information about a team based on the provided team ID.
+     *
+     * @param id The ID of the team.
+     * @return ResponseEntity containing the response with TeamBasicInformationResponse object.
+     */
     @GetMapping("/basic/id/{id}")
     public ResponseEntity<BaseResponseDto<TeamBasicInformationResponse>> getTeamBasicInformation(@PathVariable Long id) {
-        // Retrieve the team from the service layer based on the provided id
+        // Retrieve the team basic information from the service layer based on the provided ID
         TeamBasicInformationResponse response = teamService.getTeamBasicInformation(id);
 
         // Return the response entity with the team data wrapped in BaseResponseDto
