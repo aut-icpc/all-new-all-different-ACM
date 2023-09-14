@@ -12,6 +12,14 @@ import org.springframework.stereotype.Component;
  * Aspect class for handling the status changed event.
  * This class is responsible for sending emails to contestants when the team status changes.
  *
+ * This aspect is triggered after a method annotated with @StatusChangedEvent completes successfully.
+ * It sends an email to each contestant in the team with the updated status information.
+ *
+ * This aspect is executed asynchronously using Spring's @Async annotation, allowing the calling method to continue
+ * without waiting for the email notifications to be sent.
+ *
+ * The MailUtil class is used to send the emails.
+ *
  * @author Farid Masjedi
  */
 @Aspect
