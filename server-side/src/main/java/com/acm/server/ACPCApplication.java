@@ -11,6 +11,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  *
  * <p>The ACM server-side application is a backend system that provides various endpoints for managing ACM-related operations.
  * You can see all endpoints information here <a href="http://localhost:8080/api/swagger-ui/index.html">...</a>
+ * java doc link: <a href="http://localhost:8080/api/javadoc/index.html">...</a>
  *
  * <p>The application uses the Spring Boot framework to handle HTTP requests and responses. It leverages various services and DTOs
  * to manage the business logic and data transfer between the client and the server. The application is designed to be scalable,
