@@ -75,7 +75,7 @@ export class TeamDetailsPageComponent implements OnInit {
     });
     this.http.sendPutRequest(API_URLS.REGISTRATION.TEAM_STATUS_UPDATE, request, {headers: headers})
       .subscribe(() => {
-        this.toast.showSuccess('team status has been updated');
+        this.toast.showSuccess('team status has been updated.');
         this.router.navigateByUrl('/admin/home');
     })
   }

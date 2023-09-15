@@ -19,10 +19,10 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <button type="button" color="primary"
+        <button type="button" color="primary" id="update-status-btn"
                 [disabled]="isUpdateDisabled"
-                mat-raised-button (click)="updateTeamStatus()">
-          update
+                mat-mini-fab (click)="updateTeamStatus()">
+          <acpc-icon icon="refresh" [color]="isUpdateDisabled ? 'primary' : 'foreground'"></acpc-icon>
         </button>
       </div>
     </div>
