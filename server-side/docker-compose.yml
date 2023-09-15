@@ -1,0 +1,68 @@
+version: '3.8'
+services:
+  acpc_back:
+    image: acpc_back:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - MYSQL_HOST=db
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+  db:
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=acpc_admin
+      - MYSQL_DATABASE=acpc_2023
+    ports:
+      - 3306:3306
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - /var/lib/prometheus:/prometheus
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - 3000:3000
+    depends_on:
+      - prometheus
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - /var/lib/grafana:/var/lib/grafana
+
+  acpc_front:
+    image: acpc_front:latest
+    build:
+      context: ../client-side
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - acpc_back
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
