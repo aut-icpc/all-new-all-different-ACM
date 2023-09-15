@@ -1,6 +1,6 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {HttpService} from "../../shared/services/http.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {TeamDto} from "../../shared/interfaces/DTO/team.dto";
 import {API_URLS} from "../../shared/api-urls";
@@ -9,6 +9,7 @@ import {ModalService} from "../../shared/services/modal.service";
 import {FormControl} from "@angular/forms";
 import {UpdateStatusRequestDto} from "../../shared/interfaces/DTO/updateStatusRequest.dto";
 import {HttpHeaders} from "@angular/common/http";
+import {ToastService} from "../../shared/services/toast.service";
 
 @Component({
   selector: 'acpc-team-details-page',
@@ -22,14 +23,19 @@ export class TeamDetailsPageComponent implements OnInit {
 
   teamStatusList!: string[];
 
-  formControl = new FormControl();
+  isUpdateDisabled = true;
+  teamCurrentStatus!: TeamStatus;
+  selectedStatus!: TeamStatus;
+  teamStatusControl = new FormControl();
 
   selectedCardPhotoAddress!: string;
   @ViewChild('cardPhoto') cardTemplate!: TemplateRef<any>;
 
   constructor(private route: ActivatedRoute,
               private http: HttpService,
-              private modal: ModalService) {
+              private modal: ModalService,
+              private toast: ToastService,
+              private router: Router) {
     this.route.params.subscribe(params => {
         this.teamId = params.id;
       }
@@ -45,7 +51,13 @@ export class TeamDetailsPageComponent implements OnInit {
     this.http.sendGetRequest<BaseResponseDto<TeamDto>>(API_URLS.REGISTRATION.TEAM_REGISTER + `/id/${this.teamId}`, {headers: headers})
       .subscribe(response => {
         this.teamData = response.result;
+        this.teamCurrentStatus = this.teamData.status;
+        this.selectedStatus = this.teamData.status;
       });
+
+    this.teamStatusControl.valueChanges.subscribe(selected => {
+      this.isUpdateDisabled = selected == this.teamCurrentStatus;
+    })
   }
 
   selectPhoto(photoAddress: string) {
@@ -56,14 +68,15 @@ export class TeamDetailsPageComponent implements OnInit {
   updateTeamStatus() {
     const request = new UpdateStatusRequestDto();
     request.teamId = this.teamId;
-    request.status = this.formControl.value;
+    request.status = this.selectedStatus;
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
     this.http.sendPutRequest(API_URLS.REGISTRATION.TEAM_STATUS_UPDATE, request, {headers: headers})
-      .subscribe(response => {
-        console.log(response);
+      .subscribe(() => {
+        this.toast.showSuccess('team status has been updated');
+        this.router.navigateByUrl('/admin/home');
     })
   }
 }

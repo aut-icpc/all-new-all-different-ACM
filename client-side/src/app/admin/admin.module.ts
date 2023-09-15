@@ -13,6 +13,8 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule
   ]
 })
 export class AdminModule { }

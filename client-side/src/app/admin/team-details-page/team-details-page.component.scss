@@ -1,0 +1,47 @@
+:host ::ng-deep {
+  .mat-form-field {
+    width: 185px;
+
+    .mat-form-field-wrapper {
+      padding-bottom: 0 !important;
+    }
+  }
+}
+
+#page-container {
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#team-info-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.detail-row {
+  display: flex;
+  height: 70px;
+  width: 100%;
+  align-items: start;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.team-details {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+
+.detail-title {
+  font-weight: bolder;
+  color: var(--disabled-text-color);
+}
+
+.card-text {
+  cursor: pointer;
+  color: var(--primary-color);
+  text-decoration: underline var(--primary-color);
+}

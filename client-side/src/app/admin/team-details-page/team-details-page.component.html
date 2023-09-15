@@ -1,26 +1,30 @@
 <div id="page-container">
   <div id="team-info-container">
-    <div class="team-details"><span class="detail-title">name: </span>
-      <span>{{teamData?.teamName}}</span>
+    <div class="detail-row">
+      <div class="team-details"><span class="detail-title">name: </span>
+        <span>{{teamData?.teamName}}</span>
+      </div>
+      <div class="team-details"><span class="detail-title">institution: </span>
+        <span>{{teamData?.institution}}</span>
+      </div>
     </div>
-    <div class="team-details"><span class="detail-title">institution: </span>
-      <span>{{teamData?.institution}}</span>
-    </div>
-    <div class="team-details"><span class="detail-title">status: </span>
-      <span id="status-box">{{teamData?.status | upperSnakeCaseToNormal}}</span>
-    </div>
-    <div class="team-details"><span class="detail-title">change status to: </span>
-      <mat-form-field appearance="outline">
-        <mat-label>status</mat-label>
-        <mat-select [formControl]="formControl" required>
-          <mat-option *ngFor="let status of teamStatusList" [value]="status.toString()">
-            {{status | upperSnakeCaseToNormal}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button type="button" (click)="updateTeamStatus()">
-        update
-      </button>
+    <div class="detail-row">
+      <div class="team-details">
+        <span class="detail-title">status: </span>
+        <mat-form-field appearance="outline">
+          <mat-label>status</mat-label>
+          <mat-select [formControl]="teamStatusControl" [(value)]="selectedStatus">
+            <mat-option *ngFor="let status of teamStatusList" [value]="status.toString()">
+              {{status | upperSnakeCaseToNormal}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button type="button" color="primary"
+                [disabled]="isUpdateDisabled"
+                mat-raised-button (click)="updateTeamStatus()">
+          update
+        </button>
+      </div>
     </div>
   </div>
   <div id="contestants-info-container">
@@ -58,7 +62,7 @@
     </mat-accordion>
   </div>
 </div>
-
+<!--TODO: make responsive cards to show teams in mobile view-->
 <ng-template #cardPhoto>
   <img [src]="selectedCardPhotoAddress" alt="card" style="height: 70vh; width: 100%">
 </ng-template>
