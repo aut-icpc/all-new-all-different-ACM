@@ -10,7 +10,6 @@
   </div>
   <div id="map-loader" [ngClass]="{'loader-behind-map': isMapLoaded}"
        [@fadeIn]="(isMapLoaded && showMap) ? 'decreaseOpacity' : 'increaseOpacity'">
-    <!--     [@fadeIn]="'decreaseOpacity'">-->
     <mat-spinner diameter="70" strokeWidth="5"></mat-spinner>
     <acpc-icon color="primary" icon="map"></acpc-icon>
   </div>

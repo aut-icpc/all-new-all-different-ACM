@@ -1,7 +1,8 @@
-import {Component, ElementRef, Input, OnInit, SimpleChanges} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import * as Leaflet from "leaflet";
 import {ContactUsDto} from "../../interfaces/DTO/contactUs.dto";
 import {fadeInAnimation} from "../../animations/fade-animations";
+import {LeafletDirective} from "@asymmetrik/ngx-leaflet";
 
 
 @Component({
@@ -11,9 +12,11 @@ import {fadeInAnimation} from "../../animations/fade-animations";
   animations: [fadeInAnimation],
 })
 export class MapComponent implements OnInit {
+  @ViewChild(LeafletDirective) leafletDirective!: LeafletDirective;
+
   @Input() longitude: number | undefined
   @Input() latitude: number | undefined
-  @Input() zoom: number = 17;
+  @Input() zoom: number = 1;
   @Input() contactData!: ContactUsDto
 
   isFullscreen: boolean = false;
@@ -38,6 +41,13 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    document.addEventListener('fullscreenchange', () => {
+      setTimeout(() => {
+        console.log("invalidating")
+        this.leafletDirective.getMap().invalidateSize()
+        console.log("invalidation complete")
+      }, 0)
+    })
     this.updateMapOptions({
       zoom: this.zoom,
     })
@@ -45,8 +55,13 @@ export class MapComponent implements OnInit {
 
   toggleFullscreen() {
     const mapElement = this.el.nativeElement.querySelector(".map-container") as HTMLElement
-    console.log("pressed")
     if (!this.isFullscreen) {
+      this.updateMapOptions({
+        zoom: 30,
+        latitude: this.latitude,
+        longitude: this.longitude,
+      })
+
       if (mapElement.requestFullscreen) {
         mapElement.requestFullscreen()
         // @ts-ignore
