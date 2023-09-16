@@ -60,7 +60,7 @@ services:
     ports:
       - 80:80
     depends_on:
-      - acpc_back
+      - acpc-back
     deploy:
       replicas: 1
       restart_policy:
