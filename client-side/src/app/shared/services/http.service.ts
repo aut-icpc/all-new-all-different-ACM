@@ -1,13 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {BaseHttpService} from "./base-http-service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class HttpService {
+export class HttpService extends BaseHttpService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(httpClient: HttpClient) {
+    super(httpClient);
+  }
 
   public sendPostRequest<T>(url: string, data: any,
                             options?: { headers?: HttpHeaders | { [header: string]: string | string[] }; params?: HttpParams | { [param: string]: string | string[] }}): Observable<T> {
