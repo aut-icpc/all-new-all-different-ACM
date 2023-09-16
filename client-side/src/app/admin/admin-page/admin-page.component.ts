@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {TeamDto} from "../../shared/interfaces/DTO/team.dto";
 import {Router} from "@angular/router";
-import {HttpService} from "../../shared/services/http.service";
 import {API_URLS} from "../../shared/api-urls";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
-import {HttpHeaders} from "@angular/common/http";
+import {Pagination} from "../../shared/interfaces/pagination";
+import {AuthenticatedHttpService} from "../services/authenticated-http.service";
 
 @Component({
   selector: 'acpc-admin-page',
@@ -13,20 +13,19 @@ import {HttpHeaders} from "@angular/common/http";
 })
 export class AdminPageComponent implements OnInit {
 
+  paginationData!: Pagination;
   dataSource!: TeamDto[];
   displayedColumns = ['Row', 'Team name', 'Institution', 'Status', 'Actions'];
 
-  constructor(private router: Router, private http: HttpService) { }
+  constructor(private router: Router, private http: AuthenticatedHttpService) { }
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token') || '';
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    this.http.sendGetRequest<BaseResponseDto<TeamDto[]>>(API_URLS.REGISTRATION.TEAM_REGISTER, {headers: headers})
+    this.http.sendGetRequest<BaseResponseDto<TeamDto[]>>(API_URLS.REGISTRATION.TEAM_REGISTER)
       .subscribe(response => {
         this.dataSource = response.result;
-      })
+      });
+
+    this.paginationData = new Pagination();
   }
 
   showTeamDetails(team: TeamDto) {
@@ -34,4 +33,7 @@ export class AdminPageComponent implements OnInit {
     this.router.navigate(['/admin/team-details', id]);
   }
 
+  onPageChanged($event: any) {
+    console.log($event);
+  }
 }
