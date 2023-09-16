@@ -1,20 +1,22 @@
-FROM node:14.15.4 as node
-# Create a Virtual directory inside the docker image
-WORKDIR /dist/src/app
-# Run command in Virtual directory
-RUN npm cache clean --force
-# Copy files from local machine to virtual directory in docker image
-COPY . .
-RUN npm install
-RUN npm run build --prod
+# Use an official Node.js runtime as the base image
+FROM node:14-alpine
 
-### STAGE 2:RUN ###
-# Defining nginx image to be used
-FROM nginx:latest AS ngi
-# Copying compiled code and nginx config to different folder
-# NOTE: This path may change according to your project's output folder
-COPY --from=build /dist/src/app/dist/client-side /usr/share/nginx/html
-COPY /nginx.conf  /etc/nginx/conf.d/default.conf
-# Exposing a port, here it means that inside the container
-# the app will be using Port 80 while running
+# Set the working directory inside the container
+WORKDIR /app
+
+RUN npm install -g @angular/cli
+
+# Copy the package.json and package-lock.json files to the working directory
+COPY package*.json ./
+
+# Install the app dependencies
+RUN npm install
+
+# Copy the entire project to the working directory
+COPY . .
+
+# Expose port 80
 EXPOSE 80
+
+# Start the Angular app using ng serve on port 80
+CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "80", "--disable-host-check"]

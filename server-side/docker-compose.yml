@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 services:
   acpc_back:
     image: acpc_back:latest
@@ -17,7 +17,7 @@ services:
         condition: on-failure
   db:
     volumes:
-      - /var/lib/mysql:/var/lib/mysql
+      - ../database/mysql:/var/lib/mysql
     image: mysql:8.0
     environment:
       - MYSQL_ROOT_PASSWORD=acpc_admin
@@ -34,7 +34,7 @@ services:
       - 9090:9090
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      - /var/lib/prometheus:/prometheus
+      - ../prometheus:/prometheus
     deploy:
       replicas: 1
       restart_policy:
@@ -50,7 +50,7 @@ services:
       restart_policy:
         condition: on-failure
     volumes:
-      - /var/lib/grafana:/var/lib/grafana
+      - ../grafana:/var/lib/grafana
 
   acpc_front:
     image: acpc_front:latest
