@@ -16,7 +16,7 @@
 <body>
 <div>
     <h1>Hello <span th:text="${name}"></span>!</h1>
-    <div th:switch="${status}" th:with="lowercaseStatus=${#strings.toLowerCase(status.replaceAll('_', ''))}">
+    <div th:switch="${status}" th:with="lowercaseStatus=${#strings.toLowerCase(status.replaceAll('_', ' '))}">
         <!--TODO: add waiting for payment case using fee of teams and payment url-->
         <p th:case="REJECTED">
             Your registration request has been rejected.<br>
