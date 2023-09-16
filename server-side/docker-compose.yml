@@ -1,6 +1,6 @@
 version: '3.3'
 services:
-  acpc_back:
+  acpc-back:
     image: acpc_back:latest
     build:
       context: .
@@ -52,7 +52,7 @@ services:
     volumes:
       - ../grafana:/var/lib/grafana
 
-  acpc_front:
+  acpc-front:
     image: acpc_front:latest
     build:
       context: ../client-side
