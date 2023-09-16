@@ -23,6 +23,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ThemeSlideToggleComponent } from './components/theme-slide-toggle/theme-slide-toggle.component';
 import { SocialMediaUrlToUsernamePipe } from './pipes/socla-media-url-to-username.pipe';
 import { MapComponent } from './components/map/map.component';
+import {LeafletModule} from "@asymmetrik/ngx-leaflet";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -39,30 +41,33 @@ import { MapComponent } from './components/map/map.component';
         SocialMediaUrlToUsernamePipe,
         MapComponent
     ],
-    exports: [
-        HeaderComponent,
-        UpperSnakeCaseToNormalPipe,
-        NormalStringToSnakeCasePipe,
-        DateToHumanReadableStringPipe,
-        GenerateErrorMessagePipe,
-        IconsModule,
-        SocialMediaUrlToUsernamePipe
-    ],
-    imports: [
-        CommonModule,
-        MatButtonModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        MatDialogModule,
-        MatIconModule,
-        MatSnackBarModule,
-        MatBottomSheetModule,
-        MatListModule,
-        RouterModule,
-        IconsModule,
-        MatSlideToggleModule,
-        ReactiveFormsModule,
-        FormsModule
-    ]
+  exports: [
+    HeaderComponent,
+    UpperSnakeCaseToNormalPipe,
+    NormalStringToSnakeCasePipe,
+    DateToHumanReadableStringPipe,
+    GenerateErrorMessagePipe,
+    IconsModule,
+    SocialMediaUrlToUsernamePipe,
+    MapComponent
+  ],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatDialogModule,
+    MatIconModule,
+    MatSnackBarModule,
+    MatBottomSheetModule,
+    MatListModule,
+    RouterModule,
+    IconsModule,
+    MatSlideToggleModule,
+    ReactiveFormsModule,
+    FormsModule,
+    LeafletModule,
+    MatProgressSpinnerModule
+  ]
 })
 export class SharedModule { }

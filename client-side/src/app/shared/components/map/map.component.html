@@ -1,1 +1,17 @@
-<p>map works!</p>
+<div class=map-container>
+  <div
+    class="map"
+    leaflet
+    [leafletOptions]="options"
+    (leafletMapReady)="onMapReady()" *ngIf="showMap">
+  </div>
+  <div class="control-pad">
+    <button (click)="toggleFullscreen()" class="fullscreen-button" [ngClass]="{'fullscreen': isFullscreen}">[ ]</button>
+  </div>
+  <div id="map-loader" [ngClass]="{'loader-behind-map': isMapLoaded}"
+       [@fadeIn]="(isMapLoaded && showMap) ? 'decreaseOpacity' : 'increaseOpacity'">
+    <!--     [@fadeIn]="'decreaseOpacity'">-->
+    <mat-spinner diameter="70" strokeWidth="5"></mat-spinner>
+    <acpc-icon color="primary" icon="map"></acpc-icon>
+  </div>
+</div>
