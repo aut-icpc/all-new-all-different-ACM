@@ -117,10 +117,10 @@ export class HeaderComponent implements AfterViewInit {
       'Home': 'home',
       'Contests Archive': 'archive',
       'About': 'info_filled',
-      'Register': 'edit',
+      'Register': 'add_user',
       'Timeline': 'calender',
       'Contact Us': 'bubble',
-      'Reg. Status': 'checkbox'
+      'Reg. Status': 'clipboard'
     }
   }
 

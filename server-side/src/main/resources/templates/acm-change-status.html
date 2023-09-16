@@ -3,11 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>ACPC Changed Status</title>
+    <style>
+        * {
+            font-family: Arial,serif;
+        }
+
+        p {
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
 <div>
     <h1>Hello <span th:text="${name}"></span>!</h1>
-    <p>Your team status changed to <span th:text="${status}"></span>.</p>
+    <div th:switch="${status}" th:with="lowercaseStatus=${#strings.toLowerCase(status.replaceAll('_', ' '))}">
+        <!--TODO: add waiting for payment case using fee of teams and payment url-->
+        <p th:case="REJECTED">
+            Your registration request has been rejected.<br>
+            For more information, contact our support team.<br><br>
+            Thank you
+        </p>
+        <p th:case="RESERVED">
+            Your registration request has been transferred to
+            the reservation queue due to a shortage or full capacity.<br>
+            We will inform you as soon as sufficient capacity becomes available.<br><br>
+            Thank you for your patience and understanding.
+        </p>
+        <p th:case="FINALIZED">
+            Congrats!🥳<br><br>
+            Your team registration was successfully finalized.<br>
+            For further information, checkout our instagram/telegram or message our telegram admin.<br><br>
+            Thank you
+        </p>
+        <p th:case="*">
+            Your team status changed to <span th:text="@{${lowercaseStatus}}"></span>.
+        </p>
+    </div>
 </div>
 </body>
 </html>

@@ -39,7 +39,7 @@ public class MailUtil {
     }
 
     /**
-     * Sends a starting alert for the contest.
+     * Sends a starting alert for the contest registration.
      *
      * @param to The recipient email address.
      */

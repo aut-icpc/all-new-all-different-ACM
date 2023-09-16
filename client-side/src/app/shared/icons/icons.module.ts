@@ -89,5 +89,11 @@ export class IconsModule {
       this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Sun.svg'));
     this.iconRegistry.addSvgIcon('more',
       this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'More.svg'));
+    this.iconRegistry.addSvgIcon('refresh',
+      this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Refresh.svg'));
+    this.iconRegistry.addSvgIcon('clipboard',
+      this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Clipboard.svg'));
+    this.iconRegistry.addSvgIcon('add_user',
+      this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Add_User.svg'));
   }
 }
