@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import * as Leaflet from "leaflet";
 import {ContactUsDto} from "../../interfaces/DTO/contactUs.dto";
 import {fadeInAnimation} from "../../animations/fade-animations";
@@ -11,7 +11,7 @@ import {LeafletDirective} from "@asymmetrik/ngx-leaflet";
   styleUrls: ['./map.component.scss'],
   animations: [fadeInAnimation],
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnChanges {
   @ViewChild(LeafletDirective) leafletDirective!: LeafletDirective;
 
   @Input() longitude: number | undefined
@@ -21,7 +21,7 @@ export class MapComponent implements OnInit {
 
   isFullscreen: boolean = false;
   isMapLoaded = false;
-  _options: Leaflet.MapOptions = {};
+  options: Leaflet.MapOptions = {};
   showMap = false
 
   constructor(private el: ElementRef) {
@@ -43,9 +43,7 @@ export class MapComponent implements OnInit {
   ngOnInit(): void {
     document.addEventListener('fullscreenchange', () => {
       setTimeout(() => {
-        console.log("invalidating")
         this.leafletDirective.getMap().invalidateSize()
-        console.log("invalidation complete")
       }, 0)
     })
     this.updateMapOptions({
@@ -53,6 +51,7 @@ export class MapComponent implements OnInit {
     })
   }
 
+  //TODO Needs to be moved to a Helper class/provider
   toggleFullscreen() {
     const mapElement = this.el.nativeElement.querySelector(".map-container") as HTMLElement
     if (!this.isFullscreen) {
@@ -118,19 +117,10 @@ export class MapComponent implements OnInit {
     }
   }
 
-  get options() {
-    return this._options
-  }
-
-  set options(options: Leaflet.MapOptions) {
-    this._options = {...options}
-  }
-
 
   onMapReady() {
     setTimeout(() => {
       this.isMapLoaded = true;
-      // @ts-ignore
     }, 1500);
   }
 
