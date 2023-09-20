@@ -3,6 +3,7 @@ import * as Leaflet from "leaflet";
 import {ContactUsDto} from "../../interfaces/DTO/contactUs.dto";
 import {fadeInAnimation} from "../../animations/fade-animations";
 import {LeafletDirective} from "@asymmetrik/ngx-leaflet";
+import Helper from "../../utils/Helper";
 
 
 @Component({
@@ -54,45 +55,11 @@ export class MapComponent implements OnInit, OnChanges {
   //TODO Needs to be moved to a Helper class/provider
   toggleFullscreen() {
     const mapElement = this.el.nativeElement.querySelector(".map-container") as HTMLElement
-    if (!this.isFullscreen) {
-      this.updateMapOptions({
-        zoom: 30,
-        latitude: this.latitude,
-        longitude: this.longitude,
-      })
 
-      if (mapElement.requestFullscreen) {
-        mapElement.requestFullscreen()
-        // @ts-ignore
-      } else if (mapElement.mozRequestFullScreen) {
-        // @ts-ignore
-        mapElement.mozRequestFullScreen()
-        // @ts-ignore
-      } else if (mapElement.webkitRequestFullscreen) {
-        // @ts-ignore
-        mapElement.webkitRequestFullscreen()
-        // @ts-ignore
-      } else if (mapElement.msRequestFullscreen) {
-        // @ts-ignore
-        mapElement.msRequestFullscreen()
-      }
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-        // @ts-ignore
-      } else if (document.mozCancelFullScreen) {
-        // @ts-ignore
-        document.mozCancelFullScreen();
-        // @ts-ignore
-      } else if (document.webkitExitFullscreen) {
-        // @ts-ignore
-        document.webkitExitFullscreen();
-        // @ts-ignore
-      } else if (document.msExitFullscreen) {
-        // @ts-ignore
-        document.msExitFullscreen();
-      }
-    }
+    Helper.toggleFullscreen({
+      element: mapElement,
+      turnOn: !this.isFullscreen,
+    })
 
     this.isFullscreen = !this.isFullscreen
   }
