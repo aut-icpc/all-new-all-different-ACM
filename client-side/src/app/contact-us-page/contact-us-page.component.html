@@ -24,17 +24,12 @@
         </div>
       </div>
     </div>
-    <div id=map-container>
-      <div class="map"
-           leaflet
-           [leafletOptions]="options"
-           (leafletMapReady)="onMapReady()" *ngIf="contactData">
-      </div>
-      <div id="map-loader" [ngClass]="{'loader-behind-map': isMapLoaded}"
-           [@fadeIn]="(isMapLoaded && contactData) ? 'decreaseOpacity' : 'increaseOpacity'">
-        <mat-spinner diameter="70" strokeWidth="5"></mat-spinner>
-        <acpc-icon color="primary" icon="map"></acpc-icon>
-      </div>
-    </div>
+    <acpc-map
+      class="map-content"
+      [zoom]="17"
+      [latitude]="this.contactData?.universityCoordinate?.x"
+      [contactData]="contactData"
+      [longitude]="this.contactData?.universityCoordinate?.y">
+    </acpc-map>
   </div>
 </div>
