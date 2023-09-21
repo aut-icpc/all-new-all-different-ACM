@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {expandInAnimation} from "../../shared/animations/expand-animations";
 import {fadeInAnimation} from "../../shared/animations/fade-animations";
-import {FormControl, Validators} from "@angular/forms";
+import {UntypedFormControl, Validators} from "@angular/forms";
 import {HttpService} from "../../shared/services/http.service";
 import {API_URLS} from "../../shared/api-urls";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
@@ -15,7 +15,7 @@ import {TeamBasicInformationDto} from "../../shared/interfaces/DTO/teamBasicInfo
 })
 export class RegistrationStatusPageComponent {
 
-  formControl = new FormControl('', Validators.required);
+  formControl = new UntypedFormControl('', Validators.required);
 
   teamDto!: TeamBasicInformationDto;
 

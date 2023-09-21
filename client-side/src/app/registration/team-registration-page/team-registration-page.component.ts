@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {PlatformService} from "../../shared/services/platform.service";
-import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {environment} from "../../../environments/environment";
 import {ToastService} from "../../shared/services/toast.service";
 import {TeamDto} from "../../shared/interfaces/DTO/team.dto";
@@ -28,8 +28,8 @@ export class TeamRegistrationPageComponent {
 
   siteKey = environment.recaptcha.siteKey;
 
-  teamInfoFormGroup !: FormGroup;
-  teamDocumentFormGroup !: FormGroup;
+  teamInfoFormGroup !: UntypedFormGroup;
+  teamDocumentFormGroup !: UntypedFormGroup;
 
   registrationTerms!: RegistrationTermsDto;
   contactData!: ContactUsDto;
@@ -57,21 +57,21 @@ export class TeamRegistrationPageComponent {
   }
 
   initializeTeamInfoFormGroup() {
-    this.teamInfoFormGroup = new FormGroup({
-      teamName: new FormControl('', Validators.required, uniqueTeamNameValidator(this.http)),
-      institution: new FormControl('', [Validators.required,
+    this.teamInfoFormGroup = new UntypedFormGroup({
+      teamName: new UntypedFormControl('', Validators.required, uniqueTeamNameValidator(this.http)),
+      institution: new UntypedFormControl('', [Validators.required,
         Validators.minLength(environment.inputValidators.institutionNameMinLength)]),
-      contestantOne: new FormControl('', Validators.required),
-      contestantTwo: new FormControl('', Validators.required),
-      contestantThree: new FormControl('', Validators.required),
+      contestantOne: new UntypedFormControl('', Validators.required),
+      contestantTwo: new UntypedFormControl('', Validators.required),
+      contestantThree: new UntypedFormControl('', Validators.required),
     })
   }
 
   initializeTeamDocumentFormGroup() {
-    this.teamDocumentFormGroup = new FormGroup({
-      contestantOne: new FormControl('', Validators.required),
-      contestantTwo: new FormControl('', Validators.required),
-      contestantThree: new FormControl('', Validators.required),
+    this.teamDocumentFormGroup = new UntypedFormGroup({
+      contestantOne: new UntypedFormControl('', Validators.required),
+      contestantTwo: new UntypedFormControl('', Validators.required),
+      contestantThree: new UntypedFormControl('', Validators.required),
     })
   }
 
@@ -83,7 +83,7 @@ export class TeamRegistrationPageComponent {
     return this.teamInfoFormGroup.controls[`contestant${number}`].value.studentId;
   }
 
-  showErrorIfInvalid(currentForm: FormGroup) {
+  showErrorIfInvalid(currentForm: UntypedFormGroup) {
     currentForm.markAllAsTouched();
     if (currentForm.invalid)
       this.toast.showError('please fill all the fields');
