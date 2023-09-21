@@ -95,5 +95,9 @@ export class IconsModule {
       this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Clipboard.svg'));
     this.iconRegistry.addSvgIcon('add_user',
       this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Add_User.svg'));
+    this.iconRegistry.addSvgIcon('minimize',
+      this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Minimize.svg'));
+    this.iconRegistry.addSvgIcon('maximize',
+      this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Maximize.svg'));
   }
 }

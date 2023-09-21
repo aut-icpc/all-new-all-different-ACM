@@ -6,7 +6,9 @@
     (leafletMapReady)="onMapReady()" *ngIf="showMap">
   </div>
   <div class="control-pad">
-    <button (click)="toggleFullscreen()" class="fullscreen-button" [ngClass]="{'fullscreen': isFullscreen}">[ ]</button>
+    <button (click)="toggleFullscreen()" class="fullscreen-button" [ngClass]="{'fullscreen': isFullscreen}">
+      <acpc-icon [icon]="isFullscreen ? 'minimize' : 'maximize'"></acpc-icon>
+    </button>
   </div>
   <div id="map-loader" [ngClass]="{'loader-behind-map': isMapLoaded}"
        [@fadeIn]="(isMapLoaded && showMap) ? 'decreaseOpacity' : 'increaseOpacity'">
