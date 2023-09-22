@@ -3,6 +3,7 @@ package com.acm.server.controller;
 import com.acm.server.config.Constants;
 import com.acm.server.model.dto.BaseResponseDto;
 import com.acm.server.model.dto.TeamDto;
+import com.acm.server.model.dto.TeamPageDto;
 import com.acm.server.request.UpdateStatusRequest;
 import com.acm.server.response.TeamBasicInformationResponse;
 import com.acm.server.service.TeamService;
@@ -11,8 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Controller class for handling requests related to the team functionality.
@@ -114,7 +113,7 @@ public class TeamController {
      */
     @GetMapping
     @Secured("ROLE_ADMIN")
-    public ResponseEntity<BaseResponseDto<List<TeamDto>>> getTeams(Pageable page) {
+    public ResponseEntity<BaseResponseDto<TeamPageDto>> getTeams(Pageable page) {
         // Return the response entity with the team data wrapped in BaseResponseDto
         return ResponseEntity.ok(new BaseResponseDto<>("Team returned successfully!",
                 teamService.getTeams(page)));

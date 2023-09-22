@@ -1,11 +1,10 @@
 package com.acm.server.service;
 
 import com.acm.server.model.dto.TeamDto;
+import com.acm.server.model.dto.TeamPageDto;
 import com.acm.server.request.UpdateStatusRequest;
 import com.acm.server.response.TeamBasicInformationResponse;
 import org.springframework.data.domain.Pageable;
-
-import java.util.List;
 
 /**
  * @author Farid Masjedi
@@ -26,7 +25,7 @@ public interface TeamService {
 
     TeamDto updateStatus(UpdateStatusRequest request);
 
-    List<TeamDto> getTeams(Pageable pageable);
+    TeamPageDto getTeams(Pageable pageable);
 
     boolean isNameUnique(String teamName);
 }
