@@ -1,39 +1,39 @@
 @import "src/styles";
 
 :host {
-  .mat-table {
+  .mat-mdc-table {
     width: 100%;
     overflow: hidden;
     border-radius: 10px 10px 0 0;
   }
 
-  .mat-paginator {
+  .mat-mdc-paginator {
     overflow: hidden;
     border-radius: 0 0 10px 10px;
   }
 
-  .mat-footer-row,
-  .mat-header-row,
-  .mat-row {
+  .mat-mdc-footer-row,
+  .mat-mdc-header-row,
+  .mat-mdc-row {
     display: inline-flex;
     min-width: 100%;
   }
 
-  .mat-cell, .mat-header-cell {
+  .mat-mdc-cell, .mat-mdc-header-cell {
     align-items: center;
     display: inline-flex;
     justify-content: center;
   }
 
-  .mat-cell:not(:first-child), .mat-header-cell:not(:first-child) {
+  .mat-mdc-cell:not(:first-child), .mat-mdc-header-cell:not(:first-child) {
     flex: 1;
   }
 
-  .mat-cell:first-child, .mat-header-cell:first-child {
+  .mat-mdc-cell:first-child, .mat-mdc-header-cell:first-child {
     width: 20px;
   }
 
-  .mat-spinner {
+  .mat-mdc-progress-spinner {
     position: absolute;
   }
 }

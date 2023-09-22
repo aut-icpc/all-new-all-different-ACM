@@ -1,14 +1,15 @@
 :host ::ng-deep {
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
   .mat-form-field-suffix {
     left: 5px;
   }
 
-  .mat-form-field {
+  .mat-mdc-form-field {
     width: 100%;
     font-size: 14px;
   }
 
-  .mat-raised-button {
+  .mat-mdc-raised-button {
     margin: 0 !important;
   }
 }
