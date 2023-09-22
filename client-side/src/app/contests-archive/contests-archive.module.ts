@@ -5,7 +5,7 @@ import {ContestsArchivePageComponent} from './contests-archive-page/contests-arc
 import {ContestsArchiveRoutingModule} from "./contests-archive-routing.module";
 import {ContestDetailsPageComponent} from './contest-details-page/contest-details-page.component';
 import {SharedModule} from "../shared/shared.module";
-import {MatTabsModule} from "@angular/material/tabs";
+import {MatLegacyTabsModule as MatTabsModule} from "@angular/material/legacy-tabs";
 import { ContestsPhotosTabComponent } from './contests-photos-tab/contests-photos-tab.component';
 
 

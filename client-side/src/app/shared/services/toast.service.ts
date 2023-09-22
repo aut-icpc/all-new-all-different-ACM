@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
+import {MatLegacySnackBar as MatSnackBar, MatLegacySnackBarConfig as MatSnackBarConfig} from "@angular/material/legacy-snack-bar";
 import {StatusToastComponent} from "../components/status-toast/status-toast.component";
 import {PlatformService} from "./platform.service";
 

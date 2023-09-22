@@ -4,7 +4,7 @@ import {AboutRoutingModule} from "./about-routing.module";
 import { AboutPageComponent } from './about-page/about-page.component';
 import { DescriptionBoxComponent } from './description-box/description-box.component';
 import {SharedModule} from "../shared/shared.module";
-import {MatButtonModule} from "@angular/material/button";
+import {MatLegacyButtonModule as MatButtonModule} from "@angular/material/legacy-button";
 import { FadeInDirective } from './fade-in.directive';
 
 

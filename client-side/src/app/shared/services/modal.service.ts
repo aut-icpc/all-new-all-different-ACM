@@ -1,5 +1,5 @@
 import {Injectable, TemplateRef} from '@angular/core';
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig} from "@angular/material/legacy-dialog";
 import {ModalBodyComponent} from "../components/modal-body/modal-body.component";
 
 @Injectable({
