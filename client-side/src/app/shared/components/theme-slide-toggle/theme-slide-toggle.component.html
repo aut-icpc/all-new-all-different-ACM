@@ -2,7 +2,7 @@
   <button mat-icon-button type="button" (click)="toggleTheme()"
           [@moveToggle]="isDark"></button>
   <acpc-icon icon="sun" color="primary" (click)="toggleTheme()"
-             [ngClass]="{'disable-click': isDark}"></acpc-icon>
+             [class]="{'disable-click': isDark}"></acpc-icon>
   <acpc-icon icon="moon" color="primary" (click)="toggleTheme()"
-             [ngClass]="{'disable-click': !isDark}"></acpc-icon>
+             [class]="{'disable-click': !isDark}"></acpc-icon>
 </div>

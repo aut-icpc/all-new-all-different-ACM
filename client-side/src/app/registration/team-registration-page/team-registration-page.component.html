@@ -1,5 +1,5 @@
 <div id="page-container">
-  <div id="content-container" [ngClass]="{'column-direction-container' : !isDesktop}">
+  <div id="content-container" [class]="{'column-direction-container' : !isDesktop}">
     <mat-stepper linear #stepper [orientation]="isDesktop ? 'horizontal' : 'vertical'" acpcMatVerticalStepperScrollerDirective>
       <mat-step [editable]="true" [optional]="false" [stepControl]="teamInfoFormGroup">
         <ng-template matStepLabel>Fill out your team information</ng-template>
@@ -68,7 +68,7 @@
             <div class="captcha-container">
               <re-captcha id="recaptcha" name="recaptcha" required [siteKey]="siteKey"
                           #recaptcha="ngModel" [(ngModel)]="captchaToken"
-                          [ngClass]="{'error-captcha': showErrorOnCaptcha}"
+                          [class]="{'error-captcha': showErrorOnCaptcha}"
                           [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
               <span [hidden]="recaptcha.valid || recaptcha.pristine"
                     style="color: #dc3545;">Captcha must be solved</span>
@@ -81,7 +81,7 @@
         </ng-template>
       </mat-step>
     </mat-stepper>
-    <div id="banner-container" [ngClass]="{'sticky' : isDesktop}">
+    <div id="banner-container" [class]="{'sticky' : isDesktop}">
       <div id="banner">
         <h2>Contest Registration</h2>
         <h3>Registration fees are as follows:</h3>
