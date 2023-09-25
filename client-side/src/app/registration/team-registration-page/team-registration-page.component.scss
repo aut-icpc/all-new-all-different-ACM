@@ -1,16 +1,51 @@
 @import "src/styles";
 
-::ng-deep {
+:host {
 
   .mat-mdc-form-field {
-    width: 185px !important;
+    width: initial !important;
+    height: 66.25px !important;
+    margin-top: 2px !important;
   }
 
+  .mat-mdc-floating-label.mdc-floating-label {
+    font: inherit !important;
+    font-weight: 400 !important;
+  }
+
+  .mat-mdc-floating-label:not(.mdc-floating-label--float-above) {
+    top: 22px !important;
+    font-size: 12px !important;
+  }
+
+  .mat-mdc-form-field-error {
+    font-weight: bold;
+    font-size: 80% !important;
+    line-height: 1.125 !important;
+  }
+
+  .mat-mdc-form-field-infix {
+    font-size: 14px !important;
+    font-weight: 300 !important;
+    padding: 1rem 0 0.8rem 0 !important;
+  }
+
+  .mdc-notched-outline__leading {
+    max-width: 6px !important;
+  }
+
+  .mat-form-field-flex {
+    padding-left: 0 !important;
+  }
+
+  .mat-mdc-text-field-wrapper.mat-mdc-text-field-wrapper {
+    height: 40px !important;
+  }
   .mat-horizontal-content-container {
     padding: 0 !important;
   }
 
-  .mat-stepper {
+  .mat-stepper-horizontal {
     width: 50% !important;
   }
 }
@@ -149,6 +184,10 @@ a {
   align-items: center;
   flex-direction: column;
   justify-content: center;
+}
+
+.mdc-button {
+  letter-spacing: normal;
 }
 
 .step-buttons-container {

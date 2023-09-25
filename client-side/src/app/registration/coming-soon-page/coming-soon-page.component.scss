@@ -1,12 +1,15 @@
 :host ::ng-deep {
   /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
-  .mat-form-field-suffix {
+  .mat-form-field-icon-suffix {
     left: 5px;
   }
 
   .mat-mdc-form-field {
     width: 100%;
     font-size: 14px;
+    letter-spacing: 1.5px;
+    line-height: 1.125;
+    font-family: inherit !important;
   }
 
   .mat-mdc-raised-button {
@@ -58,8 +61,8 @@
 
 #send-btn {
   padding: 0 5px;
-  min-width: 42px;
-  min-height: 42px;
+  min-width: 38px;
+  min-height: 38px;
   box-shadow: none;
 }
 
@@ -74,8 +77,7 @@
       var(--color-three),
       var(--color-two),
       var(--color-one)
-  )
-  0 0 / var(--bg-size) 100%;
+  ) 0 0 / var(--bg-size) 100%;
   color: transparent;
   font-size: 400%;
   text-align: center;
