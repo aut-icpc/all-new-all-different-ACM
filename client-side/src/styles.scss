@@ -181,3 +181,17 @@ acpc-home-page {
   height: 100%;
   top: 0;
 }
+
+//The following consists of material pagination styles
+.mat-mdc-paginator-page-size-label {
+  min-width: 16ch;
+}
+
+.mat-mdc-paginator-page-size {
+  align-items: center;
+}
+
+.mat-mdc-paginator-page-size .mat-mdc-text-field-wrapper {
+  width: 70px;
+  height: 40px;
+}
