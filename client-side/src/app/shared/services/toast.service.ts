@@ -30,7 +30,7 @@ export class ToastService {
     config = {
       ...config,
       verticalPosition: this.platform.isOnDesktopDevice() ? 'bottom' : 'top',
-      duration: 500000
+      duration: 5000
     };
     this.showSnackbar(message, 'ERROR', config);
   }
