@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {HttpService} from "../../shared/services/http.service";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {JwtAuthenticationResponseDto} from "../../shared/interfaces/DTO/jwtAuthenticationResponse.dto";
@@ -13,7 +13,7 @@ import {SignInRequestDto} from "../../shared/interfaces/DTO/signInRequest.dto";
   styleUrls: ['./admin-login-page.component.scss']
 })
 export class AdminLoginPageComponent implements OnInit {
-  group!: FormGroup;
+  group!: UntypedFormGroup;
 
   isPasswordHidden = true;
 
@@ -22,9 +22,9 @@ export class AdminLoginPageComponent implements OnInit {
   constructor(private http: HttpService, private route: Router) { }
 
   ngOnInit(): void {
-    this.group = new FormGroup({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+    this.group = new UntypedFormGroup({
+      username: new UntypedFormControl('', Validators.required),
+      password: new UntypedFormControl('', Validators.required)
     })
   }
 

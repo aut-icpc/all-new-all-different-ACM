@@ -11,7 +11,7 @@
     <div class="detail-row">
       <div class="team-details">
         <span class="detail-title">status: </span>
-        <mat-form-field appearance="outline">
+        <mat-form-field class="form-field-selector" appearance="outline">
           <mat-label>status</mat-label>
           <mat-select [formControl]="teamStatusControl" [(value)]="selectedStatus">
             <mat-option *ngFor="let status of teamStatusList" [value]="status.toString()">
@@ -22,7 +22,7 @@
         <button type="button" color="primary" id="update-status-btn"
                 [disabled]="isUpdateDisabled"
                 mat-mini-fab (click)="updateTeamStatus()">
-          <acpc-icon icon="refresh" [color]="isUpdateDisabled ? 'primary' : 'foreground'"></acpc-icon>
+          <acpc-icon icon="refresh" [color]="isUpdateDisabled ? 'primary' : 'foreground'" [size]="'2x'"></acpc-icon>
         </button>
       </div>
     </div>

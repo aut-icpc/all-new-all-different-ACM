@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
+import {UntypedFormControl, Validators} from "@angular/forms";
 import {HttpService} from "../../shared/services/http.service";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {MailDto} from "../../shared/interfaces/DTO/mail.dto";
@@ -14,7 +14,7 @@ import {ToastService} from "../../shared/services/toast.service";
 })
 export class ComingSoonPageComponent {
 
-  formControl = new FormControl('', Validators.email)
+  formControl = new UntypedFormControl('', Validators.email)
 
   constructor(private http: HttpService, private router: Router, private toast: ToastService) { }
 

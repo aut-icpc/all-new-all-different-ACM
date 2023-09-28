@@ -5,7 +5,7 @@ import {TeamDto} from "../../shared/interfaces/DTO/team.dto";
 import {API_URLS} from "../../shared/api-urls";
 import {TeamStatus} from "../../shared/enums/team-status";
 import {ModalService} from "../../shared/services/modal.service";
-import {FormControl} from "@angular/forms";
+import {UntypedFormControl} from "@angular/forms";
 import {UpdateStatusRequestDto} from "../../shared/interfaces/DTO/updateStatusRequest.dto";
 import {ToastService} from "../../shared/services/toast.service";
 import {AuthenticatedHttpService} from "../services/authenticated-http.service";
@@ -25,7 +25,7 @@ export class TeamDetailsPageComponent implements OnInit {
   isUpdateDisabled = true;
   teamCurrentStatus!: TeamStatus;
   selectedStatus!: TeamStatus;
-  teamStatusControl = new FormControl();
+  teamStatusControl = new UntypedFormControl();
 
   selectedCardPhotoAddress!: string;
   @ViewChild('cardPhoto') cardTemplate!: TemplateRef<any>;

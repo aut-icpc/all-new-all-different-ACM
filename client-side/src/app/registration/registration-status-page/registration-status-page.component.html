@@ -19,7 +19,7 @@
             Enter your intended team name
           </mat-error>
         </mat-form-field>
-        <div *ngIf="teamDto" id="status-box" [ngClass]="teamDto.status.toLowerCase() == 'finalized' ? 'finalized' : (teamDto.status.toLowerCase() == 'rejected' ? 'rejected' : '')"
+        <div *ngIf="teamDto" id="status-box" [class]="teamDto.status.toLowerCase() == 'finalized' ? 'finalized' : (teamDto.status.toLowerCase() == 'rejected' ? 'rejected' : '')"
              [@fadeIn]="isStatusBoxShowed ? 'increaseOpacity' : 'decreaseOpacity'">
           <div class="data-container">
             <span class="data-title">team name</span>

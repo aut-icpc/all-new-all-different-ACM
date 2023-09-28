@@ -1,15 +1,54 @@
 @import "src/styles";
 
-::ng-deep {
 
-  .mat-horizontal-content-container {
-    padding: 0 !important;
-  }
-
-  .mat-stepper-horizontal {
-    width: 50%;
-  }
+.mat-mdc-form-field {
+  width: initial !important;
+  height: 66.25px !important;
+  margin-top: 2px !important;
 }
+
+.mat-mdc-floating-label.mdc-floating-label {
+  font: inherit !important;
+  font-weight: 400 !important;
+}
+
+.mat-mdc-floating-label:not(.mdc-floating-label--float-above) {
+  top: 22px !important;
+  font-size: 12px !important;
+}
+
+.mat-mdc-form-field-error {
+  font-weight: bold;
+  font-size: 80% !important;
+  line-height: 1.125 !important;
+}
+
+.mat-mdc-form-field-infix {
+  font-size: 14px !important;
+  font-weight: 300 !important;
+  padding: 1rem 0 0.8rem 0 !important;
+}
+
+.mdc-notched-outline__leading {
+  max-width: 6px !important;
+}
+
+.mat-form-field-flex {
+  padding-left: 0 !important;
+}
+
+.mat-mdc-text-field-wrapper {
+  height: 47px !important;
+}
+
+.mat-horizontal-content-container {
+  padding: 0 !important;
+}
+
+.mat-stepper-horizontal {
+  width: 50% !important;
+}
+
 
 a {
   text-decoration: underline;
@@ -46,9 +85,11 @@ a {
   top: -20px;
   padding: 5px;
   box-sizing: border-box;
+
   img {
     @extend .logo-3;
   }
+
   span {
     font-weight: bold;
     font-size: 20px;
@@ -118,6 +159,7 @@ a {
 
 .column-direction-container {
   flex-direction: column-reverse !important;
+
   #banner-container {
     padding: 0;
     width: 100%;
@@ -144,6 +186,10 @@ a {
   justify-content: center;
 }
 
+.mdc-button {
+  letter-spacing: normal;
+}
+
 .step-buttons-container {
   padding: 15px;
   box-sizing: border-box;
@@ -151,6 +197,7 @@ a {
   justify-content: center;
   align-items: center;
   gap: 20px;
+
   button {
     width: 90px;
     height: 40px;
