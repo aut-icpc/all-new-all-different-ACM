@@ -4,6 +4,7 @@ import com.acm.server.annotation.StatusChangedEvent;
 import com.acm.server.mapper.TeamMapper;
 import com.acm.server.model.TeamStatus;
 import com.acm.server.model.dto.TeamDto;
+import com.acm.server.model.dto.TeamPageDto;
 import com.acm.server.repository.TeamRepository;
 import com.acm.server.request.UpdateStatusRequest;
 import com.acm.server.response.TeamBasicInformationResponse;
@@ -76,8 +77,10 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public List<TeamDto> getTeams(Pageable pageable) {
-        return teamRepository.findAll(pageable).map(mapper::toTeamDto).toList();
+    public TeamPageDto getTeams(Pageable pageable) {
+        List<TeamDto> teamDtos = teamRepository.findAll(pageable).map(mapper::toTeamDto).toList();
+        long totalRecords = teamRepository.count();
+        return new TeamPageDto(totalRecords, teamDtos);
     }
 
     @Override

@@ -36,8 +36,24 @@ body { margin: 0; font-family: Ubuntu, "Helvetica Neue", sans-serif; }
   border-radius: 20px;
 }
 
-.mat-form-field {
+.mat-mdc-form-field {
   font-size: 12px;
+  margin-top: 5px;
+}
+
+.mat-mdc-button,
+.mat-mdc-raised-button {
+  letter-spacing: normal;
+}
+
+.mdc-floating-label {
+  letter-spacing: 1.5px !important;
+  font: inherit !important;
+}
+
+.mat-mdc-form-field-infix {
+  min-height: 50px !important;
+  letter-spacing: normal !important;
 }
 
 .mat-stepper-horizontal {
@@ -45,11 +61,52 @@ body { margin: 0; font-family: Ubuntu, "Helvetica Neue", sans-serif; }
   flex-direction: column;
 }
 
+.mat-mdc-form-field-error-wrapper {
+  padding-left: 10px !important;
+  letter-spacing: 1.5px !important;
+  font: inherit !important;
+  font-size: 90% !important;
+}
+
+.mat-form-field-icon-suffix {
+  left: 5px !important;
+}
+
+.cdk-overlay-pane {
+  justify-content: center !important;
+}
+
+.mdc-snackbar {
+  min-width: 344px !important;
+  max-width: 33vw !important;
+}
+
+.mdc-snackbar__surface {
+  padding: 0 !important;
+  border-radius: 50% !important;
+}
+
+.mat-mdc-snack-bar-label {
+  padding: 0 !important;
+}
+
+.mat-mdc-form-field {
+  width: 100% !important;
+  font-size: 14px !important;
+  letter-spacing: 1.5px !important;
+  line-height: 1.125 !important;
+  font-family: inherit !important;
+}
+
+.mat-mdc-text-field-wrapper {
+  padding: 0 5px 0 10px !important;
+}
+
 .mat-horizontal-content-container, .mat-horizontal-stepper-content {
   height: 100%;
 }
 
-.mat-paginator {
+.mat-mdc-paginator {
   width: 100%;
 }
 
@@ -74,7 +131,7 @@ body { margin: 0; font-family: Ubuntu, "Helvetica Neue", sans-serif; }
   backdrop-filter: blur(3px);
 }
 
-.mat-dialog-container {
+.mat-mdc-dialog-surface {
   padding: 15px !important;
 }
 
@@ -109,7 +166,7 @@ acpc-contestant-form #form-container {
 }
 
 acpc-team-registration-page #form-header-title {
-  background-color: var(--background-light-5);
+  background-color: var(--background-light-10);
   color: var(--accent-text-color);
 }
 
@@ -123,4 +180,18 @@ acpc-home-page {
   width: 100%;
   height: 100%;
   top: 0;
+}
+
+//The following consists of material pagination styles
+.mat-mdc-paginator-page-size-label {
+  min-width: 16ch;
+}
+
+.mat-mdc-paginator-page-size {
+  align-items: center;
+}
+
+.mat-mdc-paginator-page-size .mat-mdc-text-field-wrapper {
+  width: 70px;
+  height: 40px;
 }

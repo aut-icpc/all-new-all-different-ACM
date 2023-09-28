@@ -1,5 +1,5 @@
 <div id="page-container" role="main">
-  <div id="upper-content-container">
+  <div id="content-container">
     <div id="background-container">
       <div id="background"></div>
       <div id="gradient"></div>
@@ -36,11 +36,14 @@
               </span>
             </div>
           </div>
+          <button id="register-button"
+                  mat-raised-button
+                  color="warn" type="button"
+                  (click)="goToRegistrationPage()">
+            register now
+          </button>
         </div>
       </div>
     </div>
-  </div>
-  <div id="lower-content-container">
-    <button id="register-button" mat-raised-button color="warn" type="button" (click)="goToRegistrationPage()">register now</button>
   </div>
 </div>

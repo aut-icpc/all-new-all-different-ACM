@@ -16,6 +16,7 @@ body[theme=light] {
 
   --background-color: #{$light-background};
   --background-light-5: #{$light-background};
+  --background-light-10: #{$light-background};
 }
 
 body[theme=dark] {
@@ -25,4 +26,5 @@ body[theme=dark] {
 
   --background-color: #{$dark-background};
   --background-light-5: #{$dark-bg-lighter-5};
+  --background-light-10: #424242;
 }

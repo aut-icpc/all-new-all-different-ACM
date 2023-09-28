@@ -2,8 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
-  FormControl,
-  FormGroup,
+  UntypedFormControl,
+  UntypedFormGroup,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
@@ -31,7 +31,7 @@ import {ContestantDocs} from "../../shared/interfaces/contestant-docs";
 })
 export class IdentificationDocumentsFormComponent implements OnInit, ControlValueAccessor, Validator {
 
-  group!: FormGroup;
+  group!: UntypedFormGroup;
   @Input() contestantStudentId!: string;
 
   onChange = (change: any) => {}
@@ -40,9 +40,9 @@ export class IdentificationDocumentsFormComponent implements OnInit, ControlValu
   constructor() { }
 
   ngOnInit(): void {
-    this.group = new FormGroup({
-      idCardPhoto: new FormControl('', Validators.required),
-      studentCardPhoto: new FormControl('', Validators.required)
+    this.group = new UntypedFormGroup({
+      idCardPhoto: new UntypedFormControl('', Validators.required),
+      studentCardPhoto: new UntypedFormControl('', Validators.required)
     });
     this.group.valueChanges.subscribe(e => {
       if (this.group.valid)

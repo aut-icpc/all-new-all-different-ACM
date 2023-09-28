@@ -3,8 +3,8 @@ import {PlatformService} from "../../shared/services/platform.service";
 import {
   AbstractControl,
   ControlValueAccessor,
-  FormControl,
-  FormGroup,
+  UntypedFormControl,
+  UntypedFormGroup,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
@@ -46,24 +46,24 @@ export class ContestantFormComponent implements OnInit, ControlValueAccessor, Va
   tShirts = environment.registration.shirtSizes;
   eduLevels = environment.registration.educationLevels;
 
-  group: FormGroup;
+  group: UntypedFormGroup;
 
   onChange = (change: any) => {}
   onTouched = (onTouched: any) => {}
 
   constructor(private platformService: PlatformService, private modalService: ModalService) {
     this.isDesktop = platformService.isOnDesktopDevice();
-    this.group = new FormGroup({
-      firstname: new FormControl('', Validators.required),
-      lastname: new FormControl('', Validators.required),
-      gender: new FormControl('', Validators.required),
-      phoneNumber: new FormControl('', [Validators.required,
+    this.group = new UntypedFormGroup({
+      firstname: new UntypedFormControl('', Validators.required),
+      lastname: new UntypedFormControl('', Validators.required),
+      gender: new UntypedFormControl('', Validators.required),
+      phoneNumber: new UntypedFormControl('', [Validators.required,
         Validators.minLength(environment.inputValidators.phoneMinLength),
         Validators.pattern(environment.inputValidators.phonePattern)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      education: new FormControl('', Validators.required),
-      studentId: new FormControl('', Validators.required),
-      shirtSize: new FormControl('', Validators.required)
+      email: new UntypedFormControl('', [Validators.required, Validators.email]),
+      education: new UntypedFormControl('', Validators.required),
+      studentId: new UntypedFormControl('', Validators.required),
+      shirtSize: new UntypedFormControl('', Validators.required)
     });
   }
 

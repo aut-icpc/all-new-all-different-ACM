@@ -5,6 +5,8 @@ import {API_URLS} from "../../shared/api-urls";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {Pagination} from "../../shared/interfaces/pagination";
 import {AuthenticatedHttpService} from "../services/authenticated-http.service";
+import {PageEvent} from "@angular/material/paginator";
+import {TeamPageDto} from "../../shared/interfaces/DTO/teamPage.dto";
 
 @Component({
   selector: 'acpc-admin-page',
@@ -13,19 +15,24 @@ import {AuthenticatedHttpService} from "../services/authenticated-http.service";
 })
 export class AdminPageComponent implements OnInit {
 
+  pageIndex: number = 0;
   paginationData!: Pagination;
-  dataSource!: TeamDto[];
+
+  teamPageData: TeamPageDto | undefined;
   displayedColumns = ['Row', 'Team name', 'Institution', 'Status', 'Actions'];
 
   constructor(private router: Router, private http: AuthenticatedHttpService) { }
 
   ngOnInit(): void {
-    this.http.sendGetRequest<BaseResponseDto<TeamDto[]>>(API_URLS.REGISTRATION.TEAM_REGISTER)
-      .subscribe(response => {
-        this.dataSource = response.result;
-      });
-
     this.paginationData = new Pagination();
+    this.paginationData.pageNumber = 0;
+    this.paginationData.pageSize = 10;
+
+    this.http.sendGetRequest<BaseResponseDto<TeamPageDto>>(API_URLS.REGISTRATION.TEAM_REGISTER,
+      {params: this.getPaginationHttpParameters()})
+      .subscribe(response => {
+        this.teamPageData = response.result;
+      });
   }
 
   showTeamDetails(team: TeamDto) {
@@ -33,7 +40,24 @@ export class AdminPageComponent implements OnInit {
     this.router.navigate(['/admin/team-details', id]);
   }
 
-  onPageChanged($event: any) {
-    console.log($event);
+  onPageChanged(event: PageEvent) {
+    delete this.teamPageData;
+
+    this.pageIndex = event.pageIndex;
+    this.paginationData.pageSize = event.pageSize;
+    this.paginationData.pageNumber = event.pageIndex;
+
+    this.http.sendGetRequest<BaseResponseDto<TeamPageDto>>(API_URLS.REGISTRATION.TEAM_REGISTER,
+      {params: this.getPaginationHttpParameters()})
+      .subscribe(response => {
+        this.teamPageData = response.result;
+      });
+  }
+
+  private getPaginationHttpParameters() {
+    return {
+      page: `${this.paginationData.pageNumber}`,
+      size: `${this.paginationData.pageSize}`
+    }
   }
 }

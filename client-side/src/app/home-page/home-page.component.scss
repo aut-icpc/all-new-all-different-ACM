@@ -1,8 +1,6 @@
 @import "src/styles";
 
 :host {
-  --lower-content-height: 150px;
-
   acpc-header .light-text {
     color: white !important;
   }
@@ -12,16 +10,9 @@
   height: 100%;
 }
 
-#upper-content-container {
-  height: calc(100% - var(--lower-content-height));
+#content-container {
+  height: 100%;
   position: relative;
-}
-
-#lower-content-container {
-  height: var(--lower-content-height);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 #background-container {
@@ -64,7 +55,7 @@
 #banner-box {
   @extend .round-border-1;
   width: 350px;
-  height: 300px;
+  height: 330px;
   padding: 10px;
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.5);
@@ -73,7 +64,6 @@
 
 #event-name {
   color: white;
-  height: 50%;
   display: flex;
   flex-direction: column;
   span {
@@ -91,7 +81,6 @@
 }
 
 #countdown {
-  height: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -134,9 +123,11 @@
 }
 
 #register-button {
-  width: 200px;
+  width: 100%;
+  margin: 10px 0 0;
   height: 60px;
-  font-size: 20px;
+  padding: 1.15rem;
+  font-size: 25px;
   @extend .round-border-1;
 }
 

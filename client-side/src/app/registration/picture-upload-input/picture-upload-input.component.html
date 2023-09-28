@@ -1,7 +1,7 @@
 <input #fileInput type="file" (change)="onFileSelected($event)"
        accept="image/*" id="file-input" [required]="required"/>
 <div #container class="drop-zone {{isDragOver ? 'drag-over' : 'drag-leave'}}"
-     [ngClass]="{'error': showErrorBox && required}"
+     [class]="{'error': showErrorBox && required}"
      (dragleave)="onDragLeave()"
      (drop)="onFileDropped($event)"
      (dragover)="onDragOver($event, container)">

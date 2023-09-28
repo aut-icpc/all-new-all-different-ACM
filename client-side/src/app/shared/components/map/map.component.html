@@ -1,0 +1,18 @@
+<div class=map-container>
+  <div
+    class="map"
+    leaflet
+    [leafletOptions]="options"
+    (leafletMapReady)="onMapReady()" *ngIf="showMap">
+  </div>
+  <div class="control-pad">
+    <button (click)="toggleFullscreen()" class="fullscreen-button" [class]="{'fullscreen': isFullscreen}">
+      <acpc-icon [icon]="isFullscreen ? 'minimize' : 'maximize'"></acpc-icon>
+    </button>
+  </div>
+  <div id="map-loader" [class]="{'loader-behind-map': isMapLoaded}"
+       [@fadeIn]="(isMapLoaded && showMap) ? 'decreaseOpacity' : 'increaseOpacity'">
+    <mat-spinner diameter="70" strokeWidth="5"></mat-spinner>
+    <acpc-icon color="primary" icon="map"></acpc-icon>
+  </div>
+</div>

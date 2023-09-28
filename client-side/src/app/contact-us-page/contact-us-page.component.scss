@@ -1,49 +1,23 @@
 @import "src/styles";
 
-#map-container {
-  height: 100%;
-  width: 50%;
-  overflow: hidden;
-  @extend .round-border-1;
-  position: relative;
-}
-
-.map {
-  height: 100%;
-  padding: 0;
-  box-sizing: border-box;
-  z-index: 1;
-}
-
-#map-loader {
-  top: 0;
-  display: flex;
-  height: 100%;
+.map-content {
   width: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: map_get($mat-primary, "lighter");
-  z-index: 2;
-  position: absolute;
-  transition: z-index .6s ease-out;
-
-  acpc-icon {
-    position: absolute;
-    margin: auto;
-  }
+  flex: 1;
+  height: 100%;
 }
 
 #page-container {
   display: flex;
+  overflow-y: auto;
   flex-direction: column;
   height: 100%;
 }
 
 #page-content {
   display: flex;
-  height: 100%;
   padding: 15px;
+  height: 100%;
+  flex-direction: row;
   box-sizing: border-box;
   column-gap: 10px;
 }
@@ -51,7 +25,7 @@
 #contact-info-container {
   display: flex;
   height: 100%;
-  width: 50%;
+  flex: 1;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
@@ -99,10 +73,6 @@
   animation: contactFadeIn .8s .3s forwards ease-in-out;
 }
 
-.loader-behind-map {
-  z-index: 0 !important;
-}
-
 @keyframes contactFadeIn {
   from {
     opacity: 0;
@@ -128,8 +98,9 @@
 @media only screen and (max-width: 850px) {
   #page-content {
     flex-direction: column;
-    #contact-info-container, #map-container {
+    #contact-info-container, .map-content {
       width: 100%;
+      height: clamp(400px, 20vh, 1000px);
     }
   }
 }
