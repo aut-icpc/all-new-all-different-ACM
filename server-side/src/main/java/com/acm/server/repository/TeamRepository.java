@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface TeamRepository extends JpaRepository<Team, Long> {
     @Modifying
     @Transactional
-    @Query("update Team t set t.status = :#{#request.status}")
+    @Query("update Team t set t.status = :#{#request.status} where t.id = :#{#request.teamId}")
     Integer updateStatus(UpdateStatusRequest request);
 
     Team getTeamByTeamName(String teamName);
