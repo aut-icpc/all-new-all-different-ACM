@@ -6,7 +6,7 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./image-slider-container.component.scss']
 })
 export class ImageSliderContainerComponent {
-  // @Input() images: string[] | null = null;
+  // @Input() images: string[] | null = null; FIXME
   @Input() images: string[] | null = [
     "https://images.dog.ceo/breeds/sheepdog-shetland/n02105855_15602.jpg",
     "https://images.dog.ceo/breeds/dingo/n02115641_7222.jpg",
