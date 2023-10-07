@@ -25,6 +25,7 @@ import { SocialMediaUrlToUsernamePipe } from './pipes/socla-media-url-to-usernam
 import { MapComponent } from './components/map/map.component';
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { ImageSliderContainerComponent } from './components/image-slider/image-slider-container/image-slider-container.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         GenerateErrorMessagePipe,
         ThemeSlideToggleComponent,
         SocialMediaUrlToUsernamePipe,
-        MapComponent
+        MapComponent,
+        ImageSliderContainerComponent,
     ],
   exports: [
     HeaderComponent,
@@ -49,7 +51,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     GenerateErrorMessagePipe,
     IconsModule,
     SocialMediaUrlToUsernamePipe,
-    MapComponent
+    MapComponent,
+    ImageSliderContainerComponent
   ],
   imports: [
     CommonModule,

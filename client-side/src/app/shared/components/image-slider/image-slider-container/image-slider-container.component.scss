@@ -1,0 +1,73 @@
+.image-slider-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  .image-container {
+    transition: translate 400ms;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    .slider-image-container {
+      min-width: 80vw;
+      max-width: 80vw;
+      min-height: 55vh;
+      background-color: var(--background-light-10);
+      max-height: 55vh;
+      display: flex;
+      justify-content: center;
+      .slider-image {
+        display: block;
+        align-self: stretch;
+        max-width: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .nav-button {
+    all: unset;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    font-size: 3rem;
+    background-color: #fff1;
+    transition: background-color 300ms;
+    cursor: pointer;
+
+    &:active {
+      background-color: #0003;
+    }
+  }
+
+  .shortcut-button-container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+
+    .shortcut-button {
+      background-color: red;
+      width: 30px;
+      height: 30px;
+
+      &.selected {
+        background-color: green;
+      }
+    }
+  }
+
+  .forward-button {
+    right: 0;
+  }
+
+  .backwards-button {
+    left: 0;
+  }
+}

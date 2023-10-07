@@ -15,13 +15,15 @@
       </div>
     </a>
   </div>
-
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let image of images">
-        <img [src]="image" alt="Image">
-      </div>
-    </div>
-    <div class="swiper-pagination"></div>
+<!--  <div class="swiper-container">-->
+<!--    <div class="swiper-wrapper">-->
+<!--      <div class="swiper-slide" *ngFor="let image of images">-->
+<!--        <img [src]="image" alt="Image">-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="swiper-pagination"></div>-->
+<!--  </div>-->
+  <div class="slider-container">
+    <acpc-image-slider-container class="slider" />
   </div>
 </div>

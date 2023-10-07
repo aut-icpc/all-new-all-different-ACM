@@ -1,0 +1,17 @@
+<div *ngIf="showContainer()" class="image-slider-container">
+  <div [style]="getContainerStyle()" class="image-container">
+    <div *ngFor="let image of images" class="slider-image-container">
+      <img [src]="image" alt="slider image" class="slider-image"/>
+    </div>
+  </div>
+  <button (click)="forwardButtonOnClick()" class="forward-button nav-button">
+    <acpc-icon class="nav-icon" [size]="'3x'" [icon]="'right-arrow'"/>
+  </button>
+  <button (click)="backwardsButtonOnClick()" class="backwards-button nav-button">
+    <acpc-icon color="foreground" class="nav-icon" [size]="'3x'" [icon]="'left-arrow'"/>
+  </button>
+  <div class="shortcut-button-container">
+    <img (click)="this.currentIndex = i" *ngFor="let index of images; let i = index" src="favicon.ico"
+         [class]="{'shortcut-button': true, 'selected': i === currentIndex}"/>
+  </div>
+</div>
