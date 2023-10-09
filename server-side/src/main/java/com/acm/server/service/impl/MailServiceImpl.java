@@ -17,4 +17,9 @@ public class MailServiceImpl implements MailService {
     public MailDto saveMail(MailDto mailDto) {
         return mapper.toDto(mailRepository.save(mapper.toEntity(mailDto)));
     }
+
+    @Override
+    public Boolean isExist(String mail) {
+        return mailRepository.existsMailByValue(mail);
+    }
 }
