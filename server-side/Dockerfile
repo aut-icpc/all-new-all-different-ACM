@@ -5,6 +5,8 @@ WORKDIR /app
 
 COPY . .
 
+RUN mvn dependency:go-offline -B
+
 RUN mvn clean install -DskipTests
 
 ENTRYPOINT ["mvn", "spring-boot:run", "-DskipTests=true"]
