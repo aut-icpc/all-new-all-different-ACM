@@ -12,7 +12,10 @@ export const API_URLS = {
   CONTACT_US: BASE_URL + '/contact-us',
   ARCHIVE: BASE_URL + '/archive',
   TERMS: BASE_URL + '/terms',
-  MAIL_SCHEDULE: BASE_URL + '/mail',
+  MAIL: {
+    MAIL_SCHEDULE: BASE_URL + '/mail',
+    MAIL_EXISTS: BASE_URL + '/mail/exist',
+  },
   REGISTRATION: {
     TEAM_REGISTER: TEAM_REGISTER_URL,
     UNIQUE_NAME_CHECK: TEAM_REGISTER_URL + '/name/unique',

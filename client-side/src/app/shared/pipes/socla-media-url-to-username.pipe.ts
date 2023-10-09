@@ -14,7 +14,7 @@ export class SocialMediaUrlToUsernamePipe implements PipeTransform {
     }
   }
 
-  transform(value: string, socialMedia: socialMediaType): unknown {
+  transform(value: string | undefined, socialMedia: socialMediaType): unknown {
     if (!value)
       return '';
     let username = value.replace(this.socialMediaDomainMap[socialMedia], '');

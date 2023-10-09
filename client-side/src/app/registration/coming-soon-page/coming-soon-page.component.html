@@ -13,7 +13,7 @@
                 id="send-btn" (click)="scheduleMail()">
           <acpc-icon color="background" icon="circle_arrow_right"></acpc-icon>
         </button>
-        <mat-error *ngIf="formControl.hasError('email')">
+        <mat-error *ngIf="formControl.invalid">
           {{formControl.errors | generateErrorMessage}}
         </mat-error>
       </mat-form-field>

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PlatformService} from "../../shared/services/platform.service";
 import {AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {environment} from "../../../environments/environment";
@@ -21,7 +21,7 @@ import {ContactUsDto} from "../../shared/interfaces/DTO/contactUs.dto";
   templateUrl: './team-registration-page.component.html',
   styleUrls: ['./team-registration-page.component.scss']
 })
-export class TeamRegistrationPageComponent {
+export class TeamRegistrationPageComponent implements OnInit {
 
   isDesktop !: boolean;
   captchaToken !: string;
@@ -44,16 +44,18 @@ export class TeamRegistrationPageComponent {
 
     this.initializeTeamInfoFormGroup();
     this.initializeTeamDocumentFormGroup();
+  }
 
-    http.sendGetRequest<BaseResponseDto<RegistrationTermsDto>>(API_URLS.TERMS)
+  ngOnInit(): void {
+    this.http.sendGetRequest<BaseResponseDto<RegistrationTermsDto>>(API_URLS.TERMS)
       .subscribe(response => {
         this.registrationTerms = response.result;
       });
 
-    http.sendGetRequest<BaseResponseDto<ContactUsDto>>(API_URLS.CONTACT_US)
+    this.http.sendGetRequest<BaseResponseDto<ContactUsDto>>(API_URLS.CONTACT_US)
       .subscribe(response => {
         this.contactData = response.result;
-    })
+      });
   }
 
   initializeTeamInfoFormGroup() {

@@ -6,10 +6,7 @@ import com.acm.server.model.dto.MailDto;
 import com.acm.server.service.MailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -39,5 +36,14 @@ public class MailController {
         return ResponseEntity.ok(new BaseResponseDto<>(
                 "Mail has been saved successfully!", mailService.saveMail(mailDto)
         ));
+    }
+
+    @GetMapping("/exist")
+    public ResponseEntity<BaseResponseDto<Boolean>> isExist(String  mail) {
+        return ResponseEntity.ok(
+                new BaseResponseDto<>(
+                        "Is mail exist result!", mailService.isExist(mail)
+                )
+        );
     }
 }
