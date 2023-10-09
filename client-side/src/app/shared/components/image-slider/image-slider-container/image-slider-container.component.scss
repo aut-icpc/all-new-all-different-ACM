@@ -7,6 +7,12 @@
   align-items: center;
   overflow: hidden;
 
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  user-drag: none;
+  -ms-user-select: none;
+  user-select: none;
+
   .image-container {
     transition: translate 400ms;
     display: flex;
