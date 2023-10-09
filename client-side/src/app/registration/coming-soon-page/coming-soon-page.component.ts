@@ -41,9 +41,9 @@ export function repeatEmailValidator(httpService: HttpService): (control: Abstra
     const email = control.value;
 
     const params = {mail: email}
-    return httpService.sendGetRequest<boolean>(API_URLS.MAIL.MAIL_EXISTS, {params: params}).pipe(
+    return httpService.sendGetRequest<BaseResponseDto<boolean>>(API_URLS.MAIL.MAIL_EXISTS, {params: params}).pipe(
       map(response => {
-        if (response)
+        if (response.result)
           return { repeatEmail: true };
 
         return null;
