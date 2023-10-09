@@ -7,6 +7,9 @@
 
   --background-color: #{$light-background};
   --background-light-5: #{$light-background};
+
+  --contest-archive-slider-width: 80vw;
+  --contest-archive-slider-height: 55vh;
 }
 
 body[theme=light] {

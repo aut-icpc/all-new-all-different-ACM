@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {HeaderComponent} from './components/header/header.component';
 import {MatButtonModule} from "@angular/material/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -54,23 +54,24 @@ import { ImageSliderContainerComponent } from './components/image-slider/image-s
     MapComponent,
     ImageSliderContainerComponent
   ],
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatDialogModule,
-    MatIconModule,
-    MatSnackBarModule,
-    MatBottomSheetModule,
-    MatListModule,
-    RouterModule,
-    IconsModule,
-    MatSlideToggleModule,
-    ReactiveFormsModule,
-    FormsModule,
-    LeafletModule,
-    MatProgressSpinnerModule
-  ]
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatDialogModule,
+        MatIconModule,
+        MatSnackBarModule,
+        MatBottomSheetModule,
+        MatListModule,
+        RouterModule,
+        IconsModule,
+        MatSlideToggleModule,
+        ReactiveFormsModule,
+        FormsModule,
+        LeafletModule,
+        MatProgressSpinnerModule,
+        NgOptimizedImage
+    ]
 })
 export class SharedModule { }

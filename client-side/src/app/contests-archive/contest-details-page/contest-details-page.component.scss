@@ -28,8 +28,8 @@
   width: 100%;
 
   .slider {
-    width: 80vw;
-    height: 55vh;
+    width: var(--contest-archive-slider-width);
+    height: var(--contest-archive-slider-height);
   }
 
 }
