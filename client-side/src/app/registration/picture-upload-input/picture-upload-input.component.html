@@ -1,7 +1,8 @@
 <input #fileInput type="file" (change)="onFileSelected($event)"
        accept="image/*" id="file-input" [required]="required"/>
-<div #container class="drop-zone {{isDragOver ? 'drag-over' : 'drag-leave'}}"
+<div #container class="drop-zone"
      [class]="{'error': showErrorBox && required}"
+     [class]="(isDragOver ? 'drag-over' : 'drag-leave')"
      (dragleave)="onDragLeave()"
      (drop)="onFileDropped($event)"
      (dragover)="onDragOver($event, container)">
