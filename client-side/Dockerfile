@@ -16,7 +16,7 @@ RUN npm install
 COPY . .
 
 # Expose port 80
-EXPOSE 80
+EXPOSE 8000
 
 # Start the Angular app using ng serve on port 80
-CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "80", "--disable-host-check"]
+CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8000", "--disable-host-check"]
