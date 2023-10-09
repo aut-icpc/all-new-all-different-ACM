@@ -58,7 +58,7 @@ services:
       context: ../client-side
       dockerfile: Dockerfile
     ports:
-      - 80:80
+      - 8000:8000
     depends_on:
       - acpc-back
     deploy:
