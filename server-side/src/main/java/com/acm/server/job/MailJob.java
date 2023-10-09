@@ -25,7 +25,7 @@ public class MailJob {
      * The method is executed on a separate thread when triggered by the scheduler.
      */
     @Async
-    @Scheduled(cron = "30 10 18 7 * 2023")
+    @Scheduled(cron = "${comming-soon.mail.job}")
     public void mailJob() {
         // Retrieve all mails from the repository and send starting alerts for the contests
         mailRepository.findAll().forEach(mail ->
