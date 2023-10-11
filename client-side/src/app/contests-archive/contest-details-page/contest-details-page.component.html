@@ -17,8 +17,7 @@
   </div>
 
   <div class="slider-container">
-    <acpc-image-slider-container class="slider" [images]="images" />
-<!--    <acpc-image-slider-container class="slider" />-->
-    <!--FIxme-->
+    <acpc-image-slider-container *ngIf="showSlider()" class="slider" [images]="images" />
+    <h3 *ngIf="!showSlider()">Nothing Found!</h3>
   </div>
 </div>

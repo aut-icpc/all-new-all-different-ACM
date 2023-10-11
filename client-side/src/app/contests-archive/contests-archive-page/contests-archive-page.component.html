@@ -2,6 +2,6 @@
   <div id="page-content">
     <acpc-event-card *ngFor="let archive of archives" [archive]="archive">
     </acpc-event-card>
-<!--    <ng-container *ngIf="availableYear.length == 0"></ng-container>-->
+    <h3 *ngIf="showNothingFound()">Found Nothing!</h3>
   </div>
 </div>

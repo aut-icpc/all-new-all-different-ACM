@@ -18,6 +18,7 @@ export class ContestDetailsPageComponent implements OnInit {
   archiveId!: number;
   archive!: ArchiveDto;
   images!: string[];
+  imagesLoaded: boolean = false
 
   constructor(private route: ActivatedRoute, private http: HttpService) {
     this.route.queryParams.subscribe(params => {
@@ -38,11 +39,16 @@ export class ContestDetailsPageComponent implements OnInit {
 
     this.http.sendGetRequest<BaseResponseDto<ArchiveDto>>(API_URLS.ARCHIVE + `/${this.archiveId}`)
       .subscribe(response => {
+        this.imagesLoaded = true
         this.archive = response.result;
         this.archive.date = new Date(this.archive.date);
         this.images =
           this.archive.eventDayPictures.map((pictureDto: PictureDto) => pictureDto.link);
       });
+  }
+
+  showSlider() {
+    return !this.imagesLoaded || this.images.length !== 0
   }
 
 }
