@@ -15,6 +15,7 @@ export class ContestsArchivePageComponent implements OnInit {
 
   archives!: ArchiveDto[];
   loaded: boolean = false
+  nothingFound: boolean = false
 
   constructor(private http: HttpService) {
   }
@@ -26,11 +27,12 @@ export class ContestsArchivePageComponent implements OnInit {
         this.archives = response.result.map((archiveDto: ArchiveDto) => {
           return {...archiveDto, date: new Date(archiveDto.date)};
         });
+        this.updateNothingFound()
       })
   }
 
-  showNothingFound() {
-    return this.loaded && this.archives.length === 0
+  updateNothingFound() {
+    this.nothingFound = this.loaded && this.archives?.length === 0
   }
 
 }

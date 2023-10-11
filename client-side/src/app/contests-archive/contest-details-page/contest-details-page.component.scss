@@ -5,6 +5,29 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
+
+  .found-no-file-container {
+    text-align: center;
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .found-nothing-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .no-picture-found-container {
+    min-height: var(--contest-archive-slider-height);
+    max-height: var(--contest-archive-slider-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 #page-title {

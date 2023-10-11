@@ -18,7 +18,11 @@ export class ContestDetailsPageComponent implements OnInit {
   archiveId!: number;
   archive!: ArchiveDto;
   images!: string[];
-  imagesLoaded: boolean = false
+  contentLoaded: boolean = false
+  noPictureFound: boolean = false
+  noRankingFound: boolean = false
+  noQuestionsFound: boolean = false;
+
 
   constructor(private route: ActivatedRoute, private http: HttpService) {
     this.route.queryParams.subscribe(params => {
@@ -39,16 +43,27 @@ export class ContestDetailsPageComponent implements OnInit {
 
     this.http.sendGetRequest<BaseResponseDto<ArchiveDto>>(API_URLS.ARCHIVE + `/${this.archiveId}`)
       .subscribe(response => {
-        this.imagesLoaded = true
+        this.contentLoaded = true
         this.archive = response.result;
         this.archive.date = new Date(this.archive.date);
         this.images =
           this.archive.eventDayPictures.map((pictureDto: PictureDto) => pictureDto.link);
+        this.updateNoPictureFound()
+        this.updateNoRankingFound()
+        this.updateNoQuestionsFound()
       });
   }
 
-  showSlider() {
-    return !this.imagesLoaded || this.images.length !== 0
+  updateNoPictureFound() {
+    this.noPictureFound = this.contentLoaded && this.images.length === 0
+  }
+
+  updateNoRankingFound() {
+    this.noRankingFound = this.contentLoaded && this.archive.rankings == null
+  }
+
+  updateNoQuestionsFound() {
+    this.noQuestionsFound = this.contentLoaded && this.archive.questions == null
   }
 
 }

@@ -1,23 +1,35 @@
 <div id="page-container">
-  <h1 id="page-title">{{archive?.date?.getFullYear()}} Contest</h1>
-  <div id="file-container">
-    <a [href]="archive?.questions?.link" class="attached-file">
-      <div>
-        <img src="./assets/icons/questions.png" alt="questions">
-        <span>questions</span>
-      </div>
-    </a>
+  <div *ngIf="contentLoaded && (!(noQuestionsFound && noRankingFound) || !noPictureFound)">
+    <h1 id="page-title">{{archive?.date?.getFullYear()}} Contest</h1>
+    <div *ngIf="!(noQuestionsFound && noRankingFound)" id="file-container">
+      <a *ngIf="!noQuestionsFound && contentLoaded" [href]="archive?.questions?.link" class="attached-file">
+        <div>
+          <img src="./assets/icons/questions.png" alt="questions">
+          <span>questions</span>
+        </div>
+      </a>
 
-    <a [href]="archive?.rankings?.link" class="attached-file">
-      <div>
-        <img src="./assets/icons/ranking.png" alt="rankings">
-        <span>rankings</span>
+      <a *ngIf="!noRankingFound && contentLoaded" [href]="archive?.rankings?.link" class="attached-file">
+        <div>
+          <img src="./assets/icons/ranking.png" alt="rankings">
+          <span>rankings</span>
+        </div>
+      </a>
+    </div>
+    <div *ngIf="noQuestionsFound && noRankingFound" class="found-no-file-container">
+      <h3 class="found-no-file">
+        Couldn't Find a Single File!
+      </h3>
+    </div>
+
+    <div class="slider-container">
+      <acpc-image-slider-container *ngIf="!noPictureFound" class="slider" [images]="images"/>
+      <div class="no-picture-found-container">
+        <h3 *ngIf="noPictureFound">Found No Picture in the Gallery!</h3>
       </div>
-    </a>
+    </div>
   </div>
-
-  <div class="slider-container">
-    <acpc-image-slider-container *ngIf="showSlider()" class="slider" [images]="images" />
-    <h3 *ngIf="!showSlider()">Nothing Found!</h3>
+  <div class="found-nothing-container" *ngIf="noQuestionsFound && noRankingFound && noPictureFound">
+    <h3 class="found-nothing">Found Nothing!</h3>
   </div>
 </div>

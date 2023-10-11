@@ -2,6 +2,8 @@
   <div id="page-content">
     <acpc-event-card *ngFor="let archive of archives" [archive]="archive">
     </acpc-event-card>
-    <h3 *ngIf="showNothingFound()">Found Nothing!</h3>
+  </div>
+  <div class="nothing-found-container">
+    <h3 class="nothing-found-text" *ngIf="nothingFound">No Archive Found!</h3>
   </div>
 </div>

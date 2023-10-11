@@ -12,3 +12,10 @@
   justify-content: space-evenly;
   row-gap: 15px;
 }
+
+.nothing-found-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
