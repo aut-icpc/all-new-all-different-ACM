@@ -21,6 +21,10 @@ export class IconsModule {
 
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
     const directoryPath = 'assets/icons/svg/';
+    this.iconRegistry.addSvgIcon('left-arrow',
+      this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Arrow-Left.svg'));
+    this.iconRegistry.addSvgIcon('right-arrow',
+      this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Arrow-Right.svg'));
     this.iconRegistry.addSvgIcon('attachment',
       this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Attachment.svg'));
     this.iconRegistry.addSvgIcon('close',
