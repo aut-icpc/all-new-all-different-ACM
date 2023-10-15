@@ -4,6 +4,7 @@ import {HttpService} from "../../shared/services/http.service";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {API_URLS} from "../../shared/api-urls";
 import {ContactUsDto} from "../../shared/interfaces/DTO/contactUs.dto";
+import {MetaService} from "../../shared/services/meta.service";
 
 @Component({
   selector: 'acpc-registration-success-page',
@@ -15,7 +16,7 @@ export class RegistrationSuccessPageComponent implements OnInit {
   teamData!: TeamDto;
   contactData!: ContactUsDto;
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, private meta: MetaService) { }
 
   ngOnInit(): void {
     const id = sessionStorage.getItem('teamId') || '';
@@ -27,7 +28,9 @@ export class RegistrationSuccessPageComponent implements OnInit {
     this.http.sendGetRequest<BaseResponseDto<ContactUsDto>>(API_URLS.CONTACT_US)
       .subscribe(response => {
         this.contactData = response.result;
-      })
+      });
+
+    this.meta.setPageIndexing("noindex");
   }
 
 }

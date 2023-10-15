@@ -4,8 +4,14 @@ import {ContestsArchivePageComponent} from "./contests-archive-page/contests-arc
 import {ContestDetailsPageComponent} from "./contest-details-page/contest-details-page.component";
 
 const routes: Routes = [
-  {path: 'contests-archive', component: ContestsArchivePageComponent},
-  {path: 'archive', component: ContestDetailsPageComponent}
+  {
+    path: 'contests-archive', component: ContestsArchivePageComponent,
+    title: 'Contests archive'
+  },
+  {
+    path: 'archive', component: ContestDetailsPageComponent,
+    title: 'team details'
+  }
 ];
 
 @NgModule({

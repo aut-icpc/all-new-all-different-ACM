@@ -6,7 +6,7 @@ import {AdminLoginPageComponent} from "./admin-login-page/admin-login-page.compo
 
 const routes: Routes = [
   {
-    path: 'admin',
+    path: 'admin', title: 'ACPC admin panel',
     children: [
       {path: '', redirectTo: 'login', pathMatch: 'full'},
       {path: 'home', component: AdminPageComponent},

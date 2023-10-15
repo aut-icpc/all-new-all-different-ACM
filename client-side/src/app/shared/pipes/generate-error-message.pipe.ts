@@ -17,6 +17,8 @@ export class GenerateErrorMessagePipe implements PipeTransform {
       return 'Email format isn\'t valid';
     else if (value?.uniqueTeamName)
       return 'name is already taken';
+    else if (value?.repeatEmail)
+      return 'email is already saved';
     else if (value?.required)
       return 'Fill the input';
 

@@ -6,6 +6,7 @@ import {JwtAuthenticationResponseDto} from "../../shared/interfaces/DTO/jwtAuthe
 import {API_URLS} from "../../shared/api-urls";
 import {Router} from "@angular/router";
 import {SignInRequestDto} from "../../shared/interfaces/DTO/signInRequest.dto";
+import {MetaService} from "../../shared/services/meta.service";
 
 @Component({
   selector: 'acpc-admin-login-page',
@@ -19,13 +20,19 @@ export class AdminLoginPageComponent implements OnInit {
 
   @ViewChild('passwordInput') passwordInput!: HTMLInputElement;
 
-  constructor(private http: HttpService, private route: Router) { }
+  constructor(private http: HttpService,
+              private route: Router, private meta: MetaService) { }
 
   ngOnInit(): void {
     this.group = new UntypedFormGroup({
       username: new UntypedFormControl('', Validators.required),
       password: new UntypedFormControl('', Validators.required)
-    })
+    });
+
+    this.meta.setCustomMetaTag('description',
+      'admin panel of ACPC registration website that monitors registration process');
+    this.meta.setCustomMetaTag('keywords',
+      'ACPC, ICPC, Admin, Panel, Registration, Contest, Monitoring');
   }
 
   login() {

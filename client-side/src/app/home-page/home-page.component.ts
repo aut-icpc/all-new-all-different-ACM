@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {BaseResponseDto} from "../shared/interfaces/DTO/baseResponse.dto";
 import {CountDownDto} from "../shared/interfaces/DTO/countDown.dto";
 import {API_URLS} from "../shared/api-urls";
+import {MetaService} from "../shared/services/meta.service";
 
 @Component({
   selector: 'acpc-home-page',
@@ -17,7 +18,7 @@ export class HomePageComponent implements OnInit {
 
   timeLeft$ !: Observable<TimeComponents>;
 
-  constructor(private http: HttpService, private router: Router) {}
+  constructor(private http: HttpService, private router: Router, private meta: MetaService) {}
 
   ngOnInit(): void {
     const params = {type: 'MAIN'}
@@ -29,6 +30,10 @@ export class HomePageComponent implements OnInit {
           shareReplay(1)
         );
       });
+
+    this.meta.setCustomMetaTag('description', 'Home page of ACPC - ' +
+      'Amirkabir University of Technology Collegiate Programming Contest')
+    this.meta.setCustomMetaTag('keywords', 'ACPC, ICPC, Amirkabir, Contest, Tehran, AUT');
   }
 
   goToRegistrationPage() {

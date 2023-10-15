@@ -7,6 +7,7 @@ import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {ArchiveDto} from "../../shared/interfaces/DTO/archive.dto";
 import {API_URLS} from "../../shared/api-urls";
 import {PictureDto} from "../../shared/interfaces/DTO/picture.dto";
+import {MetaService} from "../../shared/services/meta.service";
 
 @Component({
   selector: 'acpc-contest-details-page',
@@ -24,7 +25,9 @@ export class ContestDetailsPageComponent implements OnInit {
   noQuestionsFound: boolean = false;
 
 
-  constructor(private route: ActivatedRoute, private http: HttpService) {
+  constructor(private route: ActivatedRoute,
+              private http: HttpService,
+              private meta: MetaService) {
     this.route.queryParams.subscribe(params => {
         this.archiveId = params.id;
       }
@@ -52,6 +55,8 @@ export class ContestDetailsPageComponent implements OnInit {
         this.updateNoRankingFound()
         this.updateNoQuestionsFound()
       });
+
+    this.meta.setPageIndexing("noindex");
   }
 
   updateNoPictureFound() {

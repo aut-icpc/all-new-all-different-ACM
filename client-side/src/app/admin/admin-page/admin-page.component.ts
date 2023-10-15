@@ -7,6 +7,7 @@ import {Pagination} from "../../shared/interfaces/pagination";
 import {AuthenticatedHttpService} from "../services/authenticated-http.service";
 import {PageEvent} from "@angular/material/paginator";
 import {TeamPageDto} from "../../shared/interfaces/DTO/teamPage.dto";
+import {MetaService} from "../../shared/services/meta.service";
 
 @Component({
   selector: 'acpc-admin-page',
@@ -21,7 +22,9 @@ export class AdminPageComponent implements OnInit {
   teamPageData: TeamPageDto | undefined;
   displayedColumns = ['Row', 'Team name', 'Institution', 'Status', 'Actions'];
 
-  constructor(private router: Router, private http: AuthenticatedHttpService) { }
+  constructor(private router: Router,
+              private http: AuthenticatedHttpService,
+              private meta: MetaService) { }
 
   ngOnInit(): void {
     this.paginationData = new Pagination();
@@ -33,6 +36,8 @@ export class AdminPageComponent implements OnInit {
       .subscribe(response => {
         this.teamPageData = response.result;
       });
+
+    this.meta.setPageIndexing("noindex");
   }
 
   showTeamDetails(team: TeamDto) {

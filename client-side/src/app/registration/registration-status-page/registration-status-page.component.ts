@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {expandInAnimation} from "../../shared/animations/expand-animations";
 import {fadeInAnimation} from "../../shared/animations/fade-animations";
 import {UntypedFormControl, Validators} from "@angular/forms";
@@ -6,6 +6,7 @@ import {HttpService} from "../../shared/services/http.service";
 import {API_URLS} from "../../shared/api-urls";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {TeamBasicInformationDto} from "../../shared/interfaces/DTO/teamBasicInformation.dto";
+import {MetaService} from "../../shared/services/meta.service";
 
 @Component({
   selector: 'acpc-registration-status-page',
@@ -13,7 +14,7 @@ import {TeamBasicInformationDto} from "../../shared/interfaces/DTO/teamBasicInfo
   styleUrls: ['./registration-status-page.component.scss'],
   animations: [expandInAnimation, fadeInAnimation]
 })
-export class RegistrationStatusPageComponent {
+export class RegistrationStatusPageComponent implements OnInit {
 
   formControl = new UntypedFormControl('', Validators.required);
 
@@ -22,7 +23,11 @@ export class RegistrationStatusPageComponent {
   isWrapperExpanded = false;
   isStatusBoxShowed = false;
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, private meta: MetaService) { }
+
+  ngOnInit(): void {
+    this.meta.setPageIndexing("noindex");
+  }
 
   inquiryTeamStatus(event: any) {
     if (this.formControl.invalid || ( event.type == 'keypress' && event?.keyCode != 13))

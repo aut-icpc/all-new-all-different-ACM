@@ -3,6 +3,7 @@ package com.acm.server;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * The main class for the ACPC server-side application.
@@ -23,6 +24,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  */
 @SpringBootApplication
 @EnableAsync
+@EnableScheduling
 public class ACPCApplication {
     /**
      * The main method that starts the ACM server-side application.
