@@ -19,9 +19,9 @@ export class ContestDetailsPageComponent implements OnInit {
   archiveId!: number;
   archive!: ArchiveDto;
   images!: string[];
-  contentLoaded: boolean = false
-  noPictureFound: boolean = false
-  noRankingFound: boolean = false
+  contentLoaded: boolean = false;
+  noPictureFound: boolean = false;
+  noRankingFound: boolean = false;
   noQuestionsFound: boolean = false;
 
 
@@ -46,29 +46,29 @@ export class ContestDetailsPageComponent implements OnInit {
 
     this.http.sendGetRequest<BaseResponseDto<ArchiveDto>>(API_URLS.ARCHIVE + `/${this.archiveId}`)
       .subscribe(response => {
-        this.contentLoaded = true
+        this.contentLoaded = true;
         this.archive = response.result;
         this.archive.date = new Date(this.archive.date);
         this.images =
           this.archive.eventDayPictures.map((pictureDto: PictureDto) => pictureDto.link);
-        this.updateNoPictureFound()
-        this.updateNoRankingFound()
-        this.updateNoQuestionsFound()
+        this.updateNoPictureFound();
+        this.updateNoRankingFound();
+        this.updateNoQuestionsFound();
       });
 
     this.meta.setPageIndexing("noindex");
   }
 
   updateNoPictureFound() {
-    this.noPictureFound = this.contentLoaded && this.images.length === 0
+    this.noPictureFound = this.contentLoaded && this.images.length === 0;
   }
 
   updateNoRankingFound() {
-    this.noRankingFound = this.contentLoaded && this.archive.rankings == null
+    this.noRankingFound = this.contentLoaded && this.archive.rankings == null;
   }
 
   updateNoQuestionsFound() {
-    this.noQuestionsFound = this.contentLoaded && this.archive.questions == null
+    this.noQuestionsFound = this.contentLoaded && this.archive.questions == null;
   }
 
 }

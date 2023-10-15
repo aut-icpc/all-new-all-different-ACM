@@ -15,8 +15,8 @@ import {MetaService} from "../../shared/services/meta.service";
 export class ContestsArchivePageComponent implements OnInit {
 
   archives!: ArchiveDto[];
-  loaded: boolean = false
-  nothingFound: boolean = false
+  loaded: boolean = false;
+  nothingFound: boolean = false;
 
   constructor(private http: HttpService, private meta: MetaService) { }
 
@@ -37,7 +37,7 @@ export class ContestsArchivePageComponent implements OnInit {
   }
 
   updateNothingFound() {
-    this.nothingFound = this.loaded && this.archives?.length === 0
+    this.nothingFound = this.loaded && this.archives?.length === 0;
   }
 
 }
