@@ -4,6 +4,7 @@ import {PlatformService} from "../../shared/services/platform.service";
 import {HttpService} from "../../shared/services/http.service";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {API_URLS} from "../../shared/api-urls";
+import {MetaService} from "../../shared/services/meta.service";
 
 @Component({
   selector: 'acpc-timeline-page',
@@ -16,7 +17,9 @@ export class TimelinePageComponent implements OnInit {
 
   milestones!: TimelineDto[];
 
-  constructor(private platform: PlatformService, private http: HttpService) {
+  constructor(private platform: PlatformService,
+              private http: HttpService,
+              private meta: MetaService) {
     this.isDesktop = this.platform.isOnDesktopDevice();
   }
 
@@ -28,7 +31,10 @@ export class TimelinePageComponent implements OnInit {
       }).sort(
         (a, b) => a.date.getTime() - b.date.getTime()
       );
-    })
+    });
+
+    this.meta.setCustomMetaTag('description', 'ACPC contest timeline');
+    this.meta.setCustomMetaTag('keywords', 'ACPC, ICPC, Timeline, AUT, Amirkabir, Contest');
   }
 
   getCardClassByIndex(i: number) {

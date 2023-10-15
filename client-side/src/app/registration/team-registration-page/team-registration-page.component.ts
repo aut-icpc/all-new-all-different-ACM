@@ -15,6 +15,7 @@ import {API_URLS} from "../../shared/api-urls";
 import {Router} from "@angular/router";
 import {RegistrationTermsDto} from "../../shared/interfaces/DTO/registrationTerms.dto";
 import {ContactUsDto} from "../../shared/interfaces/DTO/contactUs.dto";
+import {MetaService} from "../../shared/services/meta.service";
 
 @Component({
   selector: 'acpc-team-registration-page',
@@ -39,7 +40,8 @@ export class TeamRegistrationPageComponent implements OnInit {
   constructor(private platform: PlatformService,
               private toast: ToastService,
               private http: HttpService,
-              private router: Router) {
+              private router: Router,
+              private meta: MetaService) {
     this.isDesktop = this.platform.isOnDesktopDevice();
 
     this.initializeTeamInfoFormGroup();
@@ -56,6 +58,10 @@ export class TeamRegistrationPageComponent implements OnInit {
       .subscribe(response => {
         this.contactData = response.result;
       });
+
+    this.meta.setCustomMetaTag('description', 'Registration page of ACPC - ' +
+      'Amirkabir University of Technology Collegiate Programming Contest');
+    this.meta.setCustomMetaTag('keywords', 'ACPC, ICPC, Amirkabir, Contest, Tehran, AUT, Registration');
   }
 
   initializeTeamInfoFormGroup() {

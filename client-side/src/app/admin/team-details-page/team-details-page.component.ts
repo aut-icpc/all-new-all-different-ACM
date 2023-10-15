@@ -9,6 +9,7 @@ import {UntypedFormControl} from "@angular/forms";
 import {UpdateStatusRequestDto} from "../../shared/interfaces/DTO/updateStatusRequest.dto";
 import {ToastService} from "../../shared/services/toast.service";
 import {AuthenticatedHttpService} from "../services/authenticated-http.service";
+import {MetaService} from "../../shared/services/meta.service";
 
 @Component({
   selector: 'acpc-team-details-page',
@@ -34,7 +35,8 @@ export class TeamDetailsPageComponent implements OnInit {
               private http: AuthenticatedHttpService,
               private modal: ModalService,
               private toast: ToastService,
-              private router: Router) {
+              private router: Router,
+              private meta: MetaService) {
     this.route.params.subscribe(params => {
         this.teamId = params.id;
       }
@@ -52,7 +54,9 @@ export class TeamDetailsPageComponent implements OnInit {
 
     this.teamStatusControl.valueChanges.subscribe(selected => {
       this.isUpdateDisabled = selected == this.teamCurrentStatus;
-    })
+    });
+
+    this.meta.setPageIndexing("noindex");
   }
 
   selectPhoto(photoAddress: string) {

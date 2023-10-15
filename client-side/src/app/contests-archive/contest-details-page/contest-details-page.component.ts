@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import Swiper from 'swiper';
 import {HttpService} from "../../shared/services/http.service";
@@ -6,6 +6,7 @@ import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {ArchiveDto} from "../../shared/interfaces/DTO/archive.dto";
 import {API_URLS} from "../../shared/api-urls";
 import {PictureDto} from "../../shared/interfaces/DTO/picture.dto";
+import {MetaService} from "../../shared/services/meta.service";
 
 @Component({
   selector: 'acpc-contest-details-page',
@@ -18,7 +19,9 @@ export class ContestDetailsPageComponent implements OnInit {
   archive!: ArchiveDto;
   images!: string[];
 
-  constructor(private route: ActivatedRoute, private http: HttpService) {
+  constructor(private route: ActivatedRoute,
+              private http: HttpService,
+              private meta: MetaService) {
     this.route.queryParams.subscribe(params => {
         this.archiveId = params.id;
       }
@@ -42,6 +45,8 @@ export class ContestDetailsPageComponent implements OnInit {
         this.images =
           this.archive.eventDayPictures.map((pictureDto: PictureDto) => pictureDto.link);
       });
+
+    this.meta.setPageIndexing("noindex");
   }
 
 }
