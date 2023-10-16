@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-// @ts-ignore
-import Swiper from 'swiper';
 import {HttpService} from "../../shared/services/http.service";
 import {BaseResponseDto} from "../../shared/interfaces/DTO/baseResponse.dto";
 import {ArchiveDto} from "../../shared/interfaces/DTO/archive.dto";
@@ -35,15 +33,6 @@ export class ContestDetailsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    new Swiper('.swiper-container', {
-      slidesPerView: 1,
-      spaceBetween: 10,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-    });
-
     this.http.sendGetRequest<BaseResponseDto<ArchiveDto>>(API_URLS.ARCHIVE + `/${this.archiveId}`)
       .subscribe(response => {
         this.contentLoaded = true;
