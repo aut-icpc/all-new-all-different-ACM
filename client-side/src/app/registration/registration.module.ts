@@ -18,6 +18,7 @@ import { IdentificationDocumentsFormComponent } from './identification-documents
 import { MatVerticalStepperScrollerDirective } from './mat-vertical-stepper-scroller.directive';
 import { RegistrationSuccessPageComponent } from './registration-success-page/registration-success-page.component';
 import { ComingSoonPageComponent } from './coming-soon-page/coming-soon-page.component';
+import { RulesAndTermsPageComponent } from './rules-and-terms-page/rules-and-terms-page.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ComingSoonPageComponent } from './coming-soon-page/coming-soon-page.com
     IdentificationDocumentsFormComponent,
     MatVerticalStepperScrollerDirective,
     RegistrationSuccessPageComponent,
-    ComingSoonPageComponent
+    ComingSoonPageComponent,
+    RulesAndTermsPageComponent
   ],
   imports: [
     CommonModule,

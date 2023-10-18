@@ -1,0 +1,13 @@
+@import "src/styles";
+
+#page-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: underline var(--accent-color);
+  color: var(--accent-color);
+}

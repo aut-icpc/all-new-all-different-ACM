@@ -6,6 +6,7 @@ import {RegistrationSuccessPageComponent} from "./registration-success-page/regi
 import {TeamSessionDataGuard} from "./guards/team-session-data.guard";
 import {ComingSoonPageComponent} from "./coming-soon-page/coming-soon-page.component";
 import {RegistrationBeginGuard} from "./guards/registration-begin.guard";
+import {RulesAndTermsPageComponent} from "./rules-and-terms-page/rules-and-terms-page.component";
 
 const routes: Routes = [
   {path: 'registration', children: [
@@ -27,6 +28,10 @@ const routes: Routes = [
       {
         path: 'coming-soon', component: ComingSoonPageComponent,
         title: 'Coming soon'
+      },
+      {
+        path: 'terms', component: RulesAndTermsPageComponent,
+        title: 'Rules and Terms'
       }
     ]
   },
