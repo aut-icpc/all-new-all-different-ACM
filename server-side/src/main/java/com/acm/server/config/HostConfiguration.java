@@ -23,4 +23,5 @@ public class HostConfiguration {
     private String name;
     private String port;
     private String uploadBaseDir;
+    private String baseRoute;
 }

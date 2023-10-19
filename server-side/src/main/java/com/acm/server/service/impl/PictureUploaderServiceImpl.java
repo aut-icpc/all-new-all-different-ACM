@@ -41,8 +41,7 @@ public class PictureUploaderServiceImpl implements PictureUploaderService {
             throw new IOException("File already exists: " + fileName);
 
         Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
-        return "http://".concat(hostConfiguration.getName())
-                .concat(":").concat(hostConfiguration.getPort())
+        return "http://".concat(hostConfiguration.getName()).concat(hostConfiguration.getBaseRoute())
                 .concat(targetPath.toAbsolutePath().toString());
     }
 
