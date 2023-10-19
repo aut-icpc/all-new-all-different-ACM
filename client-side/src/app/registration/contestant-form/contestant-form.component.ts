@@ -48,6 +48,8 @@ export class ContestantFormComponent implements OnInit, ControlValueAccessor, Va
 
   group: UntypedFormGroup;
 
+  shirtSizeImageName!: string;
+
   onChange = (change: any) => {}
   onTouched = (onTouched: any) => {}
 
@@ -74,6 +76,7 @@ export class ContestantFormComponent implements OnInit, ControlValueAccessor, Va
   }
 
   openGuide() {
+    this.setShirtSizeImageName();
     this.modalService.openModal(this.guideTemplate);
   }
 
@@ -127,5 +130,11 @@ export class ContestantFormComponent implements OnInit, ControlValueAccessor, Va
     shirtSize.size = this.group.controls['shirtSize'].value;
     temp.shirtSize = shirtSize;
     return temp;
+  }
+
+  private setShirtSizeImageName() {
+    const isDark = localStorage.getItem('isDark');
+    const tableTheme = (isDark === 'false') ? 'dark' : 'light';
+    this.shirtSizeImageName = `assets/images/shirt_size_${tableTheme}.png`;
   }
 }
