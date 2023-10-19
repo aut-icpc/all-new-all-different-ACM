@@ -48,13 +48,13 @@
             <form class="all-forms contestants-container" [formGroup]="teamDocumentFormGroup">
               <acpc-identification-documents-form formControlName="contestantOne"
                                                   [class]="{'desk': !isDesktop, 'ident-doc': true}"
-                                                  [contestantStudentId]="'9931024'"></acpc-identification-documents-form>
+                                                  [contestantStudentId]="getContestantStudentId('One')"></acpc-identification-documents-form>
               <acpc-identification-documents-form formControlName="contestantTwo"
                                                   [class]="{'desk': !isDesktop, 'ident-doc': true}"
-                                                  [contestantStudentId]="'9931022'"></acpc-identification-documents-form>
+                                                  [contestantStudentId]="getContestantStudentId('Two')"></acpc-identification-documents-form>
               <acpc-identification-documents-form formControlName="contestantThree"
                                                   [class]="{'desk': !isDesktop, 'ident-doc': true}"
-                                                  [contestantStudentId]="'9931056'"></acpc-identification-documents-form>
+                                                  [contestantStudentId]="getContestantStudentId('Three')"></acpc-identification-documents-form>
             </form>
             <div class="step-buttons-container">
               <button mat-stroked-button matStepperPrevious color="primary">Back</button>
