@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ACPC Changed Status</title>
+    <title>ACPC Status Update</title>
     <style>
         * {
             font-family: Arial,serif;
@@ -33,6 +33,11 @@
             Congrats!🥳<br><br>
             Your team registration was successfully finalized.<br>
             For further information, checkout our instagram/telegram or message our telegram admin.<br><br>
+            Thank you
+        </p>
+        <p th:case="UNKNOWN">
+            Your team status has been updated to unknown.<br>
+            There might be a problem with your information. Please contact our Telegram admin.<br><br>
             Thank you
         </p>
         <p th:case="*">
