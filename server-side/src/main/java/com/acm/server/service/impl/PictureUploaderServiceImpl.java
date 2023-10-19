@@ -42,7 +42,7 @@ public class PictureUploaderServiceImpl implements PictureUploaderService {
 
         Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
         return "http://".concat(hostConfiguration.getName()).concat(hostConfiguration.getBaseRoute())
-                .concat(targetPath.toAbsolutePath().toString());
+                .concat(fileName);
     }
 
     /**
