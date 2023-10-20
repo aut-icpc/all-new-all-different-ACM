@@ -30,4 +30,5 @@ public class TeamDto {
     @NotNull(message = "Contestants is required!")
     @Valid
     private List<ContestantDto> contestants;
+    private boolean isInAmirkabir;
 }
