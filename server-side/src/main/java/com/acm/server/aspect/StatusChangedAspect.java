@@ -43,8 +43,5 @@ public class StatusChangedAspect {
         // Email each contestant in the team
         teamDto.getContestants().forEach(c -> mailUtil.sendMailAfterStatusChanged(c.getEmail(), status, c.getLastname()));
 
-        if (status.equals(TeamStatus.WAITING_FOR_PAYMENT.name()))
-            teamDto.getContestants().forEach(c -> mailUtil.sendMailAfterStatusChanged(c.getEmail(), status, c.getLastname()));
-
     }
 }

@@ -24,6 +24,9 @@ public class MailUtil {
     @Value("${spring.mail.username}")
     private String from;
 
+    @Value("${payment.url}")
+    private String paymentUrl;
+
     /**
      * Sends an email after the status has changed.
      *
@@ -31,17 +34,12 @@ public class MailUtil {
      * @param status The new status.
      * @param name   The name of the recipient.
      */
-    public void sendMailAfterStatusChanged(String to, String status, String name) {
+    public void sendMailAfterStatusChanged(String to, String status, String name, String amount) {
         Context context = new Context();
         context.setVariable("name", name);
         context.setVariable("status", status);
+        context.setVariable("payment", paymentUrl.replace("${amount}", amount));
         sendThymeleafEmail(to, "acm-change-status", "ACPC Change Status", context);
-    }
-
-    public void sendPaymentMail(String to, String name, String amount) {
-        Context context = new Context();
-        context.setVariable("name", name);
-        context.setVariable();
     }
 
     /**
