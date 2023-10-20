@@ -4,14 +4,13 @@ import com.acm.server.domain.Team;
 import com.acm.server.model.dto.TeamDto;
 import com.acm.server.response.TeamBasicInformationResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 /**
  * Team Mapper
- * @see com.acm.server.domain.Team
- * @see com.acm.server.model.dto.TeamDto
  *
  * @author Farid Masjedi
+ * @see com.acm.server.domain.Team
+ * @see com.acm.server.model.dto.TeamDto
  */
 @Mapper
 public interface TeamMapper {

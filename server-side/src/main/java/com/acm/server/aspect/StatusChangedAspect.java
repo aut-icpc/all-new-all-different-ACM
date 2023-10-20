@@ -1,6 +1,5 @@
 package com.acm.server.aspect;
 
-import com.acm.server.domain.Contestant;
 import com.acm.server.domain.Payment;
 import com.acm.server.model.PaymentType;
 import com.acm.server.model.TeamStatus;
@@ -9,7 +8,6 @@ import com.acm.server.model.dto.TeamDto;
 import com.acm.server.model.dto.zify.PayerDto;
 import com.acm.server.model.dto.zify.PaymentDto;
 import com.acm.server.model.dto.zify.ProductDto;
-import com.acm.server.repository.ContestantRepository;
 import com.acm.server.service.ContestantService;
 import com.acm.server.service.PaymentService;
 import com.acm.server.util.MailUtil;
@@ -23,13 +21,13 @@ import org.springframework.stereotype.Component;
 /**
  * Aspect class for handling the status changed event.
  * This class is responsible for sending emails to contestants when the team status changes.
- *
+ * <p>
  * This aspect is triggered after a method annotated with @StatusChangedEvent completes successfully.
  * It sends an email to each contestant in the team with the updated status information.
- *
+ * <p>
  * This aspect is executed asynchronously using Spring's @Async annotation, allowing the calling method to continue
  * without waiting for the email notifications to be sent.
- *
+ * <p>
  * The MailUtil class is used to send the emails.
  *
  * @author Farid Masjedi
@@ -40,11 +38,9 @@ import org.springframework.stereotype.Component;
 public class StatusChangedAspect {
     private final MailUtil mailUtil;
     private final PaymentService paymentService;
-
+    private final ContestantService contestantService;
     @Value("${payment.url}")
     private String paymentUrl;
-
-    private final ContestantService contestantService;
 
     /**
      * Handles the status changed event after a method annotated with @StatusChangedEvent completes successfully.
