@@ -41,7 +41,6 @@ public class MailUtil {
     public void sendPaymentMail(String to, String name, String amount) {
         Context context = new Context();
         context.setVariable("name", name);
-        context.setVariable();
     }
 
     /**
