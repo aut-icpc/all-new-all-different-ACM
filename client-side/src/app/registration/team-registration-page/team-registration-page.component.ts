@@ -127,15 +127,17 @@ export class TeamRegistrationPageComponent implements OnInit {
             this.router.navigateByUrl('/registration/success');
           },
           () => {
+            this.disableSubmitButton = false;
             this.toast.showError('Something went wrong. Try again later.');
           }
         );
       },
       () => {
+        this.disableSubmitButton = false;
         this.toast.showError('Something went wrong. Try again later.');
       });
 
-    this.disableSubmitButton = true
+    this.disableSubmitButton = true;
   }
 
   private sendImagesOfContestant(contestantNumber: 'One' | 'Two' | 'Three') {
