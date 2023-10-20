@@ -28,7 +28,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public String createOrder(PaymentDto paymentDto) {
         ResponseEntity<ZifyResponseDto> responseDto =
-                restTemplate.postForEntity("https//zify.ir/api/v2/order/create", paymentDto, ZifyResponseDto.class);
+                restTemplate.postForEntity("https://zify.ir/api/v2/order/create", paymentDto, ZifyResponseDto.class);
         return ((CreateOrderResponseDto) responseDto.getBody().getData()).getOrder();
 
     }
@@ -45,7 +45,7 @@ public class PaymentServiceImpl implements PaymentService {
             throw new NotFoundException("contestant not found!");
 
         ResponseEntity<ZifyResponseDto> responseDto = restTemplate.postForEntity(
-                "https//zify.ir/api/order/verify", contestant.getOrderId(), ZifyResponseDto.class
+                "https://zify.ir/api/order/verify", contestant.getOrderId(), ZifyResponseDto.class
         );
 
         if (!responseDto.getStatusCode().is2xxSuccessful())

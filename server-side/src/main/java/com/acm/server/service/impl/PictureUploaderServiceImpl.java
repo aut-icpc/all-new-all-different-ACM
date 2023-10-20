@@ -4,6 +4,7 @@ import com.acm.server.config.HostConfiguration;
 import com.acm.server.domain.file.picture.PictureType;
 import com.acm.server.service.PictureUploaderService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
@@ -19,6 +20,7 @@ import java.util.UUID;
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class PictureUploaderServiceImpl implements PictureUploaderService {
 
     private final HostConfiguration hostConfiguration;
@@ -40,7 +42,9 @@ public class PictureUploaderServiceImpl implements PictureUploaderService {
         if (Files.exists(targetPath))
             throw new IOException("File already exists: " + fileName);
 
-        Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+        log.info("FILE : " + targetPath);
+
+        Files.createFile(targetPath);
         return "http://".concat(hostConfiguration.getName()).concat(hostConfiguration.getBaseRoute())
                 .concat(fileName);
     }
