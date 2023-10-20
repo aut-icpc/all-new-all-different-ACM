@@ -47,4 +47,10 @@ public class Team {
      */
     @OneToMany(cascade = CascadeType.ALL)
     private List<Contestant> contestants;
+
+    @Column
+    private Boolean isInAmirkabir = false;
+
+    @Column
+    private String orderId;
 }
