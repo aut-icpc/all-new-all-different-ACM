@@ -34,11 +34,11 @@ public class MailUtil {
      * @param status The new status.
      * @param name   The name of the recipient.
      */
-    public void sendMailAfterStatusChanged(String to, String status, String name, String amount) {
+    public void sendMailAfterStatusChanged(String to, String status, String name, Integer amount) {
         Context context = new Context();
         context.setVariable("name", name);
         context.setVariable("status", status);
-        context.setVariable("payment", paymentUrl.replace("${amount}", amount));
+        context.setVariable("payment", paymentUrl.replace("${amount}", amount.toString()));
         sendThymeleafEmail(to, "acm-change-status", "ACPC Change Status", context);
     }
 

@@ -6,6 +6,7 @@ import com.acm.server.model.Gender;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * Entity representing a contestant participating in a contest.
@@ -26,6 +27,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Accessors(chain = true)
 public class Contestant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,4 +67,7 @@ public class Contestant {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private StudentCardPicture studentCardPicture;
+
+    @Column
+    private Boolean paid = false;
 }

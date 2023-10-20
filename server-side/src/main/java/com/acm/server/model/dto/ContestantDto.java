@@ -4,6 +4,7 @@ import com.acm.server.domain.GraduationLevel;
 import com.acm.server.domain.ShirtSize;
 import com.acm.server.model.Gender;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -18,6 +19,7 @@ import javax.validation.constraints.Size;
  * @author Farid Masjedi
  */
 @Data
+@Accessors(chain = true)
 public class ContestantDto {
     private Long id;
     @NotBlank(message = "First name is required!")
@@ -46,4 +48,6 @@ public class ContestantDto {
     @NotNull(message = "Student card picture is required!")
     @Valid
     private PictureDto studentCardPicture;
+    private String orderId;
+    private Boolean paid = false;
 }

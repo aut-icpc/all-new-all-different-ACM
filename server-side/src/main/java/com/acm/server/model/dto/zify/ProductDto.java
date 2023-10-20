@@ -1,8 +1,10 @@
-package com.acm.server.model.dto;
+package com.acm.server.model.dto.zify;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 public class ProductDto {
     private String code = "1";
     private String sellQuantity = "1";

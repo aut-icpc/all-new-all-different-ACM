@@ -1,7 +1,9 @@
-package com.acm.server.model.dto;
+package com.acm.server.model.dto.zify;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 public class PayerDto {
     private String firstName;
     private String lastName;

@@ -2,6 +2,7 @@ package com.acm.server.model.dto;
 
 import com.acm.server.model.TeamStatus;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -18,6 +19,7 @@ import java.util.List;
  * @author Farid Masjedi
  */
 @Data
+@Accessors(chain = true)
 public class TeamDto {
     private Long id;
     @NotBlank(message = "Team name is required!")
@@ -30,4 +32,5 @@ public class TeamDto {
     @NotNull(message = "Contestants is required!")
     @Valid
     private List<ContestantDto> contestants;
+    private Boolean isInAmirkabir = false;
 }

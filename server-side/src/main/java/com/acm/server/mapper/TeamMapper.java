@@ -7,10 +7,10 @@ import org.mapstruct.Mapper;
 
 /**
  * Team Mapper
- * @see com.acm.server.domain.Team
- * @see com.acm.server.model.dto.TeamDto
  *
  * @author Farid Masjedi
+ * @see com.acm.server.domain.Team
+ * @see com.acm.server.model.dto.TeamDto
  */
 @Mapper
 public interface TeamMapper {
