@@ -70,4 +70,7 @@ public class Contestant {
 
     @Column
     private Boolean paid = false;
+
+    @Column
+    private String orderId;
 }

@@ -3,7 +3,9 @@ package com.acm.server.service.impl;
 import com.acm.server.domain.Contestant;
 import com.acm.server.domain.Payment;
 import com.acm.server.exception.NotFoundException;
+import com.acm.server.exception.PaymentException;
 import com.acm.server.model.PaymentType;
+import com.acm.server.model.dto.BaseResponseDto;
 import com.acm.server.model.dto.zify.CreateOrderResponseDto;
 import com.acm.server.model.dto.zify.PaymentDto;
 import com.acm.server.model.dto.zify.ZifyResponseDto;
@@ -41,8 +43,15 @@ public class PaymentServiceImpl implements PaymentService {
     public void verify(Long id) {
         Contestant contestant = contestantRepository.findById(id).orElse(null);
         if (Objects.isNull(contestant))
-            throw new NotFoundException("not found!");
+            throw new NotFoundException("contestant not found!");
 
-        contestant = contestantRepository.save(contestant.setPaid(true));
+        ResponseEntity<ZifyResponseDto> responseDto = restTemplate.postForEntity(
+                "https//zify.ir/api/order/verify", contestant.getOrderId(), ZifyResponseDto.class
+        );
+
+        if (!responseDto.getStatusCode().is2xxSuccessful())
+            throw new PaymentException();
+
+        contestantRepository.save(contestant.setPaid(true));
     }
 }
