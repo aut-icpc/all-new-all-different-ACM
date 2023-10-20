@@ -1,17 +1,13 @@
 package com.acm.server;
 
-import com.acm.server.request.SignUpRequest;
-import com.acm.server.service.AuthenticationService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.Spy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@SpringBootTest
 class ACPCApplicationTests {
 
-	@Autowired
-	PasswordEncoder passwordEncoder;
+	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 
 	@Test
