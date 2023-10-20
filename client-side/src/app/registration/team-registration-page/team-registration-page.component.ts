@@ -26,6 +26,7 @@ export class TeamRegistrationPageComponent implements OnInit {
 
   isDesktop !: boolean;
   captchaToken !: string;
+  disableSubmitButton: boolean = false
 
   siteKey = environment.recaptcha.siteKey;
 
@@ -133,6 +134,8 @@ export class TeamRegistrationPageComponent implements OnInit {
       () => {
         this.toast.showError('Something went wrong. Try again later.');
       });
+
+    this.disableSubmitButton = true
   }
 
   private sendImagesOfContestant(contestantNumber: 'One' | 'Two' | 'Three') {
@@ -175,7 +178,7 @@ export function uniqueTeamNameValidator(httpService: HttpService): (control: Abs
     return httpService.sendGetRequest<boolean>(API_URLS.REGISTRATION.UNIQUE_NAME_CHECK, {params: params}).pipe(
       map(response => {
         if (!response)
-          return { uniqueTeamName: true };
+          return {uniqueTeamName: true};
 
         return null;
       })

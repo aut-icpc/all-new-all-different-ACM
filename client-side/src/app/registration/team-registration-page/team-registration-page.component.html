@@ -78,7 +78,7 @@
             </div>
             <div class="step-buttons-container">
               <button mat-stroked-button matStepperPrevious color="primary">Back</button>
-              <button mat-raised-button color="primary" (click)="submitForm()">submit</button>
+              <button [disabled]="disableSubmitButton" mat-raised-button color="primary" (click)="submitForm()">submit</button>
             </div>
             <p id="rules-container">By clicking submit, you agree to our
               <a routerLink="/registration/terms" target=”_blank”>Terms and conditions</a>

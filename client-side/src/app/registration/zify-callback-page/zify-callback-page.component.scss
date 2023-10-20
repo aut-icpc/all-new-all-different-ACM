@@ -1,0 +1,92 @@
+#page-container {
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    margin-top: 5vh;
+
+    .loading-content {
+      width: clamp(0px, 80vw, 600px);
+      height: 80vh;
+      border-radius: 10px;
+      background-color: silver;
+    }
+  }
+
+  .result-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .payment-status-title {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 4vh;
+    }
+
+    .result-icon {
+      min-width: 100%;
+      margin-top: 20vh;
+      margin-bottom: 1vh;
+    }
+
+    .info-container {
+      border: 1px solid grey;
+      border-radius: 10px;
+      width: clamp(0px, 80vw, 600px);
+      margin-bottom: 5vh;
+
+      .info {
+        margin: clamp(0px, 5vw, 10px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .back-to-home-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .back-to-home {
+        width: clamp(0px, 80vw, 600px);
+        text-align: center;
+        height: 5vh;
+        border-radius: 10px;
+        background-color: red;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color .3s;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #ff3535;
+        }
+
+        &:active {
+          background-color: #fd6f6f;
+        }
+
+        &.success:hover {
+          background-color: #1ac51a;
+        }
+
+        &.success:active {
+          background-color: #58cc58;
+        }
+
+        &.success {
+          background-color: green;
+        }
+
+        & > * {
+          text-align: center;
+        }
+      }
+    }
+  }
+}

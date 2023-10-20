@@ -7,6 +7,7 @@ import {TeamSessionDataGuard} from "./guards/team-session-data.guard";
 import {ComingSoonPageComponent} from "./coming-soon-page/coming-soon-page.component";
 import {RegistrationBeginGuard} from "./guards/registration-begin.guard";
 import {RulesAndTermsPageComponent} from "./rules-and-terms-page/rules-and-terms-page.component";
+import {ZifyCallbackPageComponent} from "./zify-callback-page/zify-callback-page.component";
 
 const routes: Routes = [
   {path: 'registration', children: [
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'terms', component: RulesAndTermsPageComponent,
         title: 'Rules and Terms'
+      },
+      {
+        path: 'payment-result', component: ZifyCallbackPageComponent,
+        title: "Payment Result"
       }
     ]
   },
