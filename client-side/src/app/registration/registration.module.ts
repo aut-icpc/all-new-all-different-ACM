@@ -20,6 +20,7 @@ import { RegistrationSuccessPageComponent } from './registration-success-page/re
 import { ComingSoonPageComponent } from './coming-soon-page/coming-soon-page.component';
 import { RulesAndTermsPageComponent } from './rules-and-terms-page/rules-and-terms-page.component';
 import { ZifyCallbackPageComponent } from './zify-callback-page/zify-callback-page.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { ZifyCallbackPageComponent } from './zify-callback-page/zify-callback-pa
     RecaptchaFormsModule,
     MatStepperModule,
     MatButtonModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatProgressSpinnerModule
   ]
 })
 export class RegistrationModule { }
