@@ -1,5 +1,7 @@
 version: '3.3'
+
 services:
+
   acpc-back:
     image: acpc_back:latest
     build:
@@ -11,46 +13,35 @@ services:
       - 8080:8080
     depends_on:
       - db
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
+
   db:
-    volumes:
-      - ../database/mysql:/var/lib/mysql
-    image: mysql:8.0
+    container_name: db
+    image: postgres:16
+    ports:
+      - "5432:5432"
     environment:
-      - MYSQL_ROOT_PASSWORD=acpc_admin
-      - MYSQL_DATABASE=acpc_2023
-    ports:
-      - 3306:3306
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-  prometheus:
-    image: prom/prometheus:latest
-    ports:
-      - 9090:9090
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: acpc_admin
+      POSTGRES_DB: acpc_2023
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      - ../prometheus:/prometheus
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - 3000:3000
-    depends_on:
-      - prometheus
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-    volumes:
-      - ../grafana:/var/lib/grafana
+      - pg_data:/var/lib/postgresql/data
+
+        #  prometheus:
+        #    image: prom/prometheus:latest
+        #    ports:
+        #      - 9090:9090
+        #    volumes:
+        #      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+        #     - ../prometheus:/prometheus
+
+        #  grafana:
+        #    image: grafana/grafana:latest
+        #    ports:
+        #     - 3000:3000
+        #    depends_on:
+        #     - prometheus
+        #    volumes:
+        #      - ../grafana:/var/lib/grafana
 
   acpc-front:
     image: acpc_front:latest
@@ -61,8 +52,6 @@ services:
       - 8000:8000
     depends_on:
       - acpc-back
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
 
+volumes:
+  pg_data:
