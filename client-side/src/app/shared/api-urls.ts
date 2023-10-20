@@ -26,4 +26,5 @@ export const API_URLS = {
     }
   },
   LOGIN: AUTH_URL + '/login',
+  PAYMENT: BASE_URL + '/payment'
 };

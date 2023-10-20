@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {HttpService} from "../../shared/services/http.service";
+import {API_URLS} from "../../shared/api-urls";
 
 @Component({
   selector: 'acpc-zify-callback-page',
@@ -7,60 +9,29 @@ import {Router} from "@angular/router";
   styleUrls: ['./zify-callback-page.component.scss']
 })
 export class ZifyCallbackPageComponent {
-  responseMessage!: any
-  responseData!: any
   successful!: boolean
   loaded: boolean = false
 
-  uiDataValues!: any
-  uiDataKeys!: any
+  clientRefId!: number;
 
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router,
+              private http: HttpService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.successful = new Date().getSeconds() % 4 < 2
 
-    if (this.successful) {
-      this.responseMessage = {}
-      this.responseData = {
-        amount: 1000,
-        refid: "150039875879",
-        card_number: "62198619****5728",
+    this.route.queryParams.subscribe(params => {
+      this.clientRefId = params['clientrefid'];
+    });
+
+    this.http.sendGetRequest(`${API_URLS.PAYMENT}/${this.clientRefId}`).subscribe(
+      response => {
+        this.successful = true;
+      },
+      error => {
+        this.successful = false;
       }
-
-      this.loaded = true
-    } else {
-      this.responseMessage = "{response message}"
-      this.responseData = {}
-
-      this.loaded = true
-    }
-
-    this.parseResult()
-
-  }
-
-  private parseResult() {
-    const keyDict: any = {
-      amount: "Amount",
-      refid: "Reference ID",
-      card_number: "Credit Card Number",
-    }
-
-    this.uiDataValues = []
-    this.uiDataKeys = []
-
-    if (this.successful) {
-      for (let data of Object.keys(this.responseData)) {
-        console.log("key is", data)
-        this.uiDataValues.push(this.responseData[data])
-        this.uiDataKeys.push(keyDict[data] ?? data)
-      }
-    }
-
-    this.uiDataValues = [...this.uiDataValues]
-    this.uiDataKeys = [...this.uiDataKeys]
+    );
 
   }
 
