@@ -12,6 +12,9 @@ import com.acm.server.model.dto.zify.ZifyResponseDto;
 import com.acm.server.repository.ContestantRepository;
 import com.acm.server.repository.PaymentRepository;
 import com.acm.server.repository.TeamRepository;
+import com.acm.server.request.VerifyRequest;
+import com.acm.server.response.CreateOrderResponse;
+import com.acm.server.response.VerifyResponse;
 import com.acm.server.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
@@ -33,13 +36,13 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public String createOrder(PaymentDto paymentDto) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "bearer "
+        headers.add("Authorization", "Bearer "
                 .concat("3ac73ec2cfbad095050990db310f49ad01334d04c6abd1231342ee5fca323251"));
 
         HttpEntity<PaymentDto> requestEntity = new HttpEntity<>(paymentDto, headers);
-        ResponseEntity<ZifyResponseDto> responseDto =
-                restTemplate.postForEntity("https://zify.ir/api/v2/order/create", requestEntity, ZifyResponseDto.class);
-        return ((CreateOrderResponseDto) responseDto.getBody().getData()).getOrder();
+        ResponseEntity<CreateOrderResponse> response =
+                restTemplate.postForEntity("https://zify.ir/api/order/v2/create", requestEntity, CreateOrderResponse.class);
+        return response.getBody().getData().getOrder();
 
     }
 
@@ -58,10 +61,13 @@ public class PaymentServiceImpl implements PaymentService {
         headers.add("Authorization", "bearer "
                 .concat("3ac73ec2cfbad095050990db310f49ad01334d04c6abd1231342ee5fca323251"));
 
-        HttpEntity<String> requestEntity = new HttpEntity<>(contestant.getOrderId(), headers);
+        VerifyRequest request = new VerifyRequest();
+        request.setOrder(contestant.getOrderId());
 
-        ResponseEntity<ZifyResponseDto> responseDto = restTemplate.postForEntity(
-                "https://zify.ir/api/order/verify", requestEntity, ZifyResponseDto.class
+        HttpEntity<VerifyRequest> requestEntity = new HttpEntity<>(request, headers);
+
+        ResponseEntity<VerifyResponse> responseDto = restTemplate.postForEntity(
+                "https://zify.ir/api/order/v2/verify", requestEntity, VerifyResponse.class
         );
 
         if (!responseDto.getStatusCode().is2xxSuccessful())

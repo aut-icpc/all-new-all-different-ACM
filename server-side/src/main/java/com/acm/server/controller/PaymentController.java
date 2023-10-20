@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PaymentController {
     private final PaymentService paymentService;
 
-    @GetMapping("/verify/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<String> verify(@PathVariable Long id) {
         paymentService.verify(id);
         return ResponseEntity.ok("verified");

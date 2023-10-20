@@ -1,5 +1,6 @@
 package com.acm.server.aspect;
 
+import com.acm.server.domain.Contestant;
 import com.acm.server.domain.Payment;
 import com.acm.server.model.PaymentType;
 import com.acm.server.model.TeamStatus;
@@ -17,6 +18,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * Aspect class for handling the status changed event.
@@ -65,28 +68,29 @@ public class StatusChangedAspect {
             teamDto.getContestants().forEach(c -> readyForPayment(
                     c, payment
             ));
-
-        // Email each contestant in the team
-        teamDto.getContestants().forEach(c -> mailUtil.sendMailAfterStatusChanged(c.getEmail(), status, c.getLastname(),
-                (payment).getAmount()));
+        else {
+            // Email each contestant in the team
+            teamDto.getContestants().forEach(c -> mailUtil.sendMailAfterStatusChanged(c.getEmail(), status, c.getLastname(), ""));
+        }
 
     }
 
     private void readyForPayment(ContestantDto contestantDto, Payment payment) {
-        contestantService.saveContestant(contestantDto.setOrderId(paymentService.createOrder(
+        ContestantDto contestant = contestantService.saveContestant(contestantDto.setOrderId(paymentService.createOrder(
                 new PaymentDto()
-                        .setPayerDto(
+                        .setPayer(
                                 new PayerDto()
                                         .setEmail(contestantDto.getEmail())
-                                        .setFirstName(contestantDto.getFirstname())
-                                        .setLastName(contestantDto.getLastname())
+                                        .setFirst_name(contestantDto.getFirstname())
+                                        .setLast_name(contestantDto.getLastname())
                                         .setPhone(contestantDto.getPhoneNumber())
                         )
-                        .setProductDto(
+                        .setProducts(List.of(
                                 new ProductDto()
                                         .setAmount(payment.getAmount().toString())
-                        ).setClientRefId(contestantDto.getId().toString())
+                        )).setClientRefId(contestantDto.getId().toString())
                         .setReturnUrl(paymentUrl)
         )));
+        mailUtil.sendMailAfterStatusChanged(contestant.getEmail(), TeamStatus.WAITING_FOR_PAYMENT.name(), contestant.getLastname(), contestant.getOrderId());
     }
 }

@@ -26,10 +26,12 @@ export class ZifyCallbackPageComponent {
 
     this.http.sendGetRequest(`${API_URLS.PAYMENT}/${this.clientRefId}`).subscribe(
       response => {
+        this.loaded = true;
         this.successful = true;
       },
-      error => {
-        this.successful = false;
+    error => {
+      this.loaded = true;
+      this.successful = false;
       }
     );
 

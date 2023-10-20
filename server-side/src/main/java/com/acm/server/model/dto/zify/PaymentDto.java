@@ -3,14 +3,16 @@ package com.acm.server.model.dto.zify;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.util.List;
+
 @Data
 @Accessors(chain = true)
 public class PaymentDto {
-    private PayerDto payerDto;
-    private ProductDto productDto;
+    private PayerDto payer;
+    private List<ProductDto> products;
     private String clientRefId;
     private String returnUrl;
-    private String shippingTotal = "0";
-    private String offTotal = "0";
-    private String taxTotal = "0";
+    private String shipping_total = "0";
+    private String off_total = "0";
+    private String tax_total = "0";
 }
