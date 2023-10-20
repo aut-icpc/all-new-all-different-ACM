@@ -19,6 +19,7 @@ import { MatVerticalStepperScrollerDirective } from './mat-vertical-stepper-scro
 import { RegistrationSuccessPageComponent } from './registration-success-page/registration-success-page.component';
 import { ComingSoonPageComponent } from './coming-soon-page/coming-soon-page.component';
 import { RulesAndTermsPageComponent } from './rules-and-terms-page/rules-and-terms-page.component';
+import { ZifyCallbackPageComponent } from './zify-callback-page/zify-callback-page.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { RulesAndTermsPageComponent } from './rules-and-terms-page/rules-and-ter
     MatVerticalStepperScrollerDirective,
     RegistrationSuccessPageComponent,
     ComingSoonPageComponent,
-    RulesAndTermsPageComponent
+    RulesAndTermsPageComponent,
+    ZifyCallbackPageComponent
   ],
   imports: [
     CommonModule,
