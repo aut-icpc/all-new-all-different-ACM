@@ -17,7 +17,6 @@ import org.mapstruct.Mapping;
 public interface TeamMapper {
     TeamMapper INSTANCE = org.mapstruct.factory.Mappers.getMapper(TeamMapper.class);
 
-    @Mapping(target = "isInAmirkabir", ignore = true)
     TeamDto toTeamDto(Team team);
 
     Team toTeam(TeamDto teamDto);

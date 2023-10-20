@@ -7,4 +7,5 @@ import lombok.Data;
 public class UpdateStatusRequest {
     private Long teamId;
     private TeamStatus status;
+    private boolean isInAmirkabir;
 }
