@@ -1,4 +1,4 @@
 package com.acm.server.exception;
 
-public class PaymentException extends RuntimeException{
+public class PaymentException extends RuntimeException {
 }
