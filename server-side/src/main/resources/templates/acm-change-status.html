@@ -17,7 +17,12 @@
 <div>
     <h1>Hello <span th:text="${name}"></span>!</h1>
     <div th:switch="${status}" th:with="lowercaseStatus=${#strings.toLowerCase(status.replaceAll('_', ' '))}">
-        <!--TODO: add waiting for payment case using fee of teams and payment url-->
+        <p th:case="WAITING_FOR_PAYMENT">
+            Now you're ready for payment.<br>
+            Please follow the link below and do the payment and wait for your other teammates to do so.<br>
+            After that, you're ready to go 😎🔥<br><br>
+            The payment link: <a th:href="${payment}">Click Me!!</a>
+        </p>
         <p th:case="REJECTED">
             Your registration request has been rejected.<br>
             For more information, contact our support team.<br><br>
