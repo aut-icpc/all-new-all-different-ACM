@@ -56,7 +56,7 @@ public class PaymentServiceImpl implements PaymentService {
             throw new NotFoundException("contestant not found!");
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "bearer "
+        headers.add("Authorization", "Bearer "
                 .concat("3ac73ec2cfbad095050990db310f49ad01334d04c6abd1231342ee5fca323251"));
 
         VerifyRequest request = new VerifyRequest();
