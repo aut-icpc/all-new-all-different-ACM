@@ -14,6 +14,8 @@ import com.acm.server.repository.PaymentRepository;
 import com.acm.server.repository.TeamRepository;
 import com.acm.server.service.PaymentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -30,8 +32,13 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public String createOrder(PaymentDto paymentDto) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "bearer "
+                .concat("3ac73ec2cfbad095050990db310f49ad01334d04c6abd1231342ee5fca323251"));
+
+        HttpEntity<PaymentDto> requestEntity = new HttpEntity<>(paymentDto, headers);
         ResponseEntity<ZifyResponseDto> responseDto =
-                restTemplate.postForEntity("https://zify.ir/api/v2/order/create", paymentDto, ZifyResponseDto.class);
+                restTemplate.postForEntity("https://zify.ir/api/v2/order/create", requestEntity, ZifyResponseDto.class);
         return ((CreateOrderResponseDto) responseDto.getBody().getData()).getOrder();
 
     }
@@ -47,8 +54,14 @@ public class PaymentServiceImpl implements PaymentService {
         if (Objects.isNull(contestant))
             throw new NotFoundException("contestant not found!");
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "bearer "
+                .concat("3ac73ec2cfbad095050990db310f49ad01334d04c6abd1231342ee5fca323251"));
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(contestant.getOrderId(), headers);
+
         ResponseEntity<ZifyResponseDto> responseDto = restTemplate.postForEntity(
-                "https://zify.ir/api/order/verify", contestant.getOrderId(), ZifyResponseDto.class
+                "https://zify.ir/api/order/verify", requestEntity, ZifyResponseDto.class
         );
 
         if (!responseDto.getStatusCode().is2xxSuccessful())
