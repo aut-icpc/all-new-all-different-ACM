@@ -18,10 +18,10 @@ services:
     container_name: db
     image: postgres:16
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: acpc_admin
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: acpc_2023
     volumes:
       - pg_data:/var/lib/postgresql/data

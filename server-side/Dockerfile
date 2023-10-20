@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN mvn dependency:go-offline -B
+COPY ./settings.xml $HOME/.m2/settings.xml
 
 RUN mvn clean install -DskipTests
 
