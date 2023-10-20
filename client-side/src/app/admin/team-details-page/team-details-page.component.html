@@ -19,6 +19,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+        <mat-checkbox (change)="onCheckboxChange($event)">Is from Amirkabir?</mat-checkbox>
         <button type="button" color="primary" id="update-status-btn"
                 [disabled]="isUpdateDisabled"
                 mat-mini-fab (click)="updateTeamStatus()">

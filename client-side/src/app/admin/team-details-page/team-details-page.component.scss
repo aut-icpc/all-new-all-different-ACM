@@ -5,6 +5,10 @@
       padding-bottom: 0 !important;
     }
   }
+
+  .mat-mdc-checkbox .mdc-label {
+    text-wrap: nowrap;
+  }
 }
 
 #page-container {
@@ -21,7 +25,7 @@
 
 .detail-row {
   display: flex;
-  height: 70px;
+  height: 105px;
   width: 100%;
   align-items: start;
   flex-direction: column;

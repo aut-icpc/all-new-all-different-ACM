@@ -4,7 +4,6 @@ import com.acm.server.domain.Team;
 import com.acm.server.model.dto.TeamDto;
 import com.acm.server.response.TeamBasicInformationResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 /**
  * Team Mapper

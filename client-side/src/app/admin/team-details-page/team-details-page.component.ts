@@ -10,6 +10,7 @@ import {UpdateStatusRequestDto} from "../../shared/interfaces/DTO/updateStatusRe
 import {ToastService} from "../../shared/services/toast.service";
 import {AuthenticatedHttpService} from "../services/authenticated-http.service";
 import {MetaService} from "../../shared/services/meta.service";
+import {MatCheckboxChange} from "@angular/material/checkbox";
 
 @Component({
   selector: 'acpc-team-details-page',
@@ -26,6 +27,7 @@ export class TeamDetailsPageComponent implements OnInit {
   isUpdateDisabled = true;
   teamCurrentStatus!: TeamStatus;
   selectedStatus!: TeamStatus;
+  isInAmirkabir!: boolean;
   teamStatusControl = new UntypedFormControl();
 
   selectedCardPhotoAddress!: string;
@@ -68,10 +70,15 @@ export class TeamDetailsPageComponent implements OnInit {
     const request = new UpdateStatusRequestDto();
     request.teamId = this.teamId;
     request.status = this.selectedStatus;
+    request.isInAmirkabir = this.isInAmirkabir;
     this.http.sendPutRequest(API_URLS.REGISTRATION.TEAM_STATUS_UPDATE, request)
       .subscribe(() => {
         this.toast.showSuccess('team status has been updated.');
         this.router.navigateByUrl('/admin/home');
     });
+  }
+
+  onCheckboxChange(event: MatCheckboxChange): void {
+    this.isInAmirkabir = event.checked;
   }
 }
