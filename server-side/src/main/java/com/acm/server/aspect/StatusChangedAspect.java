@@ -1,5 +1,6 @@
 package com.acm.server.aspect;
 
+import com.acm.server.model.TeamStatus;
 import com.acm.server.model.dto.TeamDto;
 import com.acm.server.util.MailUtil;
 import lombok.RequiredArgsConstructor;
@@ -41,5 +42,9 @@ public class StatusChangedAspect {
 
         // Email each contestant in the team
         teamDto.getContestants().forEach(c -> mailUtil.sendMailAfterStatusChanged(c.getEmail(), status, c.getLastname()));
+
+        if (status.equals(TeamStatus.WAITING_FOR_PAYMENT.name()))
+            teamDto.getContestants().forEach(c -> mailUtil.sendMailAfterStatusChanged(c.getEmail(), status, c.getLastname()));
+
     }
 }

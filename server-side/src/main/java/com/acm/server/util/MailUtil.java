@@ -38,6 +38,12 @@ public class MailUtil {
         sendThymeleafEmail(to, "acm-change-status", "ACPC Change Status", context);
     }
 
+    public void sendPaymentMail(String to, String name, String amount) {
+        Context context = new Context();
+        context.setVariable("name", name);
+        context.setVariable();
+    }
+
     /**
      * Sends a starting alert for the contest registration.
      *
