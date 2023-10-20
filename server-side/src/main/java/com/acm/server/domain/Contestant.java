@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.springframework.context.annotation.Lazy;
 
 /**
  * Entity representing a contestant participating in a contest.
@@ -73,4 +74,8 @@ public class Contestant {
 
     @Column
     private String orderId;
+
+    @JoinColumn
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Team team;
 }

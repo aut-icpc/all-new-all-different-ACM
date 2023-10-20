@@ -5,11 +5,13 @@ import com.acm.server.domain.Payment;
 import com.acm.server.exception.NotFoundException;
 import com.acm.server.exception.PaymentException;
 import com.acm.server.model.PaymentType;
+import com.acm.server.model.TeamStatus;
 import com.acm.server.model.dto.zify.CreateOrderResponseDto;
 import com.acm.server.model.dto.zify.PaymentDto;
 import com.acm.server.model.dto.zify.ZifyResponseDto;
 import com.acm.server.repository.ContestantRepository;
 import com.acm.server.repository.PaymentRepository;
+import com.acm.server.repository.TeamRepository;
 import com.acm.server.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,7 @@ public class PaymentServiceImpl implements PaymentService {
     private final RestTemplate restTemplate;
     private final PaymentRepository repository;
     private final ContestantRepository contestantRepository;
+    private final TeamRepository teamRepository;
 
     @Override
     public String createOrder(PaymentDto paymentDto) {
@@ -51,6 +54,14 @@ public class PaymentServiceImpl implements PaymentService {
         if (!responseDto.getStatusCode().is2xxSuccessful())
             throw new PaymentException();
 
+        boolean allPaid = true;
         contestantRepository.save(contestant.setPaid(true));
+        for (Contestant c : contestant.getTeam().getContestants()) {
+            allPaid = allPaid && c.getPaid();
+        }
+        if (allPaid)
+            contestant.getTeam().setStatus(TeamStatus.FINALIZED);
+
+        teamRepository.save(contestant.getTeam());
     }
 }
