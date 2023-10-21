@@ -14,12 +14,14 @@ import {MatButtonModule} from "@angular/material/button";
 import {RegistrationStatusPageComponent} from './registration-status-page/registration-status-page.component';
 import {PictureUploadInputComponent} from './picture-upload-input/picture-upload-input.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
-import { IdentificationDocumentsFormComponent } from './identification-documents-form/identification-documents-form.component';
-import { MatVerticalStepperScrollerDirective } from './mat-vertical-stepper-scroller.directive';
-import { RegistrationSuccessPageComponent } from './registration-success-page/registration-success-page.component';
-import { ComingSoonPageComponent } from './coming-soon-page/coming-soon-page.component';
-import { RulesAndTermsPageComponent } from './rules-and-terms-page/rules-and-terms-page.component';
-import { ZifyCallbackPageComponent } from './zify-callback-page/zify-callback-page.component';
+import {
+  IdentificationDocumentsFormComponent
+} from './identification-documents-form/identification-documents-form.component';
+import {MatVerticalStepperScrollerDirective} from './mat-vertical-stepper-scroller.directive';
+import {RegistrationSuccessPageComponent} from './registration-success-page/registration-success-page.component';
+import {ComingSoonPageComponent} from './coming-soon-page/coming-soon-page.component';
+import {RulesAndTermsPageComponent} from './rules-and-terms-page/rules-and-terms-page.component';
+import {ZifyCallbackPageComponent} from './zify-callback-page/zify-callback-page.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 

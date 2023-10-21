@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {HeaderComponent} from './components/header/header.component';
 import {MatButtonModule} from "@angular/material/button";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ModalBodyComponent} from './components/modal-body/modal-body.component';
@@ -20,12 +19,14 @@ import {GenerateErrorMessagePipe} from './pipes/generate-error-message.pipe';
 import {IconsModule} from "./icons/icons.module";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { ThemeSlideToggleComponent } from './components/theme-slide-toggle/theme-slide-toggle.component';
-import { SocialMediaUrlToUsernamePipe } from './pipes/socla-media-url-to-username.pipe';
-import { MapComponent } from './components/map/map.component';
+import {ThemeSlideToggleComponent} from './components/theme-slide-toggle/theme-slide-toggle.component';
+import {SocialMediaUrlToUsernamePipe} from './pipes/socla-media-url-to-username.pipe';
+import {MapComponent} from './components/map/map.component';
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import { ImageSliderContainerComponent } from './components/image-slider/image-slider-container/image-slider-container.component';
+import {
+  ImageSliderContainerComponent
+} from './components/image-slider/image-slider-container/image-slider-container.component';
 
 
 @NgModule({
@@ -57,7 +58,6 @@ import { ImageSliderContainerComponent } from './components/image-slider/image-s
     imports: [
         CommonModule,
         MatButtonModule,
-        BrowserAnimationsModule,
         HttpClientModule,
         MatDialogModule,
         MatIconModule,

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Platform} from "@angular/cdk/platform";
 
 @Injectable({

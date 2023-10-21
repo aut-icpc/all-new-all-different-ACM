@@ -3,10 +3,10 @@ import {PlatformService} from "../../shared/services/platform.service";
 import {
   AbstractControl,
   ControlValueAccessor,
-  UntypedFormControl,
-  UntypedFormGroup,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
+  UntypedFormControl,
+  UntypedFormGroup,
   ValidationErrors,
   Validator,
   Validators

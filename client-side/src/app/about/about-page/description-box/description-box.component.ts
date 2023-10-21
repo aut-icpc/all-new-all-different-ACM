@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AboutDto} from "../../shared/interfaces/DTO/about.dto";
+import {AboutDto} from "../../../shared/interfaces/DTO/about.dto";
 
 @Component({
   selector: 'acpc-description-box',

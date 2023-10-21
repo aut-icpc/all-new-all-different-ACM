@@ -2,10 +2,10 @@ import {Component, Input, OnInit} from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
-  UntypedFormControl,
-  UntypedFormGroup,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
+  UntypedFormControl,
+  UntypedFormGroup,
   ValidationErrors,
   Validator,
   Validators

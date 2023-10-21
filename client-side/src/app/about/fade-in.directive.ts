@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, HostBinding, OnDestroy } from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, HostBinding, OnDestroy} from '@angular/core';
 
 @Directive({
   selector: '[acpcFadeIn]'

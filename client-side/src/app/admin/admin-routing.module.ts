@@ -1,17 +1,27 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
-import {AdminPageComponent} from "./admin-page/admin-page.component";
-import {TeamDetailsPageComponent} from "./team-details-page/team-details-page.component";
-import {AdminLoginPageComponent} from "./admin-login-page/admin-login-page.component";
 
 const routes: Routes = [
   {
     path: 'admin', title: 'ACPC admin panel',
     children: [
-      {path: '', redirectTo: 'login', pathMatch: 'full'},
-      {path: 'home', component: AdminPageComponent},
-      {path: 'login', component: AdminLoginPageComponent},
-      {path: 'team-details/:id', component: TeamDetailsPageComponent}
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+      },
+      {
+        path: 'home',
+        loadChildren: () => import('./admin-page/admin-page.module').then(m => m.AdminPageModule),
+      },
+      {
+        path: 'login',
+        loadChildren: () => import('./admin-login-page/admin-login-page.module').then(m => m.AdminLoginPageModule)
+      },
+      {
+        path: 'team-details/:id',
+        loadChildren: () => import('./team-details-page/team-details-page.module').then(m => m.TeamDetailsPageModule)
+      }
     ]
   }
 ];
@@ -20,4 +30,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {
+}

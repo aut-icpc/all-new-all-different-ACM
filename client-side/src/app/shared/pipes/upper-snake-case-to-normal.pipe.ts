@@ -1,5 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import {TeamStatus} from "../enums/team-status";
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'upperSnakeCaseToNormal'

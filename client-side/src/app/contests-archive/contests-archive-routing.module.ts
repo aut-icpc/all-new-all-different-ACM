@@ -1,15 +1,15 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
-import {ContestsArchivePageComponent} from "./contests-archive-page/contests-archive-page.component";
-import {ContestDetailsPageComponent} from "./contest-details-page/contest-details-page.component";
 
 const routes: Routes = [
   {
-    path: 'contests-archive', component: ContestsArchivePageComponent,
+    path: 'contests-archive',
+    loadChildren: () => import("./contests-archive-page/contests-archive-page.module").then(m => m.ContestsArchivePageModule),
     title: 'Contests archive'
   },
   {
-    path: 'archive', component: ContestDetailsPageComponent,
+    path: 'archive',
+    loadChildren: () => import("./contest-details-page/contest-details-page.module").then(m => m.ContestDetailsPageModule),
     title: 'team details'
   }
 ];
@@ -18,4 +18,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class ContestsArchiveRoutingModule { }
+export class ContestsArchiveRoutingModule {
+}

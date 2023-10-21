@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {ArchiveDto} from "../../shared/interfaces/DTO/archive.dto";
+import {ArchiveDto} from "../../../shared/interfaces/DTO/archive.dto";
 import {Router} from "@angular/router";
 
 @Component({
