@@ -70,15 +70,5 @@ public class PaymentServiceImpl implements PaymentService {
 
         if (!responseDto.getStatusCode().is2xxSuccessful())
             throw new PaymentException();
-
-        boolean allPaid = true;
-        contestantRepository.save(contestant.setPaid(true));
-        for (Contestant c : contestant.getTeam().getContestants()) {
-            allPaid = allPaid && c.getPaid();
-        }
-        if (allPaid)
-            contestant.getTeam().setStatus(TeamStatus.FINALIZED);
-
-        teamRepository.save(contestant.getTeam());
     }
 }
