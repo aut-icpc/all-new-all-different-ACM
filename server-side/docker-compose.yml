@@ -9,6 +9,8 @@ services:
       dockerfile: Dockerfile
     environment:
       - MYSQL_HOST=db
+    volumes: 
+      - /home/acm/all-new-all-different-ACM/server-side/src/main/resources/pictures/upload:/app/upload
     ports:
       - 8080:8080
     depends_on:
