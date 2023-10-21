@@ -19,6 +19,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Aspect class for handling the status changed event.
@@ -55,7 +56,7 @@ public class StatusChangedAspect {
         // Get the new status of the team
         String status = teamDto.getStatus().name();
         PaymentType paymentType;
-        if (teamDto.getIsInAmirkabir())
+        if (Objects.nonNull(teamDto.getIsInAmirkabir()) && teamDto.getIsInAmirkabir())
             paymentType = PaymentType.AMIRKABIR;
         else {
             paymentType = PaymentType.NORMAL;
