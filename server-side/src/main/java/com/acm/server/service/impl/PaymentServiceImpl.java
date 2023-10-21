@@ -70,5 +70,7 @@ public class PaymentServiceImpl implements PaymentService {
 
         if (!responseDto.getStatusCode().is2xxSuccessful())
             throw new PaymentException();
+
+        contestantRepository.save(contestant.setPaid(true));
     }
 }
