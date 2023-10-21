@@ -45,7 +45,7 @@ public class PictureUploaderServiceImpl implements PictureUploaderService {
 
         log.info("FILE : " + targetPath);
 
-        Files.createFile(targetPath);
+        Files.copy(file.getInputStream(), targetPath);
         return "http://".concat(hostConfiguration.getName()).concat(hostConfiguration.getBaseRoute())
                 .concat(fileName);
     }
