@@ -5,7 +5,6 @@ import com.acm.server.domain.Payment;
 import com.acm.server.exception.NotFoundException;
 import com.acm.server.exception.PaymentException;
 import com.acm.server.model.PaymentType;
-import com.acm.server.model.TeamStatus;
 import com.acm.server.model.dto.zify.PaymentDto;
 import com.acm.server.repository.ContestantRepository;
 import com.acm.server.repository.PaymentRepository;
