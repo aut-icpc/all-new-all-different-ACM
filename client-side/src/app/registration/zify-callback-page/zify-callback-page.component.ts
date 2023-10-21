@@ -24,7 +24,7 @@ export class ZifyCallbackPageComponent {
       this.clientRefId = params['clientrefid'];
     });
 
-    this.http.sendGetRequest(`${API_URLS.PAYMENT}/${this.clientRefId}`).subscribe(
+    this.http.sendGetRequest<string>(`${API_URLS.PAYMENT}/${this.clientRefId}`).subscribe(
       response => {
         this.loaded = true;
         this.successful = true;
