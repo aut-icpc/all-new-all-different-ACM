@@ -74,7 +74,7 @@ public class TeamServiceImpl implements TeamService {
     public TeamDto updateStatus(UpdateStatusRequest request) {
         teamRepository.updateStatus(request);
         return mapper.toTeamDto(teamRepository.findById(request.getTeamId()).orElse(null)).setIsInAmirkabir(
-                request.isInAmirkabir()
+                request.getIsInAmirkabir()
         );
     }
 

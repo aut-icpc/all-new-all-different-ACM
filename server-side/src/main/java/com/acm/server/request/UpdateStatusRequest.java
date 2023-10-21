@@ -9,5 +9,5 @@ import lombok.experimental.Accessors;
 public class UpdateStatusRequest {
     private Long teamId;
     private TeamStatus status;
-    private boolean isInAmirkabir;
+    private Boolean isInAmirkabir;
 }
