@@ -14,4 +14,5 @@ export class Contestant {
   studentId !: number;
   nationalIdPicture!: PictureDto;
   studentCardPicture!: PictureDto;
+  paid!: boolean;
 }
