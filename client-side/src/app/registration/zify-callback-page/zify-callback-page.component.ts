@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpService} from "../../shared/services/http.service";
 import {API_URLS} from "../../shared/api-urls";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'acpc-zify-callback-page',
@@ -24,14 +25,14 @@ export class ZifyCallbackPageComponent {
       this.clientRefId = params['clientrefid'];
     });
 
-    this.http.sendGetRequest<string>(`${API_URLS.PAYMENT}/${this.clientRefId}`).subscribe(
+    this.http.sendGetRequest<HttpResponse<string>>(`${API_URLS.PAYMENT}/${this.clientRefId}`).subscribe(
       response => {
         this.loaded = true;
         this.successful = true;
       },
-    error => {
+    (error:HttpErrorResponse) => {
       this.loaded = true;
-      this.successful = false;
+      this.successful = error.status == 200;
       }
     );
 
