@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpService} from "../../shared/services/http.service";
 import {API_URLS} from "../../shared/api-urls";
-import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {MetaService} from "../../shared/services/meta.service";
 
 @Component({
   selector: 'acpc-zify-callback-page',
@@ -16,7 +17,9 @@ export class ZifyCallbackPageComponent {
   clientRefId!: number;
 
   constructor(private router: Router,
-              private http: HttpService, private route: ActivatedRoute) { }
+              private http: HttpService,
+              private route: ActivatedRoute,
+              private meta: MetaService) { }
 
   ngOnInit(): void {
     this.successful = new Date().getSeconds() % 4 < 2
@@ -25,7 +28,15 @@ export class ZifyCallbackPageComponent {
       this.clientRefId = params['clientrefid'];
     });
 
-    this.http.sendGetRequest<HttpResponse<string>>(`${API_URLS.PAYMENT}/${this.clientRefId}`).subscribe(
+    const options:Object = {
+
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      responseType: 'text'
+    }
+
+    this.http.sendGetRequest<string>(`${API_URLS.PAYMENT}/${this.clientRefId}`, options).subscribe(
       response => {
         this.loaded = true;
         this.successful = true;
@@ -36,6 +47,7 @@ export class ZifyCallbackPageComponent {
       }
     );
 
+    this.meta.setPageIndexing("noindex");
   }
 
   navigateToHome() {

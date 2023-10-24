@@ -59,6 +59,10 @@ export class AdminPageComponent implements OnInit {
       });
   }
 
+  getRowNumber(index:number) {
+    return (index + 1) + (this.paginationData.pageNumber * this.paginationData.pageSize);
+  }
+
   private getPaginationHttpParameters() {
     return {
       page: `${this.paginationData.pageNumber}`,

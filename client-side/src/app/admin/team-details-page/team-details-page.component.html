@@ -19,7 +19,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-checkbox (change)="onCheckboxChange($event)">Is from Amirkabir?</mat-checkbox>
+        <mat-checkbox (change)="onCheckboxChange($event)">AUT student?</mat-checkbox>
         <button type="button" color="primary" id="update-status-btn"
                 [disabled]="isUpdateDisabled"
                 mat-mini-fab (click)="updateTeamStatus()">
@@ -51,8 +51,8 @@
         <div class="team-details"><span class="detail-title">shirt size: </span>
           <span>{{contestant.shirtSize.size}}</span>
         </div>
-        <div class="team-details"><span class="detail-title">is paid: </span>
-          <span>{{contestant.paid}}</span>
+        <div class="team-details"><span class="detail-title">fee paid: </span>
+          <span>{{contestant.paid ? 'YES' : 'NO'}}</span>
         </div>
         <div class="team-details"><span class="detail-title">photos: </span>
           <span class="card-text" (click)="selectPhoto(contestant.nationalIdPicture.link)">
