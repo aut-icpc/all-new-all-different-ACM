@@ -133,8 +133,6 @@ export class ContestantFormComponent implements OnInit, ControlValueAccessor, Va
   }
 
   private setShirtSizeImageName() {
-    const isDark = localStorage.getItem('isDark');
-    const tableTheme = (isDark === 'false') ? 'dark' : 'light';
-    this.shirtSizeImageName = `assets/images/shirt_size_${tableTheme}.png`;
+    this.shirtSizeImageName = `assets/images/shirt-sizes-n-stuffs.png`;
   }
 }
