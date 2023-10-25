@@ -133,6 +133,6 @@ export class ContestantFormComponent implements OnInit, ControlValueAccessor, Va
   }
 
   private setShirtSizeImageName() {
-    this.shirtSizeImageName = `assets/images/shirt-sizes-n-stuffs.png`;
+    this.shirtSizeImageName = `assets/images/shirt-sizes-n-stuffs.jpg`;
   }
 }
