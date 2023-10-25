@@ -68,14 +68,14 @@
         <ng-template matStepContent>
           <div id="submit-container">
             <!--TODO: prompt user to fill captcha-->
-            <div class="captcha-container">
-              <re-captcha id="recaptcha" name="recaptcha" required [siteKey]="siteKey"
-                          #recaptcha="ngModel" [(ngModel)]="captchaToken"
-                          [class]="{'error-captcha': showErrorOnCaptcha}"
-                          [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
-              <span [hidden]="recaptcha.valid || recaptcha.pristine"
-                    style="color: #dc3545;">Captcha must be solved</span>
-            </div>
+<!--            <div class="captcha-container">-->
+<!--              <re-captcha id="recaptcha" name="recaptcha" required [siteKey]="siteKey"-->
+<!--                          #recaptcha="ngModel" [(ngModel)]="captchaToken"-->
+<!--                          [class]="{'error-captcha': showErrorOnCaptcha}"-->
+<!--                          [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>-->
+<!--              <span [hidden]="recaptcha.valid || recaptcha.pristine"-->
+<!--                    style="color: #dc3545;">Captcha must be solved</span>-->
+<!--            </div>-->
             <div class="step-buttons-container">
               <button mat-stroked-button matStepperPrevious color="primary">Back</button>
               <button [disabled]="disableSubmitButton" mat-raised-button color="primary" (click)="submitForm()">submit</button>

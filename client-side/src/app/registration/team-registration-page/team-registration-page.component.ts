@@ -99,11 +99,11 @@ export class TeamRegistrationPageComponent implements OnInit {
   }
 
   submitForm() {
-    if (!this.captchaToken) {
-      this.showErrorOnCaptcha = true;
-      this.toast.showError('please fill the captcha');
-      return;
-    }
+    // if (!this.captchaToken) {
+    //   this.showErrorOnCaptcha = true;
+    //   this.toast.showError('please fill the captcha');
+    //   return;
+    // }
 
     this.showErrorOnCaptcha = false;
 
