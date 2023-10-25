@@ -5,7 +5,7 @@ export const environment = {
   },
   registration: {
     educationLevels: ['Undergraduate(BSc.)', 'Graduate(MSc.)'],
-    shirtSizes: ['Small', 'Medium', 'Large', 'XL', 'XXL'],
+    shirtSizes: ['Small', 'Medium', 'Large', 'XL', 'XXL', 'XXXL'],
     genders: ['male', 'female']
   },
   inputValidators: {
