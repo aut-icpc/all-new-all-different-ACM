@@ -14,7 +14,7 @@ export const environment = {
   },
   inputValidators: {
     phoneMinLength: 10,
-    phonePattern: '\\+?\\d{10,15}',
+    phonePattern: '0\\d{10,15}',
     institutionNameMinLength: 10,
   }
 };

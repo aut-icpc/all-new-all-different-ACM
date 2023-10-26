@@ -35,7 +35,7 @@
   <div id="contact-info-container" class="form-section">
     <span class="section-title">Contact Information</span>
     <mat-form-field appearance="outline">
-      <input matInput type="text" formControlName="phoneNumber" required>
+      <input matInput type="text" formControlName="phoneNumber" required placeholder="09120000000">
       <mat-label>Phone Number</mat-label>
       <mat-error *ngIf="isFormControlValid('phoneNumber')">
         {{group.controls['phoneNumber'].errors | generateErrorMessage: 'PHONE'}}
