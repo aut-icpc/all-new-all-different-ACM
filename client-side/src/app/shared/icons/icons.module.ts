@@ -107,5 +107,7 @@ export class IconsModule {
       this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Minimize.svg'));
     this.iconRegistry.addSvgIcon('maximize',
       this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Maximize.svg'));
+    this.iconRegistry.addSvgIcon('code',
+      this.sanitizer.bypassSecurityTrustResourceUrl(directoryPath + 'Code.svg'));
   }
 }

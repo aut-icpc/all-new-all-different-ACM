@@ -6,6 +6,9 @@ import { DescriptionBoxComponent } from './description-box/description-box.compo
 import {SharedModule} from "../shared/shared.module";
 import {MatButtonModule} from "@angular/material/button";
 import { FadeInDirective } from './fade-in.directive';
+import { AboutDevsPageComponent } from './about-devs-page/about-devs-page.component';
+import { DeveloperCardComponent } from './developer-card/developer-card.component';
+import {MatCardModule} from "@angular/material/card";
 
 
 
@@ -13,13 +16,16 @@ import { FadeInDirective } from './fade-in.directive';
   declarations: [
     AboutPageComponent,
     DescriptionBoxComponent,
-    FadeInDirective
+    FadeInDirective,
+    AboutDevsPageComponent,
+    DeveloperCardComponent
   ],
-  imports: [
-    CommonModule,
-    AboutRoutingModule,
-    SharedModule,
-    MatButtonModule
-  ]
+    imports: [
+        CommonModule,
+        AboutRoutingModule,
+        SharedModule,
+        MatButtonModule,
+        MatCardModule
+    ]
 })
 export class AboutModule { }

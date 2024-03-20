@@ -1,6 +1,6 @@
 @import "src/styles";
 
-.card-container {
+.card-content {
   height: 200px;
   width: 150px;
   position: relative;
@@ -36,7 +36,7 @@
   background: linear-gradient(0deg, #212121, transparent) no-repeat;
   transition: all .3s ease-in-out;
 }
-.card-container:hover .poster-year {
+.card-content:hover .poster-year {
   height: 100%;
   font-size: 25px;
   font-weight: bolder;

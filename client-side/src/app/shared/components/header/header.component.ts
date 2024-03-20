@@ -3,7 +3,6 @@ import {NavigationEnd, Router} from "@angular/router";
 import {PlatformService} from "../../services/platform.service";
 import {MatBottomSheet, MatBottomSheetRef} from "@angular/material/bottom-sheet";
 import {OverlayContainer} from "@angular/cdk/overlay";
-import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'acpc-header',
@@ -15,7 +14,7 @@ export class HeaderComponent implements AfterViewInit {
   isDesktop !: boolean;
   isMenuOpen = false;
   menuOptions = ['Home', 'About', 'Register',
-    'Timeline', 'Contact Us', 'Reg. Status', 'Contests Archive'];
+    'Timeline', 'Contact Us', 'Reg. Status', 'Contests Archive', 'About Devs'];
 
   menuOptionIconMap!: Readonly<Record<string, string>>
 
@@ -108,10 +107,6 @@ export class HeaderComponent implements AfterViewInit {
     return formatted.replace(' ', '-').toLowerCase();
   }
 
-  isHomePage() {
-    return this.router.url.includes('/home');
-  }
-
   initializeIconMap() {
     this.menuOptionIconMap = {
       'Home': 'home',
@@ -120,7 +115,8 @@ export class HeaderComponent implements AfterViewInit {
       'Register': 'add_user',
       'Timeline': 'calender',
       'Contact Us': 'bubble',
-      'Reg. Status': 'clipboard'
+      'Reg. Status': 'clipboard',
+      'About Devs': 'code',
     }
   }
 

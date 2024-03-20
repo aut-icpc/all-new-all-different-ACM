@@ -1,0 +1,29 @@
+<mat-card class="card-container">
+  <mat-card-content class="card-content">
+    <img
+    [src]="developerData?.profileImage"
+    [alt]="developerData?.name"
+    class="profile-image"
+  >
+    <span>
+      {{ developerData?.name }}
+    </span>
+    <span class="role-text">
+      {{ developerData?.role }}
+    </span>
+    <div class="contacts">
+      <div>
+        <acpc-icon icon="email" />
+        <a [href]="'mailto:' + developerData?.email">
+          {{ developerData?.email }}
+        </a>
+      </div>
+      <div>
+        <acpc-icon icon="telegram" />
+        <a [href]="developerData?.telegramUrl">
+          {{ developerData?.telegramUrl | socialMediaUrlToUsername: 'telegram' }}
+        </a>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

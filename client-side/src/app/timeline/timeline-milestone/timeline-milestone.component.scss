@@ -1,6 +1,6 @@
 @import "src/styles";
 
-.card-container {
+.card-content {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@
   @extend .round-border-2;
 }
 
-.card-container::after {
+.card-content::after {
   content: "";
   width: 0;
   height: 0;
@@ -80,7 +80,7 @@
 }
 
 @media only screen and (max-width: 840px) {
-  .card-container {
+  .card-content {
     width: 250px;
     height: 195px;
     border-radius: 20px 20px 4px 4px;
@@ -107,7 +107,7 @@
     display: flex;
   }
 
-  .card-container::after {
+  .card-content::after {
     position: absolute;
     bottom: -153px;
     right: auto;

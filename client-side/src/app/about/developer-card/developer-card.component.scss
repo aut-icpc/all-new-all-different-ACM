@@ -1,0 +1,39 @@
+@import "src/styles";
+
+.card-container {
+  width: 300px;
+  @extend .round-border-1;
+  border: 1px solid var(--disabled-text-color);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-image {
+  width: 100%;
+  @extend .round-border-1;
+}
+
+.role-text {
+  color: var(--disabled-text-color);
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  width: 100%;
+  gap: 5px;
+  a {
+    color: var(--primary-color);
+  }
+
+  & > * {
+    display: flex;
+    gap: 5px;
+  }
+}
