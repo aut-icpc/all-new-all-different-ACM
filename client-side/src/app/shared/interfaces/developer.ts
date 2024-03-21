@@ -1,7 +1,9 @@
+export type developerRole = 'Frontend' | 'Backend' | 'Devops';
+
 export interface Developer {
   profileImage: string;
   name: string;
-  role: 'Frontend' | 'Backend' | 'Devops';
+  role: developerRole[];
   telegramUrl: string;
   email: string;
 }

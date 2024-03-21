@@ -14,28 +14,28 @@ export class AboutDevsPageComponent implements OnInit {
       {
         name: 'Mohammad-hossein Zeynalzadeh',
         profileImage: 'assets/images/devs-profiles/mhzz.png',
-        role: 'Frontend',
+        role: ['Frontend', 'Backend'],
         email: 'mh.zeynal@gmail.com',
         telegramUrl: 'https://t.me/mhzz_74'
       },
       {
         name: 'Farid Masjedi',
         profileImage: 'assets/images/devs-profiles/farid-masjedi.png',
-        role: 'Backend',
+        role: ['Backend', 'Devops'],
         email: 'blue.farid.masjedi@gmail.com',
         telegramUrl: 'https://t.me/blue_farid'
       },
       {
         name: 'Alireza Yousefpour',
         profileImage: 'assets/images/devs-profiles/alireza-yousefpour.png',
-        role: 'Frontend',
+        role: ['Frontend'],
         email: 'alireza.yousefpourm@gmail.com',
         telegramUrl: 'https://t.me/AlirezaYousefpourM'
       },
       {
         name: 'Farhad Aman',
         profileImage: 'assets/images/devs-profiles/farhad-aman.png',
-        role: 'Devops',
+        role: ['Devops'],
         email: 'farhadaman7780@gmail.com',
         telegramUrl: 'https://t.me/farhad771380'
       }
