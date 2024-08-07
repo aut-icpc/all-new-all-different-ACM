@@ -3,14 +3,14 @@ version: '3.3'
 services:
 
   acpc-back:
-    image: acpc_back:latest
+    container_name: backend
     build:
       context: .
       dockerfile: Dockerfile
     environment:
-      - MYSQL_HOST=db
+      - POSTGRES_HOST=db
     ports:
-      - 8080:8080
+      - "8080:8080"
     depends_on:
       - db
 
@@ -26,30 +26,13 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
 
-        #  prometheus:
-        #    image: prom/prometheus:latest
-        #    ports:
-        #      - 9090:9090
-        #    volumes:
-        #      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-        #     - ../prometheus:/prometheus
-
-        #  grafana:
-        #    image: grafana/grafana:latest
-        #    ports:
-        #     - 3000:3000
-        #    depends_on:
-        #     - prometheus
-        #    volumes:
-        #      - ../grafana:/var/lib/grafana
-
   acpc-front:
-    image: acpc_front:latest
+    container_name: frontend
     build:
       context: ../client-side
       dockerfile: Dockerfile
     ports:
-      - 8000:8000
+      - "8000:8000"
     depends_on:
       - acpc-back
 

@@ -5,10 +5,10 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class PayerDto {
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastName;
     private String phone;
     private String email;
-    private String address_1 = "hmm";
-    private String address_2 = "hmsm";
+    private String addressOne = "hmm";
+    private String addressTwo = "hmsm";
 }

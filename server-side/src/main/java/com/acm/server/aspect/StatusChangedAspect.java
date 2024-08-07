@@ -1,6 +1,5 @@
 package com.acm.server.aspect;
 
-import com.acm.server.domain.Contestant;
 import com.acm.server.domain.Payment;
 import com.acm.server.model.PaymentType;
 import com.acm.server.model.TeamStatus;
@@ -81,8 +80,8 @@ public class StatusChangedAspect {
                         .setPayer(
                                 new PayerDto()
                                         .setEmail(contestantDto.getEmail())
-                                        .setFirst_name(contestantDto.getFirstname())
-                                        .setLast_name(contestantDto.getLastname())
+                                        .setFirstName(contestantDto.getFirstname())
+                                        .setLastName(contestantDto.getLastname())
                                         .setPhone(contestantDto.getPhoneNumber())
                         )
                         .setProducts(List.of(
@@ -91,6 +90,7 @@ public class StatusChangedAspect {
                         )).setClientRefId(contestantDto.getId().toString())
                         .setReturnUrl(paymentUrl)
         )));
-        mailUtil.sendMailAfterStatusChanged(contestant.getEmail(), TeamStatus.WAITING_FOR_PAYMENT.name(), contestant.getLastname(), contestant.getOrderId());
+        mailUtil.sendMailAfterStatusChanged(contestant.getEmail(), TeamStatus.WAITING_FOR_PAYMENT.name(),
+                contestant.getLastname(), contestant.getOrderId());
     }
 }
