@@ -1,13 +1,10 @@
-FROM maven:3.8.4-openjdk-17-slim
+FROM openjdk:17-jdk-alpine
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /usr/app
 
-COPY . .
+COPY ./target/server-0.0.1.jar ./app.jar
 
-COPY ./settings.xml $HOME/.m2/settings.xml
+EXPOSE 8080
 
-RUN mvn clean install -DskipTests
-
-ENTRYPOINT ["mvn", "spring-boot:run", "-DskipTests=true"]
-
+ENTRYPOINT ["java", "-jar", "app.jar"]

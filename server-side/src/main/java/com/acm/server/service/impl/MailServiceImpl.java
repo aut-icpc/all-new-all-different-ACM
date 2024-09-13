@@ -16,8 +16,9 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public MailDto saveMail(MailDto mailDto) {
-        if (mailRepository.existsMailByValue(mailDto.getValue()))
+        if (mailRepository.existsMailByValue(mailDto.getValue())) {
             throw new DuplicateEntityException("mail already exist!");
+        }
 
         return mapper.toDto(mailRepository.save(mapper.toEntity(mailDto)));
     }
