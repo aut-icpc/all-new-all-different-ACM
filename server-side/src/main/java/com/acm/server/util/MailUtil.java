@@ -63,7 +63,4 @@ public class MailUtil {
             // Handle exception
         }
     }
-
-
-    /// this is a fucking test
 }

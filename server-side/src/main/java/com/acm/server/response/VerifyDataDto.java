@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class VerifyDataDto {
     private String amount;
-    private String refId;
-    private String cardNumber;
+    private String refid;
+    private String card_number;
 }

@@ -80,8 +80,8 @@ public class StatusChangedAspect {
                         .setPayer(
                                 new PayerDto()
                                         .setEmail(contestantDto.getEmail())
-                                        .setFirstName(contestantDto.getFirstname())
-                                        .setLastName(contestantDto.getLastname())
+                                        .setFirst_name(contestantDto.getFirstname())
+                                        .setLast_name(contestantDto.getLastname())
                                         .setPhone(contestantDto.getPhoneNumber())
                         )
                         .setProducts(List.of(
