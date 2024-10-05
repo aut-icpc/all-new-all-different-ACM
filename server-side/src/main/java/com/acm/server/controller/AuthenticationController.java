@@ -3,6 +3,7 @@ package com.acm.server.controller;
 import com.acm.server.config.Constants;
 import com.acm.server.model.dto.BaseResponseDto;
 import com.acm.server.request.SignInRequest;
+import com.acm.server.request.SignUpRequest;
 import com.acm.server.response.JwtAuthenticationResponse;
 import com.acm.server.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +39,13 @@ public class AuthenticationController {
     public ResponseEntity<BaseResponseDto<JwtAuthenticationResponse>> login(@RequestBody SignInRequest request) {
         return ResponseEntity.ok(
                 new BaseResponseDto<>("logged in!", authenticationService.signIn(request))
+        );
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<BaseResponseDto<JwtAuthenticationResponse>> register(@RequestBody SignUpRequest request) {
+        return ResponseEntity.ok(
+                new BaseResponseDto<>("registered!", authenticationService.signUp(request))
         );
     }
 }
