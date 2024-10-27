@@ -28,6 +28,8 @@ public class ContestantDto {
     @NotBlank(message = "Last name is required!")
     @Size(max = 50, message = "Last name length must be less than 50 characters!")
     private String lastname;
+    @Size(max = 100, message = "Info Should be short!")
+    private String otherInfo;
     @NotNull(message = "Gender is required!")
     private Gender gender;
     @NotBlank(message = "Phone number is require!")
