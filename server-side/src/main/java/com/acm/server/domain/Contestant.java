@@ -40,6 +40,9 @@ public class Contestant {
     private String lastname;
 
     @Column
+    private String otherInfo;
+
+    @Column
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
 
