@@ -2,6 +2,7 @@ package com.acm.server.service.impl;
 
 import com.acm.server.domain.Contestant;
 import com.acm.server.domain.Payment;
+import com.acm.server.domain.Team;
 import com.acm.server.exception.NotFoundException;
 import com.acm.server.exception.PaymentException;
 import com.acm.server.model.PaymentType;
@@ -35,12 +36,13 @@ public class PaymentServiceImpl implements PaymentService {
     public String createOrder(PaymentDto paymentDto) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer "
-                .concat("3ac73ec2cfbad095050990db310f49ad01334d04c6abd1231342ee5fca323251"));
+                .concat("n3KA8IsfQ8Fsmq1AGSWPouSr5RXA2J5ezGFbRDgz5Oc"));
 
         HttpEntity<PaymentDto> requestEntity = new HttpEntity<>(paymentDto, headers);
         ResponseEntity<CreateOrderResponse> response =
-                restTemplate.postForEntity("https://zify.ir/api/order/v2/create", requestEntity, CreateOrderResponse.class);
-        return response.getBody().getData().getOrder();
+                restTemplate.postForEntity("https://api.payping.ir/v2/pay", requestEntity, CreateOrderResponse.class);
+        System.out.println(response.getBody().getCode());
+        return response.getBody().getCode();
 
     }
 
@@ -50,24 +52,28 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public void verify(Long id) {
+    public void verify(Long refid, Long id) {
         Contestant contestant = contestantRepository.findById(id).orElse(null);
         if (Objects.isNull(contestant))
             throw new NotFoundException("contestant not found!");
+        Team team = teamRepository.findById
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "bearer "
-                .concat("3ac73ec2cfbad095050990db310f49ad01334d04c6abd1231342ee5fca323251"));
+                .concat("n3KA8IsfQ8Fsmq1AGSWPouSr5RXA2J5ezGFbRDgz5Oc"));
 
         VerifyRequest request = new VerifyRequest();
-        request.setOrder(contestant.getOrderId());
+        request.setRefid(refid.toString());
+        PaymentType paymentType = PaymentType.NORMAL;
+        request.setAmount(paymentAmountByType(paymentType).getAmount());
 
         HttpEntity<VerifyRequest> requestEntity = new HttpEntity<>(request, headers);
 
         ResponseEntity<VerifyResponse> responseDto = restTemplate.postForEntity(
-                "https://zify.ir/api/order/v2/verify", requestEntity, VerifyResponse.class
+                "https://api.payping.ir/v2/pay/verify/", requestEntity, VerifyResponse.class
         );
 
+        System.out.println(responseDto.getStatusCode());
         if (!responseDto.getStatusCode().is2xxSuccessful())
             throw new PaymentException();
 

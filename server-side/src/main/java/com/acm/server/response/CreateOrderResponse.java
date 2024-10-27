@@ -4,6 +4,5 @@ import lombok.Data;
 
 @Data
 public class CreateOrderResponse {
-    private MessageDto message;
-    private DataDto data;
+    private String code;
 }

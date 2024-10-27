@@ -25,5 +25,4 @@ public interface TeamRepository extends JpaRepository<Team, Long> {
 
     @Query(value = "SELECT EXISTS (SELECT 1 FROM Team t WHERE t.teamName = :name)")
     boolean isNameExist(@Param("name") String name);
-
 }
