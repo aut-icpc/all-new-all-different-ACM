@@ -7,5 +7,5 @@ import com.acm.server.model.dto.zify.PaymentDto;
 public interface PaymentService {
     String createOrder(PaymentDto paymentDto);
     Payment paymentAmountByType(PaymentType type);
-    void verify(Long id);
+    void verify(Long id, Long clientrefid);
 }

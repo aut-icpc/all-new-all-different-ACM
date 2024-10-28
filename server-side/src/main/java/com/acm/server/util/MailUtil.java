@@ -35,7 +35,7 @@ public class MailUtil {
         Context context = new Context();
         context.setVariable("name", name);
         context.setVariable("status", status);
-        context.setVariable("payment", "https://zify.ir/order/accept/".concat(orderId));
+        context.setVariable("payment", "https://api.payping.ir/v2/pay/gotoipg/".concat(orderId));
         sendThymeleafEmail(to, "acm-change-status", "ACPC Change Status", context);
     }
 

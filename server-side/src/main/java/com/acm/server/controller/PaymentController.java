@@ -4,8 +4,9 @@ import com.acm.server.config.Constants;
 import com.acm.server.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class PaymentController {
     private final PaymentService paymentService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<String> verify(@PathVariable Long id) {
-        paymentService.verify(id);
+    @PostMapping("/")
+    public ResponseEntity<String> verify(
+            @RequestParam(required = false) String clientrefid,
+            @RequestParam(required = false) String refid) {
+        paymentService.verify(Long.parseLong(refid), Long.parseLong(clientrefid));
         return ResponseEntity.ok("verified");
     }
 }

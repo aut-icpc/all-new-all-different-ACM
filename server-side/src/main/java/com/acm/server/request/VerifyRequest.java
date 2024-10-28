@@ -4,5 +4,6 @@ import lombok.Data;
 
 @Data
 public class VerifyRequest {
-    private String order;
+    private String refid;
+    private int amount;
 }
