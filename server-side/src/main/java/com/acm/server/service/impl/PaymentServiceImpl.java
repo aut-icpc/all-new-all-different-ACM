@@ -56,7 +56,6 @@ public class PaymentServiceImpl implements PaymentService {
         Contestant contestant = contestantRepository.findById(id).orElse(null);
         if (Objects.isNull(contestant))
             throw new NotFoundException("contestant not found!");
-        Team team = teamRepository.findById
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "bearer "
