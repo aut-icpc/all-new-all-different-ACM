@@ -93,6 +93,6 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public TeamDto saveContestant(TeamDto teamDto) {
-        return mapper.toDto(teamRepository.save(mapper.toEntity(teamDto)));
+        return mapper.toDto(teamRepository.save(mapper.toTeam(teamDto)));
     }
 }
