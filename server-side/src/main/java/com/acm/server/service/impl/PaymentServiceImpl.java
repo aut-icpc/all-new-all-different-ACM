@@ -71,7 +71,9 @@ public class PaymentServiceImpl implements PaymentService {
         else {
             paymentType = PaymentType.NORMAL;
         }
+
         request.setAmount(paymentAmountByType(paymentType).getAmount());
+
 
         HttpEntity<VerifyRequest> requestEntity = new HttpEntity<>(request, headers);
         ResponseEntity<VerifyResponse> responseDto = restTemplate.postForEntity(

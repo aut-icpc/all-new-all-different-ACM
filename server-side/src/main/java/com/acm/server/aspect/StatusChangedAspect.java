@@ -10,6 +10,7 @@ import com.acm.server.model.dto.zify.PaymentDto;
 import com.acm.server.model.dto.zify.ProductDto;
 import com.acm.server.service.ContestantService;
 import com.acm.server.service.PaymentService;
+import com.acm.server.service.TeamService;
 import com.acm.server.util.MailUtil;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -41,6 +42,7 @@ public class StatusChangedAspect {
     private final MailUtil mailUtil;
     private final PaymentService paymentService;
     private final ContestantService contestantService;
+    private final TeamService teamService;
     @Value("${payment.url}")
     private String paymentUrl;
 
@@ -63,6 +65,7 @@ public class StatusChangedAspect {
 
         Payment payment = paymentService.paymentAmountByType(paymentType);
         System.out.println(paymentType);
+        teamService.saveContestant(teamDto);
         if (status.equals(TeamStatus.WAITING_FOR_PAYMENT.name()))
             teamDto.getContestants().forEach(c -> readyForPayment(
                     c, payment, teamDto.getId()

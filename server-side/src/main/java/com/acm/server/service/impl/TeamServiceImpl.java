@@ -1,6 +1,7 @@
 package com.acm.server.service.impl;
 
 import com.acm.server.annotation.StatusChangedEvent;
+import com.acm.server.domain.Team;
 import com.acm.server.mapper.TeamMapper;
 import com.acm.server.model.TeamStatus;
 import com.acm.server.model.dto.TeamDto;
@@ -88,5 +89,10 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public boolean isNameUnique(String teamName) {
         return !teamRepository.isNameExist(teamName);
+    }
+
+    @Override
+    public TeamDto saveContestant(TeamDto teamDto) {
+        return mapper.toDto(teamRepository.save(mapper.toEntity(teamDto)));
     }
 }
