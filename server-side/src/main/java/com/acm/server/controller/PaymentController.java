@@ -21,7 +21,7 @@ public class PaymentController {
             @RequestParam(required = false) String clientrefid,
             @RequestParam(required = false) String refid) {
         String[] data = clientrefid.split("[\\+\\-]+");
-        paymentService.verify(Long.parseLong(refid), Long.parseLong(data[0]), Long.parseLong(data[1]));
+        paymentService.verify(Long.parseLong(refid.trim()), Long.parseLong(data[0].trim()), Long.parseLong(data[1].trim()));
         return ResponseEntity.ok("verified");
     }
 }
