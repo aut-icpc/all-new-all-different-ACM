@@ -65,7 +65,7 @@ public class StatusChangedAspect {
         System.out.println(paymentType);
         if (status.equals(TeamStatus.WAITING_FOR_PAYMENT.name()))
             teamDto.getContestants().forEach(c -> readyForPayment(
-                    c, payment
+                    c, payment, teamDto.getId()
             ));
         else {
             // Email each contestant in the team
@@ -74,17 +74,18 @@ public class StatusChangedAspect {
 
     }
 
-    private void readyForPayment(ContestantDto contestantDto, Payment payment) {
+    private void readyForPayment(ContestantDto contestantDto, Payment payment, Long teamID) {
         ContestantDto contestant = contestantService.saveContestant(contestantDto.setOrderId(paymentService.createOrder(
                 new PaymentDto()
                         .setPayerIdentity(
                                 contestantDto.getEmail())
                         .setPayerName(contestantDto.getFirstname() + " " + contestantDto.getLastname())
                         .setDescription("acpc registeration")
-                        .setClientRefId(contestantDto.getId().toString())
+                        .setClientRefId(contestantDto.getId().toString() + " - " + teamID.toString())
                         .setAmount(payment.getAmount())
                         .setReturnUrl(paymentUrl)
         )));
+        System.out.println(contestant.getOrderId());
         mailUtil.sendMailAfterStatusChanged(contestant.getEmail(), TeamStatus.WAITING_FOR_PAYMENT.name(),
                 contestant.getLastname(), contestant.getOrderId());
     }

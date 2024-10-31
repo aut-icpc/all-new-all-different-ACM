@@ -41,7 +41,6 @@ public class PaymentServiceImpl implements PaymentService {
         HttpEntity<PaymentDto> requestEntity = new HttpEntity<>(paymentDto, headers);
         ResponseEntity<CreateOrderResponse> response =
                 restTemplate.postForEntity("https://api.payping.ir/v2/pay", requestEntity, CreateOrderResponse.class);
-        System.out.println(response.getBody().getCode());
         return response.getBody().getCode();
 
     }
@@ -52,10 +51,13 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public void verify(Long refid, Long id) {
+    public void verify(Long refid, Long id, Long teamID) {
         Contestant contestant = contestantRepository.findById(id).orElse(null);
         if (Objects.isNull(contestant))
             throw new NotFoundException("contestant not found!");
+        Team team = teamRepository.findById(teamID).orElse(null);
+        if (Objects.isNull(team))
+            throw new NotFoundException("team not found!");
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "bearer "
@@ -63,27 +65,30 @@ public class PaymentServiceImpl implements PaymentService {
 
         VerifyRequest request = new VerifyRequest();
         request.setRefid(refid.toString());
-        PaymentType paymentType = PaymentType.NORMAL;
-        request.setAmount(paymentAmountByType(paymentType).getAmount());
+        PaymentType paymentType;
+        if (team.getIsInAmirkabir())
+            paymentType = PaymentType.AMIRKABIR;
+        else {
+            paymentType = PaymentType.NORMAL;
+        }
+        request.setAmount(paymentAmountByType(paymentType).getAmount() / 10);
 
         HttpEntity<VerifyRequest> requestEntity = new HttpEntity<>(request, headers);
-
         ResponseEntity<VerifyResponse> responseDto = restTemplate.postForEntity(
                 "https://api.payping.ir/v2/pay/verify/", requestEntity, VerifyResponse.class
         );
 
-        System.out.println(responseDto.getStatusCode());
         if (!responseDto.getStatusCode().is2xxSuccessful())
             throw new PaymentException();
 
         boolean allPaid = true;
         contestantRepository.save(contestant.setPaid(true));
-        for (Contestant c : contestant.getTeam().getContestants()) {
+        for (Contestant c : team.getContestants()) {
             allPaid = allPaid && c.getPaid();
         }
         if (allPaid)
-            contestant.getTeam().setStatus(TeamStatus.FINALIZED);
+            team.setStatus(TeamStatus.FINALIZED);
 
-        teamRepository.save(contestant.getTeam());
+        teamRepository.save(team);
     }
 }
