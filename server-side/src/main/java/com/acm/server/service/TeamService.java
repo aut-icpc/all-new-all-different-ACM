@@ -1,5 +1,6 @@
 package com.acm.server.service;
 
+import com.acm.server.model.dto.ContestantDto;
 import com.acm.server.model.dto.TeamDto;
 import com.acm.server.model.dto.TeamPageDto;
 import com.acm.server.request.UpdateStatusRequest;
@@ -28,4 +29,6 @@ public interface TeamService {
     TeamPageDto getTeams(Pageable pageable);
 
     boolean isNameUnique(String teamName);
+
+    TeamDto saveContestant(TeamDto dto);
 }
