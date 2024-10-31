@@ -78,6 +78,6 @@ public class Contestant {
     private String orderId;
 
     @JoinColumn
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Team team;
 }

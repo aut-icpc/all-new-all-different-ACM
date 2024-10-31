@@ -20,7 +20,8 @@ public class PaymentController {
     public ResponseEntity<String> verify(
             @RequestParam(required = false) String clientrefid,
             @RequestParam(required = false) String refid) {
-        paymentService.verify(Long.parseLong(refid), Long.parseLong(clientrefid));
+        String[] data = clientrefid.split("[\\+\\-]+");
+        paymentService.verify(Long.parseLong(refid), Long.parseLong(data[0]), Long.parseLong(data[1]));
         return ResponseEntity.ok("verified");
     }
 }
