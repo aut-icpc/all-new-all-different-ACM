@@ -29,12 +29,12 @@ public class PaymentController {
             );
 
             return ResponseEntity.status(HttpStatus.FOUND)
-                    .header("Location", Constants.BASE_CONTEST_API_URL + "/payment_status/?status=success&code="+code)
+                    .header("Location", "https://aut-acpc.com/payment_status/?status=success&code="+code)
                     .build();
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.FOUND)
-                    .header("Location", Constants.BASE_CONTEST_API_URL + "/payment_status/?status=failed&code="+e.getMessage())
+                    .header("Location", "https://aut-acpc.com/payment_status/?status=failed&code="+e.getMessage())
                     .build();
         }
     }
