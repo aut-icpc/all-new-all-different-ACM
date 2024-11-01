@@ -51,7 +51,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public void verify(Long refid, Long id, Long teamID) {
+    public String verify(Long refid, Long id, Long teamID) {
         Contestant contestant = contestantRepository.findById(id).orElse(null);
         if (Objects.isNull(contestant))
             throw new NotFoundException("contestant not found!");
@@ -81,7 +81,7 @@ public class PaymentServiceImpl implements PaymentService {
         );
 
         if (!responseDto.getStatusCode().is2xxSuccessful())
-            throw new PaymentException();
+            throw new PaymentException(refid.toString());
 
         boolean allPaid = true;
         contestantRepository.save(contestant.setPaid(true));
@@ -92,5 +92,6 @@ public class PaymentServiceImpl implements PaymentService {
             team.setStatus(TeamStatus.FINALIZED);
 
         teamRepository.save(team);
+        return refid.toString();
     }
 }
