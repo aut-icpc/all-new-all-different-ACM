@@ -35,7 +35,7 @@ public ResponseEntity<PaymentResponse> verify(@RequestParam String data) {
         String clientRefId = (String) dataMap.get("clientRefId");
         String paymentCode = (String) dataMap.get("paymentCode");
         long amount = Long.parseLong(dataMap.get("amount").toString());
-        String paymentRefId = (String) dataMap.get("paymentRefId");
+        Long paymentRefId = (Long) dataMap.get("paymentRefId");
 
         String[] splitData = clientRefId.split("[\\+\\-]+");
         Long clientRefPart1 = Long.parseLong(splitData[0].trim());
