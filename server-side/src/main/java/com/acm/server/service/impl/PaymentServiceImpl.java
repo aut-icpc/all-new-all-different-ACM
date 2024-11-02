@@ -40,8 +40,8 @@ public class PaymentServiceImpl implements PaymentService {
 
         HttpEntity<PaymentDto> requestEntity = new HttpEntity<>(paymentDto, headers);
         ResponseEntity<CreateOrderResponse> response =
-                restTemplate.postForEntity("https://api.payping.ir/v2/pay", requestEntity, CreateOrderResponse.class);
-        return response.getBody().getCode();
+                restTemplate.postForEntity("https://api.payping.ir/v3/pay", requestEntity, CreateOrderResponse.class);
+        return response.getBody().getPaymentCode();
 
     }
 
@@ -77,7 +77,7 @@ public class PaymentServiceImpl implements PaymentService {
 
         HttpEntity<VerifyRequest> requestEntity = new HttpEntity<>(request, headers);
         ResponseEntity<VerifyResponse> responseDto = restTemplate.postForEntity(
-                "https://api.payping.ir/v2/pay/verify/", requestEntity, VerifyResponse.class
+                "https://api.payping.ir/v3/pay/verify/", requestEntity, VerifyResponse.class
         );
 
         if (!responseDto.getStatusCode().is2xxSuccessful())
