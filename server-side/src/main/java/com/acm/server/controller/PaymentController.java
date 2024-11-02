@@ -42,7 +42,7 @@ public ResponseEntity<PaymentResponse> verify(@RequestParam String data) {
         Long clientRefPart2 = Long.parseLong(splitData[1].trim());
 
         String code = paymentService.verify(
-            Long.parseLong(paymentRefId.trim()),
+            Long.parseLong(paymentRefId),
             clientRefPart1,
             clientRefPart2
         );
