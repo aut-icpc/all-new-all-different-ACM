@@ -18,34 +18,40 @@ import lombok.Data;
 public class PaymentController {
     private final PaymentService paymentService;
 
-    @PostMapping("/")
-    public ResponseEntity<PaymentResponse> verify(@RequestBody PaymentData paymentData) {
-        PaymentResponse response = new PaymentResponse();
-        
-        try {
-            String[] data = paymentData.getClientRefId().split("[\\+\\-]+");
-            Long clientRefPart1 = Long.parseLong(data[0].trim());
-            Long clientRefPart2 = Long.parseLong(data[1].trim());
+@PostMapping("/")
+public ResponseEntity<PaymentResponse> verify(
+        @RequestParam String clientRefId,
+        @RequestParam String paymentCode,
+        @RequestParam long amount,
+        @RequestParam String paymentRefId,
+        @RequestParam(required = false) String cardNumber,
+        @RequestParam(required = false) String cardHashPan) {
 
-            String code = paymentService.verify(
-                Long.parseLong(paymentData.getPaymentRefId().trim()),
-                clientRefPart1,
-                clientRefPart2
-            );
+    PaymentResponse response = new PaymentResponse();
 
-            response.setStatus(1);
-            response.setErrorCode(null);
+    try {
+        String[] data = clientRefId.split("[\\+\\-]+");
+        Long clientRefPart1 = Long.parseLong(data[0].trim());
+        Long clientRefPart2 = Long.parseLong(data[1].trim());
 
-            return ResponseEntity.ok(response);
+        String code = paymentService.verify(
+            Long.parseLong(paymentRefId.trim()),
+            clientRefPart1,
+            clientRefPart2
+        );
 
-        } catch (Exception e) {
-            response.setStatus(0);
-            response.setErrorCode(e.getMessage());
+        response.setStatus(1);
+        response.setErrorCode(null);
 
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-        }
+        return ResponseEntity.ok(response);
+
+    } catch (Exception e) {
+        response.setStatus(0);
+        response.setErrorCode(e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
-
+}
     @Data
     public static class PaymentData {
         @JsonProperty("ClientRefId")
