@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.fasterxml.jackson.databind.ObjectMapper;
+// import org.springframework.web.bind.annotation.RequestBody;
+import java.util.Map;
+
 import lombok.Data;
 
 @RestController
@@ -20,20 +24,22 @@ public class PaymentController {
     private final PaymentService paymentService;
 
 @PostMapping("/")
-public ResponseEntity<PaymentResponse> verify(
-        @RequestParam String clientRefId,
-        @RequestParam String paymentCode,
-        @RequestParam long amount,
-        @RequestParam String paymentRefId,
-        @RequestParam(required = false) String cardNumber,
-        @RequestParam(required = false) String cardHashPan) {
-
+public ResponseEntity<PaymentResponse> verify(@RequestParam String data) {
     PaymentResponse response = new PaymentResponse();
+    ObjectMapper objectMapper = new ObjectMapper();
 
     try {
-        String[] data = clientRefId.split("[\\+\\-]+");
-        Long clientRefPart1 = Long.parseLong(data[0].trim());
-        Long clientRefPart2 = Long.parseLong(data[1].trim());
+        // Parse the JSON string into a Map
+        Map<String, Object> dataMap = objectMapper.readValue(data, Map.class);
+
+        String clientRefId = (String) dataMap.get("clientRefId");
+        String paymentCode = (String) dataMap.get("paymentCode");
+        long amount = Long.parseLong(dataMap.get("amount").toString());
+        String paymentRefId = (String) dataMap.get("paymentRefId");
+
+        String[] splitData = clientRefId.split("[\\+\\-]+");
+        Long clientRefPart1 = Long.parseLong(splitData[0].trim());
+        Long clientRefPart2 = Long.parseLong(splitData[1].trim());
 
         String code = paymentService.verify(
             Long.parseLong(paymentRefId.trim()),
