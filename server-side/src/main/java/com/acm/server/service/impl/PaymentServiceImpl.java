@@ -64,7 +64,7 @@ public class PaymentServiceImpl implements PaymentService {
                 .concat("n3KA8IsfQ8Fsmq1AGSWPouSr5RXA2J5ezGFbRDgz5Oc"));
 
         VerifyRequest request = new VerifyRequest();
-        request.setRefid(refid.toString());
+        request.setPaymentRefId(refid);
         PaymentType paymentType;
         if (team.getIsInAmirkabir())
             paymentType = PaymentType.AMIRKABIR;

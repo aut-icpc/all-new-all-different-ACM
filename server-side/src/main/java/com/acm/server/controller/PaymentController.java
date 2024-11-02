@@ -19,7 +19,9 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     @PostMapping("/")
-    public ResponseEntity<Void> verify(@RequestBody PaymentData paymentData) {
+    public ResponseEntity<PaymentResponse> verify(@RequestBody PaymentData paymentData) {
+        PaymentResponse response = new PaymentResponse();
+        
         try {
             String[] data = paymentData.getClientRefId().split("[\\+\\-]+");
             Long clientRefPart1 = Long.parseLong(data[0].trim());
@@ -31,35 +33,46 @@ public class PaymentController {
                 clientRefPart2
             );
 
-            return ResponseEntity.status(HttpStatus.FOUND)
-                    .header("Location", "https://aut-acpc.com/payment_status/?status=success&code=" + code)
-                    .build();
+            response.setStatus(1);
+            response.setErrorCode(null);
+
+            return ResponseEntity.ok(response);
 
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.FOUND)
-                    .header("Location", "https://aut-acpc.com/payment_status/?status=failed&code=" + e.getMessage())
-                    .build();
+            response.setStatus(0);
+            response.setErrorCode(e.getMessage());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
     }
 
     @Data
     public static class PaymentData {
-        @JsonProperty("clientRefId")
+        @JsonProperty("ClientRefId")
         private String clientRefId;
 
-        @JsonProperty("paymentCode")
+        @JsonProperty("PaymentCode")
         private String paymentCode;
 
-        @JsonProperty("amount")
+        @JsonProperty("Amount")
         private long amount;
 
-        @JsonProperty("paymentRefId")
+        @JsonProperty("PaymentRefId")
         private String paymentRefId;
         
-        @JsonProperty("cardNumber")
+        @JsonProperty("CardNumber")
         private String cardNumber;
 
-        @JsonProperty("cardHashPan")
+        @JsonProperty("CardHashPan")
         private String cardHashPan;
+    }
+
+    @Data
+    public static class PaymentResponse {
+        @JsonProperty("Status")
+        private int status;
+
+        @JsonProperty("ErrorCode")
+        private String errorCode;
     }
 }
