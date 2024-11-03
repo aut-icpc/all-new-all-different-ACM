@@ -49,12 +49,12 @@ public ResponseEntity<PaymentResponse> verify(@RequestParam int status, @Request
 
         System.out.println(code);
             return ResponseEntity.status(HttpStatus.FOUND)
-            .header("Location", "https://aut-acpc.com/payment_status/?status=success&code="+code)
-            build();
+                    .header("Location", "https://aut-acpc.com/payment_status/?status=success&code="+code)
+                    .build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.FOUND)
-            .header("Location", "https://aut-acpc.com/payment_status/?status=failed&code="+code)
-            build();
+                    .header("Location", "https://aut-acpc.com/payment_status/?status=failed&code="+code)
+                    .build();
         }
 
 }
