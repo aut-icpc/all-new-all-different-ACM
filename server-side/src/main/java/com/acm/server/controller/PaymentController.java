@@ -30,11 +30,13 @@ public ResponseEntity<PaymentResponse> verify(@RequestParam int status, @Request
     PaymentResponse response = new PaymentResponse();
 
         String code = "";
+        String returnCode = "";
         System.out.println(data);
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             // Convert the JSON string to PaymentInfo object
             PaymentData pi = objectMapper.readValue(data, PaymentData.class);
+            returnCode = pi.getPaymentCode();
             String[] splitData = pi.getClientRefId().split("[\\+\\-]+");
             Long clientRefPart1 = Long.parseLong(splitData[0].trim());
             Long clientRefPart2 = Long.parseLong(splitData[1].trim());
@@ -49,11 +51,11 @@ public ResponseEntity<PaymentResponse> verify(@RequestParam int status, @Request
 
         System.out.println(code);
             return ResponseEntity.status(HttpStatus.FOUND)
-                    .header("Location", "https://aut-acpc.com/payment_status/?status=success&code="+pi.getPaymentCode())
+                    .header("Location", "https://aut-acpc.com/payment_status/?status=success&code="+returnCode)
                     .build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.FOUND)
-                    .header("Location", "https://aut-acpc.com/payment_status/?status=failed&code="+pi.getPaymentCode())
+                    .header("Location", "https://aut-acpc.com/payment_status/?status=failed&code="+returnCode)
                     .build();
         }
 
