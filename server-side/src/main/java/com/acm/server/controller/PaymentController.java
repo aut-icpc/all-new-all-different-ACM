@@ -50,16 +50,13 @@ public ResponseEntity<PaymentResponse> verify(@RequestParam int status, @Request
 
 
         } catch (Exception e) {
-            e.printStackTrace();
-            response.setStatus(2);
-            response.setErrorCode(null);
-
-        return ResponseEntity.ok(response);
+            return ResponseEntity.status(HttpStatus.FOUND)
+            .header("Location", Constants.BASE_CONTEST_API_URL + "/payment_status/?status=failed&code="+code)
+            build();
         }
-        response.setStatus(1);
-        response.setErrorCode(null);
-
-        return ResponseEntity.ok(response);
+            return ResponseEntity.status(HttpStatus.FOUND)
+            .header("Location", Constants.BASE_CONTEST_API_URL + "/payment_status/?status=success&code="+code)
+            build();
 }
 @Data
 public static class PaymentData {
