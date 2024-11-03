@@ -29,6 +29,7 @@ public class PaymentController {
 public ResponseEntity<PaymentResponse> verify(@RequestParam int status, @RequestParam(required = false) Integer errorCode, @RequestParam String data) {
     PaymentResponse response = new PaymentResponse();
 
+        String code = "";
         System.out.println(data);
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -39,7 +40,7 @@ public ResponseEntity<PaymentResponse> verify(@RequestParam int status, @Request
             Long clientRefPart2 = Long.parseLong(splitData[1].trim());
 
 
-            String code = paymentService.verify(
+            code = paymentService.verify(
             pi.getPaymentRefId(),
             clientRefPart1,
             clientRefPart2
@@ -47,16 +48,15 @@ public ResponseEntity<PaymentResponse> verify(@RequestParam int status, @Request
 
 
         System.out.println(code);
-
-
+            return ResponseEntity.status(HttpStatus.FOUND)
+            .header("Location", "https://aut-acpc.com/payment_status/?status=success&code="+code)
+            build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.FOUND)
-            .header("Location", Constants.BASE_CONTEST_API_URL + "/payment_status/?status=failed&code="+code)
+            .header("Location", "https://aut-acpc.com/payment_status/?status=failed&code="+code)
             build();
         }
-            return ResponseEntity.status(HttpStatus.FOUND)
-            .header("Location", Constants.BASE_CONTEST_API_URL + "/payment_status/?status=success&code="+code)
-            build();
+
 }
 @Data
 public static class PaymentData {
