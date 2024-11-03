@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Map;
 // import org.springframework.web.bind.annotation.RequestBody;
 import java.util.Map;
 
@@ -24,61 +26,61 @@ public class PaymentController {
     private final PaymentService paymentService;
 
 @PostMapping("/")
-public ResponseEntity<PaymentResponse> verify(@RequestParam String data) {
+public ResponseEntity<PaymentResponse> verify(@RequestParam int status, @RequestParam(required = false) Integer errorCode, @RequestParam String data) {
     PaymentResponse response = new PaymentResponse();
-    ObjectMapper objectMapper = new ObjectMapper();
 
-    try {
-        // Parse the JSON string into a Map
-        Map<String, Object> dataMap = objectMapper.readValue(data, Map.class);
+        System.out.println(data);
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            // Convert the JSON string to PaymentInfo object
+            PaymentData pi = objectMapper.readValue(data, PaymentData.class);
+            String[] splitData = pi.getClientRefId().split("[\\+\\-]+");
+            Long clientRefPart1 = Long.parseLong(splitData[0].trim());
+            Long clientRefPart2 = Long.parseLong(splitData[1].trim());
 
-        String clientRefId = (String) dataMap.get("clientRefId");
-        String paymentCode = (String) dataMap.get("paymentCode");
-        long amount = Long.parseLong(dataMap.get("amount").toString());
-        Long paymentRefId = (Long) dataMap.get("paymentRefId");
 
-        String[] splitData = clientRefId.split("[\\+\\-]+");
-        Long clientRefPart1 = Long.parseLong(splitData[0].trim());
-        Long clientRefPart2 = Long.parseLong(splitData[1].trim());
-
-        String code = paymentService.verify(
-            paymentRefId,
+            String code = paymentService.verify(
+            pi.getPaymentRefId(),
             clientRefPart1,
             clientRefPart2
         );
 
+
+        System.out.println(code);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setStatus(2);
+            response.setErrorCode(null);
+
+        return ResponseEntity.ok(response);
+        }
         response.setStatus(1);
         response.setErrorCode(null);
 
         return ResponseEntity.ok(response);
-
-    } catch (Exception e) {
-        response.setStatus(0);
-        response.setErrorCode(e.getMessage());
-
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-    }
 }
-    @Data
-    public static class PaymentData {
-        @JsonProperty("ClientRefId")
-        private String clientRefId;
+@Data
+public static class PaymentData {
+    @JsonProperty("clientRefId")
+    private String clientRefId;
 
-        @JsonProperty("PaymentCode")
-        private String paymentCode;
+    @JsonProperty("paymentCode")
+    private String paymentCode;
 
-        @JsonProperty("Amount")
-        private long amount;
+    @JsonProperty("amount")
+    private long amount;
 
-        @JsonProperty("PaymentRefId")
-        private String paymentRefId;
-        
-        @JsonProperty("CardNumber")
-        private String cardNumber;
+    @JsonProperty("paymentRefId")  // Ensure this matches the JSON
+    private long paymentRefId;
 
-        @JsonProperty("CardHashPan")
-        private String cardHashPan;
-    }
+    @JsonProperty("cardNumber")
+    private String cardNumber;
+
+    @JsonProperty("cardHashPan")
+    private String cardHashPan;
+}
 
     @Data
     public static class PaymentResponse {
